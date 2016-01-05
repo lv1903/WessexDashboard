@@ -1,0 +1,134 @@
+body {
+  padding: 50px;
+  font: 14px "Calibri"
+  /*font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;*/
+  /*color: white;*/
+}
+
+@media (max-width: 1000px) {
+  body {
+    padding: 20px;
+  }
+}
+
+
+.contentContainer{
+  padding: 35px 15px;
+  /*background-color: red*/
+}
+
+
+.widget {
+  background-color: #00778b;
+  color: white;
+  border-radius: 2px;
+}
+
+.axis text {
+  fill: white;
+  /*stroke: white;*/
+
+}
+
+.x-label {
+  fill: white;
+}
+
+/*.color2 {*/
+  /*fill:  #ffe166;*/
+/*}*/
+
+
+/*/!*line graph*!/*/
+/*.densityLine, .timeLine {*/
+  /*stroke: #ffe166;*/
+  /*/!*stroke: white;*!/*/
+  /*stroke-width: 1;*/
+
+
+/*}*/
+
+/*.densityArea, .dots {*/
+  /*fill: #ffe166;*/
+/*}*/
+
+
+/*.dots {*/
+  /*fill: white;*/
+  /**/
+/*}*/
+
+
+/*map*/
+
+/*.feature {*/
+
+  /*stroke: #003da5;*/
+
+/*}*/
+
+
+
+.clickable {
+
+  cursor: crosshair;
+  cursor: crosshair;
+
+}
+
+
+
+
+
+
+/*gauge*/
+
+
+/*#indicator_gauge g.arc {*/
+  /*fill: steelblue;*/
+/*}*/
+
+/*#indicator_gauge g.pointer {*/
+  /*fill: #9b26b6;*/
+  /*stroke:  #2d2926;*/
+/*}*/
+
+/*#indicator_gauge g.label text {*/
+  /*text-anchor: middle;*/
+  /*font-size: 1em;*/
+  /*font-weight: bold;*/
+  /*fill: #fff;*/
+/*}*/
+
+
+
+/*slider-----------------*/
+
+.slider .axis {
+  fill: #ffe166;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  user-select: none;
+}
+
+.axis .halo {
+  stroke: #ffcd00;
+  stroke-width: 4px;
+  stroke-linecap: round;
+}
+
+.slider .handle path {
+  stroke: white;
+  stroke-width: 4px;
+  stroke-linecap: round;
+  pointer-events: none;
+}
+
+.slider .handle text {
+  fill: white;
+  text-align: center;
+  font-size: 1.5em;
+}
+
+
+

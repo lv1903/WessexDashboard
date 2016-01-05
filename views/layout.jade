@@ -1,0 +1,32 @@
+doctype html
+html
+  head
+    title Test Widgets
+    meta(charset='utf-8')
+    meta(http-equiv='X-UA-Compatible', content='IE=edge')
+    meta(name='viewport', content='width=device-width, initial-scale=1')
+    meta(name='description', content='')
+    meta(name='author', content='')
+
+
+    link(href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css", rel='stylesheet')
+    link(href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css", rel='stylesheet')
+    link(href='http://fonts.googleapis.com/css?family=Raleway', rel='stylesheet', type='text/css')
+
+    script(src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js")
+    script(src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js")
+    script(src="https://cdnjs.cloudflare.com/ajax/libs/crossfilter/1.3.12/crossfilter.min.js")
+    script(src="http://d3js.org/d3.v3.min.js")
+    script(src= "http://d3js.org/topojson.v1.min.js")
+    script(src="http://www.numericjs.com/lib/numeric-1.2.6.min.js")
+
+    script(type='text/javascript', src='/javascripts/EventEmitter-VERSION.min.js')
+
+
+    script.
+      var config_obj = !{JSON.stringify(config_obj)};
+      var data_obj = !{JSON.stringify(data_obj)};
+      var state_obj = !{JSON.stringify(state_obj)};
+
+  body
+    block content
