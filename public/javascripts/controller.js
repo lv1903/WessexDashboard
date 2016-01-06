@@ -17,16 +17,18 @@ var Controller = function(data_obj, config, state_obj){
     var indicatorArr = this.state.indicatorArr;
     var genderArr = this.state.genderArr;
 
+    if(this.state.current_area == null) {
 
-    //pick a random area
-    var temp_arr = data_obj.data_arr.filter(function(obj){
-        if(obj[config.source.areaType] == self.state.areaType){
-            return obj
-        }
-    });
-    temp_arr = this.getUniqueArray(config.source.id, temp_arr);
-    var randomIndex = Math.floor(Math.random() * temp_arr.length);
-    this.state.current_area = temp_arr[randomIndex];
+        //pick a random area
+        var temp_arr = data_obj.data_arr.filter(function (obj) {
+            if (obj[config.source.areaType] == self.state.areaType) {
+                return obj
+            }
+        });
+        temp_arr = this.getUniqueArray(config.source.id, temp_arr);
+        var randomIndex = Math.floor(Math.random() * temp_arr.length);
+        this.state.current_area = temp_arr[randomIndex];
+    }
 
 
     this.state.current_secondary_areas = [];
@@ -190,10 +192,12 @@ Controller.prototype.filterData = function(areaType, gender, indicator){
         }
     });
 
+    data.sort(function(a, b) {return d3.ascending(a[src.name], b[src.name])});
     return data
 };
 
 Controller.prototype.filterDataPeriod = function(areaType, gender, indicator, period){
+
 
     var src = this.config.source;
 
@@ -208,6 +212,7 @@ Controller.prototype.filterDataPeriod = function(areaType, gender, indicator, pe
         }
     });
 
+    data.sort(function(a, b) {return d3.ascending(a[src.name], b[src.name])});
     return data
 };
 
@@ -226,7 +231,27 @@ Controller.prototype.filterDataPeriodArea = function(areaType, gender, indicator
             return obj
         }
     });
+    data.sort(function(a, b) {return d3.ascending(a[src.name], b[src.name])});
+    return data
+};
 
+Controller.prototype.filterDataArea = function(areaType, gender, indicator, id){
+
+    var src = this.config.source;
+
+    var data = this.data_obj.data_arr.filter(function(obj){
+        if(
+            obj[src.areaType] == areaType &&
+            obj[src.indicator] == indicator &&
+            obj[src.gender] == gender &&
+            obj[src.id] == id
+        ){
+            return obj
+        }
+    });
+
+
+    data.sort(function(a, b) {return d3.ascending(a[src.name], b[src.name])});
     return data
 };
 
@@ -259,7 +284,7 @@ Controller.prototype.getValueFromPeriodData = function(areaType,gender, indicato
 
     var percent = index / orderedList.length;
 
-    return {"value": value, "count": count, "index": index, "percent": percent}
+    return {"value": value, "count": count, "index": index, "indexMax": orderedList.length, "percent": percent}
 
 };
 

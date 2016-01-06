@@ -9,7 +9,7 @@ window.onload = function() {
 
     var indicator = state_obj.indicatorArr[0]; //there should only be one for indicator report
 
-    var gender = state_obj.genderArr[0]; //there should only be one gender for indicator repot
+    var gender = state_obj.genderArr[0]; //there should only be one gender for indicator report
 
 
     controller = new Controller(data_obj, config_obj, state_obj);

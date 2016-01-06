@@ -92,6 +92,8 @@ WessexMap.prototype._draw_map = function(){
 
     var features = topojson.feature(topojson_data, topojson_data.objects.collection).features;
 
+    console.log(that.config.style)
+
     this._mapFeatures = this._chart.selectAll("path")
         .data(features)
         .enter()
@@ -99,10 +101,11 @@ WessexMap.prototype._draw_map = function(){
         .attr("class", "feature clickable")
         .attr("id", function(d){ return "feature" + d.properties.id})
         .attr("d", path)
+        .style(that.config.style)
         //.style("stroke", self.cs.background_color)
-        .style("stroke", function(d) {return self._select_map_stroke_color(d.properties.id)})
-        .style("stroke-width", "2px")
-        .style("fill", function(d) {return self._select_map_color(d.properties.id)})
+        //.style("stroke", function(d) {return self._select_map_stroke_color(d.properties.id)})
+        //.style("stroke-width", "2px")
+        //.style("fill", function(d) {return self._select_map_color(d.properties.id)})
         .on("click", self._feature_click);
 
     d3.select("#feature" + state.current_area).moveToFront();

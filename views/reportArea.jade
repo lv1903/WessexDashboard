@@ -1,0 +1,65 @@
+extends layout
+block content
+
+    link(rel='stylesheet', href='/stylesheets/style.css')
+    link(rel='stylesheet', href='/stylesheets/flexStyleIndicator.css')
+
+    script(src="/javascripts/controller.js")
+
+    script(src="/javascripts/areaheader.js")
+    script(src="/javascripts/indicatorwidget.js")
+
+
+
+    script(src="/javascripts/init_area.js")
+
+
+    script.
+        getPage = function () {
+            var inArr = ["areaTypeSelect", "indicatorTypeSelect", "genderTypeSelect", "areaSelect"];
+            var outArr = [];
+            for (var i in inArr) {
+                var e = document.getElementById(inArr[i]);
+                outArr[i] = e.options[e.selectedIndex].value;
+            }
+            var path = window.location.protocol + "//" + window.location.host + "/AreaReport/" + outArr[0] + "/" + outArr[1] + "/" + outArr[2] + "/" + outArr[3]
+            console.log(path)
+            window.location.href = path;
+        }
+
+
+
+    .flex-group
+        .flex-header-container
+            .flex-header-item#headerReportItem
+                select.flex-select#reportTypeSelect
+                    option(value='IndicatorReport') Indicator Report:
+                    option(value='AreaReport') Area Report:
+                    option(value='CompareAreas') Compare Areas:
+            .flex-header-item#headerGenderItem
+                select.flex-select.addFilterSelect#genderTypeSelect
+                    option(value='Female') Females
+                    option(value='Male') Males
+                    option(value='Persons') Persons
+            .flex-header-item#headerAreaTypeItem
+                select.flex-select.addFilterSelect#areaTypeSelect
+                    option(value='DU') Districts and Unitaries
+                    option(value='CCG') CCGs
+                    option(value='CU') Counties and Unitaries
+            .flex-header-item#headerAreaItem
+                select.flex-select#areaSelect
+                    option(value='E38000120') North Hampshire
+
+            .flex-header-item#goButtonItem
+                .btn.btn-default.btn-lg.flex-btn#goButton(onclick='getPage()') Go
+
+
+
+        .flex-container
+
+            .flex-item.full_height#wi0Item
+            .flex-item.full_height#wi1Item
+            .flex-item.full_height#wi2Item
+            .flex-item.full_height#wi3Item
+            .flex-item.full_height#wi4Item
+

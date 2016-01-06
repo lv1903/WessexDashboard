@@ -17,7 +17,6 @@ LineGraph = function(indicator, gender, container, widgetId){
 
     this.data = controller.filterData(areaType, gender, indicatorMapped);
     this.data_period = controller.filterDataPeriod(areaType, gender, indicatorMapped, current_period);
-    this.data_period.sort(this._sort_y("alpha"));
 
     this.cs = controller.config.colorScheme;
 
@@ -29,6 +28,8 @@ LineGraph = function(indicator, gender, container, widgetId){
 
 
 LineGraph.prototype._init = function(){
+
+    console.log("init line graph");
 
     var state = controller.state;
 
@@ -70,7 +71,7 @@ LineGraph.prototype._build_graph = function(){
 
     config.additional_margin_bottom = 14;
 
-    this.topMargin = config.margin.top + 7;
+    this,topMargin = config.margin.top + 7;
     
 
 
@@ -88,7 +89,7 @@ LineGraph.prototype._build_graph = function(){
 
     this._chart = this._svg
         .append('g')
-        .attr("transform", "translate(" + config.margin.left + "," + this.topMargin + ")");
+        .attr("transform", "translate(" + config.margin.left + "," + topMargin + ")");
 
 
 };
@@ -106,12 +107,20 @@ LineGraph.prototype._build_graph = function(){
 
 
      var max_y_value = d3.max(this.data.map(function(obj){return obj[config.source.value]}));
-     var max_y_value_width = String(max_y_value.toFixed(0)).length * 10
+     var max_y_value_width = String(max_y_value.toFixed(0)).length * 10;
 
 
      //calcualate constant origin shift
+
+     console.log(config.source.period)
+
+
      this._period_arr = controller.getUniqueArray(config.source.period, this.data);
+
+     console.log(this._period_arr)
+
      var origin_shift_x = max_y_value_width;
+
      var tick_width_x = self.width / (this._period_arr.length - 1);
 
      this.x = d3.scale.linear()
@@ -137,6 +146,7 @@ LineGraph.prototype._build_graph = function(){
      var indicator = state.indicator;
      var genderType = state.genderType;
 
+
      this.xAxisLine = d3.svg.axis()
          .scale(this.x)
          .orient("bottom")
@@ -148,8 +158,6 @@ LineGraph.prototype._build_graph = function(){
                  return ""
              }})
          .ticks(Math.max(5, Math.ceil(self._period_arr.length/2))); //set max 5 ticks otherwise every other???
-
-
 
 
      this.yAxis = d3.svg.axis()
@@ -260,7 +268,7 @@ LineGraph.prototype._draw_header = function(){
 
     this._header  = this._chart.append("text")
         .attr("x", "0em")
-        .attr("y", - this.topMargin + config.margin.top )//compensate for additional top margin
+        .attr("y", -5 )
         .attr("dy", "0em")
         .attr("text-anchor", "left")
         .style("font-size", "1.5em")
@@ -475,6 +483,7 @@ LineGraph.prototype._set_select_scales = function(){
     if(this.data_period.length > 7 && this.data_period.length <= 15){
         y1 += 21;
     }else if( this.data_period.length > 15){
+        console.log("there")
         y1 += 42;
     }
 
@@ -629,7 +638,6 @@ LineGraph.prototype._period_change_listener = function() {
 
     this.data = controller.filterData(areaType, gender, indicatorMapped);
     this.data_period = controller.filterDataPeriod(areaType, gender, indicatorMapped, current_period);
-    this.data_period.sort(this._sort_y("alpha"));
 
 
 
@@ -645,8 +653,6 @@ LineGraph.prototype._period_change_listener = function() {
         if(current_period < self._period_arr[0]){
             x = self.x(0)
         }
-
-        console.log(x)
 
 
         self._vertical_line
@@ -956,16 +962,4 @@ LineGraph.prototype._get_select_all_state = function(){
     }
 
 
-};
-
-LineGraph.prototype._sort_y = function(sort_class) {
-    var self = this;
-
-    validate_NaN_to_0 = this.validate_NaN_to_0
-    if(sort_class == "alpha"){
-        return function (a, b) {return d3.ascending(a[self.config.source.name], b[self.config.source.name]);}
-    }
-    if(sort_class == "numeric"){
-        return function (a, b) {return self.validate_NaN_to_0(b[self.config.source.value]) - self.validate_NaN_to_0(a[self.config.source.value]);}
-    }
-};
+}

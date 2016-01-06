@@ -23,6 +23,13 @@
     "Districts": "DU"
   },
 
+  "areaTypeLabels":{
+    "CCGs": "CCGs",
+    "Counties": "counties",
+    "Districts": "districts"
+  },
+
+
   "genderMapping":{
     "males": "Male",
     "females": "Female",

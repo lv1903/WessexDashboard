@@ -28,9 +28,9 @@
 
 .flex-header-container {
     /*as item*/
-    margin: 14px;
+    margin: 7px;
     /*max-width: 95vw;*/
-    max-width: 956px;
+    max-width: 928px;
     /*min-height: 250px;*/
     background-color: #00778b;
 
@@ -126,7 +126,7 @@
 
 .flex-item {
 
-    margin: 14px;
+    margin: 7px;
 
     background-color: white;
 

@@ -1,6 +1,6 @@
 AreaFacts = function(indicator, gender, container, widgetId){
 
-    var self = this
+    var self = this;
 
     this.widgetId = widgetId;
     this.indicator = indicator;
