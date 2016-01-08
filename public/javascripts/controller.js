@@ -88,6 +88,9 @@ Controller.prototype._period_change = function(value){
     this.state.current_period = value;
 
     ee.emitEvent("period_change")
+
+    ee.emitEvent("update_widget");
+    ee.emitEvent("update");
 };
 
 
@@ -97,16 +100,19 @@ Controller.prototype._area_change = function(id){
     this.state.current_area = id;
     this.state.current_area_name = this._get_area_name(id);
 
-    ee.emitEvent("area_change")
+
+    ee.emitEvent("area_change");
+
+
+    ee.emitEvent("update_widget");
+    ee.emitEvent("update");
 };
 
 
 Controller.prototype._secondary_area_change = function(){
 
-
-    ee.emitEvent("secondary_area_change")
-
-
+    ee.emitEvent("update_widget");
+    ee.emitEvent("update");
 
 }
 
@@ -176,6 +182,7 @@ Controller.prototype.getUniqueArray = function(key, arr){
     }
     return uniqueArr
 };
+
 
 
 Controller.prototype.filterData = function(areaType, gender, indicator){
@@ -261,6 +268,7 @@ Controller.prototype.getValueFromPeriodData = function(areaType,gender, indicato
     var config = self.config;
 
 
+
     var obj = this.filterDataPeriodArea(
         areaType,
         gender,
@@ -268,6 +276,10 @@ Controller.prototype.getValueFromPeriodData = function(areaType,gender, indicato
         current_period,
         id
     );
+
+    if(obj.length == 0){
+        return  null
+    }
 
     var value = obj[0][config.source.value];
     var count = obj[0][config.source.count];

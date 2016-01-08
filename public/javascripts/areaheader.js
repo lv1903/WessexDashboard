@@ -4,22 +4,10 @@ AreaHeader = function(indicatorArr, gender, container, widgetId){
 
     this.widgetId = widgetId;
     this.indicatorArr = indicatorArr;
-    //this.indicatorMapped = controller.config.indicatorMapping[indicator];
     this.gender = gender;
     this.container = container;
 
-    var areaType = controller.state.areaType;
-    //var indicatorMapped = this.indicatorMapped;
-    var current_period = controller.state.current_period;
-    var current_area = controller.state.current_area;
 
-    //this.config = controller.config;
-
-    //this.data = controller.filterData(areaType, gender, indicatorMapped);
-    //this.data_period = controller.filterDataPeriod(areaType, gender, indicatorMapped, current_period);
-    //this.val = controller.getValueFromPeriodData(areaType, gender, indicatorMapped, current_period, current_area);
-
-    
     this.cs = controller.config.colorScheme;
     this._init();
 
@@ -29,7 +17,7 @@ AreaHeader = function(indicatorArr, gender, container, widgetId){
 AreaHeader.prototype._init = function(){
 
     this._draw_all();
-    //this._bindEvents();
+
 
 };
 
@@ -43,14 +31,10 @@ AreaHeader.prototype._draw_all = function(){
     this._draw_area_name();
     this._draw_area_type();
     this._draw_map();
+    this._draw_select_area();
     this._draw_timeSlider();
-    //this._draw_value();
-    //this._draw_count();
-    //this._draw_gauge();
-    //this._draw_rank();
-    //this._draw_densityGraph();
-    //this._draw_label();
-    //this._draw_lineGraph();
+    this._draw_select_year();
+
 
 };
 
@@ -86,17 +70,18 @@ AreaHeader.prototype._draw_header = function(){
 
     var self = this;
 
-    this._indicator_text = component.text(self, {
+    this._header_text = component.text(self, {
         str: "Area Report:",
         font_size: "2em",
         x: 0,
         y: 1.65 * 14,
         dy: 0,
         width: this.width,
-        id: "#indicator" + this.widgetId
-    })
+        id: "header" + this.widgetId
+    });
 
-    this._indicator_text.render()
+    this._header_text.render();
+
 
 };
 
@@ -110,10 +95,16 @@ AreaHeader.prototype._draw_gender = function(){
         x: 0,
         y: 4 * 14,
         width: this.width,
-        id: "#gender" + this.widgetId
+        id: "gender" + this.widgetId
     })
 
     this._gender_text.render()
+
+    //function update(){
+    //    self._gender_text.update(); //remove
+    //    self._draw_gender(); // redraw
+    //}
+    //ee.addListener("update", update)
 
 };
 
@@ -130,10 +121,15 @@ AreaHeader.prototype._draw_area_name = function(){
         y: 6.5 * 14,
         width: this.width,
         fill: controller.config.colorScheme.highlight_color,
-        id: "#areaName" + this.widgetId
+        id: "areaName" + this.widgetId
     })
 
     this._area_text.render()
+
+    function update(){
+        self._area_text.update(controller._get_area_name(controller.state.current_area));
+    }
+    ee.addListener("update", update)
 
 };
 
@@ -145,18 +141,21 @@ AreaHeader.prototype._draw_area_type = function(){
     var areaType = controller.getKeyByValue(controller.config.areaTypeMapping, controller.state.areaType); //get the area type
     areaTypeLabel = controller.config.areaTypeLabels[areaType];
 
-    this._area_text = component.text(self, {
+    this._area_type = component.text(self, {
         str: "Wessex " + areaTypeLabel,
         font_size: "1.5em",
         x: 0,
         y: 13 * 14,
         width: this.width,
-        id: "#areaType" + this.widgetId
+        id: "areaType" + this.widgetId
     })
 
-    this._area_text.render()
+    this._area_type.render()
 
 };
+
+
+
 
 AreaHeader.prototype._draw_map = function(){
 
@@ -184,11 +183,29 @@ AreaHeader.prototype._draw_map = function(){
         }
 
 
-    })
+    });
 
     this._map.render();
 
 };
+
+AreaHeader.prototype._draw_select_area = function(){
+
+    var self = this;
+
+    this._area_select = component.text(self, {
+        str: "click to select area",
+        font_size: "1em",
+        x: -5,
+        y: 33 * 14,
+        width: this.width,
+        id: "areaSelectText" + this.widgetId
+    })
+
+    this._area_select.render()
+
+};
+
 
 AreaHeader.prototype._draw_timeSlider = function(){
 
@@ -207,6 +224,23 @@ AreaHeader.prototype._draw_timeSlider = function(){
     })
 
     this._timeSlider.render();
+
+};
+
+AreaHeader.prototype._draw_select_year = function(){
+
+    var self = this;
+
+    this._year_select = component.text(self, {
+        str: "click to select year",
+        font_size: "1em",
+        x: -5,
+        y: 40 * 14,
+        width: this.width,
+        id: "yearSelectText" + this.widgetId
+    })
+
+    this._year_select.render()
 
 };
 

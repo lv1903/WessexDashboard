@@ -8,18 +8,10 @@ IndicatorWidget = function(indicator, gender, container, widgetId){
     this.gender = gender;
     this.container = container;
 
-    var areaType = controller.state.areaType;
-    var indicatorMapped = this.indicatorMapped;
-    var current_period = controller.state.current_period;
-    var current_area = controller.state.current_area;
-
-    //this.config = controller.config;
-
-    this.data = controller.filterData(areaType, gender, indicatorMapped);
-    this.data_period = controller.filterDataPeriod(areaType, gender, indicatorMapped, current_period);
-    this.val = controller.getValueFromPeriodData(areaType, gender, indicatorMapped, current_period, current_area);
-
     this.cs = controller.config.colorScheme;
+
+
+    this._update_widget();
     this._init();
     
     
@@ -33,6 +25,27 @@ IndicatorWidget.prototype._init = function(){
 
 };
 
+IndicatorWidget.prototype._bindEvents = function(){
+
+    ee.addListener('update_widget', this._update_widget.bind(this));
+
+};
+
+IndicatorWidget.prototype._update_widget = function(){
+
+    var gender = this.gender;
+    var areaType = controller.state.areaType;
+    var indicatorMapped = this.indicatorMapped;
+    var current_period = controller.state.current_period;
+    var current_area = controller.state.current_area;
+
+    this.data = controller.filterData(areaType, gender, indicatorMapped);
+    this.data_period = controller.filterDataPeriod(areaType, gender, indicatorMapped, current_period);
+    this.data_area = controller.filterDataArea(areaType, gender, indicatorMapped, current_area);
+    this.val = controller.getValueFromPeriodData(areaType, gender, indicatorMapped, current_period, current_area);
+
+};
+
 IndicatorWidget.prototype._draw_all = function(){
 
     this._build_graph();
@@ -42,6 +55,7 @@ IndicatorWidget.prototype._draw_all = function(){
     this._draw_gender();
     this._draw_area_name();
     this._draw_value();
+    this._draw_no_data();
     this._draw_count();
     this._draw_gauge();
     this._draw_rank();
@@ -70,7 +84,7 @@ IndicatorWidget.prototype._build_graph = function() {
         .attr("class", "widget")
         .attr("preserveAspectRatio", "xMinYMin meet")
         .attr("viewBox", "0 0 " + config.full_width + " " + config.full_height )
-        .classed("svg-content-responsive", true)
+        .classed("svg-content-responsive", true);
 
     this._chart = this._svg
         .append('g')
@@ -91,7 +105,7 @@ IndicatorWidget.prototype._draw_indicator = function(){
         x: 0,
         y: 0,
         width: this.width,
-        id: "#indicator" + this.widgetId
+        id: "indicator" + this.widgetId
     })
 
     this._indicator_text.render()
@@ -108,7 +122,7 @@ IndicatorWidget.prototype._draw_gender = function(){
         x: 0,
         y: 4 * 14,
         width: this.width,
-        id: "#gender" + this.widgetId
+        id: "gender" + this.widgetId
     })
 
     this._gender_text.render()
@@ -128,10 +142,15 @@ IndicatorWidget.prototype._draw_area_name = function(){
         y: 6.5 * 14,
         width: this.width,
         fill: controller.config.colorScheme.highlight_color,
-        id: "#areaName" + this.widgetId
+        id: "areaName" + this.widgetId
     })
 
     this._area_text.render()
+
+    function update(){
+        self._area_text.update(controller._get_area_name(controller.state.current_area));
+    }
+    ee.addListener("update", update)
 
 };
 
@@ -142,16 +161,25 @@ IndicatorWidget.prototype._draw_value = function(){
 
     var format = d3.format(",.0f");
 
-    var value = format(this.val.value);
-    var unit = controller.config.indicatorLabels[this.indicator];
+    function get_string_obj(){
 
-    var string_obj = [
+        if(self.val == null){
+            return [{str: "", font_size: "0"}]
+        }
+
+        var value = format(self.val.value);
+        var unit = controller.config.indicatorLabels[self.indicator];
+
+        return [
             {str: value, font_size: "1.5em"},
             {str: unit, font_size: "1em"}
         ];
 
+    }
+
+
     this._value_text = component.textHump(self, {
-        string_obj: string_obj,
+        string_obj: get_string_obj(),
         x: 0,
         y: 11 * 14,
         id: "valueText" + this.widgetId
@@ -159,33 +187,88 @@ IndicatorWidget.prototype._draw_value = function(){
 
     this._value_text.render()
 
+
+
+    function update(){
+          self._value_text.update(get_string_obj());
+    }
+    ee.addListener("update", update)
+
+};
+
+IndicatorWidget.prototype._draw_no_data = function(){
+
+    var self = this;
+
+    function get_string_obj(){
+
+        if(self.val == null){
+            return [{str: "No Data Available", font_size: "1.5em"}]
+        } else {
+            return [{str: "", font_size: "0"}]
+        }
+
+    }
+
+    this._no_data_text = component.textHump(self, {
+        string_obj: get_string_obj(),
+        x: 0,
+        y: 11 * 14,
+        id: "noDataText" + this.widgetId
+    });
+
+    this._no_data_text.render()
+
+
+
+    function update(){
+        self._no_data_text.update(get_string_obj());
+    }
+    ee.addListener("update", update)
+
 };
 
 IndicatorWidget.prototype._draw_count = function(){
+
+    var self = this;
 
     //add count text if available
     if(this.val.count != null) {
 
         var self = this;
 
-        var format = d3.format(",.0f");
+        function get_string_obj() {
 
-        count = format(Number(this.val.count));
-        unit = controller.config.genderLabels[this.gender];
+            if(self.val == null){
+                return [{str: "", font_size: "0"}]
+            }
 
-        var string_obj = [
-            {str: count, font_size: "1.5em"},
-            {str: unit, font_size: "1em"}
-        ];
+            var format = d3.format(",.0f");
+
+            count = format(Number(self.val.count));
+            unit = controller.config.genderLabels[self.gender];
+
+            return [
+                {str: count, font_size: "1.5em"},
+                {str: unit, font_size: "1em"}
+            ];
+        }
 
         this._count_text = component.textHump(self, {
-            string_obj: string_obj,
+            string_obj: get_string_obj(),
             x: 0,
             y: 13 * 14,
             id: "countText" + this.widgetId
         });
 
         this._count_text.render()
+
+
+        function update(){
+            self._count_text.update(get_string_obj());
+        }
+        ee.addListener("update", update)
+
 
     }
 };
@@ -215,46 +298,65 @@ IndicatorWidget.prototype._draw_gauge = function(){
 
     this._gauge.render();
 
-    //check if data is available for period otherwise send 0 and exit
-    if(this.data_period.length == 0){
-        this._gauge.update(0)
-        return
+    update();
+
+    function update(){
+        if(self.val == null){
+            self._gauge.update(0);
+        } else {
+            self._gauge.update(self.val.percent);
+        }
     }
-    this._gauge.update(this.val.percent)
+    ee.addListener("update", update)
+
+
+
 };
 
 IndicatorWidget.prototype._draw_rank = function(){
 
     var self = this;
 
-    var format = d3.format(",.0f");
+    function get_string_obj() {
 
-    var areaType = controller.getKeyByValue(controller.config.areaTypeMapping, controller.state.areaType); //get the area type
-    areaTypeLabel = controller.config.areaTypeLabels[areaType];
+        if(self.val == null){
+            return [{str: "", font_size: "0"}]
+        }
 
+        var format = d3.format(",.0f");
 
-    var prefix = "Ranked ";
-    var rank = format(this.val.index);
-    var middle = "out of ";
-    var total = format(this.val.indexMax);
-    var suffix = " " + areaTypeLabel;
+        var areaType = controller.getKeyByValue(controller.config.areaTypeMapping, controller.state.areaType); //get the area type
+        areaTypeLabel = controller.config.areaTypeLabels[areaType];
 
-    var string_obj = [
-        {"str": prefix, "font_size": "1em"},
-        {"str": rank, "font_size": "1.5em"},
-        {"str": middle, "font_size": "1em"},
-        {"str": total, "font_size": "1.5em"},
-        {"str": suffix, "font_size": "1em"}
-    ];
+        var prefix = "Ranked ";
+        var rank = format(self.val.index);
+        var middle = "out of ";
+        var total = format(self.val.indexMax);
+        var suffix = "English " + areaTypeLabel;
+
+        return [
+            {"str": prefix, "font_size": "1em"},
+            {"str": rank, "font_size": "1.5em"},
+            {"str": middle, "font_size": "1em"},
+            {"str": total, "font_size": "1.5em"},
+            {"str": suffix, "font_size": "1em"}
+        ];
+    }
 
     this._rank_text = component.textHump(self, {
-        string_obj: string_obj,
+        string_obj: get_string_obj(),
         x: 0,
         y: 24 * 14,
-        id: "valueText" + this.widgetId
+        id: "rankText" + this.widgetId
     });
 
     this._rank_text.render()
+
+
+    function update(){
+        self._rank_text.update(get_string_obj());
+    }
+    ee.addListener("update", update)
 
 };
 
@@ -271,7 +373,12 @@ IndicatorWidget.prototype._draw_densityGraph = function(){
         compWidth: self.width
     });
 
-    this._densityGraph.render()
+    this._densityGraph.render();
+
+    function update(){
+        self._densityGraph.update(self);
+    }
+    ee.addListener("update", update)
 
 };
 
@@ -288,7 +395,7 @@ IndicatorWidget.prototype._draw_label = function(){
         x: 0,
         y: 40.5 * 14,
         width: this.width,
-        id: "#label" + this.widgetId
+        id: "label" + this.widgetId
     });
 
     this._label_text.render()
@@ -309,6 +416,11 @@ IndicatorWidget.prototype._draw_lineGraph = function(){
     });
 
     this._line.render()
+
+    function update(){
+        self._line.update(self);
+    }
+    ee.addListener("update", update)
 
 };
 
@@ -413,9 +525,5 @@ IndicatorWidget.prototype._draw_help_text = function(){
 
 
 
-IndicatorWidget.prototype._bindEvents = function(){
 
-    //ee.addListener('period_change', this._period_change_listener.bind(this));
-    //ee.addListener('area_change', this._area_change_listener.bind(this));
-}
 

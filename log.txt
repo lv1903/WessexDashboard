@@ -1,5 +1,18 @@
+/v1/datasets/NyZwkX8Z4x/data?filter={"properties.CCG15CD":{"$in":["E38000120","E38000059","E38000087","E38000137","E38000154","E38000167","E38000198","E38000045","E38000118","E38000206"]}}
+request data
+/v1/datasets/N1bi86TiBx/data?filter={"properties.LAD14CD":{"$in":["E07000048","E07000049","E07000050","E07000051","E07000052","E07000053","E07000084","E07000085","E07000086","E07000087","E07000088","E07000089","E07000090","E07000091","E07000092","E07000093","E07000094","E06000054","E06000044","E06000045","E06000046"]}}
+request data
+/v1/datasets/EyZ9siTiSg/data?filter={"properties.CTYUA14CD":{"$in":["E10000014","E10000009","E06000054","E06000044","E06000045","E06000046"]}}
 request data
 request data
 request data
-/v1/datasets/41WGoeXhQg/data?opts={"limit":100000}&filter={"Indicator":"3.01 - Mortality from chronic liver disease"}
 request data
+request data
+CCG topojson acquired
+DU topojson acquired
+CU topojson acquired
+1.01 - Months of life lost due to alcohol acquired
+3.01 - Mortality from chronic liver disease acquired
+2.01 - Alcohol-specific mortality acquired
+9.01 - Admission episodes for alcohol-related conditions (Broad) acquired
+nested objects ready

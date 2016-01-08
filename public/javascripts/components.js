@@ -42,7 +42,7 @@ Components.prototype.text = function(widget, configuration){
         svg = widget._chart.append("g")
             .attr("transform", "translate(" + x + "," + y + ")");
 
-        svg.append("text")
+        this._text = svg.append("text")
             .attr("id", that.config.id)
             .attr("x", 0)
             .attr("y", 0 )
@@ -55,13 +55,30 @@ Components.prototype.text = function(widget, configuration){
     }
     that.render = render;
 
+    function update(new_string) {
+
+        this._text.remove();
+
+        this._text = svg.append("text")
+            .attr("id", that.config.id)
+            .attr("x", 0)
+            .attr("y", 0 )
+            .attr("dy", dy)
+            .attr("text-anchor", text_anchor)
+            .style("font-size", font_size)
+            .style("fill", fill)
+            .call(self.wrap, that.config.width, new_string)
+
+
+
+    }
+    that.update = update;
+
     configure(widget, configuration);
 
     return that;
 
-
-
-}
+};
 
 
 Components.prototype.wrap =  function(text, width, string){
@@ -117,6 +134,35 @@ Components.prototype.textHump = function(widget, configuration){
     var font_size = undefined;
     var fill = undefined;
 
+    function write_string(string_obj){
+
+        if(that.config.hasOwnProperty("x")){ x = that.config.x } else {x = 0};
+
+        var temp_obj = {};
+        for(var i in string_obj){
+
+            var str = string_obj[i].str;
+            var font_size = string_obj[i].font_size;
+
+
+            if( i > 0) {
+                x += 5 + temp_obj[that.config.id + (i - 1)].node().getComputedTextLength() ;
+            };
+
+            temp_obj[that.config.id + i] = svg
+                .append("text")
+                //.attr("class", name)
+                .attr("id", that.config.id)
+                .attr("x", x)
+                .attr("y", 0)
+                .attr("dy", dy)
+                .attr("text-anchor", text_anchor)
+                .style("font-size", font_size)
+                .style("fill", fill)
+                .text(str);
+        }
+    }
+
 
     function configure(widget, configuration) {
 
@@ -142,32 +188,21 @@ Components.prototype.textHump = function(widget, configuration){
         svg = widget._chart.append("g")
             .attr("transform", "translate(" + x + "," + y + ")");
 
-        var temp_obj = {};
 
-        for(var i in that.config.string_obj){
-
-            var str = that.config.string_obj[i].str;
-            var font_size = that.config.string_obj[i].font_size;
-
-            if( i > 0) {
-                x += 5 + temp_obj[that.config.id + (i - 1)].node().getComputedTextLength() ;
-            };
-
-            temp_obj[that.config.id + i] = svg
-                .append("text")
-                //.attr("class", name)
-                .attr("id", that.config.id)
-                .attr("x", x)
-                .attr("y", 0)
-                .attr("dy", dy)
-                .attr("text-anchor", text_anchor)
-                .style("font-size", font_size)
-                .style("fill", fill)
-                .text(str);
-        }
+        write_string(that.config.string_obj)
 
     }
     that.render = render;
+
+    function update(string_obj) {
+
+        d3.selectAll("#" + that.config.id).remove();
+
+        that.config.string_obj = string_obj;
+        write_string(string_obj);
+
+    }
+    that.update = update;
 
     configure(widget, configuration);
 
@@ -361,6 +396,8 @@ Components.prototype.gauge = function(container, configuration) {
     configure(configuration);
     addLabels(configuration, container)
 
+
+
     return that;
 };
 
@@ -376,6 +413,7 @@ Components.prototype.densityGraph = function(widget, configuration){
     var yscale = undefined;
     var xAxis = undefined;
     var fArea = undefined;
+    var fNoData = undefined;
     var density_area = undefined;
     var averages = undefined;
 
@@ -430,19 +468,22 @@ Components.prototype.densityGraph = function(widget, configuration){
             id
         )[0][config.source.value];
 
-        var id = state.current_area;
-        var name = controller._get_area_short_name(id);
+
         obj = {"name": name,
             "average": average
         };
         objAverages.push(obj);
         //-----------------
+        objAverages.sort(function (a, b) {return a.average - b.average;});
         return objAverages
     }
 
     function configure(widget, configuration) {
 
-       that.config = configuration;
+        that.config = configuration;
+
+        that.config.y_arr = [that.config.compHeight * .4 , that.config.compHeight * 0, that.config.compHeight *.35];
+        that.config.text_anchor_arr = ["end", "start", "start"];
 
         var state = controller.state;
 
@@ -488,6 +529,11 @@ Components.prototype.densityGraph = function(widget, configuration){
             .y1(function(d) { return yscale(d); })
             .interpolate("monotone");
 
+        fNoData = d3.svg.area()
+            .x(function() { return that.config.compWidth /2 })
+            .y0(function() { return that.config.compHeight })
+            .y1(function() { return that.config.compHeight })
+
 
 
     }
@@ -511,7 +557,6 @@ Components.prototype.densityGraph = function(widget, configuration){
 
         svg = widget._chart.append("g")
             .attr("transform", "translate(" + that.config.x + "," + that.config.y + ")");
-            //.attr("transform", "translate(0,0)");
 
 
         //add axis
@@ -519,14 +564,6 @@ Components.prototype.densityGraph = function(widget, configuration){
             .attr("class", "x axis")
             .attr("transform", "translate(0," + that.config.compHeight + ")")
             .call(xAxis);
-
-        //svg.append("text")
-        //    .attr("class", "x-label")
-        //    .attr("text-anchor", "end")
-        //    .attr("x", that.config.compWidth - 20)
-        //    .attr("y", that.config.compHeight + 40)
-        //    .text(controller.config.indicatorLabels[widget.indicator]);
-
 
         //add density graph
         var densityArray = controller.data_obj.density_obj[areaType][gender][indicatorMapped][current_period];
@@ -542,11 +579,6 @@ Components.prototype.densityGraph = function(widget, configuration){
         var self = this;
 
         averages = getAverages();
-
-        var y_arr = [that.config.compHeight * .4 , that.config.compHeight * 0, that.config.compHeight *.35];
-        var text_anchor_arr = ["end", "start", "start"];
-
-        averages.sort(function (a, b) {return a.average - b.average;});
 
         for (i in averages) {
 
@@ -564,11 +596,11 @@ Components.prototype.densityGraph = function(widget, configuration){
 
             svg.append("line")
                 .attr("class", "average_line")
-                .attr("id", "average_line_" + id)
+                .attr("id", "average_line_" + id + widget.widgetId)
                 .attr("x1", xscale(median))
                 .attr("x2", xscale(median))
                 .attr("y1", that.config.compHeight)
-                .attr("y2", function(){return y_arr[i]})
+                .attr("y2", function(){return that.config.y_arr[i]})
                 .style("stroke-width", 2)
                 .style("stroke", "white")
                 .style("fill", "none");
@@ -576,12 +608,12 @@ Components.prototype.densityGraph = function(widget, configuration){
 
             svg.append("text")
                 .attr("class", "average_text")
-                .attr("id", "average_text_" + id)
+                .attr("id", "average_text_" + id + widget.widgetId)
                 .attr("text-anchor", function () {
-                    return text_anchor_arr[i]
+                    return that.config.text_anchor_arr[i]
                 })
                 .attr("x", function () {
-                    var text_anchor = text_anchor_arr[i];
+                    var text_anchor = that.config.text_anchor_arr[i];
                     if (text_anchor == "end") {
                         return xscale(median) - 5
                     } else {
@@ -589,7 +621,7 @@ Components.prototype.densityGraph = function(widget, configuration){
                     }
                 })
                 .attr("y", function () {
-                    return y_arr[i]
+                    return that.config.y_arr[i]
                 })
                 .attr("dy", "0.8em")
                 .style("fill", function(){if(id == "Alt"){
@@ -604,12 +636,12 @@ Components.prototype.densityGraph = function(widget, configuration){
 
             svg.append("text")
                 .attr("class", "average_value")
-                .attr("id", "average_value_" + id)
+                .attr("id", "average_value_" + id + widget.widgetId)
                 .attr("text-anchor", function () {
-                    return text_anchor_arr[i]
+                    return that.config.text_anchor_arr[i]
                 })
                 .attr("x", function () {
-                    var text_anchor = text_anchor_arr[i];
+                    var text_anchor = that.config.text_anchor_arr[i];
                     if (text_anchor == "end") {
                         return xscale(median) - 10
                     } else {
@@ -617,7 +649,7 @@ Components.prototype.densityGraph = function(widget, configuration){
                     }
                 })
                 .attr("y", function () {
-                    return y_arr[i]
+                    return that.config.y_arr[i]
                 })
                 .attr("dy", "1.8em")
                 .style("fill", function(){if(id == "Alt"){
@@ -629,19 +661,186 @@ Components.prototype.densityGraph = function(widget, configuration){
                 //.style("fill", self.cs.background_color)
                 .style("font-size", "1.5em")
                 .text(Math.round(median));
-
-
         }
-
-
-
-
 
     }
     that.render = render;
 
 
+    function update(widget) {
 
+        var config = controller.config;
+        var state = controller.state;
+
+        var areaType = state.areaType;
+        var indicator = widget.indicator;
+        var indicatorMapped = widget.indicatorMapped;
+        var gender = widget.gender;
+        var current_period = state.current_period;
+
+        if(widget.val == null){
+
+
+
+            density_area
+                .transition()
+                .duration(500)
+                .style("opacity", 0)
+
+
+            density_area
+                .transition()
+                .delay(500)
+                .duration(0)
+                .attr("d", fNoData)
+                .delay(500)
+                .duration(0)
+                .style("opacity", 1)
+
+            for (i in averages) {
+
+                var name = averages[i].name;
+
+                if(name == "England"){
+                    id = "England"
+                } else if(name == "Wessex"){
+                    id = "Wessex"
+                }else {
+                    id = "Alt"
+                }
+
+                d3.select("#average_line_" + id )
+                    .transition()
+                    .duration(500)
+                    .attr("y1", self.height)
+                    .attr("y2", self.height)
+
+                d3.select("#average_text_" + id)
+                    .transition()
+                    .duration(1000)
+                    .text("")
+
+
+                d3.select("#average_value_" + id)
+                    .transition()
+                    .duration(1000)
+                    .text("");
+
+            }
+
+             for (i in averages) {
+
+                var name = averages[i].name.trim();
+
+                if (name == "England") {
+                    id = "England"
+                } else if (name == "Wessex") {
+                    id = "Wessex"
+                } else {
+                    id = "Alt"
+                }
+
+                var median = averages[i].average;
+
+                d3.select("#average_line_" + id + widget.widgetId)
+                    .transition()
+                    .duration(500)
+                    .attr("y1", that.config.compHeight)
+                    .attr("y2", that.config.compHeight);
+
+                d3.select("#average_text_" + id + widget.widgetId)
+                    .transition()
+                    .duration(500)
+                    .text("");
+
+                d3.select("#average_value_" + id + widget.widgetId)
+                    .transition()
+                    .duration(500)
+                    .text("");
+
+            }
+
+
+            return
+        }
+
+        //add density graph
+        var densityArray = controller.data_obj.density_obj[areaType][gender][indicatorMapped][current_period];
+
+
+        density_area
+            .datum(densityArray)
+            .transition()
+            .duration(750)
+            .attr("d", fArea)
+
+        averages = getAverages();
+
+        for (i in averages) {
+
+            var name = averages[i].name.trim();
+
+            if(name == "England"){
+                id = "England"
+            } else if(name == "Wessex"){
+                id = "Wessex"
+            }else {
+                id = "Alt"
+            }
+
+            var median = averages[i].average;
+
+            d3.select("#average_line_" + id + widget.widgetId)
+                .transition()
+                .duration(500)
+                .attr("x1", xscale(median))
+                .attr("x2", xscale(median))
+                .attr("y1", that.config.compHeight)
+                .attr("y2", function(){return that.config.y_arr[i]});
+
+            d3.select("#average_text_" + id + widget.widgetId)
+                .transition()
+                .duration(500)
+                .attr("text-anchor", function () {
+                    return that.config.text_anchor_arr[i]
+                })
+                .attr("x", function () {
+                    var text_anchor = that.config.text_anchor_arr[i];
+                    if (text_anchor == "end") {
+                        return xscale(median) - 5
+                    } else {
+                        return xscale(median) + 5
+                    }
+                })
+                .attr("y", function () {
+                    return that.config.y_arr[i]
+                })
+                .text(name);
+
+            d3.select("#average_value_" + id + widget.widgetId)
+                .transition()
+                .duration(500)
+                .attr("text-anchor", function () {
+                    return that.config.text_anchor_arr[i]
+                })
+                .attr("x", function () {
+                    var text_anchor = that.config.text_anchor_arr[i];
+                    if (text_anchor == "end") {
+                        return xscale(median) - 10
+                    } else {
+                        return xscale(median) + 10
+                    }
+                })
+                .attr("y", function () {
+                    return that.config.y_arr[i]
+                })
+                .text(Math.round(median));
+        }
+
+
+
+    }
+    that.update = update;
 
 
 
@@ -651,8 +850,7 @@ Components.prototype.densityGraph = function(widget, configuration){
 
 
 
-}
-
+};
 
 
 Components.prototype.lineGraph = function(widget, configuration){
@@ -672,21 +870,36 @@ Components.prototype.lineGraph = function(widget, configuration){
     var max_y_value = undefined;
     var max_y_value_width = undefined;
     var fLine = undefined;
-    var vx1 = undefined;
-    var vx2 = undefined;
-    var vy1 = undefined;
-    var vy2 = undefined;
+    var vArr = undefined;
+    //var vx1 = undefined;
+    //var vx2 = undefined;
+    //var vy1 = undefined;
+    //var vy2 = undefined;
 
 
     function dot_click(d){
 
-        console.log(d)
+        var config = controller.config;
 
-            //var config = this.config;
-            //controller._period_change(d[config.source.period]);
-            //controller._area_change(d[config.source.id]);
+        controller._period_change(d[config.source.period]);
+        //controller._area_change(d[config.source.id]);
 
+    }
 
+    function getVerticalLineCoords(){
+
+        x1 = xscale(period_arr.indexOf(controller.state.current_period));
+        x2 = xscale(period_arr.indexOf(controller.state.current_period));
+
+        if(widget.data_area.length == 0) {
+            y1 = that.config.compHeight / 2;
+            y2 = that.config.compHeight / 2;
+        } else {
+            y1 = that.config.compHeight;
+            y2 = that.config.compHeight * 0.1;
+        }
+
+        return [[x1, y1], [x2, y2]]
     }
 
 
@@ -698,17 +911,18 @@ Components.prototype.lineGraph = function(widget, configuration){
         var config = controller.config;
         var state = controller.state;
 
-        var areaType = state.areaType;
-        var indicator = widget.indicator;
-        var indicatorMapped = widget.indicatorMapped;
-        var gender = widget.gender;
-        var current_area = state.current_area;
-        var current_period = state.current_period;
+        //var areaType = state.areaType;
+        //var indicator = widget.indicator;
+        //var indicatorMapped = widget.indicatorMapped;
+        //var gender = widget.gender;
+        //var current_area = state.current_area;
+        //var current_period = state.current_period;
+        //
+        //data = controller.filterDataArea(areaType, gender, indicatorMapped, current_area);
+        //data_period = controller.filterDataPeriodArea(areaType, gender, indicatorMapped, current_period, current_area);
 
-        data = controller.filterDataArea(areaType, gender, indicatorMapped, current_area);
-        data_period = controller.filterDataPeriodArea(areaType, gender, indicatorMapped, current_period, current_area);
 
-        max_y_value = d3.max(data.map(function(obj){return obj[config.source.value]}));
+        max_y_value = d3.max(widget.data.map(function(obj){return obj[config.source.value]}));
         max_y_value_width = String(max_y_value.toFixed(0)).length * 10;
 
 
@@ -763,16 +977,9 @@ Components.prototype.lineGraph = function(widget, configuration){
 
 
         //get coords for vertical time line
-        vx1 = xscale(period_arr.indexOf(current_period));
-        vx2 = xscale(period_arr.indexOf(current_period));
+        vArr = getVerticalLineCoords()
 
-        if(data_period.length == 0) {
-            vy1 = that.config.compHeight / 2;
-            vy2 = that.config.compHeight / 2;
-        } else {
-            vy1 = that.config.compHeight;
-            vy2 = that.config.compHeight * 0.1;
-        }
+
 
 
     }
@@ -788,12 +995,6 @@ Components.prototype.lineGraph = function(widget, configuration){
         var config = controller.config;
         var state = controller.state;
 
-        var areaType = state.areaType;
-        var indicator = widget.indicator;
-        var indicatorMapped = widget.indicatorMapped;
-        var gender = widget.gender;
-        var current_period = state.current_period;
-
         svg = widget._chart.append("g")
             .attr("transform", "translate(" + that.config.x + "," + that.config.y + ")");
 
@@ -807,12 +1008,12 @@ Components.prototype.lineGraph = function(widget, configuration){
             .attr("transform", "translate("  + max_y_value_width / 2 + ", 0)")
             .call(yAxis);
 
-        svg.append("text")
-            .attr("class", "x-label")
-            .attr("text-anchor", "end")
-            .attr("x", that.config.compWidth - 20)
-            .attr("y", that.config.compHeight + 40)
-            .text("Year");
+        //svg.append("text")
+        //    .attr("class", "x-label")
+        //    .attr("text-anchor", "end")
+        //    .attr("x", that.config.compWidth - 20)
+        //    .attr("y", that.config.compHeight + 40)
+        //    .text("Year");
 
 
 
@@ -821,16 +1022,16 @@ Components.prototype.lineGraph = function(widget, configuration){
             .style("stroke-width", 2)
             .style("stroke", "white")
             .style("fill", "none")
-            .attr("x1", vx1)
-            .attr("x2", vx2)
-            .attr("y1", vy1)
-            .attr("y2", vy2);
+            .attr("x1", vArr[0][0])
+            .attr("x2", vArr[1][0])
+            .attr("y1", vArr[0][1])
+            .attr("y2", vArr[1][1]);
 
 
 
         svg.append("path")
-            .datum(data)
-            .attr("class", "line timeLine clickable")
+            .datum(widget.data_area)
+            .attr("class", "line timeLine")
             .attr("id", "line" +  widget.widgetId) // assign ID
             .attr("d", fLine)
             .style("stroke", widget.cs.highlight_color)
@@ -839,11 +1040,11 @@ Components.prototype.lineGraph = function(widget, configuration){
             //.on("click", function() { self._line_click(self, d.key)});
 
         svg.selectAll(".timeDot")
-            .data(data)
+            .data(widget.data_area)
             .enter()
             .append("circle")
-            .attr("class", "dots" + this.widgetId + " clickable")
-            .attr("id", "timeDots" + this.widgetId)
+            .attr("class", "dots" + widget.widgetId + " clickable")
+            .attr("id", "timeDots" + widget.widgetId)
             .attr("cx", function(e, i){return xscale(period_arr.indexOf(e[config.source.period]))})
             .attr("cy", function(e){ return yscale(e[config.source.value])})
             .style("stroke", widget.cs.background_color)
@@ -856,6 +1057,40 @@ Components.prototype.lineGraph = function(widget, configuration){
 
     }
     that.render = render;
+
+
+    function update(widget) {
+
+        var config = controller.config
+
+        vArr = getVerticalLineCoords()
+
+        d3.select("#verticalTimeLine" + widget.widgetId )
+            .transition()
+            .duration(500)
+            .ease("exp")
+            .attr("x1", vArr[0][0])
+            .attr("x2", vArr[1][0])
+            .attr("y1", vArr[0][1])
+            .attr("y2", vArr[1][1]);
+
+
+        d3.select("#line" + widget.widgetId )
+            .datum(widget.data_area)
+            .transition()
+            .duration(750)
+            .attr("d", fLine);
+
+        d3.selectAll("#timeDots" + widget.widgetId)
+            .data(widget.data_area)
+            .transition()
+            .duration(750)
+            .attr("cx", function(e, i){return xscale(period_arr.indexOf(e[config.source.period]))})
+            .attr("cy", function(e){ return yscale(e[config.source.value])})
+
+    }
+    that.update = update;
+
 
     configure(widget, configuration);
 
@@ -916,7 +1151,6 @@ Components.prototype.timeSlider = function(widget, configuration){
                 if (d3.event.sourceEvent) { // not a programmatic event
                     value = xscale.invert(d3.mouse(this)[0]);
                     brush.extent([value, value]);
-
                 }
 
                 handle.attr("transform", "translate(" + xscale(Math.round(value)) + ",0)");
@@ -973,15 +1207,15 @@ Components.prototype.timeSlider = function(widget, configuration){
             .attr("height", that.config.compHeight);
 
         handle = slider.append("g")
-            .attr("class", "handle clickable")
+            .attr("class", "handle clickable");
 
         handle.append("path")
             .attr("transform", "translate(0," + that.config.compHeight  + ")")
-            .attr("d", "M 0 -10 V 10")
+            .attr("d", "M 0 -10 V 10");
 
         handle.append('text')
             .text(xscale(current_period))
-            .attr("transform", "translate(" + (-18) + " ," + (that.config.compHeight - 15) + ")")
+            .attr("transform", "translate(" + (-18) + " ," + (that.config.compHeight - 15) + ")");
 
         slider
             .call(brush.event)
@@ -989,13 +1223,22 @@ Components.prototype.timeSlider = function(widget, configuration){
     }
     that.render = render;
 
+    function update() {
+
+        var value = controller.state.current_period;
+        handle.attr("transform", "translate(" + xscale(Math.round(value)) + ",0)");
+        handle.select('text').text(Math.round(value));
+
+    }
+    that.update = update;
+
+    ee.addListener("update", update);
+
     configure(widget, configuration);
 
     return that;
 
 };
-
-
 
 
 Components.prototype.map = function(widget, configuration){
@@ -1005,10 +1248,16 @@ Components.prototype.map = function(widget, configuration){
     that.config = {};
 
     var svg = undefined;
+    var map = undefined;
     var topojson_data = undefined;
     var projection = undefined;
     var path = undefined;
     var feature = undefined;
+
+    function feature_click(d){
+        controller._area_change(d.properties.id)
+
+    }
 
 
     function configure(widget, configuration) {
@@ -1034,8 +1283,6 @@ Components.prototype.map = function(widget, configuration){
 
         features = topojson.feature(topojson_data, topojson_data.objects.collection).features;
 
-        console.log(features)
-
     }
     that.configure = configure;
 
@@ -1054,7 +1301,7 @@ Components.prototype.map = function(widget, configuration){
         svg = widget._chart.append("g")
             .attr("transform", "translate(" + that.config.x + "," + that.config.y + ")");
 
-        svg.selectAll("path")
+        map = svg.selectAll("path")
             .data(features)
             .enter()
             .append("path")
@@ -1062,7 +1309,7 @@ Components.prototype.map = function(widget, configuration){
             .attr("id", function(d){ return "feature" + d.properties.id} + widget.widgetId)
             .attr("d", path)
             .style(that.config.style)
-            //.on("click", self._feature_click);
+            .on("click", feature_click);
 
         d3.select("#feature" + state.current_area + widget.widgetId).moveToFront();
 
@@ -1070,11 +1317,922 @@ Components.prototype.map = function(widget, configuration){
     }
     that.render = render;
 
+    function update() {
+        map.transition()
+            .duration(300)
+            .style(that.config.style)
+    }
+    that.update = update;
+
+    ee.addListener("update", update)
+
     configure(widget, configuration);
 
     return that;
 
 };
+
+
+Components.prototype.barGraph = function(widget, configuration){
+
+    var that = {};
+
+    that.config = {};
+
+    var svg = undefined;
+    var chart_left = undefined;
+    var chart_right = undefined;
+    var xscale = undefined;
+    var yscale = undefined;
+    var background_bars_right = undefined;
+    var background_bars_left = undefined;
+    var bars = undefined;
+    var label = undefined;
+    var label_value = undefined;
+
+    function validate_NaN_to_0(val){
+        if(isNaN(val)) return 0; else return Number(val);
+    };
+
+    function select_color(d){
+
+        var config = controller.config;
+        var state = controller.state;
+
+        var id = d[config.source.id];
+
+        if(id == state.current_area){ //always highlight
+            return widget.cs.highlight_color
+        }
+
+        var index = state.current_secondary_areas.indexOf(id); //get color
+        if(index == -1){
+            return widget.cs.main_color
+        } else {
+            //repeat colors
+            while(index >= state.secondary_areas_colors.length){
+                index -= state.secondary_areas_colors.length;
+            }
+            return state.secondary_areas_colors[index]
+        }
+    };
+
+    function bar_click(d){
+        controller._area_change(d[controller.config.source.id]);
+    };
+
+
+    function calc_xscale(widget){
+
+        var config = controller.config;
+
+        return d3.scale.linear()
+            .range([0, that.config.compWidth])
+            .domain([0, d3.max(widget.data_period, function (d) {return validate_NaN_to_0(d[config.source.value]);})]);
+    }
+
+
+    function configure(widget, configuration) {
+
+        that.config = configuration;
+
+        var config = controller.config;
+        var state = controller.state;
+
+        that.config.middle = widget.width / 2;
+        that.config.margin_middle = 2;
+
+        //adjust height of bar graph for more lines
+        var y0 = 0;
+        var y1 = that.config.compHeight;
+
+        if(widget.data_period.length > 7 && widget.data_period.length <= 15){
+            y1 += 21;
+        }else if( widget.data_period.length > 15){
+            y1 += 42;
+        }
+
+        yscale = d3.scale.ordinal()
+            .rangeRoundBands([y0, y1], .14, .2)
+            .domain( widget.data_period.map(function (d) {return d[config.source.name];}));
+
+
+        that.config.margin_middle = yscale.rangeBand() * 0.14;
+
+        xscale = calc_xscale(widget);
+
+    }
+    that.configure = configure;
+
+    function isRendered() {
+        return (svg !== undefined);
+    }
+    that.isRendered = isRendered;
+
+    function render() {
+
+        var self = this;
+        var config = controller.config;
+        var state = controller.state;
+
+        var areaType = state.areaType;
+        var indicator = state.indicator;
+        var genderType = state.genderType;
+
+        svg = widget._chart.append("g")
+            .attr("transform", "translate(" + that.config.x + "," + that.config.y + ")");
+
+        chart_left = svg
+            .append('g')
+            .attr("transform", "translate(-" + that.config.margin_middle / 2  + ",0)");
+
+        chart_right = svg
+            .append('g')
+            .attr("transform", "translate(" + (that.config.middle + that.config.margin_middle / 2) + ",0)");
+
+
+        var data = widget.data_period;
+
+        background_bars_right = chart_right.selectAll(".background_bar_right")
+            .data(data)
+            .enter()
+            .append("rect")
+            .attr("class", "background_bar_right clickable")
+            .attr("x", 0)
+            .attr("y", function (d, i) {return yscale(d[config.source.name])})
+            .attr("width",  that.config.middle  )
+            .attr("height", function (d, i) {return yscale.rangeBand()})
+            .style("fill", "white") //config file???
+            .style("stroke-width", "0")
+            .on("click", bar_click.bind(this));
+
+
+        bars = chart_right.selectAll(".foreground bar") //???need to add ids
+            .data(data)
+            .enter()
+            .append("rect")
+            .attr("class", "foreground bar clickable")
+            .attr("x", 0)
+            .attr("y", function (d, i) {return yscale(d[config.source.name])})
+
+            .attr("height", function (d, i) {return yscale.rangeBand()})
+            .style("stroke-width", "0")
+            .style("fill", function(d){ return select_color(d)})
+            .attr("width", function (d, i) {
+                if(widget.data_period.length == 0){
+                    return 0
+                } else {
+                    return xscale(validate_NaN_to_0(d[config.source.value]))
+                }
+            })
+            .on("click", bar_click.bind(this));
+
+
+        background_bars_left = chart_left.selectAll(".background_bar_left")
+            .data(data)
+            .enter()
+            .append("rect")
+            .attr("class", "background_bar_left clickable" )
+            .attr("x", 0)
+            .attr("y", function (d, i) {return yscale(d[config.source.name])})
+            .attr("width",  that.config.compWidth )
+            .attr("height", function (d, i) {return yscale.rangeBand()})
+            .style("stroke-width", "0")
+            .style("fill", function(d){ return select_color(d)})
+            .on("click", bar_click.bind(this));
+
+
+        label = chart_left.selectAll(".name text")
+            .data(data)
+            .enter()
+            .append("text")
+            .attr("class", "name text clickable")
+            .attr("x", "0.5em")
+            .attr("y", function (d, i) {return (yscale(d[config.source.name]) + yscale(d[config.source.name]) + yscale.rangeBand()) / 2})
+            .attr("dy", "0.4em")
+            .text(function(d, i){return controller._get_area_name(d[config.source.id])})
+            .style("font-size", "0.8em")
+            .style("font-weight", "bold")
+            .style("fill", widget.cs.dark_text_color)
+            .text(function(d, i){
+                if(widget.data_period.length == 0) {
+                    return "NA"
+                } else {
+                    return controller._get_area_short_name(d[config.source.id])
+                }
+            })
+            .on("click", bar_click.bind(this));
+
+        var format = d3.format("1g")
+
+        label_value = chart_left.selectAll(".value text")
+            .data(data)
+            .enter()
+            .append("text")
+            .attr("class", "name text clickable")
+            .attr("x", that.config.compWidth - 7)
+            .attr("y", function (d, i) {return (yscale(d[config.source.name]) + yscale(d[config.source.name]) + yscale.rangeBand()) / 2})
+            .attr("dy", "0.4em")
+            .text(function(d, i){return d[config.source.value].toFixed(0)})
+            .style("text-anchor", "end")
+            .style("font-size", "0.8em")
+            .style("font-weight", "bold")
+            .style("fill", widget.cs.dark_text_color)
+            .on("click", bar_click.bind(this));
+
+    }
+    that.render = render;
+
+
+    function update(widget) {
+
+        var self = this;
+        var config = controller.config;
+
+        xscale = calc_xscale(widget);
+
+        bars
+            .data(widget.data_period)
+            .transition("barfill")
+            .duration(500)
+            .style("fill", function(d){ return select_color(d)});
+
+        background_bars_left
+            .data(widget.data_period)
+            .transition()
+            .duration(500)
+            .style("fill", function(d){ return select_color(d)});
+
+
+        if(widget.data_period.length == 0){
+            bars
+                .transition("barshift")
+                .duration(500)
+                .attr("width",0);
+
+            label_value
+                .transition()
+                .duration(500)
+                .text("NA");
+
+        } else {
+            bars
+                .data(widget.data_period)
+                .transition("barshift")
+                .duration(500)
+                .attr("width", function (d, i) {return xscale(validate_NaN_to_0(d[config.source.value]))});
+
+            label_value
+                .data(widget.data_period)
+                .transition()
+                .duration(500)
+                .text(function(d, i){return d[config.source.value].toFixed(0)});
+        }
+
+        label_value
+            .data(widget.data_period)
+            .transition()
+            .duration(500)
+            .text(function(d, i){return d[config.source.value].toFixed(0)});
+
+
+
+    }
+    that.update = update;
+
+
+    configure(widget, configuration);
+
+    return that;
+
+};
+
+
+Components.prototype.multiLineGraph = function(widget, configuration){
+
+    var that = {};
+
+    that.config = {};
+
+    var svg = undefined;
+    var data = undefined;
+    var dataNest = undefined;
+    //var data_period = undefined;
+    var xscale = undefined;
+    var yscale = undefined;
+    var xAxis = undefined;
+    var yAxis = undefined;
+    var period_arr = undefined;
+    var max_y_value = undefined;
+    var max_y_value_width = undefined;
+    var fLine = undefined;
+    var vArr = undefined;
+
+
+    function dot_click(d){
+        var config = controller.config;
+        controller._period_change(d[config.source.period]);
+        controller._area_change(d[config.source.id]);
+    }
+
+    function line_click(id){
+        controller._area_change(id);
+    }
+
+
+    function getVerticalLineCoords(){
+
+        x1 = xscale(period_arr.indexOf(controller.state.current_period));
+        x2 = xscale(period_arr.indexOf(controller.state.current_period));
+
+        if(widget.data_area.length == 0) {
+            y1 = that.config.compHeight / 2;
+            y2 = that.config.compHeight / 2;
+        } else {
+            y1 = that.config.compHeight;
+            y2 = that.config.compHeight * 0.1;
+        }
+
+        return [[x1, y1], [x2, y2]]
+    }
+
+    function nestData(data, nestField){
+        var config = controller.config;
+        return d3.nest()
+            .key(function(d){return d[nestField]})
+            .sortValues(function(a, b){return a[config.source.period] - b[config.source.period]})
+            .entries(data);
+    }
+
+     function select_color(id){
+
+         var state = controller.state;
+
+         //always highlight selected area
+         if(id == state.current_area){ return widget.cs.highlight_color}
+
+
+         //if all selected = true return main color
+         if(widget.select_all){ return widget.cs.main_color }
+
+         var index = state.current_secondary_areas.indexOf(id); //get color
+
+         if(index == -1){
+            return widget.cs.main_color
+         } else {
+             //repeat colors
+             while(index >= state.secondary_areas_colors.length){
+                index -= state.secondary_areas_colors.length;
+            }
+            return state.secondary_areas_colors[index]
+         }
+
+     }
+
+     function select_line_stroke_width(id){
+         var state = controller.state;
+
+         //always highlight selected area
+         if(id == state.current_area){ return 4 }
+
+        //if all selected = true return normal
+         if(widget.select_all){ return 2 }
+
+         var index = state.current_secondary_areas.indexOf(id); //get color
+         if(index == -1){
+            return 0; //don't show
+         } else {
+            return 2
+         }
+     }
+
+     function select_dot_stroke_width(id){
+
+         var state = controller.state;
+
+         //always highlight
+         if(id == state.current_area){ return 2 }
+
+         //if all selected = true return normal
+         if(widget.select_all){ return 1 }
+
+         var index = state.current_secondary_areas.indexOf(id); //get color
+         if(index == -1){
+            return 0 //don't show
+         } else {
+            return 1
+         }
+     }
+
+     select_dot_radius = function(id){
+
+         var state = controller.state;
+
+         //always highlight
+         if(id == state.current_area){ return 5 }
+
+        //if all selected = true return normal
+         if(widget.select_all){ return 4 }
+
+         var index = state.current_secondary_areas.indexOf(id); //get color
+         if(index == -1){
+            return 0 //don't show
+         } else {
+            return 4
+     }
+     };
+
+
+
+
+
+    function configure(widget, configuration) {
+
+        that.config = configuration;
+
+        var config = controller.config;
+        var state = controller.state;
+
+        //console.log(widget)
+
+        dataNest = nestData(widget.data, config.source.id);
+
+        max_y_value = d3.max(widget.data.map(function(obj){return obj[config.source.value]}));
+        max_y_value_width = String(max_y_value.toFixed(0)).length * 10;
+
+        period_arr = [];
+        var y = config.firstPeriod;
+        while(y <= config.lastPeriod){
+            period_arr.push(y);
+            y += 1;
+        }
+
+        //calcualate constant origin shift
+        var origin_shift_x = max_y_value_width;
+        var tick_width_x = that.config.compWidth / (period_arr.length - 1);
+
+        xscale = d3.scale.linear()
+            .range([0, that.config.compWidth])
+            .domain([-(origin_shift_x/tick_width_x), period_arr.length - 1]);
+
+        yscale = d3.scale.linear()
+            .range([0, that.config.compHeight])
+            .domain([ max_y_value * 1.25, 0]);
+
+
+        xAxis = d3.svg.axis()
+            .scale(xscale)
+            .orient("bottom")
+            .outerTickSize(0)
+            .tickFormat(function(d, i){
+                if(d === parseInt(d, 10)){ //we can only map integers to time periods otherwise return blank
+                    return period_arr[d]
+                } else {
+                    return ""
+                }})
+            .ticks(period_arr.length/2); //set max 5 ticks otherwise every other
+
+
+
+        yAxis = d3.svg.axis()
+            .scale(yscale)
+            .orient("left")
+            .tickFormat(d3.format("1g"))
+            .outerTickSize(0)
+            .ticks(5);
+
+
+        // Define the line
+        fLine = d3.svg.line()
+            .defined(function(d) {return !isNaN(d[config.source.value]); })
+            .x(function(d, i) {return xscale(period_arr.indexOf(d[config.source.period]));})
+            .y(function(d) {return yscale(d[config.source.value]);});
+
+
+        //get coords for vertical time line
+        vArr = getVerticalLineCoords()
+
+
+
+
+    }
+    that.configure = configure;
+
+    function isRendered() {
+        return (svg !== undefined);
+    }
+    that.isRendered = isRendered;
+
+    function render() {
+
+        var config = controller.config;
+        var state = controller.state;
+
+        svg = widget._chart.append("g")
+            .attr("transform", "translate(" + that.config.x + "," + that.config.y + ")");
+
+        svg.append("g")
+            .attr("class", "x axis")
+            .attr("transform", "translate(0," + that.config.compHeight + ")")
+            .call(xAxis);
+
+        svg.append("g")
+            .attr("class", "y axis")
+            .attr("transform", "translate("  + max_y_value_width / 2 + ", 0)")
+            .call(yAxis);
+
+        svg.append("line")
+            .attr("id", "verticalTimeLine" + widget.widgetId )
+            .style("stroke-width", 2)
+            .style("stroke", "white")
+            .style("fill", "none")
+            .attr("x1", vArr[0][0])
+            .attr("x2", vArr[1][0])
+            .attr("y1", vArr[0][1])
+            .attr("y2", vArr[1][1]);
+
+
+        dataNest.forEach(function(d, i){
+
+            var id = d.key
+
+            svg.append("path")
+                .attr("class", "line timeLine clickable")
+                .attr("id", "line" + d.key + widget.widgetId) // assign ID
+                .attr("d", fLine(d.values))
+                .style("stroke", function(){return select_color(d.key)})
+                .style("stroke-width", function(){return select_line_stroke_width(d.key)})
+                .style("fill", "none")
+                .on("click", function() { line_click(d.key)});
+
+            svg.selectAll(".timeDot")
+                .data(d.values)
+                .enter()
+                .append("circle")
+                .attr("class", "dots" + d.key +  widget.widgetId + " clickable")
+                .attr("id", "timeDots" + d.key + widget.widgetId)
+                .attr("cx", function(e, i){return xscale(period_arr.indexOf(e[config.source.period]))})
+                .attr("cy", function(e){ return yscale(e[config.source.value])})
+                .style("stroke", widget.cs.background_color)
+                .attr("r", function(){return select_dot_radius(d.key)})
+                .style("stroke-width", function(){return select_dot_stroke_width(d.key)})
+                .style("fill", function(){return select_color(d.key)})
+                .on("click", dot_click);
+
+
+
+        });
+
+        d3.select("#line" + state.current_area  + widget.widgetId).moveToFront();
+        d3.selectAll(".dots" + state.current_area  + widget.widgetId).moveToFront();
+
+    }
+    that.render = render;
+
+
+    function update(widget) {
+
+        var config = controller.config;
+        var state = controller.state;
+
+        vArr = getVerticalLineCoords();
+
+        d3.select("#verticalTimeLine" + widget.widgetId )
+            .transition()
+            .duration(500)
+            .ease("exp")
+            .attr("x1", vArr[0][0])
+            .attr("x2", vArr[1][0])
+            .attr("y1", vArr[0][1])
+            .attr("y2", vArr[1][1]);
+
+
+        d3.select("#line" + state.current_area + widget.widgetId).moveToFront();
+        d3.selectAll(".dots" + state.current_area + widget.widgetId).moveToFront();
+
+        dataNest = nestData(widget.data, config.source.id);
+
+        dataNest.forEach(function(d, i){
+
+            d3.select("#line" + d.key + widget.widgetId)
+                .transition()
+                .duration(750)
+                .style("stroke", function(){return select_color(d.key)})
+                .style("stroke-width", function(){return select_line_stroke_width(d.key)})
+
+            d3.selectAll(".dots" + d.key + widget.widgetId)
+                .transition()
+                .duration(750)
+                .attr("r", function(){return select_dot_radius(d.key)})
+                .style("stroke-width", function(){return select_dot_stroke_width(d.key)})
+                .style("fill", function(){return select_color(d.key)});
+        });
+    }
+    that.update = update;
+
+
+    configure(widget, configuration);
+
+    return that;
+
+};
+
+
+Components.prototype.circleButton = function(widget, configuration){
+
+    var self = this;
+    var that = {};
+    that.config = {};
+
+    var svg = undefined;
+    var x = undefined;
+    var y = undefined;
+    var r = undefined;
+    var margin = undefined;
+    var icon = undefined;
+    var clicked = undefined;
+
+    function configure(widget, configuration) {
+
+        that.config = configuration;
+        x = that.config.x;
+        y = that.config.y;
+        r = that.config.r;
+        margin = that.config.margin;
+        icon = that.config.icon;
+        clicked = that.config.clicked;
+    }
+    that.configure = configure;
+
+    function isRendered() {
+        return (svg !== undefined);
+    }
+    that.isRendered = isRendered;
+
+    function render() {
+
+        svg = widget._chart.append("g");
+
+        svg.append("circle")
+            .attr("class", "clickable")
+            .attr("cx", x)
+            .attr("cy", y)
+            .attr("r", r)
+            .style("fill", "white")
+            .on("click", clicked.bind(widget));
+
+        svg.append('text')
+            .attr("class", "clickable")
+            .attr("x", x)
+            .attr("y", y)
+            .attr("dy", margin)
+            .attr("text-anchor", "middle")
+            .attr('font-family', 'FontAwesome')
+            .style("fill", widget.cs.background_color)
+            .text(icon)
+            .on("click", clicked.bind(widget));
+    }
+
+    that.render = render;
+
+    configure(widget, configuration);
+
+    return that;
+};
+
+
+Components.prototype.selectBar = function(widget, configuration){
+
+    var that = {};
+
+    that.config = {};
+
+    var svg = undefined;
+    var xscale = undefined;
+    var yscale = undefined;
+    var select_all_bar = undefined;
+    var select_all_text = undefined;
+    var background_bars = undefined;
+    var label = undefined;
+
+    function select_all_color(){
+        if(widget.select_all){
+            return widget.cs.main_color
+        } else {
+            return "white"
+        }
+    }
+    function select_color(d){
+
+        var config = controller.config;
+        var state = controller.state;
+
+        var id = d[config.source.id];
+
+        if(id == state.current_area){ //always highlight
+            return widget.cs.highlight_color
+        }
+
+        var index = state.current_secondary_areas.indexOf(id); //get color
+
+        if(index == -1 && widget.select_all == false) {
+            return "white" //widget.cs.main_color
+        } else if (index == -1 && widget.select_all == true) {
+            return widget.cs.main_color
+        } else {
+            //repeat colors
+            while(index >= state.secondary_areas_colors.length){
+                index -= state.secondary_areas_colors.length;
+            }
+            return state.secondary_areas_colors[index]
+        }
+    }
+
+    function select_all_lines(){
+
+        //switch state
+        if(widget.select_all){
+            widget.select_all = false;
+        }else{
+            widget.select_all = true;
+            controller.state.current_secondary_areas = []; //clear the selected areas
+        }
+
+        controller._secondary_area_change();
+
+    }
+
+
+    function select_line(d){
+
+        var config = controller.config;
+        var state = controller.state;
+
+        //always set all selected to false
+        widget.select_all = false;
+
+        var id = d[config.source.id];
+
+        //check if area is secondary area
+        var index = state.current_secondary_areas.indexOf(id);
+        if(index == -1){
+            state.current_secondary_areas.push(id)
+        } else {
+            state.current_secondary_areas.splice(index, 1)
+        }
+
+        //this._set_selection_color();
+        controller._secondary_area_change();
+
+    }
+
+
+    function configure(widget, configuration) {
+
+        that.config = configuration;
+
+        var config = controller.config;
+        var state = controller.state;
+
+
+        //adjust height of bar graph for more lines
+        var y0 = 0;
+        var y1 = that.config.compHeight;
+
+        if(widget.data_period.length > 7 && widget.data_period.length <= 15){
+            y1 += 21;
+        }else if( widget.data_period.length > 15){
+            y1 += 42;
+        }
+
+        yscale = d3.scale.ordinal()
+            .rangeRoundBands([y0, y1], .14, .2)
+            .domain( widget.data_period.map(function (d) {return d[config.source.name];}));
+
+
+        that.config.margin_middle = yscale.rangeBand() * 0.14;
+
+        //xscale = calc_xscale(widget);
+
+
+
+
+    }
+    that.configure = configure;
+
+    function isRendered() {
+        return (svg !== undefined);
+    }
+    that.isRendered = isRendered;
+
+    function render() {
+
+        var self = this;
+        var config = controller.config;
+        var state = controller.state;
+
+        var areaType = state.areaType;
+        var indicator = state.indicator;
+        var genderType = state.genderType;
+
+        svg = widget._chart.append("g")
+            .attr("transform", "translate(" + that.config.x + "," + that.config.y + ")");
+
+
+        var data = widget.data_period;
+
+
+
+        select_all_bar = svg
+            .append("rect")
+            .attr("class", "background bar clickable")
+            .attr("id", "select_all_bar" + widget.widgetId)
+            .attr("x", 0)
+            .attr("y",function () {return - yscale.rangeBand() * 0.9})//0.9 reflects range bound margin 0.2
+            .attr("width", widget.width)
+            .attr("height", function () {return yscale.rangeBand()})
+            .style("fill", function(){return select_all_color()})
+            .style("stroke-width", "0")
+            .on("click", select_all_lines);
+
+        select_all_text = svg
+            .append("text")
+            .attr("x", "0.5em")
+            .attr("y", function (d, i) {return -0.45 *  yscale.rangeBand()})//0.45 reflects range bound margin 0.2
+            .attr("dy", "0.4em")
+            .text("Select All")
+            .style("font-size", "0.8em")
+            .style("font-weight", "bold")
+            .style("fill", widget.cs.dark_text_color)
+            .on("click", select_all_lines );
+
+        background_bars = svg.selectAll(".background_bar")
+            .data(data)
+            .enter()
+            .append("rect")
+            .attr("class", "background_bar clickable" )
+            .attr("x", 0)
+            .attr("y", function (d, i) {return yscale(d[config.source.name])})
+            .attr("width",  that.config.compWidth )
+            .attr("height", function (d, i) {return yscale.rangeBand()})
+            .style("stroke-width", "0")
+            .style("fill", function(d){ return select_color(d)})
+            .on("click", select_line);
+
+
+        label = svg.selectAll(".name text")
+            .data(data)
+            .enter()
+            .append("text")
+            .attr("class", "name text clickable")
+            .attr("x", "0.5em")
+            .attr("y", function (d, i) {return (yscale(d[config.source.name]) + yscale(d[config.source.name]) + yscale.rangeBand()) / 2})
+            .attr("dy", "0.4em")
+            .text(function(d, i){return controller._get_area_name(d[config.source.id])})
+            .style("font-size", "0.8em")
+            .style("font-weight", "bold")
+            .style("fill", widget.cs.dark_text_color)
+            .text(function(d){return controller._get_area_short_name(d[config.source.id])})
+            .on("click",select_line);
+
+
+    }
+    that.render = render;
+
+
+    function update() {
+
+        var self = this;
+        var config = controller.config;
+
+        select_all_bar
+            .transition()
+            .duration(500)
+            .style("fill", function(){return select_all_color()})
+
+
+        background_bars = svg.selectAll(".background_bar")
+            .transition()
+            .duration(500)
+            .style("fill", function(d){ return select_color(d)})
+
+
+
+    }
+    that.update = update;
+
+    ee.addListener("update", update);
+
+    configure(widget, configuration);
+
+    return that;
+
+};
+
+
+
+
+
 
 
 var component = new Components();

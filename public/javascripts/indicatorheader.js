@@ -1,28 +1,24 @@
 
-
 IndicatorHeader = function(indicator, gender, container, widgetId){
+
+    var self = this;
 
     this.widgetId = widgetId;
     this.indicator = indicator;
+    this.indicatorArr = controller.config.indicatorMapping[indicator];
     this.gender = gender;
     this.container = container;
 
 
-    this.config = controller.config;
-
-    this.cs = this.config.colorScheme;
+    this.cs = controller.config.colorScheme;
     this._init();
 
 
 };
 
-
-
 IndicatorHeader.prototype._init = function(){
 
     this._draw_all();
-    this._bindEvents();
-
 
 
 };
@@ -31,22 +27,25 @@ IndicatorHeader.prototype._draw_all = function(){
 
     this._build_graph();
     this._add_help_button();
-    this._draw_text();
-    this._set_scales();
-    this._draw_axes();
-    this._define_brush();
-    this._draw_slider();
+
+    this._draw_header();
+    this._draw_indicator();
+    this._draw_gender();
+    this._draw_area_type();
+    this._draw_timeSlider();
+    this._draw_select_year();
+
 
 };
 
+IndicatorHeader.prototype._build_graph = function() {
 
-IndicatorHeader.prototype._build_graph = function(){
-
-    var config = this.config;
-    var state = controller.state;
+    var config = controller.config;
+    var self = this;
 
     config.full_width = 300;
     config.full_height = 400;
+
 
     this.width =  config.full_width - config.margin.left  - config.margin.right;
     this.height = config.full_height - config.margin.bottom - config.margin.top;
@@ -66,163 +65,130 @@ IndicatorHeader.prototype._build_graph = function(){
 
 };
 
-IndicatorHeader.prototype._draw_text = function(){
 
+IndicatorHeader.prototype._draw_header = function(){
 
     var self = this;
-    var config = self.config;
-    var state = controller.state;
 
-    var bbbox;
-    var y;
-    var x;
-    var delta_y = 42;
+    this._header_text = component.text(self, {
+        str: "Report:",
+        font_size: "2em",
+        x: 0,
+        y: 0 * 14,
+        dy: 0,
+        width: this.width,
+        id: "header" + this.widgetId
+    });
 
-    //add header-------------------------------------
-    y = 0;
-    x = 0;
-
-    this._indicatorText  = this._chart.append("text")
-        .attr("class", "indicatorText")
-        .attr("id", "indicatorText")
-        .attr("x", x)
-        .attr("y",  y)
-        //.attr("dy", "0em")
-        .attr("text-anchor", "left")
-        .style("font-size", "1.5em")
-        .style("fill", "white")
-        .call(controller._wrap, self.width, self.indicator);
+    this._header_text.render();
 
 
-    bbox = this._indicatorText.node().getBBox();
-    y = bbox.height + bbox.y + delta_y; //shift y
-    x = 0;
+};
 
-    this._genderText  = this._chart.append("text")
-        .attr("class", "genderText")
-        .attr("id", "genderText")
-        .attr("x", x)
-        .attr("y",  y)
-        //.attr("dy", "0em")
-        .attr("text-anchor", "left")
-        .style("font-size", "1.5em")
-        .style("fill", "white")
-        .call(controller._wrap, self.width, self.gender);
 
+IndicatorHeader.prototype._draw_indicator = function(){
+
+    var self = this;
+
+    this._indicator_text = component.text(self, {
+        str: this.indicator,
+        font_size: "1.5em",
+        x: 0,
+        y: 3 * 14,
+        width: this.width,
+        id: "indicator" + this.widgetId
+    });
+
+    this._indicator_text.render()
+
+};
+
+
+IndicatorHeader.prototype._draw_gender = function(){
+
+    var self = this;
+
+    this._gender_text = component.text(self, {
+        str: this.gender,
+        font_size: "1.5em",
+        x: 0,
+        y: 7 * 14,
+        width: this.width,
+        id: "gender" + this.widgetId
+    })
+
+    this._gender_text.render()
+
+
+};
+
+IndicatorHeader.prototype._draw_area_type = function(){
+
+    var self = this;
+
+    var areaType = controller.getKeyByValue(controller.config.areaTypeMapping, controller.state.areaType); //get the area type
+    areaTypeLabel = controller.config.areaTypeLabels[areaType];
+
+    this._area_type = component.text(self, {
+        str: "Wessex " + areaTypeLabel,
+        font_size: "1.5em",
+        x: 0,
+        y: 9 * 14,
+        width: this.width,
+        id: "areaType" + this.widgetId
+    });
+
+    this._area_type.render()
+
+};
+
+
+IndicatorHeader.prototype._draw_timeSlider = function(){
+
+    var self = this;
+
+    this._timeSlider = component.timeSlider(self, {
+
+        x:0,
+        y: 10 * 14,
+        compHeight: 3 * 14,
+        compWidth: self.width,
+        firstPeriod: controller.config.firstPeriod,
+        lastPeriod: controller.config.lastPeriod
+
+    })
+
+    this._timeSlider.render();
+
+};
+
+IndicatorHeader.prototype._draw_select_year = function(){
+
+    var self = this;
+
+    this._year_select = component.text(self, {
+        str: "click to select year",
+        font_size: "1em",
+        x: -5,
+        y: 16 * 14,
+        width: this.width,
+        id: "yearSelectText" + this.widgetId
+    })
+
+    this._year_select.render()
 
 };
 
 
 
 
-IndicatorHeader.prototype._set_scales = function() {
 
-    var self = this;
-    var config = this.config;
-
-    this.x = d3.scale.linear()
-        .domain([config.firstPeriod - 0.25, config.lastPeriod + 0.25 ])
-        .range([0, self.width])
-        .clamp(true);
-        //.nice(10);
-
-};
-
-
-IndicatorHeader.prototype._draw_axes = function(){
-
-    var self = this;
-
-    this.xAxis = d3.svg.axis()
-        .scale(self.x)
-        .orient("bottom")
-        .tickFormat(function(d) {return d;})
-        .tickSize(0)
-        .tickPadding(12)
-        .tickValues([Math.round(self.x.domain()[0]), Math.round(self.x.domain()[1])]);
-
-    this._chart.append("g")
-        .attr("class", "slider x axis")
-        .attr("transform", "translate(0," + self.height + ")")
-        .style("fill", self.cs.main_color) //not working still in css!!!
-        .call(self.xAxis)
-        .select(".domain")
-        .select(function() {
-            return this.parentNode.appendChild(this.cloneNode(true));
-        })
-        .attr("class", "halo")
-        .style("fill", self.cs.main_color); //not working still in css!!!
-
-};
-
-
-IndicatorHeader.prototype._define_brush = function(){
-
-    var self = this;
-    var state = controller.state;
-
-    // defines brush
-    this.brush = d3.svg.brush()
-        .x(self.x)
-        .extent([state.current_period, state.current_period])
-        .on("brush", function() {
-
-            var value = self.brush.extent()[0];
-
-            if (d3.event.sourceEvent) { // not a programmatic event
-                  value = self.x.invert(d3.mouse(this)[0]);
-                  self.brush.extent([value, value]);
-
-            }
-
-            self.handle.attr("transform", "translate(" + self.x(Math.round(value)) + ",0)");
-            self.handle.select('text').text(Math.round(value));
-
-            controller._period_change(Math.round(value));
-
-        })
-};
-
-IndicatorHeader.prototype._draw_slider = function(){
-
-    var self = this;
-    var state = controller.state;
-
-    this.slider = this._chart.append("g")
-        .attr("class", "slider")
-        .call(self.brush);
-
-    this.slider.selectAll(".extent,.resize")
-        .remove();
-
-    this.slider.select(".background")
-        .attr("height", self.height);
-
-    this.handle = this.slider.append("g")
-        .attr("class", "handle clickable")
-        //.on("mouseout", self._snap_handle);
-
-    this.handle.append("path")
-        .attr("transform", "translate(0," + self.height  + ")")
-        .attr("d", "M 0 -10 V 10")
-        //.on("mouseout", self._snap_handle);
-
-    this.handle.append('text')
-        .text(self.x(state.current_period))
-        .attr("transform", "translate(" + (-18) + " ," + (self.height - 15) + ")")
-        //.on("mouseout", self._snap_handle);
-
-    this.slider
-        .call(self.brush.event)
-
-
-};
 
 
 
 IndicatorHeader.prototype._add_help_button = function(){
 
-    var config = this.config;
+    var config = controller.config;
     var self = this;
 
     var r = 10
@@ -257,7 +223,7 @@ IndicatorHeader.prototype._add_help_button = function(){
 
 IndicatorHeader.prototype._add_return_to_graph_button = function(){
 
-    var config = this.config;
+    var config = controller.config;
     var self = this;
 
     var r = 10
@@ -309,35 +275,3 @@ IndicatorHeader.prototype._redraw = function(){
 IndicatorHeader.prototype._draw_help_text = function(){
     //todo
 };
-
-
-
-
-IndicatorHeader.prototype._bindEvents = function(){
-
-    ee.addListener('period_change', this._period_change_listener.bind(this));
-
-};
-
-IndicatorHeader.prototype._period_change_listener = function(){
-
-    var self = this;
-
-    var value = controller.state.current_period;
-
-    self.handle
-        .transition()
-        .duration(500)
-        .ease("exp")
-        .attr("transform", "translate(" + self.x(Math.round(value)) + ",0)");
-
-    self.handle.select('text').text(Math.round(value));
-
-
-    //controller._period_change(Math.round(value));**
-
-
-};
-
-
-
