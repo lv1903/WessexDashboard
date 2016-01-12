@@ -27,7 +27,7 @@
         <entry file="file://$PROJECT_DIR$/public/javascripts/components.js">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="430" column="0" selection-start-line="430" selection-start-column="0" selection-end-line="430" selection-end-column="0" />
+              <caret line="411" column="27" selection-start-line="411" selection-start-column="27" selection-end-line="411" selection-end-column="27" />
               <folding>
                 <element signature="e#87#2186#0" expanded="false" />
                 <element signature="e#2248#3280#0" expanded="false" />
@@ -50,6 +50,16 @@
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="-6.7105265">
               <caret line="141" column="0" selection-start-line="141" selection-start-column="0" selection-end-line="141" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="indicatorwidget.js" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/public/javascripts/indicatorwidget.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.39698493">
+              <caret line="239" column="24" selection-start-line="239" selection-start-column="24" selection-end-line="239" selection-end-column="24" />
               <folding />
             </state>
           </provider>
@@ -85,16 +95,6 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="reportArea.jade" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/views/reportArea.jade">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="18" column="0" selection-start-line="18" selection-start-column="0" selection-end-line="18" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="reportIndicator.jade" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/views/reportIndicator.jade">
           <provider selected="true" editor-type-id="text-editor">
@@ -115,11 +115,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="flexStyleIndicator.css" pinned="false" current-in-tab="true">
+      <file leaf-file-name="flexStyleIndicator.css" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/public/stylesheets/flexStyleIndicator.css">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.020383693">
-              <caret line="92" column="27" selection-start-line="92" selection-start-column="27" selection-end-line="92" selection-end-column="27" />
+            <state vertical-scroll-proportion="0.0">
+              <caret line="104" column="20" selection-start-line="104" selection-start-column="20" selection-end-line="104" selection-end-column="20" />
               <folding />
             </state>
           </provider>
@@ -169,7 +169,6 @@
         <option value="$PROJECT_DIR$/views/layout.jade" />
         <option value="$PROJECT_DIR$/public/javascripts/filterer.js" />
         <option value="$PROJECT_DIR$/public/stylesheets/flexStyleIndicator.css" />
-        <option value="$PROJECT_DIR$/public/javascripts/indicatorwidget.js" />
         <option value="$PROJECT_DIR$/views/reportArea.jade" />
         <option value="$PROJECT_DIR$/views/reportIndicator.jade" />
         <option value="$PROJECT_DIR$/public/javascripts/densitygraph.js" />
@@ -179,6 +178,7 @@
         <option value="$PROJECT_DIR$/public/javascripts/controller.js" />
         <option value="$PROJECT_DIR$/views/select.jade" />
         <option value="$PROJECT_DIR$/public/javascripts/select.js" />
+        <option value="$PROJECT_DIR$/public/javascripts/indicatorwidget.js" />
       </list>
     </option>
   </component>
@@ -606,12 +606,12 @@
       <updated>1451560701633</updated>
       <workItem from="1451560728883" duration="88160000" />
       <workItem from="1452064665404" duration="75259000" />
-      <workItem from="1452505687984" duration="33332000" />
+      <workItem from="1452505687984" duration="34058000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="196751000" />
+    <option name="totallyTimeSpent" value="197477000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-11" y="-11" width="1942" height="1042" extended-state="6" />
@@ -935,14 +935,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/public/javascripts/indicatorwidget.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-0.8947368">
-          <caret line="411" column="63" selection-start-line="411" selection-start-column="63" selection-end-line="411" selection-end-column="63" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/views/reportArea.jade">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -983,26 +975,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/public/javascripts/components.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="430" column="0" selection-start-line="430" selection-start-column="0" selection-end-line="430" selection-end-column="0" />
-          <folding>
-            <element signature="e#87#2186#0" expanded="false" />
-            <element signature="e#2248#3280#0" expanded="false" />
-            <element signature="e#3347#5658#0" expanded="false" />
-            <element signature="e#5726#11266#0" expanded="false" />
-            <element signature="e#24828#31253#0" expanded="false" />
-            <element signature="e#31322#35103#0" expanded="false" />
-            <element signature="e#35165#37318#0" expanded="false" />
-            <element signature="e#37385#45808#0" expanded="false" />
-            <element signature="e#45881#55558#0" expanded="false" />
-            <element signature="e#55629#57054#0" expanded="false" />
-            <element signature="e#57122#63488#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/configs/master_config.json">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-5.125">
@@ -1037,8 +1009,36 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/public/stylesheets/flexStyleIndicator.css">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.020383693">
-          <caret line="92" column="27" selection-start-line="92" selection-start-column="27" selection-end-line="92" selection-end-column="27" />
+        <state vertical-scroll-proportion="0.0">
+          <caret line="104" column="20" selection-start-line="104" selection-start-column="20" selection-end-line="104" selection-end-column="20" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/javascripts/components.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="411" column="27" selection-start-line="411" selection-start-column="27" selection-end-line="411" selection-end-column="27" />
+          <folding>
+            <element signature="e#87#2186#0" expanded="false" />
+            <element signature="e#2248#3280#0" expanded="false" />
+            <element signature="e#3347#5658#0" expanded="false" />
+            <element signature="e#5726#11266#0" expanded="false" />
+            <element signature="e#24828#31253#0" expanded="false" />
+            <element signature="e#31322#35103#0" expanded="false" />
+            <element signature="e#35165#37318#0" expanded="false" />
+            <element signature="e#37385#45808#0" expanded="false" />
+            <element signature="e#45881#55558#0" expanded="false" />
+            <element signature="e#55629#57054#0" expanded="false" />
+            <element signature="e#57122#63488#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/javascripts/indicatorwidget.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.39698493">
+          <caret line="239" column="24" selection-start-line="239" selection-start-column="24" selection-end-line="239" selection-end-column="24" />
           <folding />
         </state>
       </provider>
