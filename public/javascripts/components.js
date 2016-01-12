@@ -428,12 +428,27 @@ Components.prototype.densityGraph = function(widget, configuration){
         var gender = widget.gender;
         var current_period = controller.state.current_period;
         var id = state.current_area;
+
         var name = controller._get_area_short_name(id);
 
         var objAverages = [];
 
         var obj;
         var average;
+
+
+        if(widget.val == null){
+            return [
+                {"name": "England", "average": 0},
+                {"name":  "Wessex", "average": 0},
+                {"name": name, "average": 0}
+            ]
+        };
+
+
+
+
+
         //-----------------
         average =  controller.median(controller.data_obj.ordered_list_obj[areaType][gender][indicatorMapped][current_period])
         obj = {
@@ -565,15 +580,16 @@ Components.prototype.densityGraph = function(widget, configuration){
             .attr("transform", "translate(0," + that.config.compHeight + ")")
             .call(xAxis);
 
-        //add density graph
-        var densityArray = controller.data_obj.density_obj[areaType][gender][indicatorMapped][current_period];
+        //add density graph as missing data
 
         density_area = svg
-            .datum(densityArray)
+            .datum([])
             .append("path")
             .attr("class", "densityArea")
-            .attr("d", fArea)
+            .attr("d", fNoData)
+            .style("opacity", 0)
             .style("fill", widget.cs.main_color);
+
 
         //add averages
         var self = this;
@@ -599,8 +615,8 @@ Components.prototype.densityGraph = function(widget, configuration){
                 .attr("id", "average_line_" + id + widget.widgetId)
                 .attr("x1", xscale(median))
                 .attr("x2", xscale(median))
-                .attr("y1", that.config.compHeight)
-                .attr("y2", function(){return that.config.y_arr[i]})
+                .attr("y1", self.height)
+                .attr("y2", self.height)
                 .style("stroke-width", 2)
                 .style("stroke", "white")
                 .style("fill", "none");
@@ -631,7 +647,7 @@ Components.prototype.densityGraph = function(widget, configuration){
                 }
                 })
                 //.style("fill", self.cs.background_color)
-                .text(name);
+                .text("");
 
 
             svg.append("text")
@@ -660,7 +676,7 @@ Components.prototype.densityGraph = function(widget, configuration){
                 })
                 //.style("fill", self.cs.background_color)
                 .style("font-size", "1.5em")
-                .text(Math.round(median));
+                .text("");
         }
 
     }
@@ -764,15 +780,14 @@ Components.prototype.densityGraph = function(widget, configuration){
             return
         }
 
-        //add density graph
         var densityArray = controller.data_obj.density_obj[areaType][gender][indicatorMapped][current_period];
-
 
         density_area
             .datum(densityArray)
             .transition()
             .duration(750)
-            .attr("d", fArea)
+            .style("opacity", 1)
+            .attr("d", fArea);
 
         averages = getAverages();
 
@@ -842,6 +857,8 @@ Components.prototype.densityGraph = function(widget, configuration){
     }
     that.update = update;
 
+    //that.update(widget) //update as orignially rendered as no data
+
 
 
     configure(widget, configuration);
@@ -871,10 +888,7 @@ Components.prototype.lineGraph = function(widget, configuration){
     var max_y_value_width = undefined;
     var fLine = undefined;
     var vArr = undefined;
-    //var vx1 = undefined;
-    //var vx2 = undefined;
-    //var vy1 = undefined;
-    //var vy2 = undefined;
+
 
 
     function dot_click(d){
@@ -910,17 +924,6 @@ Components.prototype.lineGraph = function(widget, configuration){
 
         var config = controller.config;
         var state = controller.state;
-
-        //var areaType = state.areaType;
-        //var indicator = widget.indicator;
-        //var indicatorMapped = widget.indicatorMapped;
-        //var gender = widget.gender;
-        //var current_area = state.current_area;
-        //var current_period = state.current_period;
-        //
-        //data = controller.filterDataArea(areaType, gender, indicatorMapped, current_area);
-        //data_period = controller.filterDataPeriodArea(areaType, gender, indicatorMapped, current_period, current_area);
-
 
         max_y_value = d3.max(widget.data.map(function(obj){return obj[config.source.value]}));
         max_y_value_width = String(max_y_value.toFixed(0)).length * 10;
@@ -1124,9 +1127,6 @@ Components.prototype.timeSlider = function(widget, configuration){
 
         var current_period = state.current_period;
 
-
-
-
         xscale = d3.scale.linear()
             .domain([that.config.firstPeriod - 0.25, that.config.lastPeriod + 0.25 ])
             .range([0, that.config.compWidth])
@@ -1148,7 +1148,9 @@ Components.prototype.timeSlider = function(widget, configuration){
 
                 var value = brush.extent()[0];
 
-                if (d3.event.sourceEvent) { // not a programmatic event
+
+
+                if (d3.event.sourceEvent && d3.mouse(this)[1] > 0) { // not a programmatic event & not help button
                     value = xscale.invert(d3.mouse(this)[0]);
                     brush.extent([value, value]);
                 }
@@ -1157,7 +1159,6 @@ Components.prototype.timeSlider = function(widget, configuration){
                 handle.select('text').text(Math.round(value));
 
                 controller._period_change(Math.round(value));
-
             });
 
 
@@ -2231,16 +2232,7 @@ Components.prototype.selectBar = function(widget, configuration){
 
 
 
-
-
-
-
 var component = new Components();
-
-
-
-
-
 
 
 //---d3 functions--------------

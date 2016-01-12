@@ -61,8 +61,6 @@ module.exports = {
         var string_request_array = JSON.stringify(request_array);
 
         var apiPath = '/v1/datasets/' +  databaseId + '/data?filter={"properties.' +  idKey + '":{"$in":' + string_request_array + '}}';
-        console.log(apiPath)
-
 
         var options = {
             host: 'q.nqminds.com',

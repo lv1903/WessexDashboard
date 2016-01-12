@@ -104,7 +104,65 @@ app.get("/", function(req, res){
 });
 
 
-app.get("/IndicatorReport/:areaType/:indicator/:gender", function(req, res) {
+app.get("/select", function(req, res){
+
+    console.log(req.params)
+
+    //var reportType = req.params["reportType"];
+    //var areaType = req.params["areaType"];
+    //var indicator = req.params["indicator"];
+    //var gender = req.params["gender"];
+    //var area = req.params["area"];
+    //
+    //
+    //var state_obj = {
+    //    reportType: reportType,
+    //    areaType: areaType,
+    //    gender: gender,
+    //    indicator: indicator,
+    //    area: area
+    //};
+
+    var view = "select";
+
+    res.render(view, {
+        title: view
+        //state_obj: state_obj
+    });
+
+});
+
+app.get("/select/:reportType/:areaType/:indicator/:gender/:area", function(req, res){
+
+    var reportType = req.params["reportType"];
+    var areaType = req.params["areaType"];
+    var indicator = req.params["indicator"];
+    var gender = req.params["gender"];
+    var area = req.params["area"];
+
+
+    var state_obj = {
+        reportType: reportType,
+        areaType: areaType,
+        gender: gender,
+        indicator: indicator,
+        current_area: area
+    };
+
+    var view = "select";
+
+    res.render(view, {
+        title: view,
+        config_obj: config_obj,
+        state_obj: state_obj
+    });
+
+});
+
+
+
+
+app.get("/IndicatorReport/:areaType/:indicator/:gender/:area", function(req, res) {
 
     //need to send topojson for areaType
     //config file
@@ -117,12 +175,14 @@ app.get("/IndicatorReport/:areaType/:indicator/:gender", function(req, res) {
     var areaType = req.params["areaType"];
     var indicatorArr = [req.params["indicator"]];
     var genderArr = [req.params["gender"]];
+    var area = req.params["area"];
 
     var state_obj = {
         reportType: reportType,
         areaType: areaType,
         genderArr: genderArr,
-        indicatorArr: indicatorArr
+        indicatorArr: indicatorArr,
+        current_area: area
     }
 
 

@@ -87,10 +87,10 @@
 
 .flex-btn {
     font-size: 1em;
-    height: 1.5em;
-    padding: 0 5px 0 5px;
+    height: 2em;
+    padding: 5px 10px 0 10px;
     color: #2d2926;
-    background-color: #ffcd00;
+    background-color: white;
     /*font-weight: bold;*/
 }
 

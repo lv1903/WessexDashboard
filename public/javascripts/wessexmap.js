@@ -61,12 +61,12 @@ WessexMap.prototype._build_graph = function() {
     var config = controller.config;
     var self = this;
 
-    config.full_width = 300;
-    config.full_height = 400;
+    this.full_width = 300;
+    this.full_height = 400;
 
 
-    this.width =  config.full_width - config.margin.left  - config.margin.right;
-    this.height = config.full_height - config.margin.bottom - config.margin.top;
+    this.width =  this.full_width - config.margin.left  - config.margin.right;
+    this.height = this.full_height - config.margin.bottom - config.margin.top;
 
     this._svg = d3.select(this.container)
         .append("div")
@@ -74,7 +74,7 @@ WessexMap.prototype._build_graph = function() {
         .append("svg")
         .attr("class", "widget")
         .attr("preserveAspectRatio", "xMinYMin meet")
-        .attr("viewBox", "0 0 " + config.full_width + " " + config.full_height )
+        .attr("viewBox", "0 0 " + this.full_width + " " + this.full_height )
         .classed("svg-content-responsive", true);
 
     this._chart = this._svg
@@ -189,80 +189,62 @@ WessexMap.prototype._draw_area_name = function(){
 
 WessexMap.prototype._add_help_button = function(){
 
-    var config = controller.config;
     var self = this;
+    var config = controller.config;
 
-    var r = 10
+    var r = 10;
     var margin = 5;
-    var x =  config.full_width - r - margin;
-    var y = r + margin
+    var x =  this.full_width - config.margin.left - r - margin;
+    var y = r - config.margin.top + margin;
+    var icon = "\uf128";
 
-    this.help_circle = this._svg
-        .append("circle")
-        .attr("class", "clickable")
-        .attr("cx", x)
-        .attr("cy", y)
-        .attr("r", r)
-        .style("fill", "white")
-        .on("click", self._draw_help.bind(this));
+    this._help_button = component.circleButton( self, {
+        r: r,
+        margin: margin,
+        x: x,
+        y: y,
+        icon: icon,
+        clicked: self._draw_help
+    });
 
-
-    this._help_text = this._svg
-        .append('text')
-        .attr("class", "clickable")
-        .attr("x", x)
-        .attr("y", y)
-        .attr("dy", margin)
-        .attr("text-anchor", "middle")
-        .attr('font-family', 'FontAwesome')
-        .style("fill", self.cs.background_color)
-        .text('\uf128')
-        .on("click", self._draw_help.bind(this));
-
+    this._help_button.render();
 
 };
 
 WessexMap.prototype._add_return_to_graph_button = function(){
 
-    var config = controller.config;
     var self = this;
+    var config = controller.config;
 
-    var r = 10
+    var r = 10;
     var margin = 5;
-    var x =  config.full_width - r - margin;
-    var y = r + margin
+    var x =  this.full_width - config.margin.left - r - margin;
+    var y = r - config.margin.top + margin;
+    var icon = "\uf112";
 
-    this.help_circle = this._svg
-        .append("circle")
-        .attr("class", "clickable")
-        .attr("cx", x)
-        .attr("cy", y)
-        .attr("r", r)
-        .style("fill", "white")
-        .on("click", self._redraw.bind(this));
+    this._return_button = component.circleButton( self, {
+        r: r,
+        margin: margin,
+        x: x,
+        y: y,
+        icon: icon,
+        clicked: self._redraw
+    });
+
+    this._return_button.render();
 
 
-
-    this._help_text = this._svg
-        .append('text')
-        .attr("class", "clickable")
-        .attr("x", x)
-        .attr("y", y)
-        .attr("dy", margin)
-        .attr("text-anchor", "middle")
-        .attr('font-family', 'FontAwesome')
-        .style("fill", self.cs.background_color)
-        .text('\uf112')
-        .on("click", self._redraw.bind(this));
 
 };
+
+
 
 WessexMap.prototype._draw_help = function(){
 
     this._svg.remove();
     this._build_graph();
-    this._draw_help_text();
     this._add_return_to_graph_button();
+    this._draw_help_text();
 
 };
 
@@ -274,6 +256,7 @@ WessexMap.prototype._redraw = function(){
 };
 
 WessexMap.prototype._draw_help_text = function(){
-    //todo
+    //to do
 };
+
 

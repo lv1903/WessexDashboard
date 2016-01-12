@@ -4,6 +4,12 @@ block content
     link(rel='stylesheet', href='/stylesheets/style.css')
     link(rel='stylesheet', href='/stylesheets/flexStyleIndicator.css')
 
+    script.
+        var config_obj = !{JSON.stringify(config_obj)};
+        var data_obj = !{JSON.stringify(data_obj)};
+        var state_obj = !{JSON.stringify(state_obj)};
+
+    script(src="/javascripts/components.js")
     script(src="/javascripts/controller.js")
 
     script(src="/javascripts/indicatorheader.js")
@@ -35,37 +41,42 @@ block content
             window.location.href = path;
         }
 
+        select = function(){
+
+                console.log(state_obj)
+
+                var path = window.location.protocol + "//" + window.location.host + "/select/"
+                    + encodeURIComponent(state_obj.reportType) + "/"
+                    + encodeURIComponent(state_obj.areaType) + "/"
+                    + encodeURIComponent(state_obj.indicatorArr[0]) + "/"
+                    + encodeURIComponent(state_obj.genderArr[0]) + "/"
+                    + encodeURIComponent(state_obj.current_area) + "/";
+
+                console.log(path)
+                window.location.href = path;
+
+
+        }
+
 
 
     .flex-group
         .flex-header-container
-            .flex-header-item#headerReportItem
-                select.flex-select#reportTypeSelect
-                    option(value='IndicatorReport') Indicator Report:
-                    option(value='AreaReport') Area Report:
-                    option(value='CompareAreas') Compare Areas:
-            .flex-header-item#headerGenderItem
-                select.flex-select.addFilterSelect#genderTypeSelect
-                    option(value='Female') Females
-                    option(value='Male') Males
-                    option(value='Persons') Persons
-            .flex-header-item#headerAreaTypeItem
-                select.flex-select.addFilterSelect#areaTypeSelect
-                    option(value='DU') Districts and Unitaries
-                    option(value='CCG') CCGs
-                    option(value='CU') Counties and Unitaries
-            .flex-header-item#headerIndicatorItem
-                select.flex-select#indicatorTypeSelect
-                    option(value='Mortality from chronic liver disease') Mortality from chronic liver disease
-                    option(value='Alcohol-specific mortality') Alcohol-specific mortality
-                    option(value='Months of life lost due to alcohol') Months of life lost due to alcohol
-                    option(value='Admission episodes for alcohol-related conditions') Admission episodes for alcohol-related conditions
-            //.flex-header-item#headerHighlightItem
-            //    select.flex-select.addFilterSelect#highlightAreaSelect
-            //        option(value='North East Hampshire And Farnham') North East Hampshire And Farnham
-            //        option(value='North East Hampshire And Farnham') Short
-            .flex-header-item#goButtonItem
-                .btn.btn-default.btn-lg.flex-btn#goButton(onclick='getPage()') Go
+
+            .flex-header-item#selectButtonItem
+                .btn.btn-default.btn-lg.flex-btn#selectButton(onclick='select()')
+                    span.i.fa.fa-th-large.fa-fw
+                    span #{" "} Change Report
+
+            //.flex-header-item#selectButtonItem
+            //    .btn.btn-default.btn-lg.flex-btn#selectButton(onclick='select()')
+            //        span.i.fa.fa-file-pdf-o.fa-fw
+            //        span #{" "} PDF
+            //
+            //.flex-header-item#selectButtonItem
+            //    .btn.btn-default.btn-lg.flex-btn#selectButton(onclick='select()')
+            //        span.i.fa.fa-arrow-down.fa-fw
+            //        span #{" "} CSV
 
 
 

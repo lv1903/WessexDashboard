@@ -35,21 +35,12 @@ var Controller = function(data_obj, config, state_obj){
     this.state.secondary_areas_colors = ["#8dd3c7","#ffffb3","#bebada","#fb8072","#80b1d3","#fdb462","#b3de69","#fccde5","#d9d9d9","#bc80bd","#ccebc5","#ffed6f"];
 
 
-    this._update_selects()
+    //this._update_selects()
 
 
 };
 
-Controller.prototype._update_selects = function(){
 
-    if(this.state.reportType == "IndicatorReport"){
-        document.getElementById("indicatorTypeSelect").value = this.state.indicatorArr[0];
-        document.getElementById("genderTypeSelect").value = this.state.genderArr[0];
-        document.getElementById("areaTypeSelect").value = this.state.areaType;
-    }
-
-
-};
 
 Controller.prototype._get_area_name = function(id){
     var self = this;
@@ -67,27 +58,11 @@ Controller.prototype._get_area_short_name = function(id){
 
 
 
-
-
-//Controller.prototype._init_dimensions = function(areaType, indicator, genderType){
-//
-//
-//
-//    //move to config file??
-//    this[areaType][indicator][genderType].cf_data = crossfilter(this[areaType][indicator][genderType].data);
-//    this[areaType][indicator][genderType].periodDimension = this[areaType][indicator][genderType].cf_data.dimension(function(d){return d["Map Period"]});
-//    //console.log("init demensions call period change")
-//    this._period_change(this.state.current_period);
-//
-//
-//
-//};
-
 Controller.prototype._period_change = function(value){
 
     this.state.current_period = value;
 
-    ee.emitEvent("period_change")
+    ee.emitEvent("period_change");
 
     ee.emitEvent("update_widget");
     ee.emitEvent("update");
@@ -302,3 +277,21 @@ Controller.prototype.getValueFromPeriodData = function(areaType,gender, indicato
 
 
 
+Controller.prototype.select = function(){
+
+    getPage = function () {
+
+        var path = window.location.protocol + "//" + window.location.host + "/select/"
+            + encodeURIComponent(state_obj.reportType) + "/"
+            + encodeURIComponent(state_obj.areaType) + "/"
+            + encodeURIComponent(state_obj.indicatorArr[i]) + "/"
+            + encodeURIComponent(state_obj.genderArr[i]) + "/"
+            + encodeURIComponent(state_obj.area) + "/";
+
+        console.log(path)
+        window.location.href = path;
+    }
+
+
+
+}
