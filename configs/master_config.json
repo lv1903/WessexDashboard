@@ -37,10 +37,11 @@
   },
 
   "indicatorMapping":{
-    "Mortality from chronic liver disease": "3.01 - Mortality from chronic liver disease",
+    "Admission episodes for alcohol-related conditions": "9.01 - Admission episodes for alcohol-related conditions (Broad)",
     "Alcohol-specific mortality": "2.01 - Alcohol-specific mortality",
-    "Months of life lost due to alcohol": "1.01 - Months of life lost due to alcohol",
-    "Admission episodes for alcohol-related conditions": "9.01 - Admission episodes for alcohol-related conditions (Broad)"
+    "Mortality from chronic liver disease": "3.01 - Mortality from chronic liver disease",
+    "Months of life lost due to alcohol": "1.01 - Months of life lost due to alcohol"
+
   },
 
 
@@ -144,12 +145,21 @@
   "margin": {"top": 40, "right": 30, "bottom": 60, "left": 30},
 
   "colorScheme" : {
-    "background_color": "#00778b",
-    "main_color": "#d0d0ce",
-    "main_color_offset": "#d0d0ce",
-    "highlight_color": "#ffcd00",
-    "dark_text_color": "#2d2926"
+    "background_color": "#f2f2f2",
+    "main_color": "#bfbfbf",
+    "main_color_offset": "#d9d9d9",
+    "highlight_color": "#40b2ff",
+    "highlight_text_color": "#1f78b4",
+    "dark_text_color": "#6a3d9a",
+    "header_text_color": "#6a3d9a",
+    "text_color": "#666666",
+
+
+    "quartile_color_array": ["#b2df8a", "#ffff99", "#fdbf6f", "#fb9a99"],
+    "quartile_dark_color_array": ["#33a02c", "#b15928", "#ff7f00", "#e31a1c"]
+
   }
+
 
 
 

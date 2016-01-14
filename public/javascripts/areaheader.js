@@ -77,6 +77,7 @@ AreaHeader.prototype._draw_header = function(){
         y: 1.65 * 14,
         dy: 0,
         width: this.width,
+        fill: controller.config.colorScheme.header_text_color,
         id: "header" + this.widgetId
     });
 
@@ -120,7 +121,7 @@ AreaHeader.prototype._draw_area_name = function(){
         x: 0,
         y: 6.5 * 14,
         width: this.width,
-        fill: controller.config.colorScheme.highlight_color,
+        fill: controller.config.colorScheme.highlight_text_color,
         id: "areaName" + this.widgetId
     })
 
@@ -177,7 +178,7 @@ AreaHeader.prototype._draw_map = function(){
         compHeight: 10 * 14,
         compWidth: self.width,
         style: {
-            stroke: controller.config.colorScheme.background_color,
+            stroke: controller.config.colorScheme.main_color,
             "stroke-width": 2,
             fill: fFill
         }

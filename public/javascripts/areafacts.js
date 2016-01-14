@@ -102,7 +102,7 @@ AreaFacts.prototype._draw_area_name = function(){
         x: 0,
         y: 0,
         width: this.width,
-        fill: controller.config.colorScheme.highlight_color,
+        fill: controller.config.colorScheme.highlight_text_color,
         id: "areaName" + this.widgetId
     })
 

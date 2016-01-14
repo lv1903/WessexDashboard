@@ -102,6 +102,7 @@ MultiLineGraph.prototype._draw_header = function(){
         x: 0,
         y: 0,
         width: this.width,
+        fill: controller.config.colorScheme.header_text_color,
         id: "header" + this.widgetId
     });
 
@@ -190,7 +191,8 @@ MultiLineGraph.prototype._add_select_button = function(){
     var margin = 5;
     var x =  this.full_width - config.margin.left - 3 * r - 2 * margin;
     var y = r - config.margin.top + margin;
-    var icon = "\uf142";
+    var icon = "\uf0b0";
+    //var icon = "\uf142";
 
     this._select_button = component.circleButton( self, {
         r: r,

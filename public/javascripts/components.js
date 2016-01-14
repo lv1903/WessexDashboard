@@ -26,7 +26,7 @@ Components.prototype.text = function(widget, configuration){
         if(that.config.hasOwnProperty("dy")){ dy = that.config.dy } else {dy = 0}
         if(that.config.hasOwnProperty("text-anchor")){ text_anchor = that.config.text_anchor } else {text_anchor = "left"}
         if(that.config.hasOwnProperty("font_size")){ font_size = that.config.font_size } else {font_size = "1em"}
-        if(that.config.hasOwnProperty("fill")){ fill = that.config.fill } else {fill = "white"}
+        if(that.config.hasOwnProperty("fill")){ fill = that.config.fill } else {fill = controller.config.colorScheme.text_color}
 
 
     }
@@ -172,7 +172,7 @@ Components.prototype.textHump = function(widget, configuration){
         if(that.config.hasOwnProperty("y")){ y = that.config.y } else {y = 0}
         if(that.config.hasOwnProperty("dy")){ dy = that.config.dy } else {dy = 0}
         if(that.config.hasOwnProperty("text-anchor")){ text_anchor = that.config.text_anchor } else {text_anchor = "left"}
-        if(that.config.hasOwnProperty("fill")){ fill = that.config.fill } else {fill = "white"}
+        if(that.config.hasOwnProperty("fill")){ fill = that.config.fill } else {fill = controller.config.colorScheme.text_color}
 
 
     }
@@ -268,7 +268,7 @@ Components.prototype.gauge = function(container, configuration) {
             .attr("y", configuration.yTranslate + 40)
             .attr("text-anchor", "left")
             .style("font-size", "1em")
-            .style("fill", "white")
+            .style("fill", controller.config.colorScheme.quartile_dark_color_array[0])
             .call(self.wrap, 30, "England Low");
 
         container.append("text")
@@ -276,7 +276,7 @@ Components.prototype.gauge = function(container, configuration) {
             .attr("y", configuration.yTranslate + 40)
             .attr("text-anchor", "right")
             .style("font-size", "1em")
-            .style("fill", "white")
+            .style("fill", controller.config.colorScheme.quartile_dark_color_array[3])
             .call(self.wrap, 30, "England High");
     }
 
@@ -355,7 +355,8 @@ Components.prototype.gauge = function(container, configuration) {
             .data(tickData)
             .enter().append('path')
             .attr('fill', function(d, i) {
-                return config.arcColorFn(d * i);
+                return controller.config.colorScheme.quartile_color_array[i]
+                //return config.arcColorFn(d * i);
             })
             .attr('d', arc);
 
@@ -591,6 +592,7 @@ Components.prototype.densityGraph = function(widget, configuration){
             .style("fill", widget.cs.main_color);
 
 
+
         //add averages
         var self = this;
 
@@ -618,7 +620,7 @@ Components.prototype.densityGraph = function(widget, configuration){
                 .attr("y1", self.height)
                 .attr("y2", self.height)
                 .style("stroke-width", 2)
-                .style("stroke", "white")
+                .style("stroke", widget.cs.text_color)
                 .style("fill", "none");
 
 
@@ -641,9 +643,9 @@ Components.prototype.densityGraph = function(widget, configuration){
                 })
                 .attr("dy", "0.8em")
                 .style("fill", function(){if(id == "Alt"){
-                    return widget.cs.highlight_color
+                    return widget.cs.highlight_text_color
                 } else {
-                    return "white"
+                    return widget.cs.text_color
                 }
                 })
                 //.style("fill", self.cs.background_color)
@@ -669,9 +671,9 @@ Components.prototype.densityGraph = function(widget, configuration){
                 })
                 .attr("dy", "1.8em")
                 .style("fill", function(){if(id == "Alt"){
-                    return widget.cs.highlight_color
+                    return widget.cs.highlight_text_color
                 } else {
-                    return "white"
+                    return widget.cs.text_color
                 }
                 })
                 //.style("fill", self.cs.background_color)
@@ -786,6 +788,7 @@ Components.prototype.densityGraph = function(widget, configuration){
             .datum(densityArray)
             .transition()
             .duration(750)
+            .style("fill", function(){console.log("here"); return controller.config.colorScheme.quartile_color_array[Math.floor(widget.val.percent * 4)]})
             .style("opacity", 1)
             .attr("d", fArea);
 
@@ -808,9 +811,9 @@ Components.prototype.densityGraph = function(widget, configuration){
             d3.select("#average_line_" + id + widget.widgetId)
                 .transition()
                 .duration(500)
-                .attr("x1", xscale(median))
-                .attr("x2", xscale(median))
-                .attr("y1", that.config.compHeight)
+                .attr("x1", xscale(Math.round(median)))
+                .attr("x2", xscale(Math.round(median)))
+                .attr("y1", that.config.compHeight - 1)
                 .attr("y2", function(){return that.config.y_arr[i]});
 
             d3.select("#average_text_" + id + widget.widgetId)
@@ -822,9 +825,9 @@ Components.prototype.densityGraph = function(widget, configuration){
                 .attr("x", function () {
                     var text_anchor = that.config.text_anchor_arr[i];
                     if (text_anchor == "end") {
-                        return xscale(median) - 5
+                        return xscale(Math.round(median)) - 5
                     } else {
-                        return xscale(median) + 5
+                        return xscale(Math.round(median)) + 5
                     }
                 })
                 .attr("y", function () {
@@ -841,9 +844,9 @@ Components.prototype.densityGraph = function(widget, configuration){
                 .attr("x", function () {
                     var text_anchor = that.config.text_anchor_arr[i];
                     if (text_anchor == "end") {
-                        return xscale(median) - 10
+                        return xscale(Math.round(median)) - 10
                     } else {
-                        return xscale(median) + 10
+                        return xscale(Math.round(median)) + 10
                     }
                 })
                 .attr("y", function () {
@@ -1023,7 +1026,7 @@ Components.prototype.lineGraph = function(widget, configuration){
         svg.append("line")
             .attr("id", "verticalTimeLine" + widget.widgetId )
             .style("stroke-width", 2)
-            .style("stroke", "white")
+            .style("stroke", widget.cs.text_color)
             .style("fill", "none")
             .attr("x1", vArr[0][0])
             .attr("x2", vArr[1][0])
@@ -1187,18 +1190,20 @@ Components.prototype.timeSlider = function(widget, configuration){
         svg.append("g")
             .attr("class", "slider x axis")
             .attr("transform", "translate(0," + that.config.compHeight + ")")
+            .style("stroke", config.colorScheme.main_color)
             .call(xAxis)
             .select(".domain")
             .select(function() {
                 return this.parentNode.appendChild(this.cloneNode(true));
             })
             .attr("class", "halo")
-            .style("fill", config.colorScheme.main_color); //not working in CSS
+
 
 
 
         slider = svg.append("g")
             .attr("class", "slider")
+            //.style("stroke", config.colorScheme.text_color)
             .call(brush);
 
         slider.selectAll(".extent,.resize")
@@ -1210,12 +1215,16 @@ Components.prototype.timeSlider = function(widget, configuration){
         handle = slider.append("g")
             .attr("class", "handle clickable");
 
+
         handle.append("path")
             .attr("transform", "translate(0," + that.config.compHeight  + ")")
+            .style("stroke", config.colorScheme.text_color)
             .attr("d", "M 0 -10 V 10");
 
         handle.append('text')
             .text(xscale(current_period))
+            .style("stroke", config.colorScheme.text_color)
+            .style("fill", config.colorScheme.text_color)
             .attr("transform", "translate(" + (-18) + " ," + (that.config.compHeight - 15) + ")");
 
         slider
@@ -1368,13 +1377,27 @@ Components.prototype.barGraph = function(widget, configuration){
 
         var index = state.current_secondary_areas.indexOf(id); //get color
         if(index == -1){
-            return widget.cs.main_color
+            return widget.cs.main_color_offset
         } else {
             //repeat colors
             while(index >= state.secondary_areas_colors.length){
                 index -= state.secondary_areas_colors.length;
             }
             return state.secondary_areas_colors[index]
+        }
+    };
+
+    function select_text_color(d){
+
+        var config = controller.config;
+        var state = controller.state;
+
+        var id = d[config.source.id];
+
+        if(id == state.current_area){ //always highlight
+            return widget.cs.highlight_text_color
+        } else {
+            return widget.cs.text_color
         }
     };
 
@@ -1514,7 +1537,7 @@ Components.prototype.barGraph = function(widget, configuration){
             .text(function(d, i){return controller._get_area_name(d[config.source.id])})
             .style("font-size", "0.8em")
             .style("font-weight", "bold")
-            .style("fill", widget.cs.dark_text_color)
+            .style("fill",function(d){ return select_text_color(d)})
             .text(function(d, i){
                 if(widget.data_period.length == 0) {
                     return "NA"
@@ -1538,7 +1561,7 @@ Components.prototype.barGraph = function(widget, configuration){
             .style("text-anchor", "end")
             .style("font-size", "0.8em")
             .style("font-weight", "bold")
-            .style("fill", widget.cs.dark_text_color)
+            .style("fill",function(d){ return select_text_color(d)})
             .on("click", bar_click.bind(this));
 
     }
@@ -1590,11 +1613,22 @@ Components.prototype.barGraph = function(widget, configuration){
                 .text(function(d, i){return d[config.source.value].toFixed(0)});
         }
 
-        label_value
-            .data(widget.data_period)
+        //label_value
+        //    .data(widget.data_period)
+        //    .transition()
+        //    .duration(500)
+        //    .text(function(d, i){return d[config.source.value].toFixed(0)});
+
+        label
             .transition()
             .duration(500)
-            .text(function(d, i){return d[config.source.value].toFixed(0)});
+            .style("fill",function(d){ return select_text_color(d)});
+
+
+        label_value
+            .transition()
+            .duration(500)
+            .style("fill",function(d){ return select_text_color(d)});
 
 
 
@@ -1740,11 +1774,8 @@ Components.prototype.multiLineGraph = function(widget, configuration){
             return 0 //don't show
          } else {
             return 4
-     }
+        }
      };
-
-
-
 
 
     function configure(widget, configuration) {
@@ -1845,7 +1876,7 @@ Components.prototype.multiLineGraph = function(widget, configuration){
         svg.append("line")
             .attr("id", "verticalTimeLine" + widget.widgetId )
             .style("stroke-width", 2)
-            .style("stroke", "white")
+            .style("stroke", widget.cs.text_color)
             .style("fill", "none")
             .attr("x1", vArr[0][0])
             .attr("x2", vArr[1][0])
@@ -1975,11 +2006,13 @@ Components.prototype.circleButton = function(widget, configuration){
         svg = widget._chart.append("g");
 
         svg.append("circle")
-            .attr("class", "clickable")
+            .attr("class", "circle_button clickable")
             .attr("cx", x)
             .attr("cy", y)
             .attr("r", r)
+            //.style("fill", widget.cs.highlight_text_color)
             .style("fill", "white")
+            .style("stroke", widget.cs.text_color )
             .on("click", clicked.bind(widget));
 
         svg.append('text')
@@ -1989,7 +2022,8 @@ Components.prototype.circleButton = function(widget, configuration){
             .attr("dy", margin)
             .attr("text-anchor", "middle")
             .attr('font-family', 'FontAwesome')
-            .style("fill", widget.cs.background_color)
+            .style("fill", widget.cs.text_color)
+            //.style("stroke", 0)
             .text(icon)
             .on("click", clicked.bind(widget));
     }
@@ -2049,6 +2083,21 @@ Components.prototype.selectBar = function(widget, configuration){
         }
     }
 
+    function select_text_color(d){
+
+        var config = controller.config;
+        var state = controller.state;
+
+        var id = d[config.source.id];
+
+        if(id == state.current_area){ //always highlight
+            return widget.cs.highlight_text_color
+        } else {
+            return widget.cs.text_color
+        }
+    }
+
+
     function select_all_lines(){
 
         //switch state
@@ -2060,6 +2109,15 @@ Components.prototype.selectBar = function(widget, configuration){
         }
 
         controller._secondary_area_change();
+
+    }
+
+    function select_all_string(){
+        if(widget.select_all == true){
+            return "Remove All"
+        } else {
+            return "Select All"
+        }
 
     }
 
@@ -2161,7 +2219,7 @@ Components.prototype.selectBar = function(widget, configuration){
             .attr("x", "0.5em")
             .attr("y", function (d, i) {return -0.45 *  yscale.rangeBand()})//0.45 reflects range bound margin 0.2
             .attr("dy", "0.4em")
-            .text("Select All")
+            .text(function(){return select_all_string()})
             .style("font-size", "0.8em")
             .style("font-weight", "bold")
             .style("fill", widget.cs.dark_text_color)
@@ -2192,7 +2250,7 @@ Components.prototype.selectBar = function(widget, configuration){
             .text(function(d, i){return controller._get_area_name(d[config.source.id])})
             .style("font-size", "0.8em")
             .style("font-weight", "bold")
-            .style("fill", widget.cs.dark_text_color)
+            .style("fill", function(d){ return select_text_color(d)})
             .text(function(d){return controller._get_area_short_name(d[config.source.id])})
             .on("click",select_line);
 
@@ -2203,22 +2261,29 @@ Components.prototype.selectBar = function(widget, configuration){
 
     function update() {
 
+
+
         var self = this;
         var config = controller.config;
+
+        select_all_text
+            .text(function(){return select_all_string()});
 
         select_all_bar
             .transition()
             .duration(500)
-            .style("fill", function(){return select_all_color()})
+            .style("fill", function(){return select_all_color()});
 
 
         background_bars = svg.selectAll(".background_bar")
             .transition()
             .duration(500)
-            .style("fill", function(d){ return select_color(d)})
+            .style("fill", function(d){ return select_color(d)});
 
-
-
+        label
+            .transition()
+            .duration(500)
+            .style("fill", function(d){ return select_text_color(d)});
     }
     that.update = update;
 

@@ -18,55 +18,46 @@ body {
 }
 
 
-.widget {
-  background-color: #00778b;
-  color: white;
+.widget, .flex-header-container {
+
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  user-select: none;
+
+  background-color: #f2f2f2;
+  /*background-color: #00778b;*/
+  color: #666666;
   border-radius: 2px;
+
+  -webkit-box-shadow: 3px 3px 5px 0px rgba(0,0,0,0.52);
+  -moz-box-shadow: 3px 3px 5px 0px rgba(0,0,0,0.52);
+  box-shadow: 3px 3px 5px 0px rgba(0,0,0,0.52);
+
+
 }
 
+.full_height .widget{
+  height: 400px
+}
+
+.double_height .widget{
+  height: 800px
+}
+
+/*.btn {*/
+  /*color: #1f78b4;*/
+  /*background-color: #a6cee3;*/
+/*}*/
+
 .axis text {
-  fill: white;
+  fill: #666666;
   /*stroke: white;*/
 
 }
 
 .x-label {
-  fill: white;
+  fill: #666666;
 }
-
-/*.color2 {*/
-  /*fill:  #ffe166;*/
-/*}*/
-
-
-/*/!*line graph*!/*/
-/*.densityLine, .timeLine {*/
-  /*stroke: #ffe166;*/
-  /*/!*stroke: white;*!/*/
-  /*stroke-width: 1;*/
-
-
-/*}*/
-
-/*.densityArea, .dots {*/
-  /*fill: #ffe166;*/
-/*}*/
-
-
-/*.dots {*/
-  /*fill: white;*/
-  /**/
-/*}*/
-
-
-/*map*/
-
-/*.feature {*/
-
-  /*stroke: #003da5;*/
-
-/*}*/
-
 
 
 .clickable {
@@ -82,54 +73,40 @@ body {
 
 
 
+.circle_button {
+
+  /*-webkit-box-shadow: inset 3px 3px 5px 0px rgba(0,0,0,0.52);*/
+  /*-moz-box-shadow: inset 3px 3px 5px 0px rgba(0,0,0,0.52);*/
+  /*box-shadow: inset 3px 3px 5px 0px rgba(0,0,0,0.52);*/
 
 
-
-/*gauge*/
-
-
-/*#indicator_gauge g.arc {*/
-  /*fill: steelblue;*/
-/*}*/
-
-/*#indicator_gauge g.pointer {*/
-  /*fill: #9b26b6;*/
-  /*stroke:  #2d2926;*/
-/*}*/
-
-/*#indicator_gauge g.label text {*/
-  /*text-anchor: middle;*/
-  /*font-size: 1em;*/
-  /*font-weight: bold;*/
-  /*fill: #fff;*/
-/*}*/
-
+}
 
 
 /*slider-----------------*/
 
 .slider .axis {
-  fill: #ffe166;
+
   -webkit-user-select: none;
   -moz-user-select: none;
   user-select: none;
 }
 
 .axis .halo {
-  stroke: #ffcd00;
+
   stroke-width: 4px;
   stroke-linecap: round;
 }
 
 .slider .handle path {
-  stroke: white;
+
   stroke-width: 4px;
   stroke-linecap: round;
   pointer-events: none;
 }
 
 .slider .handle text {
-  fill: white;
+
   text-align: center;
   font-size: 1.5em;
 }

@@ -97,6 +97,7 @@ BarGraph.prototype._draw_header = function(){
         x: 0,
         y: 0,
         width: this.width,
+        fill: controller.config.colorScheme.header_text_color,
         id: "header" + this.widgetId
     });
 

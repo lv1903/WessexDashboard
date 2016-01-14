@@ -98,6 +98,7 @@ WessexMap.prototype._draw_area_type = function(){
         x: 0,
         y: 0,
         width: this.width,
+        fill: controller.config.colorScheme.header_text_color,
         id: "areaType" + this.widgetId
     });
 
@@ -129,13 +130,15 @@ WessexMap.prototype._draw_map = function(){
             if(val == null){
                 return "white"
             } else {
-                return d3.interpolateHsl(d3.rgb('#fff'), d3.rgb(self.cs.dark_text_color))((Math.floor(val.percent * 4) / 4).toFixed(1))
+                //console.log(val.percent + ": " + Math.floor(val.percent * 4))
+                return controller.config.colorScheme.quartile_color_array[Math.floor(val.percent * 4)]
+                //return d3.interpolateHsl(d3.rgb('#fff'), d3.rgb(self.cs.dark_text_color))((Math.floor(val.percent * 4) / 4).toFixed(1))
             }
         }
     };
 
     var fStroke = function(d){
-        return controller.config.colorScheme.background_color
+        return controller.config.colorScheme.main_color
     }
 
 
@@ -149,7 +152,9 @@ WessexMap.prototype._draw_map = function(){
         style: {
             stroke: fStroke,
             "stroke-width": 2,
+            "opacity": 1,
             fill: fFill
+
         }
     });
 
@@ -169,7 +174,7 @@ WessexMap.prototype._draw_area_name = function(){
         x: 0,
         y: 21 * 14,
         width: this.width,
-        fill: controller.config.colorScheme.highlight_color,
+        fill: controller.config.colorScheme.highlight_text_color,
         id: "areaName" + this.widgetId
     })
 

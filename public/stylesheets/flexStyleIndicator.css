@@ -5,13 +5,23 @@
 
     margin: auto;
 
-    display: flex;
+    display: -webkit-box;      /* OLD - iOS 6-, Safari 3.1-6 */
+    display: -moz-box;         /* OLD - Firefox 19- (buggy but mostly works) */
+    display: -ms-flexbox;      /* TWEENER - IE 10 */
+    display: -webkit-flex;     /* NEW - Chrome */
+    display: flex;             /* NEW, Spec - Opera 12.1, Firefox 20+ */
+
 
     -webkit-flex-direction: column;
     flex-direction: column;
+    -ms-flex-direction: column;
 
     -webkit-align-items: stretch;
     align-items: stretch;
+
+
+    align-content: flex-start;
+    -webkit-align-content: flex-start;
 
     -webkit-justify-content: flex-start;
     justify-content: flex-start;
@@ -19,49 +29,37 @@
     -webkit-flex-wrap: nowrap;
     flex-wrap: nowrap;
 
-    /*background-color: black;*/
-
-    /*min-height: 100px;*/
-    /*min-width: 100px;*/
-
 }
 
 .flex-header-container {
     /*as item*/
-    margin: 7px;
-    /*max-width: 95vw;*/
-    max-width: 928px;
-    /*min-height: 250px;*/
-    background-color: #00778b;
+    margin: auto;
+    max-width: 300px;
 
-    /*flex: 2 0 250px*/
 
     /*as container*/
-    display: flex;
+    display: -webkit-box;      /* OLD - iOS 6-, Safari 3.1-6 */
+    display: -moz-box;         /* OLD - Firefox 19- (buggy but mostly works) */
+    display: -ms-flexbox;      /* TWEENER - IE 10 */
+    display: -webkit-flex;     /* NEW - Chrome */
+    display: flex;             /* NEW, Spec - Opera 12.1, Firefox 20+ */
+
 
     -webkit-flex-direction: row;
     flex-direction: row;
 
-    /*-webkit-justify-content: flex-start;*/
-    /*justify-content: flex-start;*/
 
     -webkit-align-items: flex-start;
     align-items: flex-start;
 
-    /*-webkit-align-content: flex-start;*/
-    /*align-content: flex-start;*/
-
-    -webkit-flex-wrap: wrap;
-    flex-wrap: wrap;
-
 }
 
-@media (max-width: 500px) {
-    .flex-header-container {
-        width: 300px;
+/*@media (max-width: 500px) {*/
+    /*.flex-header-container {*/
+        /*width: 300px;*/
 
-    }
-}
+    /*}*/
+/*}*/
 
 
 .flex-header-item {
@@ -72,17 +70,9 @@
 
 .flex-header-item .flex-select {
     height: 1.5em;
-    /*line-height: 2em;*/
     font-size: 1em;
     border: none;
-    /*margin: 0.2em;*/
-    /*background-color: #008399;*/
-    /*color: white;*/
     color: #2d2926;
-    /*font-weight: bold;*/
-    /*margin: 1em;*/
-    /*width: 100%;*/
-
 }
 
 .flex-btn {
@@ -91,7 +81,7 @@
     padding: 5px 10px 0 10px;
     color: #2d2926;
     background-color: white;
-    /*font-weight: bold;*/
+
 }
 
 
@@ -103,42 +93,74 @@
 
 
     /*as container*/
-    display: flex;
+    display: -webkit-box;      /* OLD - iOS 6-, Safari 3.1-6 */
+    display: -moz-box;         /* OLD - Firefox 19- (buggy but mostly works) */
+    display: -ms-flexbox;      /* TWEENER - IE 10 */
+    display: -webkit-flex;     /* NEW - Chrome */
+    display: flex;             /* NEW, Spec - Opera 12.1, Firefox 20+ */
+
 
     -webkit-flex-direction: row;
     flex-direction: row;
 
-    /*-webkit-justify-content: flex-start;*/
-    /*justify-content: flex-start;*/
 
     -webkit-align-items: flex-start;
     align-items: flex-start;
 
-    /*-webkit-align-content: flex-start;*/
-    /*align-content: flex-start;*/
+}
+
+.flex-container.full_height {
 
     -webkit-flex-wrap: wrap;
     flex-wrap: wrap;
 
+    max-width: 1000px;
+
+
+}
+
+.flex-container.double_height {
+
+    -webkit-flex-wrap: nowrap;
+    flex-wrap: nowrap;
 
 }
 
 
+
+
 .flex-item {
 
-    margin: 7px;
+    margin: 14px;
 
     background-color: white;
 
+    flex: 0 0 300px;
+    -webkit-flex: 0 0 300px;
+    /*-ms-flex: 0 0 300px;*/
+
+
+
+
     width: 300px;
 
-    /*height: 300px;*/
+    /*-webkit-box-flex: 0;      /!* OLD - iOS 6-, Safari 3.1-6 *!/*/
+    /*-moz-box-flex: 0;         /!* OLD - Firefox 19- *!/*/
+    /*-webkit-flex: 0;          /!* Chrome *!/*/
+    /*-ms-flex: 0;              /!* IE 1 0 300px0 *!/*/
+    /*flex: 0;                  /!* NEW, Spec - Opera 12.1, Firefox 20+*!/*/
 
-    /*flex-grow: 1;*/
-    /*-webkit-flex-grow: 1;*/
 
 
+}
 
+@media (max-width: 700px) {
+    .flex-item {
 
+        flex: 1 0 300px;
+        -webkit-flex: 1 0 300px;
+        -ms-flex: 1 0 300px;
+
+    }
 }
 
