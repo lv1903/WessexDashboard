@@ -36,17 +36,18 @@ body {
 
 }
 
-.full_height .widget{
-  height: 400px;
-}
+/*.full_height .widget{*/
+  /*height: 400px;*/
+/*}*/
 
-.double_height .widget{
-  height: 800px;
-}
+/*.double_height .widget{*/
+  /*height: 800px;*/
+/*}*/
 
-.big_item .widget{
-  height: 800px;
-}
+/*.big_item .widget{*/
+  /*height: 800px;*/
+  /*width: 928px;*/
+/*}*/
 
 /*.btn {*/
   /*color: #1f78b4;*/

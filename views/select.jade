@@ -13,91 +13,8 @@ block content
 
 
 
-
-
-   //#selectDiv
-   //
-   //   .btn.btn-default.btn-lg#doneButton(onclick='getPage()') Done
-   //
-   //
-   //   hr
-   //
-   //   h1 Select
-   //
-   //   #reportTyoeSelector
-   //      span.i.fa.fa-th-large.fa-fw
-   //      span.h3 #{"  "} Choose Report Type:
-   //      br
-   //      br
-   //      select(onchange='reportTypeChange()')#reportTypeSelect
-   //         option(value='IndicatorReport') Indicator Report:
-   //         option(value='AreaReport') Area Report:
-   //
-   //
-   //   hr
-   //
-   //
-   //   #genderSelector
-   //      span.i.fa.fa-venus-mars.fa-fw
-   //      span.h3 #{"  "} Gender:
-   //      br
-   //      br
-   //      select#genderSelect
-   //
-   //
-   //   br
-   //   br
-   //
-   //
-   //
-   //   #indicatorSelector
-   //      span.i.fa.fa-pie-chart.fa-fw
-   //      span.h3 #{"  "} Indicator:
-   //      br
-   //      br
-   //      select(onchange='indicatorChange()')#indicatorSelect
-   //         option(value='Mortality from chronic liver disease') Mortality from chronic liver disease
-   //         option(value='Alcohol-specific mortality') Alcohol-specific mortality
-   //         option(value='Months of life lost due to alcohol') Months of life lost due to alcohol
-   //         option(value='Admission episodes for alcohol-related conditions') Admission episodes for alcohol-related conditions
-   //
-   //   br
-   //   br
-   //
-   //   #areaTypeSelector
-   //      span.i.fa.fa-map.fa-fw
-   //      span.h3 #{"  "} Boundary Type:
-   //      br
-   //      br
-   //      select(onchange='areaTypeChange()')#areaTypeSelect
-   //         option(value='CCG') CCGs:
-   //         option(value='CU') Counties and Unitaries:
-   //         option(value='DU') Districts and Unitaries:
-   //
-   //   br
-   //   br
-   //
-   //   #areaSelector
-   //      span.i.fa.fa-map-marker.fa-fw
-   //      span.h3 #{"  "} Area:
-   //      br
-   //      br
-   //      select#areaSelect
-   //
-   //   #highlightAreaSelector
-   //      span.i.fa.fa-pencil.fa-fw
-   //      span.h3 #{"  "} Highlight Area:
-   //      br
-   //      br
-   //      select#highlightAreaSelect
-   //
-   //   hr
-   //
-   //   .btn.btn-default.btn-lg#doneButton(onclick='getPage()') Done
-
-
    #selectDiv
-      .btn.btn-default.btn-lg#doneButton(onclick='getPage()') Back
+      .btn.btn-default.btn-lg#doneButton(onclick='getPage()') Done
 
    hr
 
@@ -105,8 +22,9 @@ block content
    #reportTyoeSelector
       h3  Choose Report Type:
       select(onchange='reportTypeChange()')#reportTypeSelect
-         option(value='IndicatorReport') Indicator Report
          option(value='AreaReport') Area Report
+         option(value='IndicatorReport') Indicator Report
+         option(value='OverviewReport') Overview Report
 
    hr
 
@@ -119,7 +37,7 @@ block content
 
    #indicatorSelector
       h3 Indicator:
-      select(onchange='indicatorChange()')#indicatorSelect
+      select#indicatorSelect
          option(value='Mortality from chronic liver disease') Mortality from chronic liver disease
          option(value='Alcohol-specific mortality') Alcohol-specific mortality
          option(value='Months of life lost due to alcohol') Months of life lost due to alcohol
@@ -140,4 +58,4 @@ block content
 
    hr
 
-   .btn.btn-default.btn-lg#doneButton(onclick='getPage()') Back
+   .btn.btn-default.btn-lg#doneButton(onclick='getPage()') Done

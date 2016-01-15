@@ -8,6 +8,7 @@ window.onload = function() {
 
 
     overviewWidget = new OverviewWidget(state_obj.indicatorArr, state_obj.genderArr[0], "#wi0Item", "wi0" );
+    scatterPlotMatrix = new ScatterPlotMatrix(state_obj.indicatorArr, state_obj.genderArr[0], "#wi1Item", "wi1" );
 
 
 };

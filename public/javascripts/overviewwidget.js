@@ -80,7 +80,7 @@ OverviewWidget.prototype._build_graph = function() {
     var self = this;
 
     this.full_width = (300 * 3) + (14 * 2);
-    this.full_height = 800;
+    this.full_height = this.full_width;
 
 
     this.width =  this.full_width - config.margin.left  - config.margin.right;
@@ -105,18 +105,25 @@ OverviewWidget.prototype._build_graph = function() {
 OverviewWidget.prototype._draw_header = function(){
 
     var self = this;
+    var config = controller.config;
+    var state = controller.state;
 
-    var areaType = controller.getKeyByValue(controller.config.areaTypeMapping, controller.state.areaType); //get the area type
-    areaTypeLabel = controller.config.areaTypeLabels[areaType];
+    function cap(string){
+        return string.charAt(0).toUpperCase() + string.slice(1);
+    }
+
+    var areaType = controller.getKeyByValue(config.areaTypeMapping, state.areaType); //get the area type
+    var areaTypeLabel = cap(config.areaTypeLabels[areaType]);
+    var genderLabel = cap(config.genderLabels[self.gender]);
 
     this._header_text = component.text(self, {
-        str: "Overview Report:   Wessex " +  areaTypeLabel,
+        str: "Overview Report:  " + genderLabel +  ",  Wessex " +  areaTypeLabel,
         font_size: "2em",
         x: 0,
         y: 3 * 14,
         dy: 0,
         width: this.width,
-        fill: controller.config.colorScheme.header_text_color,
+        fill: config.colorScheme.header_text_color,
         id: "header" + this.widgetId
     });
 

@@ -43,7 +43,7 @@ var Controller = function(data_obj, config, state_obj){
 
 
 
-Controller.prototype._get_area_name = function(id){
+Controller.prototype._get_area_name = function(id){ //!!should be passed areaType too
     var self = this;
     return self.config.areaList[self.state.areaType].filter(function(d){
         if(d.id == id){return d}

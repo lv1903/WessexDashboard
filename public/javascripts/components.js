@@ -2296,8 +2296,6 @@ Components.prototype.selectBar = function(widget, configuration){
 };
 
 
-
-
 Components.prototype.tartanRug = function(widget, configuration){
 
     var self = this;
@@ -2310,8 +2308,6 @@ Components.prototype.tartanRug = function(widget, configuration){
     var xscale = undefined;
     var yscale = undefined;
 
-    var nested_data = undefined;
-
     var areaList = undefined;
     var indicatorArr = undefined;
 
@@ -2322,6 +2318,21 @@ Components.prototype.tartanRug = function(widget, configuration){
     var indicator_labels = undefined;
 
     var data_bars = undefined;
+
+
+    function name_click(d){
+        controller._area_change(d);
+    }
+
+    function value_click(d){
+        controller._area_change(areaList[d.id.split("_")[2]])
+
+    }
+
+    function test(d){
+        console.log(d)
+
+    }
 
 
 
@@ -2353,6 +2364,22 @@ Components.prototype.tartanRug = function(widget, configuration){
         }
     }
 
+    function select_area_color(id){
+        if(id == controller.state.current_area){
+            return controller.config.colorScheme.highlight_color
+        } else {
+            return "white"
+        }
+    }
+
+    function select_area_opacity(id){
+        if(id == controller.state.current_area){
+            return 0.5
+        } else {
+            return 1
+        }
+    }
+
 
     function configure(widget, configuration) {
 
@@ -2373,15 +2400,15 @@ Components.prototype.tartanRug = function(widget, configuration){
         var state = controller.state;
 
 
-        areaList = config.areaList[state.areaType].map(function (d) {return d.id});
+        areaList = config.areaList[state.areaType]
+            .sort(function(a, b){return (a.name < b.name) ? -1 : (a.name > b.name) ? 1 : 0; })
+            .map(function (d) {return d.id});
         indicatorArr = widget.indicatorArr;
 
 
         yscale = d3.scale.ordinal()
-            .rangeRoundBands([0, that.config.compHeight - that.config.header_height])
+            .rangeRoundBands([0, that.config.compHeight])// - that.config.header_height])
             .domain( areaList);
-
-        that.config.margin_middle = yscale.rangeBand() * 0.14;
 
         xscale = d3.scale.linear()
             .range([0, that.config.compWidth])
@@ -2454,7 +2481,9 @@ Components.prototype.tartanRug = function(widget, configuration){
             .attr("height", function (d, i) {return yscale.rangeBand()})
             .style("stroke-width", "1")
             .style("stroke", "black")
-            .style("fill", "white");
+            .style("opacity", function(d){return select_area_opacity(d)})
+            .style("fill", function(d){return select_area_color(d)})
+            .on("click", name_click);;
 
 
         name_labels = svg
@@ -2471,7 +2500,8 @@ Components.prototype.tartanRug = function(widget, configuration){
             .text(function(d, i){return controller._get_area_name(d)})
             .style("font-size", "1em")
             //.style("font-weight", "bold")
-            .style("fill", config.colorScheme.text_color);
+            .style("fill", config.colorScheme.text_color)
+            .on("click", name_click);
 
 
         //var period_data = nested_data.filter(function(obj){
@@ -2497,7 +2527,9 @@ Components.prototype.tartanRug = function(widget, configuration){
                     .attr("height", yscale.rangeBand())
                     .style("stroke-width", "1")
                     .style("stroke", "black")
-                    .style("fill", function(){ return select_color(val)});
+                    .style("fill", function(){ return select_color(val)})
+                    .on("click", function(){value_click(this)});
+
 
                 data_grid
                     .append("text")
@@ -2509,8 +2541,8 @@ Components.prototype.tartanRug = function(widget, configuration){
                     .attr("dy", "0.5em")
                     .text(function(){return select_text(val)})
                     .style("font-size", "1em")
-                    //.style("font-weight", "bold")
-                    .style("fill", function(){ return select_text_color(val)});
+                    .style("fill", function(){ return select_text_color(val)})
+                    .on("click", function(){value_click(this)});
 
             }
         }
@@ -2525,6 +2557,12 @@ Components.prototype.tartanRug = function(widget, configuration){
         var self = this;
         var config = controller.config;
         var state = controller.state;
+
+        name_bars
+            .transition()
+            .duration(500)
+            .style("opacity", function(d){return select_area_opacity(d)})
+            .style("fill", function(d){return select_area_color(d)});
 
         for(var i in indicatorArr){
             for(var j in areaList){
@@ -2557,9 +2595,8 @@ Components.prototype.tartanRug = function(widget, configuration){
 };
 
 
+Components.prototype.scatterPlotMatrix = function(widget, configuration){
 
-
-Components.prototype.scatterplotMatrix = function(widget, configuration){
 
     var self = this;
 
@@ -2569,50 +2606,104 @@ Components.prototype.scatterplotMatrix = function(widget, configuration){
 
     var svg = undefined;
     var scale = undefined;
-    var scalelets = undefined;
 
-    var nested_data = undefined;
+    var indicator_nest = undefined;
+    var scalets = undefined;
+    var axlets = undefined;
 
     var areaList = undefined;
     var indicatorArr = undefined;
 
-    var name_bars = undefined;
-    var name_labels = undefined;
+    var x_row = undefined;
+    var y_row = undefined;
 
-    var indicator_bars = undefined;
-    var indicator_labels = undefined;
+    var x_bars = undefined;
+    var x_labels = undefined;
 
-    var data_bars = undefined;
+    var y_bars = undefined;
+    var y_labels = undefined;
+
+    var data_grid = undefined;
+
+    var previous_period = undefined;
+
+
+    function dot_click(d){
+        controller._area_change(d.id);
+    }
+
+
+    function cap(string){
+        return string.charAt(0).toUpperCase() + string.slice(1);
+    }
+
+    function  getDatlet(ind_x, ind_y, period) {
+
+        var config = controller.config;
+        var state = controller.state;
+
+        var areaType = state.areaType;
+        var gender = widget.gender;
+
+
+        datlet = [];
+        for (var a in areaList) {
+            var x;
+            var y;
+            var x_val = controller.getValueFromPeriodData(areaType, gender, config.indicatorMapping[ind_x], period, areaList[a])
+            if (x_val == null) {
+                x = 0
+            } else {
+                x = x_val.value
+            }
+
+            var y_val = controller.getValueFromPeriodData(areaType, gender, config.indicatorMapping[ind_y], period, areaList[a])
+            if (y_val == null) {
+                y = 0
+            } else {
+                y = y_val.value
+            }
+
+
+            var obj = {
+                id: areaList[a],
+                name: controller._get_area_name(areaList[a]),
+                x: x,
+                y: y
+            };
+            datlet.push(obj);
+        }
+
+        return datlet
+
+    }
 
 
 
-    //function select_color(val){
-    //
-    //    if(val == null){
-    //        return "white"
-    //    } else {
-    //        return controller.config.colorScheme.quartile_color_array[Math.floor(val.percent * 4)]
-    //    }
-    //}
-    //
-    //function select_text_color(val){
-    //
-    //    if(val == null){
-    //        return controller.config.colorScheme.text_color
-    //    } else {
-    //        return controller.config.colorScheme.quartile_dark_color_array[Math.floor(val.percent * 4)]
-    //    }
-    //}
-    //
-    //
-    //function select_text(val){
-    //
-    //    if(val == null){
-    //        return "NA"
-    //    } else {
-    //        return val.value
-    //    }
-    //}
+    function select_color(id){
+      if(id == controller.state.current_area){
+            return controller.config.colorScheme.highlight_text_color;
+      } else {
+          return controller.config.colorScheme.text_color;
+      }
+    }
+
+    function select_r(id){
+        if(id == controller.state.current_area){
+            return 8;
+        } else {
+            return 5;
+        }
+    }
+
+    function select_opacity(id){
+        if(id == controller.state.current_area){
+            return 0.8;
+        } else {
+            return 0.5;
+        }
+    }
+
 
 
     function configure(widget, configuration) {
@@ -2622,34 +2713,63 @@ Components.prototype.scatterplotMatrix = function(widget, configuration){
 
         var data = controller.data_obj.data_arr;
 
-
-        //that.config.header_height = 14 * 4;
-        //that.config.label_width = 14 * 10;
+        that.config.header_height = 14 * 4;
 
         var config = controller.config;
         var state = controller.state;
+
+        previous_period = state.current_period //used for tween transitions
 
 
         areaList = config.areaList[state.areaType].map(function (d) {return d.id});
         indicatorArr = widget.indicatorArr;
 
 
-        that.config.margin_middle = yscale.rangeBand() * 0.14;
-
         scale = d3.scale.linear()
             .range([0, that.config.compWidth])
             .domain([0, widget.indicatorArr.length + 1]);
 
 
-        scalelets = {};
-        for(var i in indicatorArr){
 
-            console.log(indicatorArr)
+        indicator_nest =  d3.nest()
+                .key(function(d){ return d[[controller.config.source.indicator]]})
+                .entries(data);
+
+        scalets = {};
+        axlets = {};
+
+
+        for(var i in indicator_nest){
+            var indicator = controller.getKeyByValue(config.indicatorMapping,indicator_nest[i].key );
+
+            //get max value for indicator for all periods
+            var max = d3.max(indicator_nest[i].values, function(d) { return d[config.source.value]; });
+            var pct = max * 0.2;
+
+            scalets[indicator] = {};
+            scalets[indicator].max = max;
+            scalets[indicator].scale = d3.scale.linear()
+                .range([0, scale(1)])
+                .domain([-pct, max + pct]);
+            scalets[indicator].scaleInverse = d3.scale.linear()
+                .range([scale(1), 0])
+                .domain([-pct, max + pct]);
+
+
+            axlets[indicator] = {};
+            axlets[indicator].xAxis = d3.svg.axis()
+                .scale(scalets[indicator].scale)
+                .tickValues([0, max])
+                .tickPadding(2)
+                .orient("top");
+
+            axlets[indicator].yAxis = d3.svg.axis()
+                .scale(scalets[indicator].scaleInverse)
+                .tickValues([max])
+                .tickPadding(13)
+                .orient("right");
 
         }
-
-
-
     }
 
     that.configure = configure;
@@ -2660,128 +2780,155 @@ Components.prototype.scatterplotMatrix = function(widget, configuration){
     that.isRendered = isRendered;
 
     function render() {
-/*
 
 
         var config = controller.config;
         var state = controller.state;
 
         var areaType = state.areaType;
-        var genderType = state.genderType;
-
-
+        var gender = widget.gender;
+        var period = state.current_period;
 
 
 
         svg = widget._chart.append("g")
             .attr("transform", "translate(" + that.config.x + "," + that.config.y + ")");
 
+        //add x headers ---------------------------------
+        x_row = svg.append("g")
+            .attr("transform", "translate(" + scale(1) + ",0)")
 
-        indicator_bars = svg
-            .append("g")
-            .attr("transform", "translate(" + xscale(1) + ",0)")
-
-            .selectAll(".indicator_bar")
+        x_bars = x_row
+            .selectAll(".x_bar")
             .data(indicatorArr)
             .enter()
             .append("rect")
-            .attr("class", "indicator_bar")
-            .attr("x", function(d, i){ return xscale(i)})
+            .attr("class", "x_bar" + widget.widgetId)
+            .attr("x", function(d, i){ return scale(i)})
             .attr("y", 0)
-            .attr("width",  xscale(1) )
-            .attr("height", that.config.header_height + 20) //+20 ensures overlap where d3 adjusts rangebound
+            .attr("width",  scale(1) )
+            .attr("height", that.config.header_height + 20) //+20 ensures overlap
             .style("stroke-width", "1")
             .style("stroke", "black")
             .style("fill", "white");
 
 
         for(var i in indicatorArr){ //loop here to use wrap function
-            svg.append("text")
-                .attr("transform", "translate(" + xscale(1) + ",0)")
-                .attr("class", "indicator" + i)
-                .attr("x", xscale(i) + 7)
-                .attr("y",21 )
+            x_row.append("text")
+                .attr("class", "x_label" + widget.widgetId)
+                .attr("x", scale(i) + 7)
+                .attr("y", 21)
                 .style("font-size", "1em")
                 .style("fill", config.colorScheme.text_color)
-                .call(self.wrap, xscale(1), indicatorArr[i]);
+                .call(self.wrap, scale(1), indicatorArr[i]);
         }
 
 
-        name_bars = svg
-            .append("g")
+        //add y headers -------------------------------
+        y_row = svg.append("g")
             .attr("transform", "translate(0," + that.config.header_height + ")")
-            .selectAll(".name_bar")
-            .data(areaList)
+
+        y_bars = y_row
+            .selectAll(".x_bar")
+            .data(indicatorArr)
             .enter()
             .append("rect")
-            .attr("class", "name_bar" )
+            .attr("class", "y_bar" + widget.widgetId)
             .attr("x", 0)
-            .attr("y", function (d, i) {return yscale(d)})
-            .attr("width", xscale(1) )
-            .attr("height", function (d, i) {return yscale.rangeBand()})
+            .attr("y", function(d, i){ return scale(i)})
+            .attr("width",  scale(1) + 20) //+20 ensures overlap
+            .attr("height", scale(1) )
             .style("stroke-width", "1")
             .style("stroke", "black")
             .style("fill", "white");
 
+        for(var i in indicatorArr){ //loop here to use wrap function
+            y_row.append("text")
+                .attr("class", "y_label" + widget.widgetId)
+                .attr("x", 7)
+                .attr("y", scale(i) + scale(0.4))
+                .style("font-size", "1em")
+                .style("fill", config.colorScheme.text_color)
+                .call(self.wrap, scale(1), indicatorArr[i]);
 
-        name_labels = svg
-            .append("g")
-            .attr("transform", "translate(0," + that.config.header_height + ")")
-            .selectAll(".name_label")
-            .data(areaList)
-            .enter()
-            .append("text")
-            .attr("class", "name_label")
-            .attr("x", "0.5em")
-            .attr("y", function (d, i) {return yscale(d) + 0.5 * yscale.rangeBand()})
-            .attr("dy", "0.5em")
-            .text(function(d, i){return controller._get_area_name(d)})
-            .style("font-size", "1em")
-            //.style("font-weight", "bold")
-            .style("fill", config.colorScheme.text_color);
+            var unit = cap(config.indicatorLabels[indicatorArr[i]])
+
+            y_row.append("text")
+                .attr("class", "y_unit" + widget.widgetId)
+                .attr("x", 7)
+                .attr("y", scale(i) + scale(0.8))
+                .style("font-size", "1em")
+                .style("fill", config.colorScheme.text_color)
+                .call(self.wrap, scale(1), unit);
+
+        }
 
 
-        //var period_data = nested_data.filter(function(obj){
-        //    return obj.key == state.current_period
-        //})[0].values;
 
-
+        //add plots-------------------------------------------
         var data_grid = svg.append("g")
-            .attr("transform", "translate(" + xscale(1) + "," + that.config.header_height + ")")
+            .attr("transform", "translate(" + scale(1) + "," + that.config.header_height + ")")
 
         for(var i in indicatorArr){
-            for(var j in areaList){
+            for(var j in indicatorArr){
 
-                var val = controller.getValueFromPeriodData(state.areaType, widget.gender, config.indicatorMapping[indicatorArr[i]], state.current_period, areaList[j])
-
+                //draw grid------------------------------------------
                 data_grid
                     .append("rect")
-                    .attr("class", "name_bar" )
-                    .attr("id", "dataBar_" + i + "_" + j )
-                    .attr("x", xscale(i))
-                    .attr("y", yscale(areaList[j]))
-                    .attr("width",  xscale(1) )
-                    .attr("height", yscale.rangeBand())
+                    .attr("class", "name_bar" + widget.widgetId )
+                    .attr("id", "dataBar_" + widget.widgetId + "_" + i + "_" + j )
+                    .attr("x", scale(i))
+                    .attr("y", scale(j))
+                    .attr("width",  scale(1) )
+                    .attr("height", scale(1))
                     .style("stroke-width", "1")
                     .style("stroke", "black")
-                    .style("fill", function(){ return select_color(val)});
+                    .style("fill", "white")//function(){ return select_color(val)});
 
-                data_grid
-                    .append("text")
-                    .attr("class", "data_label")
-                    .attr("id", "dataLabel_" + i + "_" + j )
-                    .attr("x", xscale(Number(i) + 0.5))
-                    .attr("y",yscale(areaList[j]) + 0.5 * yscale.rangeBand())
-                    .style("text-anchor", "middle")
-                    .attr("dy", "0.5em")
-                    .text(function(){return select_text(val)})
-                    .style("font-size", "1em")
-                    //.style("font-weight", "bold")
-                    .style("fill", function(){ return select_text_color(val)});
+
+                if(indicatorArr[i] != indicatorArr[j]){ //don't plot self correlations
+
+
+                    //draw axis
+                    data_grid.append("g")
+                        .attr("class", "x axis")
+                        .attr("transform", "translate(" + scale(Number(i)) + "," + scale(Number(j) + 1) + ")")
+                        //.attr("transform", "translate(" + scale(Number(i) + 1) + "," + scale(j) + ")")
+                        .style("fill", "none")
+                        .call(axlets[indicatorArr[i]].xAxis);
+
+                    data_grid.append("g")
+                        .attr("class", "y axis")
+                        .attr("transform", "translate(" + scale(Number(i)) + "," + scale(Number(j)) + ")")
+                        //.attr("transform", "translate(" + scale(Number(i) + 1) + "," + scale(j) + ")")
+                        .style("fill", "none")
+                        .call(axlets[indicatorArr[j]].yAxis);
+
+
+                    //get data for plot
+                    datlet = getDatlet(indicatorArr[i], indicatorArr[j], period)
+
+                    //plot data
+                    data_grid
+                        .selectAll(".scatter_dot" + i + j)
+                        .data(datlet)
+                        .enter()
+                        .append("circle")
+                        .attr("class", "scatter_dot clickable scatter" + widget.widgetId + i + j)
+                        .attr("id", function(d){return "scatter" + widget.widgetId + i + j + d.id})
+                        .attr("r", function(d){return select_r(d.id)})
+                        .attr("cx", function(d){return scale(i) + scalets[indicatorArr[i]].scale(d.x)})
+                        .attr("cy", function(d){return scale(j) + scalets[indicatorArr[j]].scaleInverse(d.y)})
+                        .style("opacity",function(d){return select_opacity(d.id)})
+                        .style("fill", function(d){return select_color(d.id)})
+                        .on("click", dot_click);
+
+
+                }
 
             }
         }
-*/
+
 
     }
     that.render = render;
@@ -2794,25 +2941,32 @@ Components.prototype.scatterplotMatrix = function(widget, configuration){
         var config = controller.config;
         var state = controller.state;
 
-        for(var i in indicatorArr){
-            for(var j in areaList){
+        //var areaType = state.areaType;
+        //var gender = widget.gender;
+        var period = state.current_period;
 
-                var val = controller.getValueFromPeriodData(state.areaType, widget.gender, config.indicatorMapping[indicatorArr[i]], state.current_period, areaList[j]);
 
-                d3.select("#dataBar_" + i + "_" + j)
+        for(var i in indicatorArr){ //loop through grod
+            for(var j in indicatorArr){
+
+
+                //get data for plot
+                datlet = getDatlet(indicatorArr[i], indicatorArr[j],period);
+
+                //update data
+                d3.selectAll(".scatter" + widget.widgetId + i + j)
+                    .data(datlet)
                     .transition()
-                    .duration(500)
-                    .style("fill", function(){ return select_color(val)});
+                    //.delay(function(){return step * 5000})
+                    .duration(1000)
+                    .attr("r", function(d){return select_r(d.id)})
+                    .attr("cx", function(d){return scale(i) + scalets[indicatorArr[i]].scale(d.x)})
+                    .attr("cy", function(d){return scale(j) + scalets[indicatorArr[j]].scaleInverse(d.y)})
+                    .style("opacity",function(d){return select_opacity(d.id)})
+                    .style("fill", function(d){return select_color(d.id)})
 
-                d3.select("#dataLabel_" + i + "_" + j)
-                    .text(function(){return select_text(val)})
-
-                d3.select("#dataLabel_" + i + "_" + j)
-                    .transition()
-                    .style("fill", function(){ return select_text_color(val)});
             }
         }
-
     }
     that.update = update;
 

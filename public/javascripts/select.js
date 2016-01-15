@@ -18,6 +18,20 @@ var getPage = function(){
 
     }
 
+
+    if(document.getElementById("reportTypeSelect").value == "OverviewReport"){
+
+        inArr = ["areaTypeSelect", "areaSelect", "genderSelect"];
+        outArr = [];
+        for (var i in inArr) {
+            var e = document.getElementById(inArr[i]);
+            outArr[i] = e.options[e.selectedIndex].value;
+        }
+        path = window.location.protocol + "//" + window.location.host + "/OverviewReport/" + outArr[0] + "/" + outArr[1] + "/" + outArr[2];
+        window.location.href = path;
+    }
+
+
     if(document.getElementById("reportTypeSelect").value == "AreaReport"){
 
         inArr = ["areaTypeSelect", "areaSelect", "genderSelect"];
@@ -38,7 +52,7 @@ var reportTypeChange = function(){
 
     var reportType = document.getElementById("reportTypeSelect").value;
 
-    if(reportType == "AreaReport"){
+    if(reportType == "AreaReport" || reportType == "OverviewReport" ) {
 
         document.getElementById("genderSelector").style.display = 'block';
         document.getElementById("indicatorSelector").style.display = 'none';
@@ -48,7 +62,7 @@ var reportTypeChange = function(){
 
     }
 
-    if (reportType == "IndicatorReport") {
+    if (reportType == "IndicatorReport"|| reportType == "OverviewReport" ) {
 
         document.getElementById("genderSelector").style.display = 'block';
         document.getElementById("indicatorSelector").style.display = 'block';
@@ -97,40 +111,6 @@ var areaTypeChange = function(){
 
 };
 
-var indicatorChange = function(){
-
-    //var indicator = document.getElementById("indicatorSelect").value;
-    //
-    //var api_query = 'http://q.nqminds.com/v1/datasets/41WGoeXhQg/distinct?key=Sex&filter={"Indicator":"'
-    //                + encodeURIComponent(config_obj.indicatorMapping[indicator] ) + '"}'
-    //
-    //
-    //$.ajax(api_query).done(function (res) {
-    //
-    //    select = document.getElementById("genderSelect");
-    //
-    //    while(select.options.length > 0) {
-    //        select.options[0] = null;
-    //    }
-    //
-    //    for (i in res.data ) {
-    //        opt = document.createElement('option');
-    //        opt.value = res.data[i];
-    //        opt.innerHTML = res.data[i];
-    //        select.appendChild(opt);
-    //    }
-    //
-    //});
-
-    //if(document.getElementById("genderSelect").value == "Persons" &&
-    //        ){
-    //    document.getElementById("genderSelect").value = "Male"
-    //}
-
-};
-
-
-
 
 
 
@@ -138,11 +118,8 @@ window.onload = function() {
 
     //update twice once to populate once to set current values
 
-    console.log(state_obj)
-
     reportTypeChange();
     areaTypeChange();
-    indicatorChange();
 
     document.getElementById("reportTypeSelect").value = state_obj.reportType;
     document.getElementById("genderSelect").value = state_obj.gender;
@@ -152,7 +129,6 @@ window.onload = function() {
 
     reportTypeChange();
     areaTypeChange();
-    indicatorChange();
 
     document.getElementById("reportTypeSelect").value = state_obj.reportType;
     document.getElementById("genderSelect").value = state_obj.gender;
@@ -161,4 +137,4 @@ window.onload = function() {
     document.getElementById("indicatorSelect").value = state_obj.indicator;
 
 
-}
+};

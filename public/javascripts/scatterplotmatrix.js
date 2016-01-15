@@ -1,4 +1,4 @@
-OverviewWidget = function(indicatorArr, gender, container, widgetId){
+ScatterPlotMatrix = function(indicatorArr, gender, container, widgetId){
 
 
 
@@ -22,20 +22,20 @@ OverviewWidget = function(indicatorArr, gender, container, widgetId){
 };
 
 
-OverviewWidget.prototype._init = function(){
+ScatterPlotMatrix.prototype._init = function(){
 
     this._draw_all();
     this._bindEvents();
 
 };
 
-OverviewWidget.prototype._bindEvents = function(){
+ScatterPlotMatrix.prototype._bindEvents = function(){
 
     ee.addListener('update_widget', this._update_widget.bind(this));
 
 };
 
-OverviewWidget.prototype._update_widget = function(){
+ScatterPlotMatrix.prototype._update_widget = function(){
 
     var gender = this.gender;
     var areaType = controller.state.areaType;
@@ -50,14 +50,15 @@ OverviewWidget.prototype._update_widget = function(){
 
 };
 
-OverviewWidget.prototype._draw_all = function(){
+ScatterPlotMatrix.prototype._draw_all = function(){
 
     this._build_graph();
     this._add_help_button();
 
     this._draw_header();
+    this._draw_area_name()
     this._draw_timeSlider();
-    this._draw_tartanRug();
+    this._draw_scatterPlotMatrix();
 
     //this._draw_indicator();
     //this._draw_gender();
@@ -73,14 +74,14 @@ OverviewWidget.prototype._draw_all = function(){
 
 };
 
-OverviewWidget.prototype._build_graph = function() {
+ScatterPlotMatrix.prototype._build_graph = function() {
 
 
     var config = controller.config;
     var self = this;
 
     this.full_width = (300 * 3) + (14 * 2);
-    this.full_height = 800;
+    this.full_height = this.full_width;
 
 
     this.width =  this.full_width - config.margin.left  - config.margin.right;
@@ -102,28 +103,62 @@ OverviewWidget.prototype._build_graph = function() {
 };
 
 
-OverviewWidget.prototype._draw_header = function(){
+ScatterPlotMatrix.prototype._draw_header = function(){
 
     var self = this;
+    var config = controller.config;
+    var state = controller.state;
 
-    var areaType = controller.getKeyByValue(controller.config.areaTypeMapping, controller.state.areaType); //get the area type
-    areaTypeLabel = controller.config.areaTypeLabels[areaType];
+    function cap(string){
+        return string.charAt(0).toUpperCase() + string.slice(1);
+    }
+
+    var areaType = controller.getKeyByValue(config.areaTypeMapping, state.areaType); //get the area type
+    var areaTypeLabel = cap(config.areaTypeLabels[areaType]);
+    var genderLabel = cap(config.genderLabels[self.gender]);
 
     this._header_text = component.text(self, {
-        str: "Overview Report:   Wessex " +  areaTypeLabel,
+        str: "Scatter Plots: " +  genderLabel +  ",  Wessex " +  areaTypeLabel,
         font_size: "2em",
         x: 0,
         y: 3 * 14,
         dy: 0,
         width: this.width,
-        fill: controller.config.colorScheme.header_text_color,
+        fill: config.colorScheme.header_text_color,
         id: "header" + this.widgetId
     });
 
     this._header_text.render();
 };
 
-OverviewWidget.prototype._draw_timeSlider = function(){
+
+ScatterPlotMatrix.prototype._draw_area_name = function(){
+
+    var self = this;
+
+    var current_area_name = controller._get_area_name(controller.state.current_area);
+
+    this._area_text = component.text(self, {
+        str: current_area_name,
+        font_size: "1.5em",
+        x: 0,
+        y: 6 * 14,
+        width: this.width,
+        fill: controller.config.colorScheme.highlight_text_color,
+        id: "areaName" + this.widgetId
+    })
+
+    this._area_text.render()
+
+    function update(){
+        self._area_text.update(controller._get_area_name(controller.state.current_area));
+    }
+    ee.addListener("update", update)
+
+};
+
+
+ScatterPlotMatrix.prototype._draw_timeSlider = function(){
 
     var self = this;
 
@@ -142,18 +177,18 @@ OverviewWidget.prototype._draw_timeSlider = function(){
 
 };
 
-OverviewWidget.prototype._draw_tartanRug = function(){
+ScatterPlotMatrix.prototype._draw_scatterPlotMatrix = function(){
 
     var self = this;
 
-    this._tartanRug = component.tartanRug(self, {
+    this._scatterPlotMatrix = component.scatterPlotMatrix(self, {
         x: 0,
         y: 7 * 15,
         compHeight: self.height - 10 * 14,
         compWidth: self.width
     });
 
-    this._tartanRug.render();
+    this._scatterPlotMatrix.render();
 
     //function update(){
     //    self._tartanRug.update(self);
@@ -174,7 +209,7 @@ OverviewWidget.prototype._draw_tartanRug = function(){
 
 
 
-OverviewWidget.prototype._add_help_button = function(){
+ScatterPlotMatrix.prototype._add_help_button = function(){
 
     var self = this;
     var config = controller.config;
@@ -198,7 +233,7 @@ OverviewWidget.prototype._add_help_button = function(){
 
 };
 
-OverviewWidget.prototype._add_return_to_graph_button = function(){
+ScatterPlotMatrix.prototype._add_return_to_graph_button = function(){
 
     var self = this;
     var config = controller.config;
@@ -226,7 +261,7 @@ OverviewWidget.prototype._add_return_to_graph_button = function(){
 
 
 
-OverviewWidget.prototype._draw_help = function(){
+ScatterPlotMatrix.prototype._draw_help = function(){
 
     this._svg.remove();
     this._build_graph();
@@ -235,14 +270,14 @@ OverviewWidget.prototype._draw_help = function(){
 
 };
 
-OverviewWidget.prototype._redraw = function(){
+ScatterPlotMatrix.prototype._redraw = function(){
 
     this._svg.remove();
     this._draw_all();
 
 };
 
-OverviewWidget.prototype._draw_help_text = function(){
+ScatterPlotMatrix.prototype._draw_help_text = function(){
     //to do
 };
 
