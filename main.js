@@ -276,7 +276,7 @@ app.get("/AreaReport/:areaType/:area/:gender", function(req, res) {
     var wessex_arr = data_arr.filter(function(obj){
         if(
             obj["Area Type"] == areaType &&
-            //indicatorMappedArr.indexOf(obj["Indicator"]) > -1 &&
+                //indicatorMappedArr.indexOf(obj["Indicator"]) > -1 &&
             genderArr.indexOf(obj["Sex"]) > -1 &&
             wessexList.indexOf(obj["Area Code"]) > -1
         ){
@@ -312,7 +312,73 @@ app.get("/AreaReport/:areaType/:area/:gender", function(req, res) {
         config_obj: config_obj
     });
 
-})
+});
+
+
+app.get("/OverviewReport/:areaType/:area/:gender", function(req, res) {
+
+    var reportType = "OverviewReport";
+    var areaType = req.params["areaType"];
+    var genderArr = [req.params["gender"]];
+    var area = req.params["area"];
+
+    var indicatorArr = [];
+    for(indicator in config_obj.indicatorMapping){
+        indicatorArr.push(indicator)
+    }
+
+    var state_obj = {
+        reportType: reportType,
+        areaType: areaType,
+        genderArr: genderArr,
+        indicatorArr: indicatorArr,
+        current_area: area
+    }
+
+
+
+    //for the area type, area(currently sending all areas) and gender get data for wessex areas
+
+    //get list of wessex areas for area type
+    var wessexList = config_obj.areaList[areaType].map(function(obj){ return obj.id});
+
+    var wessex_arr = data_arr.filter(function(obj){
+        if(
+            obj["Area Type"] == areaType &&
+                //indicatorMappedArr.indexOf(obj["Indicator"]) > -1 &&
+            genderArr.indexOf(obj["Sex"]) > -1 &&
+            wessexList.indexOf(obj["Area Code"]) > -1
+        ){
+            return obj
+        }
+    });
+
+
+    //get ordered list data and density data
+    var ordered_list_obj = {};
+    ordered_list_obj =  england_ordered_list_obj; //f.filterEnglandObj(ordered_list_obj, england_ordered_list_obj, state_obj);
+    var density_obj = {}
+    density_obj = england_density_obj; //f.filterEnglandObj(density_obj, england_density_obj, state_obj);
+
+
+    var data_obj = {
+        data_arr: wessex_arr,
+        ordered_list_obj: ordered_list_obj,
+        density_obj: density_obj
+    };
+
+
+    var view = "reportOverview";
+
+    res.render(view, {
+        title: view,
+        state_obj: state_obj,
+        data_obj: data_obj,
+        config_obj: config_obj
+    });
+
+});
+
 
 
 app.listen(3011);

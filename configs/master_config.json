@@ -156,7 +156,7 @@
 
 
     "quartile_color_array": ["#b2df8a", "#ffff99", "#fdbf6f", "#fb9a99"],
-    "quartile_dark_color_array": ["#33a02c", "#b15928", "#ff7f00", "#e31a1c"]
+    "quartile_dark_color_array": ["#33a02c", "#b15928", "#b35900", "#e31a1c"]
 
   }
 

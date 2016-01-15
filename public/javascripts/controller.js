@@ -243,7 +243,7 @@ Controller.prototype.getValueFromPeriodData = function(areaType,gender, indicato
     var self = this;
     var config = self.config;
 
-
+    //console.log(areaType + " " + gender + " " +  indicatorMapped + " " +  current_period + " " +  id)
 
     var obj = this.filterDataPeriodArea(
         areaType,
@@ -277,22 +277,28 @@ Controller.prototype.getValueFromPeriodData = function(areaType,gender, indicato
 };
 
 
-
-Controller.prototype.select = function(){
-
-    getPage = function () {
-
-        var path = window.location.protocol + "//" + window.location.host + "/select/"
-            + encodeURIComponent(state_obj.reportType) + "/"
-            + encodeURIComponent(state_obj.areaType) + "/"
-            + encodeURIComponent(state_obj.indicatorArr[i]) + "/"
-            + encodeURIComponent(state_obj.genderArr[i]) + "/"
-            + encodeURIComponent(state_obj.area) + "/";
-
-        console.log(path)
-        window.location.href = path;
+Controller.prototype.getIndicatorMappedArr = function(inputArr, dic){
+    var mappedArr = [];
+    for(var i in inputArr){
+        mappedArr.push(dic[inputArr[i]])
     }
+    return mappedArr
+};
 
 
 
-}
+//Controller.prototype.select = function(){
+//
+//    getPage = function () {
+//
+//        var path = window.location.protocol + "//" + window.location.host + "/select/"
+//            + encodeURIComponent(state_obj.reportType) + "/"
+//            + encodeURIComponent(state_obj.areaType) + "/"
+//            + encodeURIComponent(state_obj.indicatorArr[i]) + "/"
+//            + encodeURIComponent(state_obj.genderArr[i]) + "/"
+//            + encodeURIComponent(state_obj.area) + "/";
+//
+//        window.location.href = path;
+//    }
+//
+//};

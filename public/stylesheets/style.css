@@ -37,11 +37,15 @@ body {
 }
 
 .full_height .widget{
-  height: 400px
+  height: 400px;
 }
 
 .double_height .widget{
-  height: 800px
+  height: 800px;
+}
+
+.big_item .widget{
+  height: 800px;
 }
 
 /*.btn {*/

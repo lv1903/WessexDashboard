@@ -82,8 +82,6 @@ AreaHeader.prototype._draw_header = function(){
     });
 
     this._header_text.render();
-
-
 };
 
 AreaHeader.prototype._draw_gender = function(){

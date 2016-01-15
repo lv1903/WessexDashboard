@@ -2297,6 +2297,538 @@ Components.prototype.selectBar = function(widget, configuration){
 
 
 
+
+Components.prototype.tartanRug = function(widget, configuration){
+
+    var self = this;
+
+    var that = {};
+
+    that.config = {};
+
+    var svg = undefined;
+    var xscale = undefined;
+    var yscale = undefined;
+
+    var nested_data = undefined;
+
+    var areaList = undefined;
+    var indicatorArr = undefined;
+
+    var name_bars = undefined;
+    var name_labels = undefined;
+
+    var indicator_bars = undefined;
+    var indicator_labels = undefined;
+
+    var data_bars = undefined;
+
+
+
+    function select_color(val){
+
+        if(val == null){
+            return "white"
+        } else {
+            return controller.config.colorScheme.quartile_color_array[Math.floor(val.percent * 4)]
+        }
+    }
+
+    function select_text_color(val){
+
+        if(val == null){
+            return controller.config.colorScheme.text_color
+        } else {
+            return controller.config.colorScheme.quartile_dark_color_array[Math.floor(val.percent * 4)]
+        }
+    }
+
+
+    function select_text(val){
+
+        if(val == null){
+            return "NA"
+        } else {
+            return val.value
+        }
+    }
+
+
+    function configure(widget, configuration) {
+
+        that.config = configuration;
+
+
+        var data = controller.data_obj.data_arr;
+
+        //nested_data = d3.nest()
+        //    .key(function(d){ return d[[controller.config.source.period]]})
+        //    .entries(data)
+
+
+        that.config.header_height = 14 * 4;
+        //that.config.label_width = 14 * 10;
+
+        var config = controller.config;
+        var state = controller.state;
+
+
+        areaList = config.areaList[state.areaType].map(function (d) {return d.id});
+        indicatorArr = widget.indicatorArr;
+
+
+        yscale = d3.scale.ordinal()
+            .rangeRoundBands([0, that.config.compHeight - that.config.header_height])
+            .domain( areaList);
+
+        that.config.margin_middle = yscale.rangeBand() * 0.14;
+
+        xscale = d3.scale.linear()
+            .range([0, that.config.compWidth])
+            .domain([0, widget.indicatorArr.length + 1]);
+
+    }
+
+    that.configure = configure;
+
+    function isRendered() {
+        return (svg !== undefined);
+    }
+    that.isRendered = isRendered;
+
+    function render() {
+
+
+        var config = controller.config;
+        var state = controller.state;
+
+        var areaType = state.areaType;
+        var genderType = state.genderType;
+
+
+        svg = widget._chart.append("g")
+            .attr("transform", "translate(" + that.config.x + "," + that.config.y + ")");
+
+
+        indicator_bars = svg
+            .append("g")
+            .attr("transform", "translate(" + xscale(1) + ",0)")
+
+            .selectAll(".indicator_bar")
+            .data(indicatorArr)
+            .enter()
+            .append("rect")
+            .attr("class", "indicator_bar")
+            .attr("x", function(d, i){ return xscale(i)})
+            .attr("y", 0)
+            .attr("width",  xscale(1) )
+            .attr("height", that.config.header_height + 20) //+20 ensures overlap where d3 adjusts rangebound
+            .style("stroke-width", "1")
+            .style("stroke", "black")
+            .style("fill", "white");
+
+
+        for(var i in indicatorArr){ //loop here to use wrap function
+            svg.append("text")
+                .attr("transform", "translate(" + xscale(1) + ",0)")
+                .attr("class", "indicator" + i)
+                .attr("x", xscale(i) + 7)
+                .attr("y",21 )
+                .style("font-size", "1em")
+                .style("fill", config.colorScheme.text_color)
+                .call(self.wrap, xscale(1), indicatorArr[i]);
+        }
+
+
+        name_bars = svg
+            .append("g")
+            .attr("transform", "translate(0," + that.config.header_height + ")")
+            .selectAll(".name_bar")
+            .data(areaList)
+            .enter()
+            .append("rect")
+            .attr("class", "name_bar" )
+            .attr("x", 0)
+            .attr("y", function (d, i) {return yscale(d)})
+            .attr("width", xscale(1) )
+            .attr("height", function (d, i) {return yscale.rangeBand()})
+            .style("stroke-width", "1")
+            .style("stroke", "black")
+            .style("fill", "white");
+
+
+        name_labels = svg
+            .append("g")
+            .attr("transform", "translate(0," + that.config.header_height + ")")
+            .selectAll(".name_label")
+            .data(areaList)
+            .enter()
+            .append("text")
+            .attr("class", "name_label")
+            .attr("x", "0.5em")
+            .attr("y", function (d, i) {return yscale(d) + 0.5 * yscale.rangeBand()})
+            .attr("dy", "0.5em")
+            .text(function(d, i){return controller._get_area_name(d)})
+            .style("font-size", "1em")
+            //.style("font-weight", "bold")
+            .style("fill", config.colorScheme.text_color);
+
+
+        //var period_data = nested_data.filter(function(obj){
+        //    return obj.key == state.current_period
+        //})[0].values;
+
+
+        var data_grid = svg.append("g")
+            .attr("transform", "translate(" + xscale(1) + "," + that.config.header_height + ")")
+
+        for(var i in indicatorArr){
+            for(var j in areaList){
+
+                var val = controller.getValueFromPeriodData(state.areaType, widget.gender, config.indicatorMapping[indicatorArr[i]], state.current_period, areaList[j])
+
+                data_grid
+                    .append("rect")
+                    .attr("class", "name_bar" )
+                    .attr("id", "dataBar_" + i + "_" + j )
+                    .attr("x", xscale(i))
+                    .attr("y", yscale(areaList[j]))
+                    .attr("width",  xscale(1) )
+                    .attr("height", yscale.rangeBand())
+                    .style("stroke-width", "1")
+                    .style("stroke", "black")
+                    .style("fill", function(){ return select_color(val)});
+
+                data_grid
+                    .append("text")
+                    .attr("class", "data_label")
+                    .attr("id", "dataLabel_" + i + "_" + j )
+                    .attr("x", xscale(Number(i) + 0.5))
+                    .attr("y",yscale(areaList[j]) + 0.5 * yscale.rangeBand())
+                    .style("text-anchor", "middle")
+                    .attr("dy", "0.5em")
+                    .text(function(){return select_text(val)})
+                    .style("font-size", "1em")
+                    //.style("font-weight", "bold")
+                    .style("fill", function(){ return select_text_color(val)});
+
+            }
+        }
+
+    }
+    that.render = render;
+
+
+    function update() {
+
+
+        var self = this;
+        var config = controller.config;
+        var state = controller.state;
+
+        for(var i in indicatorArr){
+            for(var j in areaList){
+
+                var val = controller.getValueFromPeriodData(state.areaType, widget.gender, config.indicatorMapping[indicatorArr[i]], state.current_period, areaList[j]);
+
+                d3.select("#dataBar_" + i + "_" + j)
+                    .transition()
+                    .duration(500)
+                    .style("fill", function(){ return select_color(val)});
+
+                d3.select("#dataLabel_" + i + "_" + j)
+                    .text(function(){return select_text(val)})
+
+                d3.select("#dataLabel_" + i + "_" + j)
+                    .transition()
+                    .style("fill", function(){ return select_text_color(val)});
+            }
+        }
+
+    }
+    that.update = update;
+
+    ee.addListener("update", update);
+
+    configure(widget, configuration);
+
+    return that;
+
+};
+
+
+
+
+Components.prototype.scatterplotMatrix = function(widget, configuration){
+
+    var self = this;
+
+    var that = {};
+
+    that.config = {};
+
+    var svg = undefined;
+    var scale = undefined;
+    var scalelets = undefined;
+
+    var nested_data = undefined;
+
+    var areaList = undefined;
+    var indicatorArr = undefined;
+
+    var name_bars = undefined;
+    var name_labels = undefined;
+
+    var indicator_bars = undefined;
+    var indicator_labels = undefined;
+
+    var data_bars = undefined;
+
+
+
+    //function select_color(val){
+    //
+    //    if(val == null){
+    //        return "white"
+    //    } else {
+    //        return controller.config.colorScheme.quartile_color_array[Math.floor(val.percent * 4)]
+    //    }
+    //}
+    //
+    //function select_text_color(val){
+    //
+    //    if(val == null){
+    //        return controller.config.colorScheme.text_color
+    //    } else {
+    //        return controller.config.colorScheme.quartile_dark_color_array[Math.floor(val.percent * 4)]
+    //    }
+    //}
+    //
+    //
+    //function select_text(val){
+    //
+    //    if(val == null){
+    //        return "NA"
+    //    } else {
+    //        return val.value
+    //    }
+    //}
+
+
+    function configure(widget, configuration) {
+
+        that.config = configuration;
+
+
+        var data = controller.data_obj.data_arr;
+
+
+        //that.config.header_height = 14 * 4;
+        //that.config.label_width = 14 * 10;
+
+        var config = controller.config;
+        var state = controller.state;
+
+
+        areaList = config.areaList[state.areaType].map(function (d) {return d.id});
+        indicatorArr = widget.indicatorArr;
+
+
+        that.config.margin_middle = yscale.rangeBand() * 0.14;
+
+        scale = d3.scale.linear()
+            .range([0, that.config.compWidth])
+            .domain([0, widget.indicatorArr.length + 1]);
+
+
+        scalelets = {};
+        for(var i in indicatorArr){
+
+            console.log(indicatorArr)
+
+        }
+
+
+
+    }
+
+    that.configure = configure;
+
+    function isRendered() {
+        return (svg !== undefined);
+    }
+    that.isRendered = isRendered;
+
+    function render() {
+/*
+
+
+        var config = controller.config;
+        var state = controller.state;
+
+        var areaType = state.areaType;
+        var genderType = state.genderType;
+
+
+
+
+
+        svg = widget._chart.append("g")
+            .attr("transform", "translate(" + that.config.x + "," + that.config.y + ")");
+
+
+        indicator_bars = svg
+            .append("g")
+            .attr("transform", "translate(" + xscale(1) + ",0)")
+
+            .selectAll(".indicator_bar")
+            .data(indicatorArr)
+            .enter()
+            .append("rect")
+            .attr("class", "indicator_bar")
+            .attr("x", function(d, i){ return xscale(i)})
+            .attr("y", 0)
+            .attr("width",  xscale(1) )
+            .attr("height", that.config.header_height + 20) //+20 ensures overlap where d3 adjusts rangebound
+            .style("stroke-width", "1")
+            .style("stroke", "black")
+            .style("fill", "white");
+
+
+        for(var i in indicatorArr){ //loop here to use wrap function
+            svg.append("text")
+                .attr("transform", "translate(" + xscale(1) + ",0)")
+                .attr("class", "indicator" + i)
+                .attr("x", xscale(i) + 7)
+                .attr("y",21 )
+                .style("font-size", "1em")
+                .style("fill", config.colorScheme.text_color)
+                .call(self.wrap, xscale(1), indicatorArr[i]);
+        }
+
+
+        name_bars = svg
+            .append("g")
+            .attr("transform", "translate(0," + that.config.header_height + ")")
+            .selectAll(".name_bar")
+            .data(areaList)
+            .enter()
+            .append("rect")
+            .attr("class", "name_bar" )
+            .attr("x", 0)
+            .attr("y", function (d, i) {return yscale(d)})
+            .attr("width", xscale(1) )
+            .attr("height", function (d, i) {return yscale.rangeBand()})
+            .style("stroke-width", "1")
+            .style("stroke", "black")
+            .style("fill", "white");
+
+
+        name_labels = svg
+            .append("g")
+            .attr("transform", "translate(0," + that.config.header_height + ")")
+            .selectAll(".name_label")
+            .data(areaList)
+            .enter()
+            .append("text")
+            .attr("class", "name_label")
+            .attr("x", "0.5em")
+            .attr("y", function (d, i) {return yscale(d) + 0.5 * yscale.rangeBand()})
+            .attr("dy", "0.5em")
+            .text(function(d, i){return controller._get_area_name(d)})
+            .style("font-size", "1em")
+            //.style("font-weight", "bold")
+            .style("fill", config.colorScheme.text_color);
+
+
+        //var period_data = nested_data.filter(function(obj){
+        //    return obj.key == state.current_period
+        //})[0].values;
+
+
+        var data_grid = svg.append("g")
+            .attr("transform", "translate(" + xscale(1) + "," + that.config.header_height + ")")
+
+        for(var i in indicatorArr){
+            for(var j in areaList){
+
+                var val = controller.getValueFromPeriodData(state.areaType, widget.gender, config.indicatorMapping[indicatorArr[i]], state.current_period, areaList[j])
+
+                data_grid
+                    .append("rect")
+                    .attr("class", "name_bar" )
+                    .attr("id", "dataBar_" + i + "_" + j )
+                    .attr("x", xscale(i))
+                    .attr("y", yscale(areaList[j]))
+                    .attr("width",  xscale(1) )
+                    .attr("height", yscale.rangeBand())
+                    .style("stroke-width", "1")
+                    .style("stroke", "black")
+                    .style("fill", function(){ return select_color(val)});
+
+                data_grid
+                    .append("text")
+                    .attr("class", "data_label")
+                    .attr("id", "dataLabel_" + i + "_" + j )
+                    .attr("x", xscale(Number(i) + 0.5))
+                    .attr("y",yscale(areaList[j]) + 0.5 * yscale.rangeBand())
+                    .style("text-anchor", "middle")
+                    .attr("dy", "0.5em")
+                    .text(function(){return select_text(val)})
+                    .style("font-size", "1em")
+                    //.style("font-weight", "bold")
+                    .style("fill", function(){ return select_text_color(val)});
+
+            }
+        }
+*/
+
+    }
+    that.render = render;
+
+
+    function update() {
+
+
+        var self = this;
+        var config = controller.config;
+        var state = controller.state;
+
+        for(var i in indicatorArr){
+            for(var j in areaList){
+
+                var val = controller.getValueFromPeriodData(state.areaType, widget.gender, config.indicatorMapping[indicatorArr[i]], state.current_period, areaList[j]);
+
+                d3.select("#dataBar_" + i + "_" + j)
+                    .transition()
+                    .duration(500)
+                    .style("fill", function(){ return select_color(val)});
+
+                d3.select("#dataLabel_" + i + "_" + j)
+                    .text(function(){return select_text(val)})
+
+                d3.select("#dataLabel_" + i + "_" + j)
+                    .transition()
+                    .style("fill", function(){ return select_text_color(val)});
+            }
+        }
+
+    }
+    that.update = update;
+
+    ee.addListener("update", update);
+
+    configure(widget, configuration);
+
+    return that;
+
+};
+
+
+
+
+
+
 var component = new Components();
 
 
