@@ -94,6 +94,7 @@ AreaHeader.prototype._draw_gender = function(){
         x: 0,
         y: 4 * 14,
         width: this.width,
+        fill: controller.config.colorScheme.header_text_color,
         id: "gender" + this.widgetId
     })
 

@@ -60,8 +60,9 @@ IndicatorWidget.prototype._draw_all = function(){
     this._draw_gauge();
     this._draw_rank();
     this._draw_densityGraph();
-    this._draw_label();
+    this._draw_label_1();
     this._draw_lineGraph();
+    this._draw_label_2();
 
 };
 
@@ -123,6 +124,7 @@ IndicatorWidget.prototype._draw_gender = function(){
         x: 0,
         y: 4 * 14,
         width: this.width,
+        fill: controller.config.colorScheme.header_text_color,
         id: "gender" + this.widgetId
     })
 
@@ -387,7 +389,7 @@ IndicatorWidget.prototype._draw_densityGraph = function(){
 };
 
 
-IndicatorWidget.prototype._draw_label = function(){
+IndicatorWidget.prototype._draw_label_1 = function(){
 
     var self = this;
 
@@ -397,7 +399,7 @@ IndicatorWidget.prototype._draw_label = function(){
     this._label_text = component.text(self, {
         str: label,
         x: 0,
-        y: 40.5 * 14,
+        y: 40 * 14,
         width: this.width,
         fill: controller.config.colorScheme.text_color,
         id: "label" + this.widgetId
@@ -430,6 +432,26 @@ IndicatorWidget.prototype._draw_lineGraph = function(){
 
         ee.addListener("update", update)
     };
+
+};
+
+IndicatorWidget.prototype._draw_label_2 = function(){
+
+    var self = this;
+
+    var label = controller.config.indicatorLabels[this.indicator];
+    label = label.charAt(0).toUpperCase() + label.slice(1);
+
+    this._label_text = component.text(self, {
+        str: label,
+        x: 0,
+        y: 52 * 14,
+        width: this.width,
+        fill: controller.config.colorScheme.text_color,
+        id: "label" + this.widgetId
+    });
+
+    this._label_text.render()
 
 };
 

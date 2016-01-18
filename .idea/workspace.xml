@@ -2,19 +2,12 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="50091f8d-ffb4-41f7-b074-8a3c33f58be2" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" />
-      <change type="MOVED" beforePath="C:\dev\WessexDashboard\public\javascripts\scatterplotmatrixwidget.js" afterPath="$PROJECT_DIR$/public/javascripts/scatterplotmatrix.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/views/test.jade" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/javascripts/areaheader.js" afterPath="$PROJECT_DIR$/public/javascripts/areaheader.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/javascripts/components.js" afterPath="$PROJECT_DIR$/public/javascripts/components.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/javascripts/controller.js" afterPath="$PROJECT_DIR$/public/javascripts/controller.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/stylesheets/flexStyleIndicator.css" afterPath="$PROJECT_DIR$/public/stylesheets/flexStyleIndicator.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/javascripts/init_overview.js" afterPath="$PROJECT_DIR$/public/javascripts/init_overview.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/configs/master_config.json" afterPath="$PROJECT_DIR$/configs/master_config.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/javascripts/overviewwidget.js" afterPath="$PROJECT_DIR$/public/javascripts/overviewwidget.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/views/reportArea.jade" afterPath="$PROJECT_DIR$/views/reportArea.jade" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/views/reportIndicator.jade" afterPath="$PROJECT_DIR$/views/reportIndicator.jade" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/views/reportOverview.jade" afterPath="$PROJECT_DIR$/views/reportOverview.jade" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/views/select.jade" afterPath="$PROJECT_DIR$/views/select.jade" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/javascripts/select.js" afterPath="$PROJECT_DIR$/public/javascripts/select.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/javascripts/indicatorwidget.js" afterPath="$PROJECT_DIR$/public/javascripts/indicatorwidget.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/main.js" afterPath="$PROJECT_DIR$/main.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/package.json" afterPath="$PROJECT_DIR$/package.json" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/stylesheets/style.css" afterPath="$PROJECT_DIR$/public/stylesheets/style.css" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
@@ -39,11 +32,31 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="components.js" pinned="false" current-in-tab="true">
+      <file leaf-file-name="main.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/main.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="407" column="50" selection-start-line="407" selection-start-column="50" selection-end-line="407" selection-end-column="50" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="overviewwidget.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/public/javascripts/overviewwidget.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="65" column="27" selection-start-line="65" selection-start-column="27" selection-end-line="65" selection-end-column="27" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="components.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/public/javascripts/components.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.021356784">
-              <caret line="2409" column="59" selection-start-line="2409" selection-start-column="59" selection-end-line="2409" selection-end-column="59" />
+            <state vertical-scroll-proportion="0.0">
+              <caret line="2884" column="67" selection-start-line="2884" selection-start-column="67" selection-end-line="2884" selection-end-column="67" />
               <folding>
                 <element signature="e#87#2219#0" expanded="false" />
                 <element signature="e#2281#3313#0" expanded="false" />
@@ -56,57 +69,18 @@
                 <element signature="e#38148#47237#0" expanded="false" />
                 <element signature="e#47310#57000#0" expanded="false" />
                 <element signature="e#57071#58651#0" expanded="false" />
-                <element signature="e#58719#65859#0" expanded="false" />
+                <element signature="e#58719#65873#0" expanded="false" />
+                <element signature="e#65941#74681#0" expanded="false" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="indicatorwidget.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/public/javascripts/indicatorwidget.js">
+      <file leaf-file-name="style.css" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/public/stylesheets/style.css">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-6.9736843">
-              <caret line="132" column="0" selection-start-line="132" selection-start-column="0" selection-end-line="155" selection-end-column="2" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="overviewwidget.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/public/javascripts/overviewwidget.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="2.9466667">
-              <caret line="65" column="27" selection-start-line="65" selection-start-column="27" selection-end-line="65" selection-end-column="27" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="select.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/public/javascripts/select.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="131" column="0" selection-start-line="131" selection-start-column="0" selection-end-line="131" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="scatterplotmatrix.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/public/javascripts/scatterplotmatrix.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-9.666667">
-              <caret line="144" column="12" selection-start-line="144" selection-start-column="12" selection-end-line="144" selection-end-column="12" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="controller.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/public/javascripts/controller.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-11.894737">
-              <caret line="56" column="21" selection-start-line="56" selection-start-column="21" selection-end-line="56" selection-end-column="21" />
+            <state vertical-scroll-proportion="0.660401">
+              <caret line="34" column="0" selection-start-line="31" selection-start-column="0" selection-end-line="34" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -115,29 +89,39 @@
       <file leaf-file-name="master_config.json" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/configs/master_config.json">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-20.961538">
-              <caret line="130" column="79" selection-start-line="130" selection-start-column="79" selection-end-line="130" selection-end-column="79" />
+            <state vertical-scroll-proportion="-16.038462">
+              <caret line="148" column="26" selection-start-line="148" selection-start-column="18" selection-end-line="148" selection-end-column="26" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="select.jade" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/views/select.jade">
+      <file leaf-file-name="test.jade" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/views/test.jade">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="51" column="0" selection-start-line="51" selection-start-column="0" selection-end-line="51" selection-end-column="0" />
-              <folding />
+              <caret line="11" column="23" selection-start-line="11" selection-start-column="23" selection-end-line="11" selection-end-column="23" />
+              <folding>
+                <marker date="1452954372231" expanded="true" signature="17:327" placeholder="..." />
+                <marker date="1452954372231" expanded="true" signature="25:295" placeholder="..." />
+                <marker date="1452954372231" expanded="true" signature="303:327" placeholder="..." />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="style.css" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/public/stylesheets/style.css">
+      <file leaf-file-name="layout.jade" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/views/layout.jade">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="22" column="0" selection-start-line="22" selection-start-column="0" selection-end-line="25" selection-end-column="0" />
-              <folding />
+              <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="8" selection-end-column="35" />
+              <folding>
+                <marker date="1452520606697" expanded="true" signature="17:1228" placeholder="..." />
+                <marker date="1452520606697" expanded="true" signature="24:1203" placeholder="..." />
+                <marker date="1452520606697" expanded="true" signature="254:283" placeholder="..." />
+                <marker date="1452520606697" expanded="true" signature="1126:1203" placeholder="..." />
+                <marker date="1452520606697" expanded="true" signature="1210:1228" placeholder="..." />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -147,8 +131,8 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Jade File" />
         <option value="JavaScript File" />
+        <option value="Jade File" />
       </list>
     </option>
   </component>
@@ -164,7 +148,6 @@
     <option name="CHANGED_PATHS">
       <list>
         <option value="$PROJECT_DIR$/index.js" />
-        <option value="$PROJECT_DIR$/package.json" />
         <option value="$PROJECT_DIR$/public/javascripts/init_area.js" />
         <option value="$PROJECT_DIR$/public/javascripts/linegraph.js" />
         <option value="$PROJECT_DIR$/public/javascripts/init_indicator.js" />
@@ -177,9 +160,6 @@
         <option value="$PROJECT_DIR$/public/javascripts/indicatorheader.js" />
         <option value="$PROJECT_DIR$/public/javascripts/bargraph.js" />
         <option value="$PROJECT_DIR$/public/javascripts/multilinegraph.js" />
-        <option value="$PROJECT_DIR$/public/javascripts/indicatorwidget.js" />
-        <option value="$PROJECT_DIR$/public/javascripts/areaheader.js" />
-        <option value="$PROJECT_DIR$/main.js" />
         <option value="$PROJECT_DIR$/public/javascripts/scatterplotmatrixwidget.js" />
         <option value="$PROJECT_DIR$/public/javascripts/init_overview.js" />
         <option value="$PROJECT_DIR$/views/reportOverview.jade" />
@@ -192,8 +172,13 @@
         <option value="$PROJECT_DIR$/public/javascripts/overviewwidget.js" />
         <option value="$PROJECT_DIR$/views/select.jade" />
         <option value="$PROJECT_DIR$/public/javascripts/select.js" />
-        <option value="$PROJECT_DIR$/public/stylesheets/style.css" />
+        <option value="$PROJECT_DIR$/public/javascripts/indicatorwidget.js" />
+        <option value="$PROJECT_DIR$/public/javascripts/areaheader.js" />
+        <option value="$PROJECT_DIR$/views/test.jade" />
+        <option value="$PROJECT_DIR$/package.json" />
+        <option value="$PROJECT_DIR$/main.js" />
         <option value="$PROJECT_DIR$/public/javascripts/components.js" />
+        <option value="$PROJECT_DIR$/public/stylesheets/style.css" />
       </list>
     </option>
   </component>
@@ -243,9 +228,6 @@
       <sortByType />
     </navigator>
     <panes>
-      <pane id="Scope" />
-      <pane id="Scratches" />
-      <pane id="PackagesPane" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -344,6 +326,9 @@
           </PATH>
         </subPane>
       </pane>
+      <pane id="Scope" />
+      <pane id="Scratches" />
+      <pane id="PackagesPane" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -351,6 +336,7 @@
     <property name="aspect.path.notification.shown" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="FullScreen" value="false" />
   </component>
   <component name="RunManager" selected="Node.js.bin\www">
     <configuration default="true" type="#org.jetbrains.idea.devkit.run.PluginConfigurationType" factoryName="Plugin">
@@ -622,12 +608,13 @@
       <workItem from="1451560728883" duration="88160000" />
       <workItem from="1452064665404" duration="75259000" />
       <workItem from="1452505687984" duration="63610000" />
-      <workItem from="1452767325727" duration="53377000" />
+      <workItem from="1452767325727" duration="56488000" />
+      <workItem from="1452957157773" duration="3003000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="280406000" />
+    <option name="totallyTimeSpent" value="286520000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-11" y="-11" width="1942" height="1042" extended-state="6" />
@@ -647,8 +634,8 @@
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
+      <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="true" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -657,31 +644,6 @@
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
     </layout>
-    <layout-to-restore>
-      <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Palette&#9;" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
-      <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
-      <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32955772" sideWeight="0.5" order="6" side_tool="true" content_ui="tabs" />
-      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
-      <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.20730397" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
-      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="4" side_tool="true" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-    </layout-to-restore>
   </component>
   <component name="Vcs.Log.UiProperties">
     <option name="RECENTLY_FILTERED_USER_GROUPS">
@@ -705,14 +667,6 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/public/stylesheets/style.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/configs/master_config.json">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -725,7 +679,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="28" column="0" selection-start-line="28" selection-start-column="0" selection-end-line="28" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -757,7 +710,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="142" column="63" selection-start-line="142" selection-start-column="63" selection-end-line="142" selection-end-column="63" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -777,7 +729,8 @@
             <element signature="e#38148#47237#0" expanded="false" />
             <element signature="e#47310#57000#0" expanded="false" />
             <element signature="e#57071#58651#0" expanded="false" />
-            <element signature="e#58719#65859#0" expanded="false" />
+            <element signature="e#58719#65873#0" expanded="false" />
+            <element signature="e#65941#74681#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -818,7 +771,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="27" column="0" selection-start-line="27" selection-start-column="0" selection-end-line="27" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -838,7 +790,8 @@
             <element signature="e#38148#47237#0" expanded="false" />
             <element signature="e#47310#57000#0" expanded="false" />
             <element signature="e#57071#58651#0" expanded="false" />
-            <element signature="e#58719#65859#0" expanded="false" />
+            <element signature="e#58719#65873#0" expanded="false" />
+            <element signature="e#65941#74681#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -871,7 +824,13 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="31" column="0" selection-start-line="31" selection-start-column="0" selection-end-line="31" selection-end-column="0" />
-          <folding />
+          <folding>
+            <marker date="1452520606697" expanded="true" signature="17:1228" placeholder="..." />
+            <marker date="1452520606697" expanded="true" signature="24:1203" placeholder="..." />
+            <marker date="1452520606697" expanded="true" signature="254:283" placeholder="..." />
+            <marker date="1452520606697" expanded="true" signature="1126:1203" placeholder="..." />
+            <marker date="1452520606697" expanded="true" signature="1210:1228" placeholder="..." />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -895,15 +854,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="163" column="4" selection-start-line="163" selection-start-column="4" selection-end-line="163" selection-end-column="85" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/package.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.39975247">
-          <caret line="19" column="1" selection-start-line="19" selection-start-column="1" selection-end-line="19" selection-end-column="1" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -940,7 +890,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-6.9736843">
           <caret line="104" column="59" selection-start-line="104" selection-start-column="59" selection-end-line="104" selection-end-column="59" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -956,7 +905,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="117" column="26" selection-start-line="117" selection-start-column="26" selection-end-line="117" selection-end-column="26" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -972,7 +920,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="2" column="0" selection-start-line="2" selection-start-column="0" selection-end-line="27" selection-end-column="2" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -980,15 +927,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.33291456">
           <caret line="302" column="0" selection-start-line="302" selection-start-column="0" selection-end-line="306" selection-end-column="24" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/public/javascripts/areaheader.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-6.9736843">
-          <caret line="208" column="0" selection-start-line="208" selection-start-column="0" selection-end-line="226" selection-end-column="2" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1004,7 +942,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="135" column="13" selection-start-line="128" selection-start-column="0" selection-end-line="135" selection-end-column="13" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1032,50 +969,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/views/layout.jade">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="21" column="82" selection-start-line="21" selection-start-column="82" selection-end-line="21" selection-end-column="82" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/views/reportArea.jade">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="41" column="30" selection-start-line="41" selection-start-column="27" selection-end-line="41" selection-end-column="30" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/main.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="325" column="45" selection-start-line="325" selection-start-column="45" selection-end-line="325" selection-end-column="45" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/public/javascripts/controller.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-11.894737">
-          <caret line="56" column="21" selection-start-line="56" selection-start-column="21" selection-end-line="56" selection-end-column="21" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/public/javascripts/indicatorwidget.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-6.9736843">
-          <caret line="132" column="0" selection-start-line="132" selection-start-column="0" selection-end-line="155" selection-end-column="2" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/configs/master_config.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-20.961538">
-          <caret line="130" column="79" selection-start-line="130" selection-start-column="79" selection-end-line="130" selection-end-column="79" />
           <folding />
         </state>
       </provider>
@@ -1088,50 +985,107 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/public/javascripts/scatterplotmatrix.js">
+    <entry file="file://$PROJECT_DIR$/public/javascripts/areaheader.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-9.666667">
-          <caret line="144" column="12" selection-start-line="144" selection-start-column="12" selection-end-line="144" selection-end-column="12" />
+        <state vertical-scroll-proportion="0.16306955">
+          <caret line="89" column="0" selection-start-line="89" selection-start-column="0" selection-end-line="89" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/views/select.jade">
+    <entry file="file://$PROJECT_DIR$/public/javascripts/indicatorwidget.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="51" column="0" selection-start-line="51" selection-start-column="0" selection-end-line="51" selection-end-column="0" />
+        <state vertical-scroll-proportion="0.5942211">
+          <caret line="126" column="62" selection-start-line="126" selection-start-column="62" selection-end-line="126" selection-end-column="62" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/public/javascripts/select.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
+        <state vertical-scroll-proportion="0.7146283">
           <caret line="131" column="0" selection-start-line="131" selection-start-column="0" selection-end-line="131" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/javascripts/scatterplotmatrix.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.9552042">
+          <caret line="144" column="12" selection-start-line="144" selection-start-column="12" selection-end-line="144" selection-end-column="12" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/javascripts/controller.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.5678392">
+          <caret line="56" column="21" selection-start-line="56" selection-start-column="21" selection-end-line="56" selection-end-column="21" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/views/select.jade">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="1.0395683">
+          <caret line="51" column="0" selection-start-line="51" selection-start-column="0" selection-end-line="51" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/views/layout.jade">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="8" selection-end-column="35" />
+          <folding>
+            <marker date="1452520606697" expanded="true" signature="17:1228" placeholder="..." />
+            <marker date="1452520606697" expanded="true" signature="24:1203" placeholder="..." />
+            <marker date="1452520606697" expanded="true" signature="254:283" placeholder="..." />
+            <marker date="1452520606697" expanded="true" signature="1126:1203" placeholder="..." />
+            <marker date="1452520606697" expanded="true" signature="1210:1228" placeholder="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/views/test.jade">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="11" column="23" selection-start-line="11" selection-start-column="23" selection-end-line="11" selection-end-column="23" />
+          <folding>
+            <marker date="1452954372231" expanded="true" signature="17:327" placeholder="..." />
+            <marker date="1452954372231" expanded="true" signature="25:295" placeholder="..." />
+            <marker date="1452954372231" expanded="true" signature="303:327" placeholder="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/package.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-12.423077">
+          <caret line="19" column="26" selection-start-line="19" selection-start-column="26" selection-end-line="19" selection-end-column="26" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/public/javascripts/overviewwidget.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="2.9466667">
+        <state vertical-scroll-proportion="0.0">
           <caret line="65" column="27" selection-start-line="65" selection-start-column="27" selection-end-line="65" selection-end-column="27" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/public/stylesheets/style.css">
+    <entry file="file://$PROJECT_DIR$/main.js">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="22" column="0" selection-start-line="22" selection-start-column="0" selection-end-line="25" selection-end-column="0" />
+          <caret line="407" column="50" selection-start-line="407" selection-start-column="50" selection-end-line="407" selection-end-column="50" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/public/javascripts/components.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.021356784">
-          <caret line="2409" column="59" selection-start-line="2409" selection-start-column="59" selection-end-line="2409" selection-end-column="59" />
+        <state vertical-scroll-proportion="0.0">
+          <caret line="2884" column="67" selection-start-line="2884" selection-start-column="67" selection-end-line="2884" selection-end-column="67" />
           <folding>
             <element signature="e#87#2219#0" expanded="false" />
             <element signature="e#2281#3313#0" expanded="false" />
@@ -1144,8 +1098,25 @@
             <element signature="e#38148#47237#0" expanded="false" />
             <element signature="e#47310#57000#0" expanded="false" />
             <element signature="e#57071#58651#0" expanded="false" />
-            <element signature="e#58719#65859#0" expanded="false" />
+            <element signature="e#58719#65873#0" expanded="false" />
+            <element signature="e#65941#74681#0" expanded="false" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/configs/master_config.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-16.038462">
+          <caret line="148" column="26" selection-start-line="148" selection-start-column="18" selection-end-line="148" selection-end-column="26" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/stylesheets/style.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.660401">
+          <caret line="34" column="0" selection-start-line="31" selection-start-column="0" selection-end-line="34" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>

@@ -620,7 +620,7 @@ Components.prototype.densityGraph = function(widget, configuration){
                 .attr("y1", self.height)
                 .attr("y2", self.height)
                 .style("stroke-width", 2)
-                .style("stroke", widget.cs.text_color)
+                .style("stroke", widget.cs.main_color)
                 .style("fill", "none");
 
 
@@ -2052,7 +2052,7 @@ Components.prototype.selectBar = function(widget, configuration){
 
     function select_all_color(){
         if(widget.select_all){
-            return widget.cs.main_color
+            return widget.cs.main_color_offset
         } else {
             return "white"
         }
@@ -2073,7 +2073,7 @@ Components.prototype.selectBar = function(widget, configuration){
         if(index == -1 && widget.select_all == false) {
             return "white" //widget.cs.main_color
         } else if (index == -1 && widget.select_all == true) {
-            return widget.cs.main_color
+            return widget.cs.main_color_offset
         } else {
             //repeat colors
             while(index >= state.secondary_areas_colors.length){
@@ -2451,7 +2451,7 @@ Components.prototype.tartanRug = function(widget, configuration){
             .attr("width",  xscale(1) )
             .attr("height", that.config.header_height + 20) //+20 ensures overlap where d3 adjusts rangebound
             .style("stroke-width", "1")
-            .style("stroke", "black")
+            .style("stroke", config.colorScheme.text_color)
             .style("fill", "white");
 
 
@@ -2480,7 +2480,7 @@ Components.prototype.tartanRug = function(widget, configuration){
             .attr("width", xscale(1) )
             .attr("height", function (d, i) {return yscale.rangeBand()})
             .style("stroke-width", "1")
-            .style("stroke", "black")
+            .style("stroke", config.colorScheme.text_color)
             .style("opacity", function(d){return select_area_opacity(d)})
             .style("fill", function(d){return select_area_color(d)})
             .on("click", name_click);;
@@ -2526,7 +2526,7 @@ Components.prototype.tartanRug = function(widget, configuration){
                     .attr("width",  xscale(1) )
                     .attr("height", yscale.rangeBand())
                     .style("stroke-width", "1")
-                    .style("stroke", "black")
+                    .style("stroke", config.colorScheme.text_color)
                     .style("fill", function(){ return select_color(val)})
                     .on("click", function(){value_click(this)});
 
@@ -2809,7 +2809,7 @@ Components.prototype.scatterPlotMatrix = function(widget, configuration){
             .attr("width",  scale(1) )
             .attr("height", that.config.header_height + 20) //+20 ensures overlap
             .style("stroke-width", "1")
-            .style("stroke", "black")
+            .style("stroke", config.colorScheme.text_color)
             .style("fill", "white");
 
 
@@ -2839,7 +2839,7 @@ Components.prototype.scatterPlotMatrix = function(widget, configuration){
             .attr("width",  scale(1) + 20) //+20 ensures overlap
             .attr("height", scale(1) )
             .style("stroke-width", "1")
-            .style("stroke", "black")
+            .style("stroke", config.colorScheme.text_color)
             .style("fill", "white");
 
         for(var i in indicatorArr){ //loop here to use wrap function
@@ -2882,7 +2882,7 @@ Components.prototype.scatterPlotMatrix = function(widget, configuration){
                     .attr("width",  scale(1) )
                     .attr("height", scale(1))
                     .style("stroke-width", "1")
-                    .style("stroke", "black")
+                    .style("stroke", config.colorScheme.text_color)
                     .style("fill", "white")//function(){ return select_color(val)});
 
 
