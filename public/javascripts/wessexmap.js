@@ -51,6 +51,7 @@ WessexMap.prototype._draw_all = function(){
     this._draw_area_type();
     this._draw_map();
     this._draw_area_name();
+    this._draw_key();
 
 
 
@@ -116,29 +117,35 @@ WessexMap.prototype._draw_map = function(){
 
         var id = d.properties.id;
 
-        if(id == controller.state.current_area){
-            return controller.config.colorScheme.highlight_color
+        //if(id == controller.state.current_area){
+        //    return controller.config.colorScheme.highlight_color
+        //} else {
+
+        var gender = self.gender;
+        var areaType = controller.state.areaType;
+        var indicatorMapped = self.indicatorMapped;
+        var current_period = controller.state.current_period;
+
+        var val = controller.getValueFromPeriodData(areaType, gender, indicatorMapped, current_period, id);
+
+        if(val == null){
+            return "white"
         } else {
-
-            var gender = self.gender;
-            var areaType = controller.state.areaType;
-            var indicatorMapped = self.indicatorMapped;
-            var current_period = controller.state.current_period;
-
-            var val = controller.getValueFromPeriodData(areaType, gender, indicatorMapped, current_period, id);
-
-            if(val == null){
-                return "white"
-            } else {
-                //console.log(val.percent + ": " + Math.floor(val.percent * 4))
-                return controller.config.colorScheme.quartile_color_array[Math.floor(val.percent * 4)]
-                //return d3.interpolateHsl(d3.rgb('#fff'), d3.rgb(self.cs.dark_text_color))((Math.floor(val.percent * 4) / 4).toFixed(1))
-            }
+            return controller.config.colorScheme.quartile_color_array[Math.floor(val.percent * 4)]
+            //return d3.interpolateHsl(d3.rgb('#fff'), d3.rgb(self.cs.dark_text_color))((Math.floor(val.percent * 4) / 4).toFixed(1))
         }
+        //}
     };
 
     var fStroke = function(d){
-        return controller.config.colorScheme.main_color
+
+        var id = d.properties.id;
+
+        if(id == controller.state.current_area){
+            return controller.config.colorScheme.highlight_color
+        } else {
+            return controller.config.colorScheme.main_color
+        }
     }
 
 
@@ -146,7 +153,7 @@ WessexMap.prototype._draw_map = function(){
     this._map = component.map(self, {
 
         x:0,
-        y:3 * 14,
+        y:2 * 14,
         compHeight: 10 * 14,
         compWidth: self.width,
         style: {
@@ -172,7 +179,7 @@ WessexMap.prototype._draw_area_name = function(){
         str: current_area_name,
         font_size: "1.5em",
         x: 0,
-        y: 21 * 14,
+        y: 19 * 14,
         width: this.width,
         fill: controller.config.colorScheme.highlight_text_color,
         id: "areaName" + this.widgetId
@@ -187,8 +194,21 @@ WessexMap.prototype._draw_area_name = function(){
 
 };
 
+WessexMap.prototype._draw_key = function(){
 
+    var self = this;
 
+    this._map_key = component.wessexMapKey(self, {
+        x: 0,
+        y: 23 * 14,
+        width: this.width,
+        stroke: controller.config.colorScheme.main_color,
+        id: "mapKey" + this.widgetId
+    });
+
+    this._map_key.render()
+
+};
 
 
 

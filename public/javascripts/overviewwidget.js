@@ -39,14 +39,10 @@ OverviewWidget.prototype._update_widget = function(){
 
     var gender = this.gender;
     var areaType = controller.state.areaType;
-    this.indicatorMappedArr = controller.getIndicatorMappedArr(this.indicatorArr, controller.config.indicatorMapping)
+    this.indicatorMappedArr = controller.getIndicatorMappedArr(this.indicatorArr, controller.config.indicatorMapping);
     var current_period = controller.state.current_period;
     var current_area = controller.state.current_area;
 
-    //this.data = controller.filterData(areaType, gender, indicatorMapped);
-    //this.data_period = controller.filterDataPeriod(areaType, gender, indicatorMapped, current_period);
-    //this.data_area = controller.filterDataArea(areaType, gender, indicatorMapped, current_area);
-    //this.val = controller.getValueFromPeriodData(areaType, gender, indicatorMapped, current_period, current_area);
 
 };
 
@@ -57,19 +53,8 @@ OverviewWidget.prototype._draw_all = function(){
 
     this._draw_header();
     this._draw_timeSlider();
+    this._draw_key();
     this._draw_tartanRug();
-
-    //this._draw_indicator();
-    //this._draw_gender();
-    //this._draw_area_name();
-    //this._draw_value();
-    //this._draw_no_data();
-    //this._draw_count();
-    //this._draw_gauge();
-    //this._draw_rank();
-    //this._draw_densityGraph();
-    //this._draw_label();
-    //this._draw_lineGraph();
 
 };
 
@@ -143,9 +128,27 @@ OverviewWidget.prototype._draw_timeSlider = function(){
         firstPeriod: controller.config.firstPeriod,
         lastPeriod: controller.config.lastPeriod
 
-    })
+    });
 
     this._timeSlider.render();
+
+};
+
+OverviewWidget.prototype._draw_key = function(){
+
+    console.log("here")
+
+    var self = this;
+
+    this._map_key = component.wessexMapKey(self, {
+        x: 14, //this.width / 2 - 14 * 9,
+        y: 845,
+        width: 319,
+        stroke: controller.config.colorScheme.text_color,
+        id: "mapKey" + this.widgetId
+    });
+
+    this._map_key.render()
 
 };
 
@@ -156,7 +159,7 @@ OverviewWidget.prototype._draw_tartanRug = function(){
     this._tartanRug = component.tartanRug(self, {
         x: 0,
         y: 7 * 15,
-        compHeight: self.height - 10 * 14,
+        compHeight: self.height - 12 * 14,
         compWidth: self.width
     });
 

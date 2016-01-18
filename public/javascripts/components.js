@@ -788,7 +788,7 @@ Components.prototype.densityGraph = function(widget, configuration){
             .datum(densityArray)
             .transition()
             .duration(750)
-            .style("fill", function(){console.log("here"); return controller.config.colorScheme.quartile_color_array[Math.floor(widget.val.percent * 4)]})
+            .style("fill", function(){return controller.config.colorScheme.quartile_color_array[Math.floor(widget.val.percent * 4)]})
             .style("opacity", 1)
             .attr("d", fArea);
 
@@ -1316,7 +1316,7 @@ Components.prototype.map = function(widget, configuration){
             .enter()
             .append("path")
             .attr("class", "feature clickable")
-            .attr("id", function(d){ return "feature" + d.properties.id} + widget.widgetId)
+            .attr("id", function(d){ return "feature" + d.properties.id + widget.widgetId})
             .attr("d", path)
             .style(that.config.style)
             .on("click", feature_click);
@@ -1328,9 +1328,14 @@ Components.prototype.map = function(widget, configuration){
     that.render = render;
 
     function update() {
+
+        var state = controller.state;
+
         map.transition()
             .duration(300)
             .style(that.config.style)
+
+        d3.select("#feature" + state.current_area + widget.widgetId).moveToFront();
     }
     that.update = update;
 
@@ -2355,13 +2360,31 @@ Components.prototype.tartanRug = function(widget, configuration){
     }
 
 
-    function select_text(val){
+    function select_text(val, previous_val){
+
+        var string;
 
         if(val == null){
-            return "NA"
+            string =  "NA"
         } else {
-            return val.value
+            string = val.value
         }
+
+        var trend;
+        if(val == null || previous_val == null){
+            return string
+
+        } else if(previous_val.value == val.value){
+            return string
+        } else if (previous_val.value > val.value){
+            return "\u25BC" + " " + string
+
+        } else if (previous_val.value < val.value){
+            return "\u25B2" + " " + string
+
+        }
+
+
     }
 
     function select_area_color(id){
@@ -2515,7 +2538,9 @@ Components.prototype.tartanRug = function(widget, configuration){
         for(var i in indicatorArr){
             for(var j in areaList){
 
-                var val = controller.getValueFromPeriodData(state.areaType, widget.gender, config.indicatorMapping[indicatorArr[i]], state.current_period, areaList[j])
+                var val = controller.getValueFromPeriodData(state.areaType, widget.gender, config.indicatorMapping[indicatorArr[i]], state.current_period, areaList[j]);
+                var previous_val = controller.getValueFromPeriodData(state.areaType, widget.gender, config.indicatorMapping[indicatorArr[i]], state.current_period - 1, areaList[j]);
+
 
                 data_grid
                     .append("rect")
@@ -2539,7 +2564,7 @@ Components.prototype.tartanRug = function(widget, configuration){
                     .attr("y",yscale(areaList[j]) + 0.5 * yscale.rangeBand())
                     .style("text-anchor", "middle")
                     .attr("dy", "0.5em")
-                    .text(function(){return select_text(val)})
+                    .text(function(){return select_text(val, previous_val)})
                     .style("font-size", "1em")
                     .style("fill", function(){ return select_text_color(val)})
                     .on("click", function(){value_click(this)});
@@ -2568,6 +2593,8 @@ Components.prototype.tartanRug = function(widget, configuration){
             for(var j in areaList){
 
                 var val = controller.getValueFromPeriodData(state.areaType, widget.gender, config.indicatorMapping[indicatorArr[i]], state.current_period, areaList[j]);
+                var previous_val = controller.getValueFromPeriodData(state.areaType, widget.gender, config.indicatorMapping[indicatorArr[i]], state.current_period - 1, areaList[j]);
+
 
                 d3.select("#dataBar_" + i + "_" + j)
                     .transition()
@@ -2575,7 +2602,7 @@ Components.prototype.tartanRug = function(widget, configuration){
                     .style("fill", function(){ return select_color(val)});
 
                 d3.select("#dataLabel_" + i + "_" + j)
-                    .text(function(){return select_text(val)})
+                    .text(function(){return select_text(val, previous_val)})
 
                 d3.select("#dataLabel_" + i + "_" + j)
                     .transition()
@@ -2648,37 +2675,24 @@ Components.prototype.scatterPlotMatrix = function(widget, configuration){
 
         datlet = [];
         for (var a in areaList) {
-            var x;
-            var y;
+
             var x_val = controller.getValueFromPeriodData(areaType, gender, config.indicatorMapping[ind_x], period, areaList[a])
-            if (x_val == null) {
-                x = 0
-            } else {
-                x = x_val.value
-            }
-
             var y_val = controller.getValueFromPeriodData(areaType, gender, config.indicatorMapping[ind_y], period, areaList[a])
-            if (y_val == null) {
-                y = 0
-            } else {
-                y = y_val.value
+
+            if (x_val != null && y_val != null) {
+                var obj = {
+                    id: areaList[a],
+                    name: controller._get_area_name(areaList[a]),
+                    x: x_val.value,
+                    y: y_val.value
+                };
+                datlet.push(obj);
             }
-
-
-            var obj = {
-                id: areaList[a],
-                name: controller._get_area_name(areaList[a]),
-                x: x,
-                y: y
-            };
-            datlet.push(obj);
         }
 
         return datlet
 
     }
-
-
 
     function select_color(id){
       if(id == controller.state.current_area){
@@ -2696,7 +2710,9 @@ Components.prototype.scatterPlotMatrix = function(widget, configuration){
         }
     }
 
-    function select_opacity(id){
+    function select_opacity(id, datlet){
+        if(datlet.length == 0){return 0} //hide points when no data
+
         if(id == controller.state.current_area){
             return 0.8;
         } else {
@@ -2908,6 +2924,7 @@ Components.prototype.scatterPlotMatrix = function(widget, configuration){
                     //get data for plot
                     datlet = getDatlet(indicatorArr[i], indicatorArr[j], period)
 
+
                     //plot data
                     data_grid
                         .selectAll(".scatter_dot" + i + j)
@@ -2919,9 +2936,29 @@ Components.prototype.scatterPlotMatrix = function(widget, configuration){
                         .attr("r", function(d){return select_r(d.id)})
                         .attr("cx", function(d){return scale(i) + scalets[indicatorArr[i]].scale(d.x)})
                         .attr("cy", function(d){return scale(j) + scalets[indicatorArr[j]].scaleInverse(d.y)})
-                        .style("opacity",function(d){return select_opacity(d.id)})
+                        .style("opacity",function(d){return select_opacity(d.id, datlet)})
                         .style("fill", function(d){return select_color(d.id)})
                         .on("click", dot_click);
+
+
+                    //draw no data available
+                    data_grid.append("text")
+                        .attr("transform", "translate(" + scale(Number(i)) + "," + scale(Number(j) + 1) + ")")
+                        .attr("id", "noScatterData" + widget.widgetId + i + j )
+                        .attr("x", scale(0.5))
+                        .attr("y", - scale(0.5))
+                        .attr("dy", "0.5em")
+                        .attr("text-anchor", "middle")
+                        .text("No data available")
+                        .style("font-size", "1em")
+                        .style("opacity", function(){
+                            if(datlet.length > 0){
+                                return 0
+                            } else {
+                                return 1
+                            }
+                        })
+                        .style("fill", config.colorScheme.text_color);
 
 
                 }
@@ -2953,17 +2990,42 @@ Components.prototype.scatterPlotMatrix = function(widget, configuration){
                 //get data for plot
                 datlet = getDatlet(indicatorArr[i], indicatorArr[j],period);
 
-                //update data
-                d3.selectAll(".scatter" + widget.widgetId + i + j)
-                    .data(datlet)
-                    .transition()
-                    //.delay(function(){return step * 5000})
-                    .duration(1000)
-                    .attr("r", function(d){return select_r(d.id)})
-                    .attr("cx", function(d){return scale(i) + scalets[indicatorArr[i]].scale(d.x)})
-                    .attr("cy", function(d){return scale(j) + scalets[indicatorArr[j]].scaleInverse(d.y)})
-                    .style("opacity",function(d){return select_opacity(d.id)})
-                    .style("fill", function(d){return select_color(d.id)})
+                if(datlet.length == 0){
+
+                    d3.selectAll(".scatter" + widget.widgetId + i + j)
+                        .transition()
+                        .duration(1000)
+                        .style("opacity",function(d){return select_opacity(d.id, datlet)})
+
+
+                } else {
+
+                    //update data
+                    d3.selectAll(".scatter" + widget.widgetId + i + j)
+                        .data(datlet)
+                        .transition()
+                        //.delay(function(){return step * 5000})
+                        .duration(1000)
+                        .attr("r", function(d){return select_r(d.id)})
+                        .attr("cx", function(d){return scale(i) + scalets[indicatorArr[i]].scale(d.x)})
+                        .attr("cy", function(d){return scale(j) + scalets[indicatorArr[j]].scaleInverse(d.y)})
+                        .style("opacity",function(d){return select_opacity(d.id, datlet)})
+                        .style("fill", function(d){return select_color(d.id)})
+
+                }
+
+
+                d3.selectAll("#noScatterData" + widget.widgetId + i + j )
+                        .transition()
+                        .delay(0)
+                        .duration(500)
+                       .style("opacity", function(){
+                        if(datlet.length > 0){
+                            return 0
+                        } else {
+                            return 1
+                        }
+                    });
 
             }
         }
@@ -2979,8 +3041,75 @@ Components.prototype.scatterPlotMatrix = function(widget, configuration){
 };
 
 
+Components.prototype.wessexMapKey =  function(widget, configuration){
+
+    var self = this;
+    var that = {};
+    that.config = {};
+
+    var svg = undefined;
+    var x = undefined;
+    var y = undefined;
+
+    function configure(widget, configuration) {
+
+        that.config = configuration;
+        x = that.config.x;
+        y = that.config.y;
+
+    }
+    that.configure = configure;
+
+    function isRendered() {
+        return (svg !== undefined);
+    }
+    that.isRendered = isRendered;
+
+    function render() {
+
+        svg = widget._chart.append("g")
+            .attr("transform", "translate(" + that.config.x + "," + that.config.y + ")");
+
+        var pad = 14;
+        var w = (that.config.width + pad * 2) / 4;
+
+        svg.selectAll(".keyBars")
+            .data(controller.config.colorScheme.quartile_color_array)
+            .enter()
+            .append("rect")
+            .attr("x", function(d, i){ return i * w - pad})
+            .attr("y", -15)
+            .attr("width",  w)
+            .attr("height", "1.5em")
+            .style("fill", function(d){return d})
+            .style("stroke", that.config.stroke)
 
 
+        svg.append("text")
+            .attr("x", - 0.5 * pad)
+            .attr("y", 0)
+            .attr("text-anchor", "left")
+            .style("font-size", "1em")
+            .style("fill", controller.config.colorScheme.quartile_dark_color_array[0])
+            .call(self.wrap, 100, "Eng. Low");
+
+        svg.append("text")
+            .attr("x", that.config.width + 0.5 * pad)
+            .attr("y", 0)
+            .attr("text-anchor", "end")
+            .style("font-size", "1em")
+            .style("fill", controller.config.colorScheme.quartile_dark_color_array[3])
+            .call(self.wrap, 100, "Eng. High");
+
+
+    }
+
+    that.render = render;
+
+    configure(widget, configuration);
+
+    return that;
+}
 
 
 var component = new Components();
@@ -2992,6 +3121,7 @@ d3.selection.prototype.moveToBack = function() {
     return this.each(function() {
         var firstChild = this.parentNode.firstChild;
         if (firstChild) {
+
             this.parentNode.insertBefore(this, firstChild);
         }
     });
