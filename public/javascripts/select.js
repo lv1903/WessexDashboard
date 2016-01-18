@@ -1,6 +1,5 @@
 
-
-var getPage = function(){
+var buildPath = function(){
 
     var inArr, outArtt, path;
 
@@ -14,7 +13,7 @@ var getPage = function(){
             outArr[i] = e.options[e.selectedIndex].value;
         }
         path = window.location.protocol + "//" + window.location.host + "/IndicatorReport/" + outArr[0] + "/" + outArr[1] + "/" + outArr[2]  + "/" + outArr[3];
-        window.location.href = path;
+
 
     }
 
@@ -28,7 +27,6 @@ var getPage = function(){
             outArr[i] = e.options[e.selectedIndex].value;
         }
         path = window.location.protocol + "//" + window.location.host + "/OverviewReport/" + outArr[0] + "/" + outArr[1] + "/" + outArr[2];
-        window.location.href = path;
     }
 
 
@@ -41,8 +39,19 @@ var getPage = function(){
             outArr[i] = e.options[e.selectedIndex].value;
         }
         path = window.location.protocol + "//" + window.location.host + "/AreaReport/" + outArr[0] + "/" + outArr[1] + "/" + outArr[2];
-        window.location.href = path;
     }
+
+    return path
+
+
+
+};
+
+
+
+var getPage = function(){
+
+    window.location.href = buildPath();
 
 };
 

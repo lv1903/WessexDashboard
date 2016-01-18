@@ -23,6 +23,8 @@
     "Districts": "DU"
   },
 
+  "areaTypeArray": ["CCG", "CU", "DU"],
+
   "areaTypeLabels":{
     "CCGs": "CCGs",
     "Counties": "counties",
@@ -36,6 +38,10 @@
     "persons": "Persons"
   },
 
+  "genderArray": ["Male", "Female", "Persons"],
+
+
+
   "indicatorMapping":{
     "Admission episodes for alcohol-related conditions": "9.01 - Admission episodes for alcohol-related conditions (Broad)",
     "Alcohol-specific mortality": "2.01 - Alcohol-specific mortality",
@@ -43,6 +49,13 @@
     "Months of life lost due to alcohol": "1.01 - Months of life lost due to alcohol"
 
   },
+
+  "indicatorArray":[
+    "Admission episodes for alcohol-related conditions",
+    "Alcohol-specific mortality",
+    "Mortality from chronic liver disease",
+    "Months of life lost due to alcohol"
+  ],
 
 
   "indicatorLabels":{

@@ -50,10 +50,13 @@ body {
   /*width: 928px;*/
 /*}*/
 
-/*.btn {*/
-  /*color: #1f78b4;*/
-  /*background-color: #a6cee3;*/
-/*}*/
+.share-btn {
+  width: 150px;
+  margin-right: 14px;
+  text-align: left;
+   /*color: #1f78b4;*/
+   /*background-color: #a6cee3;*/
+ }
 
 .axis text {
   fill: #666666;

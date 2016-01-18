@@ -2,12 +2,14 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="50091f8d-ffb4-41f7-b074-8a3c33f58be2" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/views/test.jade" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/javascripts/areaheader.js" afterPath="$PROJECT_DIR$/public/javascripts/areaheader.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/javascripts/components.js" afterPath="$PROJECT_DIR$/public/javascripts/components.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/javascripts/indicatorwidget.js" afterPath="$PROJECT_DIR$/public/javascripts/indicatorwidget.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/views/share.jade" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/javascripts/share.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/main.js" afterPath="$PROJECT_DIR$/main.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/package.json" afterPath="$PROJECT_DIR$/package.json" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/configs/master_config.json" afterPath="$PROJECT_DIR$/configs/master_config.json" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/views/reportArea.jade" afterPath="$PROJECT_DIR$/views/reportArea.jade" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/views/reportIndicator.jade" afterPath="$PROJECT_DIR$/views/reportIndicator.jade" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/javascripts/select.js" afterPath="$PROJECT_DIR$/public/javascripts/select.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/serverfun.js" afterPath="$PROJECT_DIR$/serverfun.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/stylesheets/style.css" afterPath="$PROJECT_DIR$/public/stylesheets/style.css" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
@@ -35,53 +37,16 @@
       <file leaf-file-name="main.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/main.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="407" column="50" selection-start-line="407" selection-start-column="50" selection-end-line="407" selection-end-column="50" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="overviewwidget.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/public/javascripts/overviewwidget.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="65" column="27" selection-start-line="65" selection-start-column="27" selection-end-line="65" selection-end-column="27" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="components.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/public/javascripts/components.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="2884" column="67" selection-start-line="2884" selection-start-column="67" selection-end-line="2884" selection-end-column="67" />
+            <state vertical-scroll-proportion="-5.736842">
+              <caret line="187" column="0" selection-start-line="187" selection-start-column="0" selection-end-line="187" selection-end-column="0" />
               <folding>
-                <element signature="e#87#2219#0" expanded="false" />
-                <element signature="e#2281#3313#0" expanded="false" />
-                <element signature="e#3380#5724#0" expanded="false" />
-                <element signature="e#5792#11513#0" expanded="false" />
-                <element signature="e#11584#25288#0" expanded="false" />
-                <element signature="e#25356#31794#0" expanded="false" />
-                <element signature="e#31863#35866#0" expanded="false" />
-                <element signature="e#35928#38081#0" expanded="false" />
-                <element signature="e#38148#47237#0" expanded="false" />
-                <element signature="e#47310#57000#0" expanded="false" />
-                <element signature="e#57071#58651#0" expanded="false" />
-                <element signature="e#58719#65873#0" expanded="false" />
-                <element signature="e#65941#74681#0" expanded="false" />
+                <element signature="e#2050#2055#0" expanded="false" />
+                <element signature="e#2144#2829#0" expanded="false" />
+                <element signature="e#2917#3601#0" expanded="false" />
+                <element signature="e#6656#8655#0" expanded="false" />
+                <element signature="e#8730#10418#0" expanded="false" />
+                <element signature="e#10509#12494#0" expanded="false" />
               </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="style.css" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/public/stylesheets/style.css">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.660401">
-              <caret line="34" column="0" selection-start-line="31" selection-start-column="0" selection-end-line="34" selection-end-column="0" />
-              <folding />
             </state>
           </provider>
         </entry>
@@ -89,39 +54,102 @@
       <file leaf-file-name="master_config.json" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/configs/master_config.json">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-16.038462">
-              <caret line="148" column="26" selection-start-line="148" selection-start-column="18" selection-end-line="148" selection-end-column="26" />
+            <state vertical-scroll-proportion="-14.384615">
+              <caret line="40" column="44" selection-start-line="40" selection-start-column="44" selection-end-line="40" selection-end-column="44" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="test.jade" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/views/test.jade">
+      <file leaf-file-name="serverfun.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/serverfun.js">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="11" column="23" selection-start-line="11" selection-start-column="23" selection-end-line="11" selection-end-column="23" />
+              <caret line="323" column="0" selection-start-line="323" selection-start-column="0" selection-end-line="323" selection-end-column="0" />
               <folding>
-                <marker date="1452954372231" expanded="true" signature="17:327" placeholder="..." />
-                <marker date="1452954372231" expanded="true" signature="25:295" placeholder="..." />
-                <marker date="1452954372231" expanded="true" signature="303:327" placeholder="..." />
+                <element signature="e#73#705#0" expanded="false" />
+                <element signature="e#772#2978#0" expanded="false" />
+                <element signature="e#3019#3172#0" expanded="false" />
+                <element signature="e#3214#3415#0" expanded="false" />
+                <element signature="e#3475#4140#0" expanded="false" />
+                <element signature="e#4240#4944#0" expanded="false" />
+                <element signature="e#5066#5841#0" expanded="false" />
+                <element signature="e#5886#6801#0" expanded="false" />
+                <element signature="e#6862#7227#0" expanded="false" />
+                <element signature="e#7277#8517#0" expanded="false" />
+                <element signature="e#8571#8718#0" expanded="false" />
+                <element signature="e#8763#9459#0" expanded="false" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="layout.jade" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/views/layout.jade">
+      <file leaf-file-name="style.css" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/public/stylesheets/style.css">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-2.7567568">
+              <caret line="54" column="18" selection-start-line="54" selection-start-column="18" selection-end-line="54" selection-end-column="18" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="share.js" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/public/javascripts/share.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.4677207">
+              <caret line="30" column="0" selection-start-line="30" selection-start-column="0" selection-end-line="30" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="share.jade" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/views/share.jade">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="8" selection-end-column="35" />
-              <folding>
-                <marker date="1452520606697" expanded="true" signature="17:1228" placeholder="..." />
-                <marker date="1452520606697" expanded="true" signature="24:1203" placeholder="..." />
-                <marker date="1452520606697" expanded="true" signature="254:283" placeholder="..." />
-                <marker date="1452520606697" expanded="true" signature="1126:1203" placeholder="..." />
-                <marker date="1452520606697" expanded="true" signature="1210:1228" placeholder="..." />
-              </folding>
+              <caret line="36" column="28" selection-start-line="36" selection-start-column="28" selection-end-line="36" selection-end-column="28" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="reportArea.jade" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/views/reportArea.jade">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="57" column="0" selection-start-line="57" selection-start-column="0" selection-end-line="60" selection-end-column="37" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="reportIndicator.jade" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/views/reportIndicator.jade">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="81" column="37" selection-start-line="81" selection-start-column="37" selection-end-line="81" selection-end-column="37" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="select.jade" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/views/select.jade">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="22" column="29" selection-start-line="22" selection-start-column="29" selection-end-line="22" selection-end-column="29" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="select.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/public/javascripts/select.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="51" column="0" selection-start-line="51" selection-start-column="0" selection-end-line="55" selection-end-column="2" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -131,8 +159,8 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="JavaScript File" />
         <option value="Jade File" />
+        <option value="JavaScript File" />
       </list>
     </option>
   </component>
@@ -151,7 +179,6 @@
         <option value="$PROJECT_DIR$/public/javascripts/init_area.js" />
         <option value="$PROJECT_DIR$/public/javascripts/linegraph.js" />
         <option value="$PROJECT_DIR$/public/javascripts/init_indicator.js" />
-        <option value="$PROJECT_DIR$/serverfun.js" />
         <option value="$PROJECT_DIR$/views/layout.jade" />
         <option value="$PROJECT_DIR$/public/javascripts/filterer.js" />
         <option value="$PROJECT_DIR$/public/javascripts/areafacts.js" />
@@ -163,22 +190,25 @@
         <option value="$PROJECT_DIR$/public/javascripts/scatterplotmatrixwidget.js" />
         <option value="$PROJECT_DIR$/public/javascripts/init_overview.js" />
         <option value="$PROJECT_DIR$/views/reportOverview.jade" />
-        <option value="$PROJECT_DIR$/views/reportIndicator.jade" />
-        <option value="$PROJECT_DIR$/views/reportArea.jade" />
         <option value="$PROJECT_DIR$/public/javascripts/controller.js" />
-        <option value="$PROJECT_DIR$/configs/master_config.json" />
         <option value="$PROJECT_DIR$/public/stylesheets/flexStyleIndicator.css" />
         <option value="$PROJECT_DIR$/public/javascripts/scatterplotmatrix.js" />
         <option value="$PROJECT_DIR$/public/javascripts/overviewwidget.js" />
         <option value="$PROJECT_DIR$/views/select.jade" />
-        <option value="$PROJECT_DIR$/public/javascripts/select.js" />
         <option value="$PROJECT_DIR$/public/javascripts/indicatorwidget.js" />
         <option value="$PROJECT_DIR$/public/javascripts/areaheader.js" />
         <option value="$PROJECT_DIR$/views/test.jade" />
         <option value="$PROJECT_DIR$/package.json" />
-        <option value="$PROJECT_DIR$/main.js" />
         <option value="$PROJECT_DIR$/public/javascripts/components.js" />
         <option value="$PROJECT_DIR$/public/stylesheets/style.css" />
+        <option value="$PROJECT_DIR$/views/reportArea.jade" />
+        <option value="$PROJECT_DIR$/public/javascripts/select.js" />
+        <option value="$PROJECT_DIR$/views/reportIndicator.jade" />
+        <option value="$PROJECT_DIR$/views/share.jade" />
+        <option value="$PROJECT_DIR$/serverfun.js" />
+        <option value="$PROJECT_DIR$/configs/master_config.json" />
+        <option value="$PROJECT_DIR$/main.js" />
+        <option value="$PROJECT_DIR$/public/javascripts/share.js" />
       </list>
     </option>
   </component>
@@ -609,12 +639,12 @@
       <workItem from="1452064665404" duration="75259000" />
       <workItem from="1452505687984" duration="63610000" />
       <workItem from="1452767325727" duration="56488000" />
-      <workItem from="1452957157773" duration="3003000" />
+      <workItem from="1452957157773" duration="16757000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="286520000" />
+    <option name="totallyTimeSpent" value="300274000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-11" y="-11" width="1942" height="1042" extended-state="6" />
@@ -667,26 +697,18 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/configs/master_config.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="134" column="67" selection-start-line="133" selection-start-column="82" selection-end-line="134" selection-end-column="67" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/public/javascripts/init_area.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="28" column="0" selection-start-line="28" selection-start-column="0" selection-end-line="28" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/main.js">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="141" column="0" selection-start-line="141" selection-start-column="0" selection-end-line="141" selection-end-column="0" />
-          <folding />
+          <folding>
+            <element signature="e#2050#2055#0" expanded="false" />
+            <element signature="e#2144#2829#0" expanded="false" />
+            <element signature="e#2917#3601#0" expanded="false" />
+            <element signature="e#6656#8655#0" expanded="false" />
+            <element signature="e#8730#10418#0" expanded="false" />
+            <element signature="e#10509#12494#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -710,6 +732,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="142" column="63" selection-start-line="142" selection-start-column="63" selection-end-line="142" selection-end-column="63" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -825,11 +848,11 @@
         <state vertical-scroll-proportion="0.0">
           <caret line="31" column="0" selection-start-line="31" selection-start-column="0" selection-end-line="31" selection-end-column="0" />
           <folding>
-            <marker date="1452520606697" expanded="true" signature="17:1228" placeholder="..." />
-            <marker date="1452520606697" expanded="true" signature="24:1203" placeholder="..." />
-            <marker date="1452520606697" expanded="true" signature="254:283" placeholder="..." />
-            <marker date="1452520606697" expanded="true" signature="1126:1203" placeholder="..." />
-            <marker date="1452520606697" expanded="true" signature="1210:1228" placeholder="..." />
+            <marker date="1452520606697" expanded="true" signature="-1:-1" placeholder="..." />
+            <marker date="1452520606697" expanded="true" signature="-1:-1" placeholder="..." />
+            <marker date="1452520606697" expanded="true" signature="-1:-1" placeholder="..." />
+            <marker date="1452520606697" expanded="true" signature="-1:-1" placeholder="..." />
+            <marker date="1452520606697" expanded="true" signature="-1:-1" placeholder="..." />
           </folding>
         </state>
       </provider>
@@ -854,6 +877,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="163" column="4" selection-start-line="163" selection-start-column="4" selection-end-line="163" selection-end-column="85" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -890,6 +914,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-6.9736843">
           <caret line="104" column="59" selection-start-line="104" selection-start-column="59" selection-end-line="104" selection-end-column="59" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -905,6 +930,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="117" column="26" selection-start-line="117" selection-start-column="26" selection-end-line="117" selection-end-column="26" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -923,13 +949,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/serverfun.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.33291456">
-          <caret line="302" column="0" selection-start-line="302" selection-start-column="0" selection-end-line="306" selection-end-column="24" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/public/javascripts/bargraph.js">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -942,6 +961,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="135" column="13" selection-start-line="128" selection-start-column="0" selection-end-line="135" selection-end-column="13" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -957,22 +977,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="38" column="0" selection-start-line="38" selection-start-column="0" selection-end-line="38" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/views/reportIndicator.jade">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-5.5866666">
-          <caret line="75" column="48" selection-start-line="75" selection-start-column="48" selection-end-line="75" selection-end-column="48" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/views/reportArea.jade">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="41" column="30" selection-start-line="41" selection-start-column="27" selection-end-line="41" selection-end-column="30" />
           <folding />
         </state>
       </provider>
@@ -1001,14 +1005,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/public/javascripts/select.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.7146283">
-          <caret line="131" column="0" selection-start-line="131" selection-start-column="0" selection-end-line="131" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/public/javascripts/scatterplotmatrix.js">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.9552042">
@@ -1025,23 +1021,16 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/views/select.jade">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="1.0395683">
-          <caret line="51" column="0" selection-start-line="51" selection-start-column="0" selection-end-line="51" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/views/layout.jade">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="8" selection-end-column="35" />
           <folding>
-            <marker date="1452520606697" expanded="true" signature="17:1228" placeholder="..." />
-            <marker date="1452520606697" expanded="true" signature="24:1203" placeholder="..." />
-            <marker date="1452520606697" expanded="true" signature="254:283" placeholder="..." />
-            <marker date="1452520606697" expanded="true" signature="1126:1203" placeholder="..." />
-            <marker date="1452520606697" expanded="true" signature="1210:1228" placeholder="..." />
+            <marker date="1452520606697" expanded="true" signature="-1:-1" placeholder="..." />
+            <marker date="1452520606697" expanded="true" signature="-1:-1" placeholder="..." />
+            <marker date="1452520606697" expanded="true" signature="-1:-1" placeholder="..." />
+            <marker date="1452520606697" expanded="true" signature="-1:-1" placeholder="..." />
+            <marker date="1452520606697" expanded="true" signature="-1:-1" placeholder="..." />
           </folding>
         </state>
       </provider>
@@ -1051,9 +1040,9 @@
         <state vertical-scroll-proportion="0.0">
           <caret line="11" column="23" selection-start-line="11" selection-start-column="23" selection-end-line="11" selection-end-column="23" />
           <folding>
-            <marker date="1452954372231" expanded="true" signature="17:327" placeholder="..." />
-            <marker date="1452954372231" expanded="true" signature="25:295" placeholder="..." />
-            <marker date="1452954372231" expanded="true" signature="303:327" placeholder="..." />
+            <marker date="1452954372231" expanded="true" signature="-1:-1" placeholder="..." />
+            <marker date="1452954372231" expanded="true" signature="-1:-1" placeholder="..." />
+            <marker date="1452954372231" expanded="true" signature="-1:-1" placeholder="..." />
           </folding>
         </state>
       </provider>
@@ -1062,22 +1051,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-12.423077">
           <caret line="19" column="26" selection-start-line="19" selection-start-column="26" selection-end-line="19" selection-end-column="26" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/public/javascripts/overviewwidget.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="65" column="27" selection-start-line="65" selection-start-column="27" selection-end-line="65" selection-end-column="27" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/main.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="407" column="50" selection-start-line="407" selection-start-column="50" selection-end-line="407" selection-end-column="50" />
           <folding />
         </state>
       </provider>
@@ -1104,18 +1077,110 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/configs/master_config.json">
+    <entry file="file://$PROJECT_DIR$/public/javascripts/overviewwidget.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-16.038462">
-          <caret line="148" column="26" selection-start-line="148" selection-start-column="18" selection-end-line="148" selection-end-column="26" />
+        <state vertical-scroll-proportion="0.0">
+          <caret line="65" column="27" selection-start-line="65" selection-start-column="27" selection-end-line="65" selection-end-column="27" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/views/select.jade">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="22" column="29" selection-start-line="22" selection-start-column="29" selection-end-line="22" selection-end-column="29" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/public/stylesheets/style.css">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.660401">
-          <caret line="34" column="0" selection-start-line="31" selection-start-column="0" selection-end-line="34" selection-end-column="0" />
+        <state vertical-scroll-proportion="-2.7567568">
+          <caret line="54" column="18" selection-start-line="54" selection-start-column="18" selection-end-line="54" selection-end-column="18" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/views/reportIndicator.jade">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="81" column="37" selection-start-line="81" selection-start-column="37" selection-end-line="81" selection-end-column="37" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/javascripts/select.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="51" column="0" selection-start-line="51" selection-start-column="0" selection-end-line="55" selection-end-column="2" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/views/share.jade">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="36" column="28" selection-start-line="36" selection-start-column="28" selection-end-line="36" selection-end-column="28" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/serverfun.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="323" column="0" selection-start-line="323" selection-start-column="0" selection-end-line="323" selection-end-column="0" />
+          <folding>
+            <element signature="e#73#705#0" expanded="false" />
+            <element signature="e#772#2978#0" expanded="false" />
+            <element signature="e#3019#3172#0" expanded="false" />
+            <element signature="e#3214#3415#0" expanded="false" />
+            <element signature="e#3475#4140#0" expanded="false" />
+            <element signature="e#4240#4944#0" expanded="false" />
+            <element signature="e#5066#5841#0" expanded="false" />
+            <element signature="e#5886#6801#0" expanded="false" />
+            <element signature="e#6862#7227#0" expanded="false" />
+            <element signature="e#7277#8517#0" expanded="false" />
+            <element signature="e#8571#8718#0" expanded="false" />
+            <element signature="e#8763#9459#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/main.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-5.736842">
+          <caret line="187" column="0" selection-start-line="187" selection-start-column="0" selection-end-line="187" selection-end-column="0" />
+          <folding>
+            <element signature="e#2050#2055#0" expanded="false" />
+            <element signature="e#2144#2829#0" expanded="false" />
+            <element signature="e#2917#3601#0" expanded="false" />
+            <element signature="e#6656#8655#0" expanded="false" />
+            <element signature="e#8730#10418#0" expanded="false" />
+            <element signature="e#10509#12494#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/configs/master_config.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-14.384615">
+          <caret line="40" column="44" selection-start-line="40" selection-start-column="44" selection-end-line="40" selection-end-column="44" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/views/reportArea.jade">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="57" column="0" selection-start-line="57" selection-start-column="0" selection-end-line="60" selection-end-column="37" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/javascripts/share.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.4677207">
+          <caret line="30" column="0" selection-start-line="30" selection-start-column="0" selection-end-line="30" selection-end-column="0" />
           <folding />
         </state>
       </provider>

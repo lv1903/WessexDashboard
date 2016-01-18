@@ -113,26 +113,6 @@ module.exports = {
     },
 
 
-    //getSubset: function(allObj, areaType, indicator, genderType, config_obj){
-    //
-    //    var subsetList = this.filterToArray(config_obj.master_config.areaList[areaType], "id");
-    //
-    //    var subsetObj = [];
-    //
-    //    console.log(indicator)
-    //
-    //    for(var i in allObj){
-    //        //console.log(allObj[i])
-    //        if(subsetList.indexOf(allObj[i]["Area Code"]) > -1 &&
-    //            allObj[i]["Indicator"] == config_obj.master_config.indicatorMapping[indicator] &&
-    //            allObj[i]["Sex"] == genderType){ // keys should be in a config file
-    //
-    //            subsetObj.push(allObj[i]);
-    //        }
-    //    }
-    //    return subsetObj
-    //},
-
     getUniqueArray: function(key, arr){
         var uniqueArr = [];
         for(var i in arr){
@@ -343,28 +323,7 @@ module.exports = {
 
 
 
+};
 
 
-
-}
-
-
-//array functions
-
-//Array.prototype.contains = function(v) {
-//    for(var i = 0; i < this.length; i++) {
-//        if(this[i] === v) return true;
-//    }
-//    return false;
-//};
-//
-//Array.prototype.unique = function() {
-//    var arr = [];
-//    for(var i = 0; i < this.length; i++) {
-//        if(!arr.contains(this[i])) {
-//            arr.push(this[i]);
-//        }
-//    }
-//    return arr;
-//}
 

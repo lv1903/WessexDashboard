@@ -1,0 +1,43 @@
+extends layout
+block content
+
+    link(rel='stylesheet', href='/stylesheets/style.css')
+
+    script.
+      var config_obj = !{JSON.stringify(config_obj)};
+      var state_obj = !{JSON.stringify(state_obj)};
+
+
+    script(src="/javascripts/share.js")
+
+
+
+    #selectDiv
+      .btn.btn-default.btn-lg#doneButton(onclick='getPage()') Back
+
+    hr
+
+    h2 Share the welcome page
+
+
+    hr
+
+    h2 Share the current report
+
+    a.btn.btn-default.btn-lg.share-btn#selectButton(onclick='share("mail")')
+        span.i.fa.fa-envelope.fa-fw
+        span #{" "} mail
+
+    .btn.btn-default.btn-lg.share-btn#selectButton(onclick='share("twitter")')
+        span.i.fa.fa-twitter.fa-fw
+        span #{" "} twitter
+
+    .btn.btn-default.btn-lg.share-btn#selectButton(onclick='share("facebook")')
+        span.i.fa.fa-facebook.fa-fw
+        span #{" "} facebook
+
+
+    hr
+    .btn.btn-default.btn-lg#doneButton(onclick='getPage()') Back
+
+

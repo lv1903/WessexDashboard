@@ -20,16 +20,30 @@ block content
 
     script.
         select = function () {
-            console.log(state_obj)
-            var path = window.location.protocol + "//" + window.location.host + "/select/"
-                    + encodeURIComponent(state_obj.reportType) + "/"
-                    + encodeURIComponent(state_obj.areaType) + "/"
-                    + encodeURIComponent(state_obj.indicatorArr[0]) + "/"
-                    + encodeURIComponent(state_obj.genderArr[0]) + "/"
-                    + encodeURIComponent(state_obj.current_area) + "/";
-            console.log(path)
-            window.location.href = path;
-        }
+                    console.log(state_obj)
+                    var path = window.location.protocol + "//" + window.location.host + "/select/"
+                            + encodeURIComponent(state_obj.reportType) + "/"
+                            + encodeURIComponent(state_obj.areaType) + "/"
+                            + encodeURIComponent(state_obj.indicatorArr[0]) + "/"
+                            + encodeURIComponent(state_obj.genderArr[0]) + "/"
+                            + encodeURIComponent(state_obj.current_area) + "/";
+                    console.log(path)
+                    window.location.href = path;
+                }
+
+        share = function () {
+                    console.log(state_obj)
+                    var path = window.location.protocol + "//" + window.location.host + "/share/"
+                            + encodeURIComponent(state_obj.reportType) + "/"
+                            + encodeURIComponent(state_obj.areaType) + "/"
+                            + encodeURIComponent(state_obj.indicatorArr[0]) + "/"
+                            + encodeURIComponent(state_obj.genderArr[0]) + "/"
+                            + encodeURIComponent(state_obj.current_area) + "/";
+                    console.log(path)
+                    window.location.href = path;
+                }
+
+
 
 
 
@@ -40,6 +54,14 @@ block content
                 .btn.btn-default.btn-lg.flex-btn#selectButton(onclick='select()')
                     span.i.fa.fa-th-large.fa-fw
                     span #{" "} Change Report
+
+            .flex-header-item#shareButtonItem
+                .btn.btn-default.btn-lg.flex-btn#selectButton(onclick='share()')
+                    span.i.fa.fa-share-alt.fa-fw
+                    span #{" "} Share
+
+
+
             //.flex-header-item#selectButtonItem
             //    .btn.btn-default.btn-lg.flex-btn#selectButton(onclick='select()')
             //        span.i.fa.fa-file-pdf-o.fa-fw
