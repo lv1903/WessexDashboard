@@ -1,0 +1,101 @@
+extends layout
+block content
+
+    link(rel='stylesheet', href='/stylesheets/style.css')
+    link(rel='stylesheet', href='/stylesheets/flexStyleIndicator.css')
+
+    script.
+        var config_obj = !{JSON.stringify(config_obj)};
+        var data_obj = !{JSON.stringify(data_obj)};
+        var state_obj = !{JSON.stringify(state_obj)};
+
+
+    script(src="/javascripts/components.js")
+    script(src="/javascripts/controller.js")
+
+    script(src="/javascripts/intromap.js")
+    script(src="/javascripts/introdensity.js")
+
+    script(src="/javascripts/init_intro.js")
+
+
+
+
+
+    #intro_container
+        h1 Wessex AHSN Local Alcohol Profile
+
+        h4 Alcohol-related harm consumes nearly #{" "}
+            span.number_text &#163
+            span.number_text 2.7
+            span #{" "} billion of the annual NHS budget
+
+        h4 It costs nearly #{" "}
+            span.number_text &#163
+            span.number_text 238
+            span #{" "} million across Dorset, Hampshire and Wiltshire.
+
+        br
+
+        hr
+        a.explore_btn.btn.btn-block(href='http://localhost:3011/select/AreaReport/CCG/Admission%20episodes%20for%20alcohol-related%20conditions/Male/E38000137/') Explore your area with our app!
+        hr
+
+        #introDensityItem
+
+        h3 Deaths from chronic liver disease in England: 2011-13
+
+        hr
+
+        p The Wessex Local Alcohol Profiles help us understand the impact that alcohol is having on our communities. #{" "}
+            span We are collecting and sharing good practice, including the data from across Wessex, and using this evidence to address the alcohol-related harm.
+
+
+        p The Alcohol Baseline project is a key part of the Wessex AHSN Reducing Harm from Alcohol programme. #{" "}
+            span Working with Public Health data we have pulled together the Wessex Local Alcohol Profiles from which we can understand the impact that alcohol is having on our communities.#{" "}
+            span In this way we will be able to understand any evolving trends that need to be addressed and measure the impact of our work.
+
+
+        p This baseline sets out the aims and scope of our alcohol programme. #{" "}
+            span Through regularly reviewing and monitoring the baseline, we will be able to measure the impact we are making and identify emerging trends.
+
+        hr
+
+        br
+
+        h4 There were #{" "}
+            span.number_text 56,000
+            span #{" "} alcohol related addmission episodes in Wessex Hospitals in 2013/14.
+
+        h4 And over #{" "}
+            span.number_text 1,000
+            span #{" "} deaths from alcohol-specific conditions, 2011-13.
+
+
+        br
+
+        hr
+
+
+        #introMapItem
+
+        h3 Alcohol-specific mortality in Wessex CCGs: 2011-13
+
+        hr
+
+        a.explore_btn.btn.btn-block(href='http://localhost:3011/select/AreaReport/CCG/Admission%20episodes%20for%20alcohol-related%20conditions/Male/E38000137/') Explore your area with our app!
+
+        hr
+
+
+        br
+
+        p This app was built by #{" "}
+            span.nqminds_text
+                a(href="nqminds.com", target="blank") nquiringminds
+
+        p The data was generated using Fingertips profile tools. Crown copyright &#169 2016. Fingertips was designed and developed by the Fingertips team at Public Health England. Available at #{" "}
+            span
+                a(href="http://fingertips.phe.org.uk", target="blank") http://fingertips.phe.org.uk
+
+

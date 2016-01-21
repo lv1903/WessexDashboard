@@ -2637,6 +2637,7 @@ Components.prototype.scatterPlotMatrix = function(widget, configuration){
     var indicator_nest = undefined;
     var scalets = undefined;
     var axlets = undefined;
+    var girdlets = undefined;
 
     var areaList = undefined;
     var indicatorArr = undefined;
@@ -2753,6 +2754,7 @@ Components.prototype.scatterPlotMatrix = function(widget, configuration){
 
         scalets = {};
         axlets = {};
+        gridlets = {};
 
 
         for(var i in indicator_nest){
@@ -2773,16 +2775,17 @@ Components.prototype.scatterPlotMatrix = function(widget, configuration){
 
 
             axlets[indicator] = {};
+
             axlets[indicator].xAxis = d3.svg.axis()
                 .scale(scalets[indicator].scale)
-                .tickValues([0, max])
-                .tickPadding(2)
+                .ticks(4)
                 .orient("top");
+
 
             axlets[indicator].yAxis = d3.svg.axis()
                 .scale(scalets[indicator].scaleInverse)
-                .tickValues([max])
-                .tickPadding(13)
+                .ticks(4)
+                //.innerTickSize()
                 .orient("right");
 
         }
@@ -2905,40 +2908,70 @@ Components.prototype.scatterPlotMatrix = function(widget, configuration){
                 if(indicatorArr[i] != indicatorArr[j]){ //don't plot self correlations
 
 
-                    //draw axis
+                    //draw grid
                     data_grid.append("g")
-                        .attr("class", "x axis")
+                        .attr("transform", "translate(" + scale(Number(i)) + "," + scale(Number(j)) + ")")
+                        .selectAll("line.horizontalGrid")
+                        .data(scalets[indicatorArr[j]].scaleInverse.ticks(4))
+                        .enter()
+                        .append("line")
+                        .attr(
+                        {
+                            "class":"horizontalGrid",
+                            "x1" : 0,
+                            "x2" : scale(1),
+                            "y1" : function(d){ return scalets[indicatorArr[j]].scaleInverse(d);},
+                            "y2" : function(d){ return scalets[indicatorArr[j]].scaleInverse(d);},
+                            "fill" : "none",
+                            "stroke" : controller.config.colorScheme.main_color_offset,
+                            "stroke-width" : "1px"
+                        });
+
+
+                    data_grid.append("g")
+                        .attr("transform", "translate(" + scale(Number(i)) + "," + scale(Number(j)) + ")")
+                        .selectAll("line.horizontalGrid")
+                        .data(scalets[indicatorArr[i]].scale.ticks(4))
+                        .enter()
+                        .append("line")
+                        .attr(
+                        {
+                            "class":"horizontalGrid",
+                            "x1" : function(d){ return scalets[indicatorArr[i]].scale(d);},
+                            "x2" : function(d){ return scalets[indicatorArr[i]].scale(d);},
+                            "y1" : 0,
+                            "y2" : scale(1),
+                            "fill" : "none",
+                            "stroke" : controller.config.colorScheme.main_color_offset,
+                            "stroke-width" : "1px"
+                        });
+
+
+
+
+                    //draw axis numbers
+                    data_grid.append("g")
+                        .attr("class", "x axis scatter_axis")
                         .attr("transform", "translate(" + scale(Number(i)) + "," + scale(Number(j) + 1) + ")")
                         //.attr("transform", "translate(" + scale(Number(i) + 1) + "," + scale(j) + ")")
                         .style("fill", "none")
                         .call(axlets[indicatorArr[i]].xAxis);
 
                     data_grid.append("g")
-                        .attr("class", "y axis")
+                        .attr("class", "y axis scatter_axis")
                         .attr("transform", "translate(" + scale(Number(i)) + "," + scale(Number(j)) + ")")
                         //.attr("transform", "translate(" + scale(Number(i) + 1) + "," + scale(j) + ")")
                         .style("fill", "none")
                         .call(axlets[indicatorArr[j]].yAxis);
 
+                    d3.selectAll(".scatter_axis")
+                        .selectAll(".tick")
+                        .style("stroke", controller.config.colorScheme.main_color);
+
+
 
                     //get data for plot
                     datlet = getDatlet(indicatorArr[i], indicatorArr[j], period)
-
-
-                    //plot data
-                    data_grid
-                        .selectAll(".scatter_dot" + i + j)
-                        .data(datlet)
-                        .enter()
-                        .append("circle")
-                        .attr("class", "scatter_dot clickable scatter" + widget.widgetId + i + j)
-                        .attr("id", function(d){return "scatter" + widget.widgetId + i + j + d.id})
-                        .attr("r", function(d){return select_r(d.id)})
-                        .attr("cx", function(d){return scale(i) + scalets[indicatorArr[i]].scale(d.x)})
-                        .attr("cy", function(d){return scale(j) + scalets[indicatorArr[j]].scaleInverse(d.y)})
-                        .style("opacity",function(d){return select_opacity(d.id, datlet)})
-                        .style("fill", function(d){return select_color(d.id)})
-                        .on("click", dot_click);
 
 
                     //draw no data available
@@ -2959,6 +2992,25 @@ Components.prototype.scatterPlotMatrix = function(widget, configuration){
                             }
                         })
                         .style("fill", config.colorScheme.text_color);
+
+
+                    //plot data
+                    data_grid
+                        .selectAll(".scatter_dot" + i + j)
+                        .data(datlet)
+                        .enter()
+                        .append("circle")
+                        .attr("class", "scatter_dot clickable scatter" + widget.widgetId + i + j)
+                        .attr("id", function(d){return "scatter" + widget.widgetId + i + j + d.id})
+                        .attr("r", function(d){return select_r(d.id)})
+                        .attr("cx", function(d){return scale(i) + scalets[indicatorArr[i]].scale(d.x)})
+                        .attr("cy", function(d){return scale(j) + scalets[indicatorArr[j]].scaleInverse(d.y)})
+                        .style("opacity",function(d){return select_opacity(d.id, datlet)})
+                        .style("fill", function(d){return select_color(d.id)})
+                        .on("click", dot_click);
+
+
+
 
 
                 }

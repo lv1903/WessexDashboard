@@ -11,17 +11,14 @@ var sharePath = function() {
     switch (state_obj.reportType) {
 
         case "IndicatorReport":
-            console.log("I: " + state_obj.reportType)
             path = window.location.protocol + "//" + window.location.host + "/IndicatorReport/" + areaType + "/" + indicator + "/" + gender  + "/" + state_obj.current_area;
             break;
 
         case "OverviewReport":
-            console.log("O: "  + state_obj.reportType)
             path = window.location.protocol + "//" + window.location.host + "/OverviewReport/" + areaType + "/" + state_obj.current_area + "/" + gender;
             break;
 
         case "AreaReport":
-            console.log("A: " + state_obj.reportType)
             path = window.location.protocol + "//" + window.location.host + "/AreaReport/" + areaType + "/" + state_obj.current_area + "/" + gender;
             break;
     }
@@ -30,13 +27,8 @@ var sharePath = function() {
 };
 
 var getPage = function(){
-
     window.location.href = sharePath();
-
 };
-
-
-console.log(sharePath())
 
 var appUrl = sharePath();
 
@@ -49,22 +41,8 @@ var encoded_titleText =  encodeURIComponent(titleText);
 
 var body = "Explore the local alcohol profiles in Wessex: " + encoded_appUrl;
 
-//
-//    divId = "share_" + cat;
-//
-//    var html =  '<div id=divId>'
-//        + '<span><a href="https://twitter.com/intent/tweet?url=' + encoded_appUrl + '&text=' + encoded_summaryText + '&via=centrepointuk" title="twitter" target="_blank"><img class="shareImg" src="/images/twitter_button.png"></a></span>'
-//        + '<span><a href="https://www.facebook.com/sharer/sharer.php?u=' + encoded_appUrl + '" title="facebook" target="_blank"><img class="shareImg" src="/images/facebook_button.png"></a></span>'
-//        + '<span><a href="mailto: ?subject=' + titleText + '&body=' + body + '" title="default mail" target="_blank"><img class="shareImg" src="/images/mail_button.png"></a></span>'
-//        + "</div>"
-//
-//    return html
-//}
 
-
-
-
-var share = function(type){
+var shareIt = function(type){
 
     switch(type) {
 

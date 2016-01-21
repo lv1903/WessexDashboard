@@ -3,7 +3,9 @@ var buildPath = function(){
 
     var inArr, outArtt, path;
 
-    if(document.getElementById("reportTypeSelect").value == "IndicatorReport"){
+    var reportType = $('input[name=selectName]:checked', '#reportForm').val();
+
+    if(reportType == "IndicatorReport"){
 
         inArr = ["areaTypeSelect", "indicatorSelect","genderSelect", "areaSelect"];
         outArr =[];
@@ -18,7 +20,7 @@ var buildPath = function(){
     }
 
 
-    if(document.getElementById("reportTypeSelect").value == "OverviewReport"){
+    if(reportType == "OverviewReport"){
 
         inArr = ["areaTypeSelect", "areaSelect", "genderSelect"];
         outArr = [];
@@ -30,7 +32,7 @@ var buildPath = function(){
     }
 
 
-    if(document.getElementById("reportTypeSelect").value == "AreaReport"){
+    if(reportType == "AreaReport"){
 
         inArr = ["areaTypeSelect", "areaSelect", "genderSelect"];
         outArr = [];
@@ -59,9 +61,21 @@ var getPage = function(){
 
 var reportTypeChange = function(){
 
-    var reportType = document.getElementById("reportTypeSelect").value;
+
+    var reportType = $('input[name=selectName]:checked', '#reportForm').val();
+    if(reportType == undefined){
+
+        $('input[value=' + state_obj.reportType + ']', '#reportForm').prop('checked', true)
+            .siblings('.btn-radio').addClass('active')
+            .siblings('.img-radio').css('opacity','1');
+
+    }
+    reportType = $('input[name=selectName]:checked', '#reportForm').val();
+
 
     if(reportType == "AreaReport" || reportType == "OverviewReport" ) {
+
+
 
         document.getElementById("genderSelector").style.display = 'block';
         document.getElementById("indicatorSelector").style.display = 'none';
@@ -71,7 +85,7 @@ var reportTypeChange = function(){
 
     }
 
-    if (reportType == "IndicatorReport"|| reportType == "OverviewReport" ) {
+    if (reportType == "IndicatorReport") {
 
         document.getElementById("genderSelector").style.display = 'block';
         document.getElementById("indicatorSelector").style.display = 'block';
@@ -130,7 +144,7 @@ window.onload = function() {
     reportTypeChange();
     areaTypeChange();
 
-    document.getElementById("reportTypeSelect").value = state_obj.reportType;
+    //document.getElementById("reportTypeSelect").value = state_obj.reportType;
     document.getElementById("genderSelect").value = state_obj.gender;
     document.getElementById("areaTypeSelect").value = state_obj.areaType;
     document.getElementById("areaSelect").value = state_obj.current_area;
@@ -139,7 +153,7 @@ window.onload = function() {
     reportTypeChange();
     areaTypeChange();
 
-    document.getElementById("reportTypeSelect").value = state_obj.reportType;
+    //document.getElementById("reportTypeSelect").value = state_obj.reportType;
     document.getElementById("genderSelect").value = state_obj.gender;
     document.getElementById("areaTypeSelect").value = state_obj.areaType;
     document.getElementById("areaSelect").value = state_obj.current_area;
@@ -147,3 +161,16 @@ window.onload = function() {
 
 
 };
+
+$(function () {
+    $('.btn-radio, img').click(function(e) {
+        $('.btn-radio').not(this).removeClass('active')
+            .siblings('input').prop('checked',false)
+            .siblings('.img-radio').css('opacity','0.5');
+        $(this).parent().children('.btn-radio').addClass('active')
+            .siblings('input').prop('checked',true)
+            .siblings('.img-radio').css('opacity','1');
+        reportTypeChange();
+    });
+
+});

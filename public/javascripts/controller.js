@@ -3,6 +3,8 @@ var ee = new EventEmitter();
 
 var Controller = function(data_obj, config, state_obj){
 
+    console.log(state_obj)
+
     var self = this;
 
     this.data_obj = data_obj;
@@ -90,7 +92,8 @@ Controller.prototype._secondary_area_change = function(){
     ee.emitEvent("update_widget");
     ee.emitEvent("update");
 
-}
+};
+
 
 
 Controller.prototype.validate_NaN_to_0 = function(val){
@@ -164,6 +167,8 @@ Controller.prototype.getUniqueArray = function(key, arr){
 Controller.prototype.filterData = function(areaType, gender, indicator){
 
     var src = this.config.source;
+
+    console.log(areaType + " " +  gender + " " +  indicator)
 
     var data = this.data_obj.data_arr.filter(function(obj){
         if(

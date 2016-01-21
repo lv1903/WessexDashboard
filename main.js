@@ -167,26 +167,80 @@ app.get("/share/:reportType/:areaType/:indicator/:gender/:area", function(req, r
 });
 
 
+app.get("/WessexAlcohol", function(req, res){
 
-/*app.get("/IndicatorReport/:areaTypeIndex/:indicatorIndex/:genderIndex/:area", function(req, res) {
+    var reportType = "Intro";
 
+    var areaType = "CCG";
 
-
-
-    var areaTypeIndex = req.params["areaTypeIndex"];
-    var indicatorIndex = req.params["indicatorIndex"];
-    var genderIndex = req.params["genderIndex"];
+    var genderArr = ["Persons"]
 
 
-    var reportType = "IndicatorReport";
-    var areaType = config_obj.areaTypeArray[areaTypeIndex];
-    var indicator= config_obj.indicatorArray[indicatorIndex];
-    var gender = config_obj.genderArray[genderIndex];
     var area = req.params["area"];
 
-    res.redirect("/" + reportType + "/" + areaType + "/" + indicator + "/" + gender + "/" + area)
 
-});*/
+    var indicatorArr = [];
+    for(var indicator in config_obj.indicatorMapping){
+        indicatorArr.push(indicator)
+    }
+
+    var state_obj = {
+        reportType: reportType,
+        areaType: areaType,
+        genderArr: genderArr,
+        indicatorArr: indicatorArr,
+        current_area: area
+    }
+
+    //for the area type, area(currently sending all areas) and gender get data for wessex areas
+
+    //get list of wessex areas for area type
+    var wessexList = config_obj.areaList[areaType].map(function(obj){ return obj.id});
+
+    var wessex_arr = data_arr.filter(function(obj){
+        if(
+            obj["Area Type"] == areaType &&
+                //indicatorMappedArr.indexOf(obj["Indicator"]) > -1 &&
+            genderArr.indexOf(obj["Sex"]) > -1 &&
+            wessexList.indexOf(obj["Area Code"]) > -1
+        ){
+            return obj
+        }
+    });
+
+
+    //get ordered list data and density data
+    var ordered_list_obj = {};
+    ordered_list_obj =  england_ordered_list_obj; //f.filterEnglandObj(ordered_list_obj, england_ordered_list_obj, state_obj);
+    var density_obj = {}
+    density_obj = england_density_obj; //f.filterEnglandObj(density_obj, england_density_obj, state_obj);
+
+    var topojson_obj = {};
+    topojson_obj[areaType] = all_topojson_obj[areaType];
+
+
+    var data_obj = {
+        data_arr: wessex_arr,
+        ordered_list_obj: ordered_list_obj,
+        density_obj: density_obj,
+        topojson_obj: topojson_obj
+    };
+
+
+    var view = "intro";
+
+    res.render(view, {
+        title: view,
+        state_obj: state_obj,
+        data_obj: data_obj,
+        config_obj: config_obj
+    });
+
+
+
+
+
+})
 
 
 app.get("/IndicatorReport/:areaType/:indicator/:gender/:area", function(req, res) {
@@ -286,13 +340,19 @@ app.get("/AreaReport/:areaType/:area/:gender", function(req, res) {
     //density data
 
     var reportType = "AreaReport";
+
     var areaType = req.params["areaType"];
-    var genderArr = [req.params["gender"]];
+    if(!isNaN(areaType)){areaType = config_obj.areaTypeArray[areaType]}
+
+    var gender = req.params["gender"]
+    if(!isNaN(gender)){gender = config_obj.genderArray[gender]}
+    var genderArr = [gender];
+
     var area = req.params["area"];
 
 
     var indicatorArr = [];
-    for(indicator in config_obj.indicatorMapping){
+    for(var indicator in config_obj.indicatorMapping){
         indicatorArr.push(indicator)
     }
 
@@ -356,14 +416,22 @@ app.get("/AreaReport/:areaType/:area/:gender", function(req, res) {
 app.get("/OverviewReport/:areaType/:area/:gender", function(req, res) {
 
     var reportType = "OverviewReport";
+
     var areaType = req.params["areaType"];
-    var genderArr = [req.params["gender"]];
-    var area = req.params["area"];
+    if(!isNaN(areaType)){areaType = config_obj.areaTypeArray[areaType]}
 
     var indicatorArr = [];
-    for(indicator in config_obj.indicatorMapping){
+    for(var indicator in config_obj.indicatorMapping){
         indicatorArr.push(indicator)
     }
+
+    var gender = req.params["gender"]
+    if(!isNaN(gender)){gender = config_obj.genderArray[gender]}
+    var genderArr = [gender];
+
+    var area = req.params["area"];
+
+
 
     var state_obj = {
         reportType: reportType,
@@ -371,7 +439,8 @@ app.get("/OverviewReport/:areaType/:area/:gender", function(req, res) {
         genderArr: genderArr,
         indicatorArr: indicatorArr,
         current_area: area
-    }
+    };
+
 
 
 

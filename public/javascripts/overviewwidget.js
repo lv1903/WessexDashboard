@@ -136,8 +136,6 @@ OverviewWidget.prototype._draw_timeSlider = function(){
 
 OverviewWidget.prototype._draw_key = function(){
 
-    console.log("here")
-
     var self = this;
 
     this._map_key = component.wessexMapKey(self, {

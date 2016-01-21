@@ -18,15 +18,32 @@ block content
 
    hr
 
+
+
+
+
    h1 Select
-   #reportTyoeSelector
+   #reportTypeSelector
       h3  Choose Report Type:
-      select(onchange='reportTypeChange()')#reportTypeSelect
-         option(value='AreaReport') Area Report
-         option(value='IndicatorReport') Indicator Report
-         option(value='OverviewReport') Overview Report
+
+
+      form(role='form')#reportForm
+         div
+            img.img-responsive.img-radio(src='/images/area_pic.png')
+            button.btn.btn-primary.btn-radio(type='button') One Area All Indicators
+            input#area-item.hidden(type='checkbox', name="selectName", value="AreaReport")
+         div
+            img.img-responsive.img-radio(src='/images/ind_pic.png')
+            button.btn.btn-primary.btn-radio(type='button') One Indicator All Areas
+            input#indicator-item.hidden(type='checkbox', name="selectName", value="IndicatorReport")
+         div
+            img.img-responsive.img-radio(src='/images/over_pic.png')
+            button.btn.btn-primary.btn-radio(type='button') Overview
+            input#overview-item.hidden(type='checkbox', name="selectName", value="OverviewReport")
 
    hr
+
+   h1 Options
 
    #genderSelector
       h3 Gender:

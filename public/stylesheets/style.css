@@ -72,7 +72,7 @@ body {
 .clickable {
 
   cursor: crosshair;
-  cursor: crosshair;
+
 
 }
 
@@ -119,6 +119,54 @@ body {
   text-align: center;
   font-size: 1.5em;
 }
+
+
+/*---select image buttons*/
+
+.btn-radio {
+  width: 200px;
+  background-color: white;
+  color: #333;
+  border-color: #ccc;
+}
+
+
+.img-radio {
+  opacity: 0.5;
+  margin-bottom: 5px;
+  margin-top: 33px;
+  width: 200px;
+  cursor: pointer;
+}
+
+
+/*--intro page---------*/
+.number_text{
+
+  font-size: 30px;
+
+}
+
+#intro_container {
+  max-width: 800px;
+  text-align: center;
+
+}
+
+#introMapItem {
+  width: 300px;
+  margin:0 auto;
+}
+
+#introDensityItem {
+  width: 350px;
+  margin:0 auto;
+}
+
+.explore_btn {
+  font-size: 21px;
+}
+
 
 
 

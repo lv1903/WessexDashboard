@@ -235,8 +235,6 @@ IndicatorWidget.prototype._draw_count = function(){
 
     var self = this;
 
-    console.log(self.val)
-
     //add count text if available
     if(this.val != null && this.val.count != null) {
 
