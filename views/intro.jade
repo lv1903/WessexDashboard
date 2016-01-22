@@ -18,12 +18,18 @@ block content
 
     script(src="/javascripts/init_intro.js")
 
-
+    script.
+        var enterApp = function(){
+            window.location.href = window.location.protocol + "//" + window.location.host + '/select/AreaReport/CCG/Admission%20episodes%20for%20alcohol-related%20conditions/Male/E38000137/'
+        }
 
 
 
     #intro_container
         h1 Wessex AHSN Local Alcohol Profile
+
+        img(src='/images/wahsn_logo.png')#wahsnLogo
+
 
         h4 Alcohol-related harm consumes nearly #{" "}
             span.number_text &#163
@@ -38,7 +44,7 @@ block content
         br
 
         hr
-        a.explore_btn.btn.btn-block(href='http://localhost:3011/select/AreaReport/CCG/Admission%20episodes%20for%20alcohol-related%20conditions/Male/E38000137/') Explore your area with our app!
+        .explore_btn.btn.btn-block(onclick="enterApp()") Click here to view the reports!
         hr
 
         #introDensityItem
@@ -65,7 +71,7 @@ block content
 
         h4 There were #{" "}
             span.number_text 56,000
-            span #{" "} alcohol related addmission episodes in Wessex Hospitals in 2013/14.
+            span #{" "} alcohol related admission episodes in Wessex Hospitals in 2013/14.
 
         h4 And over #{" "}
             span.number_text 1,000
@@ -74,7 +80,6 @@ block content
 
         br
 
-        hr
 
 
         #introMapItem
@@ -83,19 +88,26 @@ block content
 
         hr
 
-        a.explore_btn.btn.btn-block(href='http://localhost:3011/select/AreaReport/CCG/Admission%20episodes%20for%20alcohol-related%20conditions/Male/E38000137/') Explore your area with our app!
-
-        hr
+        .explore_btn.btn.btn-block(onclick="enterApp()") Click here to view the reports!
 
 
-        br
+        .report_footer
+            hr
+            br
 
-        p This app was built by #{" "}
-            span.nqminds_text
-                a(href="nqminds.com", target="blank") nquiringminds
+            p This app was built by #{" "}
+                span.nqminds_text
+                    a(href="http://nqminds.com", target="blank") nquiringminds
 
-        p The data was generated using Fingertips profile tools. Crown copyright &#169 2016. Fingertips was designed and developed by the Fingertips team at Public Health England. Available at #{" "}
-            span
-                a(href="http://fingertips.phe.org.uk", target="blank") http://fingertips.phe.org.uk
+            #logos
+                img(src='/images/wahsn_logo.png').img_logo
+                img(src='/images/cis_logo.png').img_logo
+                img(src='/images/soto_logo.png').img_logo
+                img(src='/images/nqm_logo.png').img_logo
+
+
+            p The data was sourced from Fingertips profile tools. Crown copyright &#169 2016. Fingertips was designed and developed by the Fingertips team at Public Health England. Available at #{" "}
+                span
+                    a(href="http://fingertips.phe.org.uk", target="blank") http://fingertips.phe.org.uk
 
 

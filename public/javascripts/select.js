@@ -61,6 +61,8 @@ var getPage = function(){
 
 var reportTypeChange = function(){
 
+    anyChange();
+
 
     var reportType = $('input[name=selectName]:checked', '#reportForm').val();
     if(reportType == undefined){
@@ -81,7 +83,7 @@ var reportTypeChange = function(){
         document.getElementById("indicatorSelector").style.display = 'none';
         document.getElementById("areaTypeSelector").style.display = 'block';
         document.getElementById("areaSelector").style.display = 'block';
-        document.getElementById("areaSelectorText").innerHTML = "Area";
+        document.getElementById("areaSelectorText").innerHTML = "Areas:";
 
     }
 
@@ -91,13 +93,15 @@ var reportTypeChange = function(){
         document.getElementById("indicatorSelector").style.display = 'block';
         document.getElementById("areaTypeSelector").style.display = 'block';
         document.getElementById("areaSelector").style.display = 'block';
-        document.getElementById("areaSelectorText").innerHTML = "Highlight Area";
+        document.getElementById("areaSelectorText").innerHTML = "Highlight Area:";
 
     }
 
 };
 
 var areaTypeChange = function(){
+
+    anyChange();
 
     var areaType = document.getElementById("areaTypeSelect").value;
 
@@ -134,10 +138,17 @@ var areaTypeChange = function(){
 
 };
 
+var anyChange = function(){
+    document.getElementById("switchDoneButton").style.visibility = "visible";
+}
+
 
 
 
 window.onload = function() {
+
+
+
 
     //update twice once to populate once to set current values
 
@@ -158,6 +169,9 @@ window.onload = function() {
     document.getElementById("areaTypeSelect").value = state_obj.areaType;
     document.getElementById("areaSelect").value = state_obj.current_area;
     document.getElementById("indicatorSelect").value = state_obj.indicator;
+
+
+    document.getElementById("switchDoneButton").style.visibility = "hidden"; //hide the top done button
 
 
 };

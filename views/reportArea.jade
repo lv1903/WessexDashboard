@@ -18,58 +18,22 @@ block content
     script(src="/javascripts/init_area.js")
 
 
-    script.
-        select = function () {
-                    console.log(state_obj)
-                    var path = window.location.protocol + "//" + window.location.host + "/select/"
-                            + encodeURIComponent(state_obj.reportType) + "/"
-                            + encodeURIComponent(state_obj.areaType) + "/"
-                            + encodeURIComponent(state_obj.indicatorArr[0]) + "/"
-                            + encodeURIComponent(state_obj.genderArr[0]) + "/"
-                            + encodeURIComponent(state_obj.current_area) + "/";
-                    console.log(path)
-                    window.location.href = path;
-                }
-
-        share = function () {
-                    console.log(state_obj)
-                    var path = window.location.protocol + "//" + window.location.host + "/share/"
-                            + encodeURIComponent(state_obj.reportType) + "/"
-                            + encodeURIComponent(state_obj.areaType) + "/"
-                            + encodeURIComponent(state_obj.indicatorArr[0]) + "/"
-                            + encodeURIComponent(state_obj.genderArr[0]) + "/"
-                            + encodeURIComponent(state_obj.current_area) + "/";
-                    console.log(path)
-                    window.location.href = path;
-                }
-
-
-
-
 
     .flex-group
         .flex-header-container
 
             .flex-header-item#selectButtonItem
-                .btn.btn-default.btn-lg.flex-btn#selectButton(onclick='select()')
+                .btn.btn-primary.btn.flex-btn#selectButton(onclick='controller.select()')
                     span.i.fa.fa-th-large.fa-fw
-                    span #{" "} Change Report
-
+                    span #{" "} Change View
             .flex-header-item#shareButtonItem
-                .btn.btn-default.btn-lg.flex-btn#selectButton(onclick='share()')
+                .btn.btn-primary.btn.flex-btn#selectButton(onclick='controller.share()')
                     span.i.fa.fa-share-alt.fa-fw
                     span #{" "} Share
-
-
-
-            //.flex-header-item#selectButtonItem
-            //    .btn.btn-default.btn-lg.flex-btn#selectButton(onclick='select()')
-            //        span.i.fa.fa-file-pdf-o.fa-fw
-            //        span #{" "} PDF
-            //.flex-header-item#selectButtonItem
-            //    .btn.btn-default.btn-lg.flex-btn#selectButton(onclick='select()')
-            //        span.i.fa.fa-arrow-down.fa-fw
-            //        span #{" "} CSV
+            .flex-header-item#introButtonItem
+                .btn.btn-primary.btn.flex-btn#selectButton(onclick="controller.welcome()")
+                    span.i.fa.fa-reply.fa-fw
+                    span #{" "} Return to the introduction
 
 
 
@@ -81,3 +45,18 @@ block content
             .flex-item.double_item#wi3Item
             .flex-item.double_item#wi4Item
 
+
+    .report_footer
+        hr
+        br
+        p This app was built by #{" "}
+            span.nqminds_text
+                a(href="http://nqminds.com", target="blank") nquiringminds
+        #logos
+            img(src='/images/wahsn_logo.png').img_logo
+            img(src='/images/cis_logo.png').img_logo
+            img(src='/images/soto_logo.png').img_logo
+            img(src='/images/nqm_logo.png').img_logo
+        p The data was sourced from Fingertips profile tools. Crown copyright &#169 2016. Fingertips was designed and developed by the Fingertips team at Public Health England. Available at #{" "}
+            span
+                a(href="http://fingertips.phe.org.uk", target="blank") http://fingertips.phe.org.uk

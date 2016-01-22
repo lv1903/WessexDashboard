@@ -42,6 +42,11 @@ var encoded_titleText =  encodeURIComponent(titleText);
 var body = "Explore the local alcohol profiles in Wessex: " + encoded_appUrl;
 
 
+var introUrl =  window.location.protocol + "//" + window.location.host + "/WessexAlcohol"
+var encoded_introUrl =  encodeURIComponent(introUrl);
+var introBody =  "Explore the local alcohol profiles in Wessex: " + encoded_introUrl;
+
+
 var shareIt = function(type){
 
     switch(type) {
@@ -54,6 +59,16 @@ var shareIt = function(type){
 
         case "facebook":
             window.open("https://www.facebook.com/sharer/sharer.php?u=" + encoded_appUrl, "_blank");
+
+
+        case "mailIntro":
+            window.open("mailto: ?subject=" + titleText + "&body=" + introBody, "_blank");
+
+        case "twitterIntro":
+            window.open("https://twitter.com/intent/tweet?url=" + encoded_introUrl + "&text=" + encoded_summaryText, "_blank");
+
+        case "facebookIntro":
+            window.open("https://www.facebook.com/sharer/sharer.php?u=" + encoded_introUrl, "_blank");
 
 
 

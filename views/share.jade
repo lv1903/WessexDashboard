@@ -17,14 +17,24 @@ block content
 
     hr
 
-    h2 Share the welcome page
+    h2 Share the introduction page
+
+    .btn.btn-default.btn-lg.share-btn#selectButton(onclick='shareIt("mailIntro")')
+        span.i.fa.fa-envelope.fa-fw
+        span #{" "} mail
+    .btn.btn-default.btn-lg.share-btn#selectButton(onclick='shareIt("twitterIntro")')
+        span.i.fa.fa-twitter.fa-fw
+        span #{" "} twitter
+    .btn.btn-default.btn-lg.share-btn#selectButton(onclick='shareIt("facebookIntro")')
+        span.i.fa.fa-facebook.fa-fw
+        span #{" "} facebook
 
 
     hr
 
     h2 Share the current report
 
-    a.btn.btn-default.btn-lg.share-btn#selectButton(onclick='shareIt("mail")')
+    .btn.btn-default.btn-lg.share-btn#selectButton(onclick='shareIt("mail")')
         span.i.fa.fa-envelope.fa-fw
         span #{" "} mail
 

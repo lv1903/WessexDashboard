@@ -34,7 +34,7 @@
 .flex-header-container {
     /*as item*/
     margin: auto;
-    max-width: 300px;
+    /*width: 1000px;*/
 
 
     /*as container*/
@@ -52,14 +52,14 @@
     -webkit-align-items: flex-start;
     align-items: flex-start;
 
+
+    -webkit-justify-content: flex-start;
+    justify-content: flex-start;
+
+    -ms-flex-pack: center;
+
 }
 
-/*@media (max-width: 500px) {*/
-    /*.flex-header-container {*/
-        /*width: 300px;*/
-
-    /*}*/
-/*}*/
 
 
 .flex-header-item {
@@ -76,15 +76,24 @@
 }
 
 .flex-btn {
-    font-size: 1em;
-    height: 2em;
-    padding: 5px 10px 0 10px;
-    color: #2d2926;
-    background-color: white;
+    /*font-size: 1em;*/
+    /*height: 2em;*/
+    /*padding: 5px 10px 0 10px;*/
+    background-color: #f2f2f2;
+    color: #666666;
+    border-color: #666666;
+    /*background-color: white;*/
 
 }
 
+.widget {
+    border:1px solid  #666666;
+}
 
+
+
+
+/*----set the container for the widget items*/
 .flex-container {
     /*as item*/
 
@@ -103,68 +112,82 @@
     -webkit-flex-direction: row;
     flex-direction: row;
 
+}
+
+
+/*---set the wraps, alignment, justification and limit indicator view to three widgets wide---------*/
+.flex-container.full_items {
+    -webkit-flex-wrap: wrap;
+    flex-wrap: wrap;
+    max-width: 1000px;
+
+    -webkit-align-items: center;
+    align-items: center;
+
+    -webkit-justify-content: center;
+    justify-content: center;
+
+}
+
+
+.flex-container.big_items {
+    -webkit-flex-wrap: wrap;
+    flex-wrap: wrap;
+
+    -webkit-align-items: center;
+    align-items: center;
+
+    -webkit-justify-content: center;
+    justify-content: center;
+}
+
+.flex-container.double_items {
+    -webkit-flex-wrap: nowrap;
+    flex-wrap: nowrap;
 
     -webkit-align-items: flex-start;
     align-items: flex-start;
 
+    -webkit-justify-content: flex-start;
+    justify-content: flex-start;
 }
 
-.flex-container.full_items {
 
-    -webkit-flex-wrap: wrap;
-    flex-wrap: wrap;
-
-    max-width: 1000px;
-
-
-}
-
-.flex-container.double_items {
-
-    -webkit-flex-wrap: nowrap;
-    flex-wrap: nowrap;
-
-}
-
-.flex-container.big_items {
-
-    -webkit-flex-wrap: wrap;
-    flex-wrap: wrap;
-
-}
-
-.flex_item {
-
-    margin: 14px;
+/*---wrap the area report once it gets to mobile size screen*/
+@media (max-width: 400px) {
+    .flex-container.double_items {
+        -webkit-flex-wrap: wrap;
+        flex-wrap: wrap;
+    }
 }
 
 
 
-
-.full_item, .double_item {
-
-    margin: 14px;
-
-    flex: 0 0 300px;
-    -webkit-flex: 0 0 300px;
-
-}
-
-.big_item {
-
-    margin: 14px;
-
-    flex: 0 0 928px;
+/*-------set margin for all items----------------*/
+.full_item, .double_item, .big_item {
+    margin: 10px 14px 10px 14px;
 }
 
 
-.big_item {
 
+/*----set absolute sizes for IE---------*/
+.full_item .widget {
+    height: 400px;
+    width: 300px;
+}
+
+.double_item .widget {
+    height: 800px;
+    width: 300px;
+}
+
+.big_item .widget {
     width: 928px;
-    /*width: 800px;*/
     height: 928px;
-    /*height: 800px;*/
 }
+
+
+
 
 @media (max-width: 700px) {
     .flex-item {

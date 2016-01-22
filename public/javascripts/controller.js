@@ -109,7 +109,7 @@ Controller.prototype.median = function(values){
         return (values[half-1] + values[half]) / 2.0;
 };
 
-Controller.prototype._wrap = function(text, width, string){
+Controller.prototype._wrap = function(text, width, string){ //is this surplus now??
     text.each(function () {
         var text = d3.select(this),
             words = string.split(/\s+/).reverse(),
@@ -292,18 +292,30 @@ Controller.prototype.getIndicatorMappedArr = function(inputArr, dic){
 
 
 
-//Controller.prototype.select = function(){
-//
-//    getPage = function () {
-//
-//        var path = window.location.protocol + "//" + window.location.host + "/select/"
-//            + encodeURIComponent(state_obj.reportType) + "/"
-//            + encodeURIComponent(state_obj.areaType) + "/"
-//            + encodeURIComponent(state_obj.indicatorArr[i]) + "/"
-//            + encodeURIComponent(state_obj.genderArr[i]) + "/"
-//            + encodeURIComponent(state_obj.area) + "/";
-//
-//        window.location.href = path;
-//    }
-//
-//};
+Controller.prototype.select = function () {
+    console.log(state_obj)
+    var path = window.location.protocol + "//" + window.location.host + "/select/"
+        + encodeURIComponent(state_obj.reportType) + "/"
+        + encodeURIComponent(state_obj.areaType) + "/"
+        + encodeURIComponent(state_obj.indicatorArr[0]) + "/"
+        + encodeURIComponent(state_obj.genderArr[0]) + "/"
+        + encodeURIComponent(state_obj.current_area) + "/";
+    console.log(path)
+    window.location.href = path;
+};
+
+Controller.prototype.share = function () {
+    console.log(state_obj)
+    var path = window.location.protocol + "//" + window.location.host + "/share/"
+        + encodeURIComponent(state_obj.reportType) + "/"
+        + encodeURIComponent(state_obj.areaType) + "/"
+        + encodeURIComponent(state_obj.indicatorArr[0]) + "/"
+        + encodeURIComponent(state_obj.genderArr[0]) + "/"
+        + encodeURIComponent(state_obj.current_area) + "/";
+    console.log(path)
+    window.location.href = path;
+};
+
+Controller.prototype.welcome = function(){
+    window.location.href =   window.location.protocol + "//" + window.location.host + "/WessexAlcohol"
+}

@@ -14,7 +14,7 @@ block content
 
 
    #selectDiv
-      .btn.btn-default.btn-lg#doneButton(onclick='getPage()') Done
+      .btn.btn-primary.btn-lg.doneButton#switchDoneButton(onclick='getPage()') Done
 
    hr
 
@@ -24,55 +24,57 @@ block content
 
    h1 Select
    #reportTypeSelector
-      h3  Choose Report Type:
-
+      h3  Choose interactive report:
 
       form(role='form')#reportForm
-         div
+         span.reportSelect
             img.img-responsive.img-radio(src='/images/area_pic.png')
-            button.btn.btn-primary.btn-radio(type='button') One Area All Indicators
+            button.btn.btn-info.btn-radio(type='button') One Area All Indicators
             input#area-item.hidden(type='checkbox', name="selectName", value="AreaReport")
-         div
+
+         span.reportSelect
             img.img-responsive.img-radio(src='/images/ind_pic.png')
-            button.btn.btn-primary.btn-radio(type='button') One Indicator All Areas
+            button.btn.btn-info.btn-radio(type='button') One Indicator All Areas
             input#indicator-item.hidden(type='checkbox', name="selectName", value="IndicatorReport")
-         div
+
+         span.reportSelect
             img.img-responsive.img-radio(src='/images/over_pic.png')
-            button.btn.btn-primary.btn-radio(type='button') Overview
+            button.btn.btn-info.btn-radio(type='button') Overview
             input#overview-item.hidden(type='checkbox', name="selectName", value="OverviewReport")
 
    hr
 
    h1 Options
 
-   #genderSelector
-      h3 Gender:
-      select#genderSelect
-         option(value='Male') Male
-         option(value='Female') Female
-         option(value='Persons') Persons
 
    #indicatorSelector
       h3 Indicator:
-      select#indicatorSelect
+      select(onchange='anyChange()')#indicatorSelect
          option(value='Mortality from chronic liver disease') Mortality from chronic liver disease
          option(value='Alcohol-specific mortality') Alcohol-specific mortality
          option(value='Months of life lost due to alcohol') Months of life lost due to alcohol
          option(value='Admission episodes for alcohol-related conditions') Admission episodes for alcohol-related conditions
 
+   #areaSelector
+      h3#areaSelectorText Areas:
+      select(onchange='anyChange()')#areaSelect
+
    #areaTypeSelector
-      h3 Boundary Type:
+      h3 Boundary Types:
       select(onchange='areaTypeChange()')#areaTypeSelect
          option(value='CCG') CCGs
          option(value='CU') Counties and Unitaries
          option(value='DU') Districts and Unitaries
 
-   #areaSelector
-      h3#areaSelectorText Area:
-      select#areaSelect
+   #genderSelector
+      h3 Gender:
+      select(onchange='anyChange()')#genderSelect
+         option(value='Male') Male
+         option(value='Female') Female
+         option(value='Persons') Persons
 
 
 
    hr
 
-   .btn.btn-default.btn-lg#doneButton(onclick='getPage()') Done
+   .btn.btn-primary.btn-lg.doneButton(onclick='getPage()') Done
