@@ -41,7 +41,6 @@
   "genderArray": ["Male", "Female", "Persons"],
 
 
-
   "indicatorMapping":{
     "Admission episodes for alcohol-related conditions": "9.01 - Admission episodes for alcohol-related conditions (Broad)",
     "Alcohol-specific mortality": "2.01 - Alcohol-specific mortality",
@@ -64,6 +63,14 @@
     "Months of life lost due to alcohol": "months of life lost",
     "Admission episodes for alcohol-related conditions": "admissions per 100,000"
   },
+
+  "indicatorCountLabels":{
+    "Mortality from chronic liver disease": "over 3 years",
+    "Alcohol-specific mortality": "over 3 years",
+    "Months of life lost due to alcohol": "over 3 years",
+    "Admission episodes for alcohol-related conditions": "per year"
+  },
+
 
   "indicatorHighIsBad":{
     "Mortality from chronic liver disease": true,
