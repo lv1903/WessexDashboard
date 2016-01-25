@@ -207,7 +207,7 @@ AreaFacts.prototype._draw_count = function(){
             var format = d3.format(",.0f");
 
             count = format(Number(self.val.count));
-            unit = controller.config.genderLabels[self.gender];
+            unit = controller.config.genderLabels[self.gender] + " " + controller.config.indicatorCountLabels[self.indicator];
 
             return [
                 {str: count, font_size: "1.5em"},

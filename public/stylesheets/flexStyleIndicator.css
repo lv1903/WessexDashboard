@@ -58,16 +58,17 @@
 
     -ms-flex-pack: center;
 
+    -webkit-flex-wrap: wrap;
+    flex-wrap: wrap;
+
 }
 
 
+/*buttons at top of reports*/
 
 .flex-header-item {
-
     margin: 14px;
-
 }
-
 .flex-header-item .flex-select {
     height: 1.5em;
     font-size: 1em;
@@ -76,9 +77,6 @@
 }
 
 .flex-btn {
-    /*font-size: 1em;*/
-    /*height: 2em;*/
-    /*padding: 5px 10px 0 10px;*/
     background-color: #f2f2f2;
     color: #666666;
     border-color: #666666;
@@ -86,10 +84,14 @@
 
 }
 
+
+
+
+/*add border to widgets*/
+
 .widget {
     border:1px solid  #666666;
 }
-
 
 
 

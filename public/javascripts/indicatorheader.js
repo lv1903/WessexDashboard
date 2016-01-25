@@ -56,6 +56,7 @@ IndicatorHeader.prototype._build_graph = function() {
         .classed("svg-container", true)
         .append("svg")
         .attr("class", "widget")
+        .attr("id", "widget" + this.widgetId)
         .attr("preserveAspectRatio", "xMinYMin meet")
         .attr("viewBox", "0 0 " + this.full_width + " " + this.full_height )
         .classed("svg-content-responsive", true)
@@ -242,8 +243,8 @@ IndicatorHeader.prototype._add_return_to_graph_button = function(){
 IndicatorHeader.prototype._draw_help = function(){
 
     this._svg.remove();
-    this._build_graph();
-    this._add_return_to_graph_button();
+    //this._build_graph();
+    //this._add_return_to_graph_button();
     this._draw_help_text();
 
 };
@@ -256,5 +257,20 @@ IndicatorHeader.prototype._redraw = function(){
 };
 
 IndicatorHeader.prototype._draw_help_text = function(){
-    //to do
+
+    var self = this;
+
+
+
+
+
+    $.ajax("/test").done(function(res){
+
+
+        $(self.container).append(res);
+
+        console.log($("#test").parent())
+
+        //console.log(typeof(res) )
+    })
 };

@@ -3,7 +3,7 @@ var ee = new EventEmitter();
 
 var Controller = function(data_obj, config, state_obj){
 
-    console.log(state_obj)
+    //console.log(state_obj)
 
     var self = this;
 
@@ -38,8 +38,7 @@ var Controller = function(data_obj, config, state_obj){
     //this.state.secondary_areas_colors = ["#8dd3c7","#ffffb3","#bebada","#fb8072","#80b1d3","#fdb462","#b3de69","#fccde5","#d9d9d9","#bc80bd","#ccebc5","#ffed6f"];
 
 
-    //this._update_selects()
-
+    this.zoom_level = 1;
 
 };
 
@@ -93,8 +92,6 @@ Controller.prototype._secondary_area_change = function(){
     ee.emitEvent("update");
 
 };
-
-
 
 Controller.prototype.validate_NaN_to_0 = function(val){
     if(isNaN(val)) return 0; else return Number(val);
@@ -152,7 +149,6 @@ Controller.prototype.getKeyByValue = function( obj, value ) {
     }
 };
 
-
 Controller.prototype.getUniqueArray = function(key, arr){
     var uniqueArr = [];
     for(var i in arr){
@@ -162,13 +158,11 @@ Controller.prototype.getUniqueArray = function(key, arr){
     return uniqueArr
 };
 
-
-
 Controller.prototype.filterData = function(areaType, gender, indicator){
 
     var src = this.config.source;
 
-    console.log(areaType + " " +  gender + " " +  indicator)
+    //console.log(areaType + " " +  gender + " " +  indicator)
 
     var data = this.data_obj.data_arr.filter(function(obj){
         if(
@@ -281,7 +275,6 @@ Controller.prototype.getValueFromPeriodData = function(areaType,gender, indicato
 
 };
 
-
 Controller.prototype.getIndicatorMappedArr = function(inputArr, dic){
     var mappedArr = [];
     for(var i in inputArr){
@@ -289,8 +282,6 @@ Controller.prototype.getIndicatorMappedArr = function(inputArr, dic){
     }
     return mappedArr
 };
-
-
 
 Controller.prototype.select = function () {
     console.log(state_obj)
@@ -318,4 +309,37 @@ Controller.prototype.share = function () {
 
 Controller.prototype.welcome = function(){
     window.location.href =   window.location.protocol + "//" + window.location.host + "/WessexAlcohol"
-}
+};
+
+Controller.prototype.source = function () {
+    console.log(state_obj)
+    var path = window.location.protocol + "//" + window.location.host + "/WessexAlcohol/source/"
+        + encodeURIComponent(state_obj.reportType) + "/"
+        + encodeURIComponent(state_obj.areaType) + "/"
+        + encodeURIComponent(state_obj.indicatorArr[0]) + "/"
+        + encodeURIComponent(state_obj.genderArr[0]) + "/"
+        + encodeURIComponent(state_obj.current_area) + "/";
+    console.log(path)
+    window.location.href = path;
+};
+
+Controller.prototype.zoom = function(pct){
+
+    if(pct == -1){ //reset
+        pct = 1 / this.zoom_level;
+        this.zoom_level = 1;
+    } else {
+        this.zoom_level = this.zoom_level * pct;
+    }
+
+    $(".widget").each(function(index){
+
+        var ratio = $(this).width() / $(this).height();
+
+        $(this).width(Math.round($(this).width() * pct));
+        $(this).height(Math.round($(this).width() / ratio));
+    })
+
+
+
+};
