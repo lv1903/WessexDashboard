@@ -108,9 +108,9 @@ IndicatorWidget.prototype._draw_indicator = function(){
         width: this.width,
         fill: controller.config.colorScheme.header_text_color,
         id: "indicator" + this.widgetId
-    })
+    });
 
-    this._indicator_text.render()
+    this._indicator_text.render();
 
 };
 
@@ -126,7 +126,7 @@ IndicatorWidget.prototype._draw_gender = function(){
         width: this.width,
         fill: controller.config.colorScheme.header_text_color,
         id: "gender" + this.widgetId
-    })
+    });
 
     this._gender_text.render()
 
@@ -146,9 +146,9 @@ IndicatorWidget.prototype._draw_area_name = function(){
         width: this.width,
         fill: controller.config.colorScheme.highlight_text_color,
         id: "areaName" + this.widgetId
-    })
+    });
 
-    this._area_text.render()
+    this._area_text.render();
 
     function update(){
         self._area_text.update(controller._get_area_name(controller.state.current_area));
@@ -188,7 +188,7 @@ IndicatorWidget.prototype._draw_value = function(){
         id: "valueText" + this.widgetId
     });
 
-    this._value_text.render()
+    this._value_text.render();
 
 
 
@@ -220,7 +220,7 @@ IndicatorWidget.prototype._draw_no_data = function(){
         id: "noDataText" + this.widgetId
     });
 
-    this._no_data_text.render()
+    this._no_data_text.render();
 
 
 
@@ -264,7 +264,7 @@ IndicatorWidget.prototype._draw_count = function(){
             id: "countText" + this.widgetId
         });
 
-        this._count_text.render()
+        this._count_text.render();
 
 
         function update(){
@@ -353,7 +353,7 @@ IndicatorWidget.prototype._draw_rank = function(){
         id: "rankText" + this.widgetId
     });
 
-    this._rank_text.render()
+    this._rank_text.render();
 
 
     function update(){
@@ -422,7 +422,7 @@ IndicatorWidget.prototype._draw_lineGraph = function(){
             compWidth: self.width
         });
 
-        this._line.render()
+        this._line.render();
 
         function update() {
             self._line.update(self);
@@ -449,7 +449,7 @@ IndicatorWidget.prototype._draw_label_2 = function(){
         id: "label" + this.widgetId
     });
 
-    this._label_text.render()
+    this._label_text.render();
 
 };
 

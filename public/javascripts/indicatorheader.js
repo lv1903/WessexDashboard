@@ -243,8 +243,8 @@ IndicatorHeader.prototype._add_return_to_graph_button = function(){
 IndicatorHeader.prototype._draw_help = function(){
 
     this._svg.remove();
-    //this._build_graph();
-    //this._add_return_to_graph_button();
+    this._build_graph();
+    this._add_return_to_graph_button();
     this._draw_help_text();
 
 };
@@ -264,12 +264,12 @@ IndicatorHeader.prototype._draw_help_text = function(){
 
 
 
+
+
     $.ajax("/test").done(function(res){
 
 
         $(self.container).append(res);
-
-        console.log($("#test").parent())
 
         //console.log(typeof(res) )
     })

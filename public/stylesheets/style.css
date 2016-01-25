@@ -193,6 +193,17 @@ body {
 
 
 
+.widget {
+    position: relative;
+}
+
+.helpText {
+    position: absolute;
+    top: 0;
+}
+
+
+
 
 
 
