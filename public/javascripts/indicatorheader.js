@@ -59,7 +59,9 @@ IndicatorHeader.prototype._build_graph = function() {
         .attr("id", "widget" + this.widgetId)
         .attr("preserveAspectRatio", "xMinYMin meet")
         .attr("viewBox", "0 0 " + this.full_width + " " + this.full_height )
-        .classed("svg-content-responsive", true)
+        .classed("svg-content-responsive", true);
+
+    controller.setWidgetZoom("#widget" + this.widgetId);
 
     this._chart = this._svg
         .append('g')

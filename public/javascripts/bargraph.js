@@ -80,12 +80,9 @@ BarGraph.prototype._build_graph = function() {
 
     controller.setWidgetZoom("#widget" + this.widgetId);
 
-
-
     this._chart = this._svg
         .append('g')
         .attr("transform", "translate(" + config.margin.left + "," + config.margin.top + ")");
-
 
 
 };
