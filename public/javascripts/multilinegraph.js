@@ -225,7 +225,9 @@ MultiLineGraph.prototype._redraw = function(){
 };
 
 MultiLineGraph.prototype._draw_help_text = function(){
-    //to do
+    var self = this;
+    help.multiLineGraphHelp(self, 0);
+    help.indicatorHelp(self, 12 * 14);
 };
 
 

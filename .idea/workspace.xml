@@ -2,14 +2,24 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="50091f8d-ffb4-41f7-b074-8a3c33f58be2" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/stylesheets/flexStyleIndicator.css" afterPath="$PROJECT_DIR$/public/stylesheets/flexStyleIndicator.css" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/javascripts/help.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/javascripts/areafacts.js" afterPath="$PROJECT_DIR$/public/javascripts/areafacts.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/javascripts/areaheader.js" afterPath="$PROJECT_DIR$/public/javascripts/areaheader.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/javascripts/bargraph.js" afterPath="$PROJECT_DIR$/public/javascripts/bargraph.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/javascripts/components.js" afterPath="$PROJECT_DIR$/public/javascripts/components.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/javascripts/controller.js" afterPath="$PROJECT_DIR$/public/javascripts/controller.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/javascripts/densitygraph.js" afterPath="$PROJECT_DIR$/public/javascripts/densitygraph.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/javascripts/indicatorheader.js" afterPath="$PROJECT_DIR$/public/javascripts/indicatorheader.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/javascripts/indicatorwidget.js" afterPath="$PROJECT_DIR$/public/javascripts/indicatorwidget.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/javascripts/multilinegraph.js" afterPath="$PROJECT_DIR$/public/javascripts/multilinegraph.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/javascripts/overviewwidget.js" afterPath="$PROJECT_DIR$/public/javascripts/overviewwidget.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/views/reportArea.jade" afterPath="$PROJECT_DIR$/views/reportArea.jade" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/views/reportIndicator.jade" afterPath="$PROJECT_DIR$/views/reportIndicator.jade" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/views/reportOverview.jade" afterPath="$PROJECT_DIR$/views/reportOverview.jade" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/javascripts/scatterplotmatrix.js" afterPath="$PROJECT_DIR$/public/javascripts/scatterplotmatrix.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/stylesheets/style.css" afterPath="$PROJECT_DIR$/public/stylesheets/style.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/views/test.jade" afterPath="$PROJECT_DIR$/views/test.jade" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/javascripts/wessexmap.js" afterPath="$PROJECT_DIR$/public/javascripts/wessexmap.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="WessexDashboard.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -32,112 +42,21 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="main.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/main.js">
+      <file leaf-file-name="help.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/public/javascripts/help.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="180" column="0" selection-start-line="180" selection-start-column="0" selection-end-line="180" selection-end-column="0" />
-              <folding>
-                <element signature="e#1491#1941#0" expanded="false" />
-                <element signature="e#2248#2933#0" expanded="false" />
-                <element signature="e#3021#3705#0" expanded="false" />
-                <element signature="e#3754#5523#0" expanded="false" />
-                <element signature="e#5626#6403#0" expanded="false" />
-                <element signature="e#6489#8762#0" expanded="false" />
-                <element signature="e#8833#10999#0" expanded="false" />
-                <element signature="e#11074#12933#0" expanded="false" />
-                <element signature="e#13024#15009#0" expanded="false" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="controller.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/public/javascripts/controller.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="329" column="28" selection-start-line="329" selection-start-column="28" selection-end-line="329" selection-end-column="28" />
-              <folding>
-                <element signature="e#1284#1464#0" expanded="false" />
-                <element signature="e#1523#1675#0" expanded="false" />
-                <element signature="e#1733#1876#0" expanded="false" />
-                <element signature="e#1929#2127#0" expanded="false" />
-                <element signature="e#2187#2255#0" expanded="false" />
-                <element signature="e#2312#2369#0" expanded="false" />
-                <element signature="e#2418#2633#0" expanded="false" />
-                <element signature="e#2694#3748#0" expanded="false" />
-                <element signature="e#3812#3971#0" expanded="false" />
-                <element signature="e#4030#4203#0" expanded="false" />
-                <element signature="e#4277#4730#0" expanded="false" />
-                <element signature="e#4818#5249#0" expanded="false" />
-                <element signature="e#5345#5807#0" expanded="false" />
-                <element signature="e#5889#6312#0" expanded="false" />
-                <element signature="e#6423#7328#0" expanded="false" />
-                <element signature="e#7399#7522#0" expanded="false" />
-                <element signature="e#7567#8028#0" expanded="false" />
-                <element signature="e#8072#8532#0" expanded="false" />
-                <element signature="e#8576#8682#0" expanded="false" />
-                <element signature="e#8727#9202#0" expanded="false" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="indicatorheader.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/public/javascripts/indicatorheader.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="262" column="0" selection-start-line="262" selection-start-column="0" selection-end-line="262" selection-end-column="0" />
+            <state vertical-scroll-proportion="-5.133333">
+              <caret line="109" column="0" selection-start-line="109" selection-start-column="0" selection-end-line="109" selection-end-column="0" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="style.css" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/public/stylesheets/style.css">
+      <file leaf-file-name="scatterplotmatrix.js" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/public/javascripts/scatterplotmatrix.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.9388489">
-              <caret line="201" column="11" selection-start-line="201" selection-start-column="11" selection-end-line="201" selection-end-column="11" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="indicatorwidget.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/public/javascripts/indicatorwidget.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="435" column="53" selection-start-line="435" selection-start-column="53" selection-end-line="435" selection-end-column="53" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="test.jade" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/views/test.jade">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="4" column="0" selection-start-line="4" selection-start-column="0" selection-end-line="4" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="reportOverview.jade" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/views/reportOverview.jade">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="38" column="0" selection-start-line="38" selection-start-column="0" selection-end-line="38" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="reportArea.jade" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/views/reportArea.jade">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="53" column="36" selection-start-line="53" selection-start-column="36" selection-end-line="53" selection-end-column="36" />
+            <state vertical-scroll-proportion="0.83693045">
+              <caret line="283" column="9" selection-start-line="283" selection-start-column="9" selection-end-line="283" selection-end-column="9" />
               <folding />
             </state>
           </provider>
@@ -147,7 +66,37 @@
         <entry file="file://$PROJECT_DIR$/views/reportIndicator.jade">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="31" column="0" selection-start-line="31" selection-start-column="0" selection-end-line="41" selection-end-column="43" />
+              <caret line="26" column="0" selection-start-line="26" selection-start-column="0" selection-end-line="54" selection-end-column="38" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="reportArea.jade" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/views/reportArea.jade">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="22" column="4" selection-start-line="22" selection-start-column="4" selection-end-line="50" selection-end-column="38" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="reportOverview.jade" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/views/reportOverview.jade">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="12" column="33" selection-start-line="12" selection-start-column="33" selection-end-line="12" selection-end-column="33" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="overviewwidget.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/public/javascripts/overviewwidget.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="253" column="0" selection-start-line="253" selection-start-column="0" selection-end-line="261" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -158,8 +107,8 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="JavaScript File" />
         <option value="Jade File" />
+        <option value="JavaScript File" />
       </list>
     </option>
   </component>
@@ -180,18 +129,10 @@
         <option value="$PROJECT_DIR$/public/javascripts/init_indicator.js" />
         <option value="$PROJECT_DIR$/views/layout.jade" />
         <option value="$PROJECT_DIR$/public/javascripts/filterer.js" />
-        <option value="$PROJECT_DIR$/public/javascripts/densitygraph.js" />
         <option value="$PROJECT_DIR$/public/javascripts/scatterplotmatrixwidget.js" />
         <option value="$PROJECT_DIR$/public/javascripts/init_overview.js" />
-        <option value="$PROJECT_DIR$/public/javascripts/scatterplotmatrix.js" />
-        <option value="$PROJECT_DIR$/public/javascripts/areaheader.js" />
         <option value="$PROJECT_DIR$/package.json" />
         <option value="$PROJECT_DIR$/serverfun.js" />
-        <option value="$PROJECT_DIR$/public/javascripts/overviewwidget.js" />
-        <option value="$PROJECT_DIR$/public/javascripts/wessexmap.js" />
-        <option value="$PROJECT_DIR$/public/javascripts/components.js" />
-        <option value="$PROJECT_DIR$/public/javascripts/bargraph.js" />
-        <option value="$PROJECT_DIR$/public/javascripts/multilinegraph.js" />
         <option value="$PROJECT_DIR$/public/javascripts/intro_calcs.js" />
         <option value="$PROJECT_DIR$/public/javascripts/intromap.js" />
         <option value="$PROJECT_DIR$/public/javascripts/introdensity.js" />
@@ -204,17 +145,26 @@
         <option value="$PROJECT_DIR$/views/intro.jade" />
         <option value="$PROJECT_DIR$/public/javascripts/source.js" />
         <option value="$PROJECT_DIR$/views/source.jade" />
-        <option value="$PROJECT_DIR$/public/javascripts/areafacts.js" />
         <option value="$PROJECT_DIR$/main.js" />
+        <option value="$PROJECT_DIR$/public/stylesheets/flexStyleIndicator.css" />
+        <option value="$PROJECT_DIR$/public/javascripts/components.js" />
         <option value="$PROJECT_DIR$/public/javascripts/controller.js" />
+        <option value="$PROJECT_DIR$/public/javascripts/indicatorheader.js" />
+        <option value="$PROJECT_DIR$/public/javascripts/densitygraph.js" />
+        <option value="$PROJECT_DIR$/public/javascripts/wessexmap.js" />
+        <option value="$PROJECT_DIR$/public/javascripts/areafacts.js" />
+        <option value="$PROJECT_DIR$/public/javascripts/bargraph.js" />
+        <option value="$PROJECT_DIR$/public/javascripts/multilinegraph.js" />
+        <option value="$PROJECT_DIR$/public/stylesheets/style.css" />
+        <option value="$PROJECT_DIR$/views/test.jade" />
+        <option value="$PROJECT_DIR$/public/javascripts/areaheader.js" />
         <option value="$PROJECT_DIR$/public/javascripts/indicatorwidget.js" />
-        <option value="$PROJECT_DIR$/views/reportOverview.jade" />
         <option value="$PROJECT_DIR$/views/reportIndicator.jade" />
         <option value="$PROJECT_DIR$/views/reportArea.jade" />
-        <option value="$PROJECT_DIR$/public/stylesheets/flexStyleIndicator.css" />
-        <option value="$PROJECT_DIR$/public/javascripts/indicatorheader.js" />
-        <option value="$PROJECT_DIR$/views/test.jade" />
-        <option value="$PROJECT_DIR$/public/stylesheets/style.css" />
+        <option value="$PROJECT_DIR$/views/reportOverview.jade" />
+        <option value="$PROJECT_DIR$/public/javascripts/overviewwidget.js" />
+        <option value="$PROJECT_DIR$/public/javascripts/help.js" />
+        <option value="$PROJECT_DIR$/public/javascripts/scatterplotmatrix.js" />
       </list>
     </option>
   </component>
@@ -650,12 +600,12 @@
       <workItem from="1452505687984" duration="63610000" />
       <workItem from="1452767325727" duration="56488000" />
       <workItem from="1452957157773" duration="88546000" />
-      <workItem from="1453715101336" duration="1779000" />
+      <workItem from="1453715101336" duration="15074000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="373842000" />
+    <option name="totallyTimeSpent" value="387137000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-11" y="-11" width="1942" height="1042" extended-state="6" />
@@ -733,14 +683,6 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/public/javascripts/indicatorwidget.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="500" column="15" selection-start-line="500" selection-start-column="15" selection-end-line="500" selection-end-column="15" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/public/javascripts/densitygraph.js">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -769,20 +711,20 @@
         <state vertical-scroll-proportion="0.0">
           <caret line="733" column="52" selection-start-line="733" selection-start-column="52" selection-end-line="733" selection-end-column="52" />
           <folding>
-            <element signature="e#87#2219#0" expanded="false" />
-            <element signature="e#2281#3313#0" expanded="false" />
-            <element signature="e#3380#5724#0" expanded="false" />
-            <element signature="e#5792#11513#0" expanded="false" />
-            <element signature="e#11584#25267#0" expanded="false" />
-            <element signature="e#25335#31773#0" expanded="false" />
-            <element signature="e#31842#35845#0" expanded="false" />
-            <element signature="e#35907#38185#0" expanded="false" />
-            <element signature="e#47414#57104#0" expanded="false" />
-            <element signature="e#57175#58755#0" expanded="false" />
-            <element signature="e#58823#65977#0" expanded="false" />
-            <element signature="e#66045#75598#0" expanded="false" />
-            <element signature="e#75674#91226#0" expanded="false" />
-            <element signature="e#91298#93079#0" expanded="false" />
+            <element signature="e#87#2221#0" expanded="false" />
+            <element signature="e#2283#3315#0" expanded="false" />
+            <element signature="e#3382#5726#0" expanded="false" />
+            <element signature="e#5794#11515#0" expanded="false" />
+            <element signature="e#11586#25269#0" expanded="false" />
+            <element signature="e#25337#31775#0" expanded="false" />
+            <element signature="e#31844#35847#0" expanded="false" />
+            <element signature="e#35909#38187#0" expanded="false" />
+            <element signature="e#47416#57106#0" expanded="false" />
+            <element signature="e#57177#58757#0" expanded="false" />
+            <element signature="e#58825#65979#0" expanded="false" />
+            <element signature="e#66047#75600#0" expanded="false" />
+            <element signature="e#75676#91228#0" expanded="false" />
+            <element signature="e#91300#93081#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -807,6 +749,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="138" column="14" selection-start-line="138" selection-start-column="3" selection-end-line="138" selection-end-column="14" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -848,7 +791,6 @@
             <element signature="e#7567#8028#0" expanded="false" />
             <element signature="e#8072#8532#0" expanded="false" />
             <element signature="e#8576#8682#0" expanded="false" />
-            <element signature="e#8727#9202#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -857,6 +799,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="163" column="4" selection-start-line="163" selection-start-column="4" selection-end-line="163" selection-end-column="85" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -885,13 +828,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="10" column="110" selection-start-line="10" selection-start-column="110" selection-end-line="10" selection-end-column="110" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/public/javascripts/areaheader.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.16306955">
-          <caret line="89" column="0" selection-start-line="89" selection-start-column="0" selection-end-line="89" selection-end-column="0" />
           <folding />
         </state>
       </provider>
@@ -901,51 +837,6 @@
         <state vertical-scroll-proportion="-12.423077">
           <caret line="19" column="26" selection-start-line="19" selection-start-column="26" selection-end-line="19" selection-end-column="26" />
           <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/public/javascripts/scatterplotmatrix.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="144" column="12" selection-start-line="144" selection-start-column="12" selection-end-line="144" selection-end-column="12" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/public/javascripts/bargraph.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.5707434">
-          <caret line="49" column="17" selection-start-line="49" selection-start-column="17" selection-end-line="49" selection-end-column="17" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/public/javascripts/components.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="1556" column="0" selection-start-line="1556" selection-start-column="0" selection-end-line="1569" selection-end-column="47" />
-          <folding>
-            <element signature="e#87#2219#0" expanded="false" />
-            <element signature="e#2281#3313#0" expanded="false" />
-            <element signature="e#3380#5724#0" expanded="false" />
-            <element signature="e#5792#11513#0" expanded="false" />
-            <element signature="e#11584#25267#0" expanded="false" />
-            <element signature="e#25335#31773#0" expanded="false" />
-            <element signature="e#31842#35845#0" expanded="false" />
-            <element signature="e#35907#38185#0" expanded="false" />
-            <element signature="e#47414#57104#0" expanded="false" />
-            <element signature="e#57175#58755#0" expanded="false" />
-            <element signature="e#58823#65977#0" expanded="false" />
-            <element signature="e#66045#75598#0" expanded="false" />
-            <element signature="e#75674#91226#0" expanded="false" />
-            <element signature="e#91298#93079#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/public/javascripts/multilinegraph.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="41" column="57" selection-start-line="41" selection-start-column="57" selection-end-line="41" selection-end-column="57" />
         </state>
       </provider>
     </entry>
@@ -989,14 +880,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/public/javascripts/densitygraph.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.020383693">
-          <caret line="97" column="62" selection-start-line="0" selection-start-column="0" selection-end-line="249" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/public/javascripts/introdensity.js">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-6.5733333">
@@ -1020,31 +903,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/public/javascripts/wessexmap.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="287" column="0" selection-start-line="287" selection-start-column="0" selection-end-line="287" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/public/javascripts/overviewwidget.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="66" column="42" selection-start-line="66" selection-start-column="22" selection-end-line="66" selection-end-column="42" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/views/intro.jade">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="36" column="57" selection-start-line="36" selection-start-column="57" selection-end-line="36" selection-end-column="57" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/configs/master_config.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-22.23077">
-          <caret line="52" column="0" selection-start-line="52" selection-start-column="0" selection-end-line="55" selection-end-column="40" />
         </state>
       </provider>
     </entry>
@@ -1059,6 +921,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="1" column="0" selection-start-line="1" selection-start-column="0" selection-end-line="30" selection-end-column="2" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1077,56 +940,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/public/javascripts/areafacts.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="209" column="126" selection-start-line="209" selection-start-column="126" selection-end-line="209" selection-end-column="126" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/public/javascripts/select.js">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.50959235">
           <caret line="91" column="49" selection-start-line="91" selection-start-column="7" selection-end-line="91" selection-end-column="49" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/views/source.jade">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/public/javascripts/indicatorwidget.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="435" column="53" selection-start-line="435" selection-start-column="53" selection-end-line="435" selection-end-column="53" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/views/reportOverview.jade">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="38" column="0" selection-start-line="38" selection-start-column="0" selection-end-line="38" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/views/reportIndicator.jade">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="31" column="0" selection-start-line="31" selection-start-column="0" selection-end-line="41" selection-end-column="43" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/views/reportArea.jade">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="53" column="36" selection-start-line="53" selection-start-column="36" selection-end-line="53" selection-end-column="36" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1156,10 +973,18 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/configs/master_config.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-4.576923">
+          <caret line="52" column="55" selection-start-line="52" selection-start-column="4" selection-end-line="52" selection-end-column="55" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/public/javascripts/controller.js">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="329" column="28" selection-start-line="329" selection-start-column="28" selection-end-line="329" selection-end-column="28" />
+          <caret line="340" column="42" selection-start-line="340" selection-start-column="42" selection-end-line="340" selection-end-column="42" />
           <folding>
             <element signature="e#1284#1464#0" expanded="false" />
             <element signature="e#1523#1675#0" expanded="false" />
@@ -1180,15 +1005,66 @@
             <element signature="e#7567#8028#0" expanded="false" />
             <element signature="e#8072#8532#0" expanded="false" />
             <element signature="e#8576#8682#0" expanded="false" />
-            <element signature="e#8727#9202#0" expanded="false" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/public/javascripts/indicatorheader.js">
+    <entry file="file://$PROJECT_DIR$/public/javascripts/components.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-6.9736843">
+          <caret line="1047" column="24" selection-start-line="1047" selection-start-column="19" selection-end-line="1047" selection-end-column="24" />
+          <folding>
+            <element signature="e#2283#3315#0" expanded="false" />
+            <element signature="e#11586#25269#0" expanded="false" />
+            <element signature="e#31844#35847#0" expanded="false" />
+            <element signature="e#35909#38187#0" expanded="false" />
+            <element signature="e#38254#47343#0" expanded="false" />
+            <element signature="e#47416#57106#0" expanded="false" />
+            <element signature="e#57177#58757#0" expanded="false" />
+            <element signature="e#58825#65979#0" expanded="false" />
+            <element signature="e#66047#75600#0" expanded="false" />
+            <element signature="e#75676#91228#0" expanded="false" />
+            <element signature="e#91300#93081#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/javascripts/wessexmap.js">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="262" column="0" selection-start-line="262" selection-start-column="0" selection-end-line="262" selection-end-column="0" />
+          <caret line="288" column="0" selection-start-line="288" selection-start-column="0" selection-end-line="288" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/javascripts/areafacts.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="397" column="0" selection-start-line="397" selection-start-column="0" selection-end-line="399" selection-end-column="38" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/javascripts/bargraph.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="209" column="17" selection-start-line="209" selection-start-column="17" selection-end-line="209" selection-end-column="17" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/javascripts/densitygraph.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="247" column="0" selection-start-line="247" selection-start-column="0" selection-end-line="248" selection-end-column="35" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/stylesheets/style.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="195" column="10" selection-start-line="195" selection-start-column="10" selection-end-line="195" selection-end-column="10" />
           <folding />
         </state>
       </provider>
@@ -1201,10 +1077,90 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/public/stylesheets/style.css">
+    <entry file="file://$PROJECT_DIR$/public/javascripts/multilinegraph.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.9388489">
-          <caret line="201" column="11" selection-start-line="201" selection-start-column="11" selection-end-line="201" selection-end-column="11" />
+        <state vertical-scroll-proportion="0.0">
+          <caret line="224" column="2" selection-start-line="224" selection-start-column="2" selection-end-line="224" selection-end-column="2" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/views/source.jade">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/javascripts/indicatorheader.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="259" column="0" selection-start-line="259" selection-start-column="0" selection-end-line="262" selection-end-column="38" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/javascripts/areaheader.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="322" column="33" selection-start-line="322" selection-start-column="33" selection-end-line="322" selection-end-column="33" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/views/reportIndicator.jade">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="26" column="0" selection-start-line="26" selection-start-column="0" selection-end-line="54" selection-end-column="38" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/views/reportArea.jade">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="22" column="4" selection-start-line="22" selection-start-column="4" selection-end-line="50" selection-end-column="38" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/javascripts/indicatorwidget.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="528" column="0" selection-start-line="528" selection-start-column="0" selection-end-line="530" selection-end-column="38" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/views/reportOverview.jade">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="12" column="33" selection-start-line="12" selection-start-column="33" selection-end-line="12" selection-end-column="33" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/javascripts/overviewwidget.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="253" column="0" selection-start-line="253" selection-start-column="0" selection-end-line="261" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/javascripts/help.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-5.133333">
+          <caret line="109" column="0" selection-start-line="109" selection-start-column="0" selection-end-line="109" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/javascripts/scatterplotmatrix.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.83693045">
+          <caret line="283" column="9" selection-start-line="283" selection-start-column="9" selection-end-line="283" selection-end-column="9" />
           <folding />
         </state>
       </provider>

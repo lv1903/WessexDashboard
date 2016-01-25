@@ -251,7 +251,15 @@ OverviewWidget.prototype._redraw = function(){
 };
 
 OverviewWidget.prototype._draw_help_text = function(){
-    //to do
+    var self = this;
+    help.overviewWidgetHelp(self, 0);
+
+    y = 12 * 14;
+    for(i in controller.config.indicatorArray){
+        help.indicatorHelp(self, y, controller.config.indicatorArray[i]);
+        y += 13 * 14;
+    }
+
 };
 
 

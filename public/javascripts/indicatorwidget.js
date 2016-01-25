@@ -505,8 +505,6 @@ IndicatorWidget.prototype._add_return_to_graph_button = function(){
 
     this._return_button.render();
 
-
-
 };
 
 
@@ -528,7 +526,9 @@ IndicatorWidget.prototype._redraw = function(){
 };
 
 IndicatorWidget.prototype._draw_help_text = function(){
-    //to do
+    var self = this;
+    help.indicatorWidgetHelp(self, 0);
+    help.indicatorHelp(self, 36 * 14);
 };
 
 

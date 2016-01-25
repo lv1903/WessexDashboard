@@ -319,5 +319,7 @@ AreaHeader.prototype._redraw = function(){
 };
 
 AreaHeader.prototype._draw_help_text = function(){
-    //to do
+    var self = this;
+    help.areaHeaderHelp(self, 0);
+
 };

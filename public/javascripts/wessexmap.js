@@ -281,7 +281,8 @@ WessexMap.prototype._redraw = function(){
 };
 
 WessexMap.prototype._draw_help_text = function(){
-    //to do
+    var self = this;
+    help.mapHelp(self, 0);
 };
 
 

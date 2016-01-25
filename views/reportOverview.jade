@@ -10,6 +10,7 @@ block content
 
     script(src="/javascripts/components.js")
     script(src="/javascripts/controller.js")
+    script(src="/javascripts/help.js")
 
     script(src="/javascripts/overviewwidget.js")
     script(src="/javascripts/scatterplotmatrix.js")
@@ -25,19 +26,17 @@ block content
                 .btn.btn-primary.btn.flex-btn(onclick='controller.select()')
                     span.i.fa.fa-th-large.fa-fw
                     span #{" "} Change Report
-            //.flex-header-item#selectButtonItem
-            //    .btn-group
-            //        .btn.btn-primary.btn.flex-btn(onclick='controller.zoom(1.1)')
-            //            span.i.fa.fa-search-plus.fa-fw
-            //            span #{" "} Zoom In
-            //        .btn.btn-primary.btn.flex-btn(onclick='controller.zoom(0.9)')
-            //            span.i.fa.fa-search-minus.fa-fw
-            //            span #{" "} Zoom Out
-            //        .btn.btn-primary.btn.flex-btn(onclick='controller.zoom(-1)')
-            //            span.i.fa.fa-refresh.fa-fw
-            //            span #{" "} Reset
-
-
+            .flex-header-item#selectButtonItem
+                .btn-group
+                    .btn.btn-primary.btn.flex-btn(onclick='controller.zoom(1.1)')
+                        span.i.fa.fa-search-plus.fa-fw
+                        span #{" "} Zoom In
+                    .btn.btn-primary.btn.flex-btn(onclick='controller.zoom(0.9)')
+                        span.i.fa.fa-search-minus.fa-fw
+                        span #{" "} Zoom Out
+                    .btn.btn-primary.btn.flex-btn(onclick='controller.zoom(-1)')
+                        span.i.fa.fa-refresh.fa-fw
+                        span #{" "} Reset
             .flex-header-item#shareButtonItem
                 .btn.btn-primary.btn.flex-btn(onclick='controller.share()')
                     span.i.fa.fa-share-alt.fa-fw

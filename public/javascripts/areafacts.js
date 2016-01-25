@@ -395,5 +395,7 @@ AreaFacts.prototype._redraw = function(){
 };
 
 AreaFacts.prototype._draw_help_text = function(){
-    //to do
+    var self = this;
+    help.areaFactsHelp(self, 0);
+    help.indicatorHelp(self, 10 * 14);
 };

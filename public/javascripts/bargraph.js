@@ -72,9 +72,15 @@ BarGraph.prototype._build_graph = function() {
         .classed("svg-container", true)
         .append("svg")
         .attr("class", "widget")
+        .attr("id", "widget" + this.widgetId)
         .attr("preserveAspectRatio", "xMinYMin meet")
         .attr("viewBox", "0 0 " + this.full_width + " " + this.full_height )
         .classed("svg-content-responsive", true);
+
+
+    controller.setWidgetZoom("#widget" + this.widgetId);
+
+
 
     this._chart = this._svg
         .append('g')
@@ -200,5 +206,7 @@ BarGraph.prototype._redraw = function(){
 };
 
 BarGraph.prototype._draw_help_text = function(){
-    //to do
+    var self = this;
+    help.barGraphHelp(self, 0);
+    help.indicatorHelp(self, 10 * 14);
 };

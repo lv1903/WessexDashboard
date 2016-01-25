@@ -311,16 +311,31 @@ Controller.prototype.welcome = function(){
     window.location.href =   window.location.protocol + "//" + window.location.host + "/WessexAlcohol"
 };
 
-Controller.prototype.source = function () {
-    console.log(state_obj)
-    var path = window.location.protocol + "//" + window.location.host + "/WessexAlcohol/source/"
+
+Controller.prototype.getSourcePath = function(anchor){
+
+    if(anchor == null) {
+        anchor = "";
+    } else {
+        anchor = "#" + anchor;
+    }
+
+    console.log(anchor)
+
+    return  window.location.protocol + "//" + window.location.host + "/WessexAlcohol/source/"
         + encodeURIComponent(state_obj.reportType) + "/"
         + encodeURIComponent(state_obj.areaType) + "/"
         + encodeURIComponent(state_obj.indicatorArr[0]) + "/"
         + encodeURIComponent(state_obj.genderArr[0]) + "/"
-        + encodeURIComponent(state_obj.current_area) + "/";
-    console.log(path)
-    window.location.href = path;
+        + encodeURIComponent(state_obj.current_area)
+        + anchor;
+
+
+}
+
+Controller.prototype.source = function (anchor) {
+
+    window.location.href = this.getSourcePath(anchor);
 };
 
 Controller.prototype.zoom = function(pct){
@@ -340,6 +355,14 @@ Controller.prototype.zoom = function(pct){
         $(this).height(Math.round($(this).width() / ratio));
     })
 
+};
+
+Controller.prototype.setWidgetZoom = function(widgetId){
+
+    var ratio = $(widgetId).width() / $(widgetId).height();
+
+    $(widgetId).width(Math.round($(widgetId).width() * this.zoom_level));
+    $(widgetId).height(Math.round($(widgetId).width() / ratio));
 
 
 };

@@ -32,6 +32,8 @@ Components.prototype.text = function(widget, configuration){
     }
     that.configure = configure;
 
+
+
     function isRendered() {
         return (svg !== undefined);
     }

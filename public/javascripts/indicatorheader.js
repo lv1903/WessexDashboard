@@ -85,7 +85,6 @@ IndicatorHeader.prototype._draw_header = function(){
 
     this._header_text.render();
 
-
 };
 
 
@@ -118,7 +117,7 @@ IndicatorHeader.prototype._draw_gender = function(){
         y: 7 * 14,
         width: this.width,
         id: "gender" + this.widgetId
-    })
+    });
 
     this._gender_text.render()
 
@@ -260,17 +259,8 @@ IndicatorHeader.prototype._draw_help_text = function(){
 
     var self = this;
 
+    help.indicatorHeaderHelp(self, 0);
+    help.indicatorHelp(self, 12 * 14);
 
 
-
-
-
-
-    $.ajax("/test").done(function(res){
-
-
-        $(self.container).append(res);
-
-        //console.log(typeof(res) )
-    })
 };

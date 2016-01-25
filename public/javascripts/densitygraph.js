@@ -245,5 +245,6 @@ DensityGraph.prototype._redraw = function(){
 };
 
 DensityGraph.prototype._draw_help_text = function(){
-    //to do
+    var self = this;
+    help.densityGraphHelp(self, 0);
 };
