@@ -396,3 +396,23 @@ Controller.prototype.setWidgetZoom = function(widgetId){
 
 
 };
+
+Controller.prototype.play = function(){
+
+
+    setTimeout(this.play_next(this.config.firstPeriod),10000)
+
+};
+
+Controller.prototype.play_next = function(period){
+
+    console.log(period)
+
+    if(period <=  2010){//this.config.lastPeriod){
+        this._period_change(period)
+        setTimeout(this.play_next(period + 1),10000);
+    } else {
+        return
+    }
+
+}
