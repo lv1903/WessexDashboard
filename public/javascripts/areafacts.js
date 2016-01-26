@@ -198,7 +198,7 @@ AreaFacts.prototype._draw_count = function(){
     var self = this;
 
     //add count text if available
-    if(this.val.count != null) {
+    if(this.val != null) {
 
         var self = this;
 

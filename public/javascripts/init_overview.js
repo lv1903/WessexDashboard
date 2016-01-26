@@ -11,4 +11,13 @@ window.onload = function() {
     scatterPlotMatrix = new ScatterPlotMatrix(state_obj.indicatorArr, state_obj.genderArr[0], "#wi1Item", "wi1" );
 
 
+    if(state_obj.pdf){ //reduce size for pdf
+        controller.zoom(0.8);
+    };
+
+
+    $(".widget").css({"background-color": controller.config.colorScheme.background_color}) //set widget color dynamically
+
+
+
 };

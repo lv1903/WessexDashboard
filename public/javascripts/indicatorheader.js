@@ -179,7 +179,12 @@ IndicatorHeader.prototype._draw_select_year = function(){
         id: "yearSelectText" + this.widgetId
     });
 
-    this._year_select.render()
+    if(!controller.state.pdf){ //don't render for pdf
+        this._year_select.render();
+    }
+
+
+
 
 };
 

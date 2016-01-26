@@ -99,9 +99,9 @@ AreaHeader.prototype._draw_gender = function(){
         width: this.width,
         fill: controller.config.colorScheme.header_text_color,
         id: "gender" + this.widgetId
-    })
+    });
 
-    this._gender_text.render()
+    this._gender_text.render();
 
     //function update(){
     //    self._gender_text.update(); //remove
@@ -125,9 +125,9 @@ AreaHeader.prototype._draw_area_name = function(){
         width: this.width,
         fill: controller.config.colorScheme.highlight_text_color,
         id: "areaName" + this.widgetId
-    })
+    });
 
-    this._area_text.render()
+    this._area_text.render();
 
     function update(){
         self._area_text.update(controller._get_area_name(controller.state.current_area));
@@ -151,7 +151,7 @@ AreaHeader.prototype._draw_area_type = function(){
         y: 13 * 14,
         width: this.width,
         id: "areaType" + this.widgetId
-    })
+    });
 
     this._area_type.render()
 
@@ -203,10 +203,10 @@ AreaHeader.prototype._draw_select_area = function(){
         y: 33 * 14,
         width: this.width,
         id: "areaSelectText" + this.widgetId
-    })
-
-    this._area_select.render()
-
+    });
+    if(!controller.state.pdf) { //don't render for pdf
+        this._area_select.render()
+    }
 };
 
 
@@ -224,7 +224,7 @@ AreaHeader.prototype._draw_timeSlider = function(){
         firstPeriod: controller.config.firstPeriod,
         lastPeriod: controller.config.lastPeriod
 
-    })
+    });
 
     this._timeSlider.render();
 
@@ -241,10 +241,10 @@ AreaHeader.prototype._draw_select_year = function(){
         y: 40 * 14,
         width: this.width,
         id: "yearSelectText" + this.widgetId
-    })
-
-    this._year_select.render()
-
+    });
+    if(!controller.state.pdf) { //don't render for pdf
+        this._year_select.render()
+    }
 };
 
 

@@ -585,7 +585,7 @@ Help.prototype.indicatorHelp = function(self, y, indicator){
             }).render();
 
             component.text(self, {
-                str: "Admissions to hospital where the primary diagnosis or any of the secondary diagnoses are an alcohol-attributable code.",
+                str: "Admissions to hospital where the primary diagnosis or any of the secondary diagnoses are an alcohol-attributable code. Per 100,000 population.",
                 font_size: "1em",
                 x: 0,
                 y: y + 3 * 14,

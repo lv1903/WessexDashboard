@@ -53,8 +53,9 @@ OverviewWidget.prototype._draw_all = function(){
 
     this._draw_header();
     this._draw_timeSlider();
-    this._draw_key();
     this._draw_tartanRug();
+    this._draw_key();
+    this._draw_arrow_key();
 
 };
 
@@ -137,21 +138,7 @@ OverviewWidget.prototype._draw_timeSlider = function(){
 
 };
 
-OverviewWidget.prototype._draw_key = function(){
 
-    var self = this;
-
-    this._map_key = component.wessexMapKey(self, {
-        x: 14, //this.width / 2 - 14 * 9,
-        y: 845,
-        width: 319,
-        stroke: controller.config.colorScheme.text_color,
-        id: "mapKey" + this.widgetId
-    });
-
-    this._map_key.render()
-
-};
 
 OverviewWidget.prototype._draw_tartanRug = function(){
 
@@ -166,14 +153,40 @@ OverviewWidget.prototype._draw_tartanRug = function(){
 
     this._tartanRug.render();
 
-    //function update(){
-    //    self._tartanRug.update(self);
-    //}
-    //ee.addListener("update", update)
+};
 
 
+OverviewWidget.prototype._draw_key = function(){
 
-}
+    var self = this;
+
+    this._map_key = component.wessexMapKey(self, {
+        x: 535,
+        y: 855,
+        width: 319,
+        stroke: controller.config.colorScheme.text_color,
+        id: "mapKey" + this.widgetId
+    });
+
+    this._map_key.render()
+
+};
+
+OverviewWidget.prototype._draw_arrow_key = function(){
+
+    var self = this;
+
+    this._arrow_key = component.arrowKey(self, {
+        x: 14,
+        y: 855,
+        width: 319,
+        stroke: controller.config.colorScheme.text_color,
+        id: "arrowKey" + this.widgetId
+    });
+
+    this._arrow_key.render()
+
+};
 
 
 

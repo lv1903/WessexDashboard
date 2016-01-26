@@ -176,7 +176,31 @@
 
 
     "quartile_color_array": ["#b2df8a", "#ffff99", "#fdbf6f", "#fb9a99"],
-    "quartile_dark_color_array": ["#33a02c", "#b15928", "#b35900", "#e31a1c"]
+    "quartile_dark_color_array": ["#33a02c", "#b15928", "#b35900", "#e31a1c"],
+
+    "secondary_colors" : ["#66c2a5", "#abdda4", "#e6f598", "#ffffbf", "#fee08b", "#fdae61", "#f46d43"]
+
+  },
+
+  "greyscaleScheme": {
+
+    "background_color": "white",
+
+    "main_color": "#d9d9d9",
+    "main_color_offset": "#d9d9d9",
+
+    "highlight_color": "#737373",
+    "highlight_text_color": "#252525",
+
+    "dark_text_color": "black",
+    "header_text_color": "black",
+    "text_color": "black",
+
+
+    "quartile_color_array": ["#bdbdbd","#969696","#737373","#525252"],
+    "quartile_dark_color_array": ["#737373","#525252","#252525","#000000"],
+
+    "secondary_colors" :  ["#bdbdbd","#969696","#525252"]
 
   }
 

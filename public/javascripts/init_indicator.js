@@ -23,7 +23,7 @@ window.onload = function() {
     multilineGraph = new MultiLineGraph(indicator, gender, "#multilinegraphItem", "w5");
 
 
-
+    $(".widget").css({"background-color": controller.config.colorScheme.background_color}) //set widget color dynamically
 
 };
 

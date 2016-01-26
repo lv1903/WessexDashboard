@@ -590,8 +590,12 @@ Components.prototype.densityGraph = function(widget, configuration){
             .append("path")
             .attr("class", "densityArea")
             .attr("d", fNoData)
-            .style("opacity", 0)
-            .style("fill", widget.cs.main_color);
+            .style("opacity", 1)
+            .style("fill", function(){if(widget.val == null) {
+                return "none"
+            } else {
+                return controller.config.colorScheme.quartile_color_array[Math.floor(widget.val.percent * 4)]
+            }});
 
 
 
@@ -2010,7 +2014,12 @@ Components.prototype.circleButton = function(widget, configuration){
 
     function render() {
 
-        svg = widget._chart.append("g");
+        svg = widget._chart.append("g")
+            .attr("class", "test");
+
+        if(controller.state.pdf){ //this is a button hide from pdf
+            svg.classed("pdf_hide", true)
+        }
 
         svg.append("circle")
             .attr("class", "circle_button clickable")
@@ -2369,7 +2378,7 @@ Components.prototype.tartanRug = function(widget, configuration){
         if(val == null){
             string =  "NA"
         } else {
-            string = val.value
+            string = d3.round(val.value, 1)
         }
 
         var trend;
@@ -2567,7 +2576,7 @@ Components.prototype.tartanRug = function(widget, configuration){
                     .style("text-anchor", "middle")
                     .attr("dy", "0.5em")
                     .text(function(){return select_text(val, previous_val)})
-                    .style("font-size", "1em")
+                    .style("font-size", "1.5em")
                     .style("fill", function(){ return select_text_color(val)})
                     .on("click", function(){value_click(this)});
 
@@ -3154,6 +3163,79 @@ Components.prototype.wessexMapKey =  function(widget, configuration){
             .style("font-size", "1em")
             .style("fill", controller.config.colorScheme.quartile_dark_color_array[3])
             .call(self.wrap, 100, "Eng. High");
+
+
+    }
+
+    that.render = render;
+
+    configure(widget, configuration);
+
+    return that;
+}
+
+
+Components.prototype.arrowKey =  function(widget, configuration){
+
+    var self = this;
+    var that = {};
+    that.config = {};
+
+    var svg = undefined;
+    var x = undefined;
+    var y = undefined;
+
+    function configure(widget, configuration) {
+
+        that.config = configuration;
+        x = that.config.x;
+        y = that.config.y;
+
+    }
+    that.configure = configure;
+
+    function isRendered() {
+        return (svg !== undefined);
+    }
+    that.isRendered = isRendered;
+
+    function render() {
+
+        svg = widget._chart.append("g")
+            .attr("transform", "translate(" + that.config.x + "," + that.config.y + ")");
+
+        var pad = 14;
+        var w = (that.config.width + pad * 2) / 2;
+
+        var textArr = ["\u25B2 increase on previous year", "\u25BC decrease on prevous year" ]
+
+        svg.selectAll(".keyBars")
+            .data(textArr)
+            .enter()
+            .append("rect")
+            .attr("x", function(d, i){ return i * w - pad})
+            .attr("y", -15)
+            .attr("width",  w)
+            .attr("height", "1.5em")
+            .style("fill", "white")
+            .style("stroke", that.config.stroke)
+
+
+        svg.append("text")
+            .attr("x", - 0.5 * pad)
+            .attr("y", 0)
+            .attr("text-anchor", "left")
+            .style("font-size", "1em")
+            .style("fill", controller.config.colorScheme.text_color)
+            .text(textArr[0]);
+
+        svg.append("text")
+            .attr("x", that.config.width + 0.5 * pad)
+            .attr("y", 0)
+            .attr("text-anchor", "end")
+            .style("font-size", "1em")
+            .style("fill", controller.config.colorScheme.text_color)
+            .text(textArr[1]);
 
 
     }

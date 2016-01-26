@@ -33,12 +33,21 @@ var Controller = function(data_obj, config, state_obj){
     }
 
 
-    this.state.current_secondary_areas = [];
-    this.state.secondary_areas_colors = ["#f46d43","#fdae61","#fee08b","#ffffbf","#e6f598","#abdda4","#66c2a5"];
-    //this.state.secondary_areas_colors = ["#8dd3c7","#ffffb3","#bebada","#fb8072","#80b1d3","#fdb462","#b3de69","#fccde5","#d9d9d9","#bc80bd","#ccebc5","#ffed6f"];
-
-
+    //set inital zoom level
     this.zoom_level = 1;
+
+
+    //set the color scheme
+    if(this.state.color == false){
+        this.config.colorScheme = this.config.greyscaleScheme
+    }
+
+    this.state.current_secondary_areas = [];
+    this.state.secondary_areas_colors = this.config.colorScheme.secondary_colors
+
+
+
+
 
 };
 
@@ -58,8 +67,6 @@ Controller.prototype._get_area_short_name = function(id){
     })[0].short_name;
 };
 
-
-
 Controller.prototype._period_change = function(value){
 
     this.state.current_period = value;
@@ -69,8 +76,6 @@ Controller.prototype._period_change = function(value){
     ee.emitEvent("update_widget");
     ee.emitEvent("update");
 };
-
-
 
 Controller.prototype._area_change = function(id){
 
@@ -84,7 +89,6 @@ Controller.prototype._area_change = function(id){
     ee.emitEvent("update_widget");
     ee.emitEvent("update");
 };
-
 
 Controller.prototype._secondary_area_change = function(){
 
@@ -138,7 +142,6 @@ Controller.prototype._wrap = function(text, width, string){ //is this surplus no
         }
     });
 };
-
 
 Controller.prototype.getKeyByValue = function( obj, value ) {
     for( var prop in obj) {
@@ -307,10 +310,37 @@ Controller.prototype.share = function () {
     window.location.href = path;
 };
 
+Controller.prototype.pdf = function (color) {
+
+    var path;
+
+    var areaType = this.config.areaTypeArray.indexOf(state_obj.areaType);
+    var indicator = this.config.indicatorArray.indexOf(state_obj.indicatorArr[0]);
+    var gender = this.config.genderArray.indexOf(state_obj.genderArr[0]);
+
+
+    switch (state_obj.reportType) {
+
+        case "IndicatorReport":
+            path = window.location.protocol + "//" + window.location.host + "/pdf/IndicatorReport/" + areaType + "/" + indicator + "/" + gender  + "/" + state_obj.current_area;
+            break;
+
+        case "OverviewReport":
+            path = window.location.protocol + "//" + window.location.host + "/pdf/OverviewReport/" + areaType + "/" + state_obj.current_area + "/" + gender;
+            break;
+
+        case "AreaReport":
+            path = window.location.protocol + "//" + window.location.host + "/pdf/AreaReport/" + areaType + "/" + state_obj.current_area + "/" + gender;
+            break;
+    }
+
+    window.location.href = path + "?color=" + color  ;
+
+};
+
 Controller.prototype.welcome = function(){
     window.location.href =   window.location.protocol + "//" + window.location.host + "/WessexAlcohol"
 };
-
 
 Controller.prototype.getSourcePath = function(anchor){
 
@@ -331,7 +361,7 @@ Controller.prototype.getSourcePath = function(anchor){
         + anchor;
 
 
-}
+};
 
 Controller.prototype.source = function (anchor) {
 

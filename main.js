@@ -104,17 +104,6 @@ app.get("/", function(req, res){
 
 });
 
-app.get("/test", function(req, res){
-
-    res.render("test", {
-        title: "test"
-    });
-
-
-
-
-});
-
 
 app.get("/select/:reportType/:areaType/:indicator/:gender/:area", function(req, res){
 
@@ -285,13 +274,13 @@ app.get("/WessexAlcohol/source/:reportType/:areaType/:indicator/:gender/:area", 
 
 app.get("/IndicatorReport/:areaType/:indicator/:gender/:area", function(req, res) {
 
-    //need to send topojson for areaType
-    //config file
-    //state
-    //data for wessex list
-    //ordered list of all values
-    //density data
+    var reportType = req.params["reportType"];
 
+    var pdf = false;
+    if(req.headers['user-agent'].indexOf("PhantomJS") > 0){pdf = true} //for removing certain elements from pdf
+
+    var color = true;
+    if(req.query.color == "greyscale"){color = false}; //set color or grey scale
 
     var reportType = "IndicatorReport";
 
@@ -308,14 +297,14 @@ app.get("/IndicatorReport/:areaType/:indicator/:gender/:area", function(req, res
 
     var area = req.params["area"];
 
-
-
     var state_obj = {
         reportType: reportType,
         areaType: areaType,
         genderArr: genderArr,
         indicatorArr: indicatorArr,
-        current_area: area
+        current_area: area,
+        pdf: pdf,
+        color: color
     };
 
 
@@ -372,12 +361,11 @@ app.get("/IndicatorReport/:areaType/:indicator/:gender/:area", function(req, res
 
 app.get("/AreaReport/:areaType/:area/:gender", function(req, res) {
 
-    //need to send topojson for areaType
-    //config file
-    //state
-    //data for wessex list for all inidcators - all areas? - all periods
-    //ordered list of all values
-    //density data
+    var pdf = false;
+    if(req.headers['user-agent'].indexOf("PhantomJS") > 0){pdf = true} //for removing certain elements from pdf
+
+    var color = true;
+    if(req.query.color == "greyscale"){color = false}; //set color or grey scale
 
     var reportType = "AreaReport";
 
@@ -401,7 +389,9 @@ app.get("/AreaReport/:areaType/:area/:gender", function(req, res) {
         areaType: areaType,
         genderArr: genderArr,
         indicatorArr: indicatorArr,
-        current_area: area
+        current_area: area,
+        pdf: pdf,
+        color: color
     }
 
 
@@ -455,6 +445,12 @@ app.get("/AreaReport/:areaType/:area/:gender", function(req, res) {
 
 app.get("/OverviewReport/:areaType/:area/:gender", function(req, res) {
 
+    var pdf = false;
+    if(req.headers['user-agent'].indexOf("PhantomJS") > 0){pdf = true} //for removing certain elements from pdf
+
+    var color = true;
+    if(req.query.color == "greyscale"){color = false}; //set color or grey scale
+
     var reportType = "OverviewReport";
 
     var areaType = req.params["areaType"];
@@ -478,7 +474,9 @@ app.get("/OverviewReport/:areaType/:area/:gender", function(req, res) {
         areaType: areaType,
         genderArr: genderArr,
         indicatorArr: indicatorArr,
-        current_area: area
+        current_area: area,
+        pdf: pdf,
+        color: color
     };
 
 
@@ -527,20 +525,101 @@ app.get("/OverviewReport/:areaType/:area/:gender", function(req, res) {
 });
 
 
-app.get("/Pdf/IndicatorReport/:areaType/:indicator/:gender/:area", function(req, res) {
-
-    var reportType = "IndicatorReport";
-    var areaType = req.params["areaType"];
-    var indicator = req.params["indicator"];
-    var indicatorArr = [req.params["indicator"]];
-    var gender = req.params["gender"];
-    var genderArr = [req.params["gender"]];
-    var area = req.params["area"];
+app.get("/pdf/:reportType/:areaType/:area/:gender", function(req, res) {
 
 
-    var viewportSize = { width: 5000, height: 2000 };
-    var paperSize = { format: "A4",
-        orientation: 'landscape',
+    var reportType = req.params["reportType"];
+
+    if(reportType == "AreaReport") {
+        var viewportSize = {width: 1600, height: 1};
+        var paperSize = {
+            format: "A4",
+            orientation: 'landscape',
+            margin: '0cm'
+        };
+    }
+
+
+    if(reportType == "OverviewReport") {
+        var viewportSize = {width: 1650, height: 1};
+        var paperSize = {
+            format: "A4",
+            orientation: 'landscape',
+            margin: '0cm'
+        };
+    }
+
+    var zoomFactor = 1;
+
+    var arrSet = [
+        ['paperSize', paperSize],
+        ['viewportSize', viewportSize],
+        ['zoomFactor', zoomFactor]
+    ];
+
+    var nextSet = function(page, index, arrSet, callback){
+        if(index < arrSet.length){
+            page.set(arrSet[index][0], arrSet[index][1], function(res){
+                nextSet(page, index+1, arrSet, callback)
+            })
+        } else {
+            callback(page)
+        }
+    };
+
+    //remove "/pdf" and render the url to pdf
+    var address = req.protocol + '://' + req.get('host') + req.originalUrl.substring(4); //'/' + reportType + '/' + areaType + '/' + indicator + '/' + gender + '/' + area;
+    //console.log(address);
+
+    var output = 'LAPW_' + Date.now() + '.pdf';
+    var download_output = 'LAPW_' + reportType + '.pdf';
+
+    var file = path.join(__dirname, "tmp/" + output);
+
+    //var settings = {
+    //    operation: "POST",
+    //    encoding: "utf8",
+    //    headers: {
+    //        "Content-Type": "application/json"
+    //    },
+    //    data: JSON.stringify({
+    //        pdf: "pdf"
+    //    })
+    //};
+
+    phantom.create(function (ph) {
+        //console.log("creating page")
+        ph.createPage(function (page) {
+            page.open(address, function (status) {
+                nextSet(page, 0, arrSet, function(page){
+                    //console.log("rendering page")
+                    page.render("tmp/" + output, function(result){
+                        //console.log("pdf: " + file)
+                        res.download(file, download_output, function(err){
+                            if(err){console.log(err.message)}
+                            fs.unlink(file)
+                        })
+                    })
+                });
+            });
+        })
+    }, {
+        dnodeOpts: { //only for MS
+            weak: false
+        }
+    });
+
+});
+
+app.get("/pdf/:reportType/:areaType/:indicator/:gender/:area", function(req, res) {
+
+
+    var reportType = req.params["reportType"];
+
+    var viewportSize = {width: 800, height: 1500};
+    var paperSize = {
+        format: "A4",
+        orientation: 'portrait',
         margin: '1cm'
     };
 
@@ -562,23 +641,34 @@ app.get("/Pdf/IndicatorReport/:areaType/:indicator/:gender/:area", function(req,
         }
     };
 
+    //remove "/pdf" and render the url to pdf
+    var address = req.protocol + '://' + req.get('host') + req.originalUrl.substring(4); //'/' + reportType + '/' + areaType + '/' + indicator + '/' + gender + '/' + area;
+    //console.log(address);
 
-    var address = req.protocol + '://' + req.get('host') + '/' + reportType + '/' + areaType + '/' + indicator + '/' + gender + '/' + area;
-    console.log(address);
-
-    var output = 'Test_' + Date.now() + '.pdf';
-    var download_output = 'Test' + '.pdf'
+    var output = 'LAPW_' + Date.now() + '.pdf';
+    var download_output = 'LAPW_' + reportType + '.pdf';
 
     var file = path.join(__dirname, "tmp/" + output);
 
+    var settings = {
+        operation: "POST",
+        encoding: "utf8",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        data: JSON.stringify({
+            pdf: "pdf"
+        })
+    };
+
     phantom.create(function (ph) {
-        console.log("creating page")
+        //console.log("creating page")
         ph.createPage(function (page) {
             page.open(address, function (status) {
                 nextSet(page, 0, arrSet, function(page){
-                    console.log("rendering page")
+                    //console.log("rendering page")
                     page.render("tmp/" + output, function(result){
-                        console.log("pdf: " + file)
+                        //console.log("pdf: " + file)
                         res.download(file, download_output, function(err){
                             if(err){console.log(err.message)}
                             fs.unlink(file)

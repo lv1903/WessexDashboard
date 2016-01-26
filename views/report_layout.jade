@@ -1,0 +1,87 @@
+doctype html
+html
+    head
+         title LAPW
+         meta(charset='utf-8')
+         meta(http-equiv='X-UA-Compatible', content='IE=edge')
+         meta(name='viewport', content='width=device-width, initial-scale=1')
+         meta(name='description', content='')
+         meta(name='author', content='')
+         link(href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css", rel='stylesheet')
+         link(href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css", rel='stylesheet')
+         link(href='http://fonts.googleapis.com/css?family=Raleway', rel='stylesheet', type='text/css')
+         script(src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js")
+         script(src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js")
+         script(src="https://cdnjs.cloudflare.com/ajax/libs/crossfilter/1.3.12/crossfilter.min.js")
+         script(src="http://d3js.org/d3.v3.min.js")
+         script(src= "http://d3js.org/topojson.v1.min.js")
+         script(src="http://www.numericjs.com/lib/numeric-1.2.6.min.js")
+         script(src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js")
+         script(type='text/javascript', src='/javascripts/EventEmitter-VERSION.min.js')
+
+         link(rel='stylesheet', href='/stylesheets/style.css')
+         link(rel='stylesheet', href='/stylesheets/flexStyleIndicator.css')
+
+
+
+         script.
+            var config_obj = !{JSON.stringify(config_obj)};
+            var data_obj = !{JSON.stringify(data_obj)};
+            var state_obj = !{JSON.stringify(state_obj)};
+
+         script(src="/javascripts/components.js")
+         script(src="/javascripts/controller.js")
+         script(src="/javascripts/help.js")
+
+         console.log(state_obj.pdf)
+
+
+         if !state_obj.pdf
+            #headerDiv
+                .flex-header-container
+                    .flex-header-item#selectButtonItem
+                      .btn.btn-primary.btn.flex-btn(onclick='controller.select()')
+                          span.i.fa.fa-th-large.fa-fw
+                          span #{" "} Change Report
+
+                    .flex-header-item#selectButtonItem
+                      .btn-group
+                          .btn.btn-primary.btn.flex-btn(onclick='controller.zoom(1.1)')
+                              span.i.fa.fa-search-plus.fa-fw
+                              span #{" "} Zoom In
+                          .btn.btn-primary.btn.flex-btn(onclick='controller.zoom(0.9)')
+                              span.i.fa.fa-search-minus.fa-fw
+                              span #{" "} Zoom Out
+                          .btn.btn-primary.btn.flex-btn(onclick='controller.zoom(-1)')
+                              span.i.fa.fa-refresh.fa-fw
+                              span #{" "} Reset
+
+                    .flex-header-item#shareButtonItem
+                      .btn.btn-primary.btn.flex-btn(onclick='controller.share()')
+                          span.i.fa.fa-share-alt.fa-fw
+                          span #{" "} Share
+
+                    .flex-header-item#pdfButtonItem
+                        .dropdown
+                          button.btn.btn-primary.btn.flex-btn.dropdown-toggle(data-toggle="dropdown")
+                              span.i.fa.fa-file-pdf-o.fa-fw
+                              span #{" "} PDF #{" "}
+                              span.caret
+                          ul.dropdown-menu
+                              li
+                                a(onclick="controller.pdf('colorscale')") Color
+                              li
+                                a(onclick="controller.pdf('greyscale')") Greyscale
+
+                    .flex-header-item#introButtonItem
+                      .btn.btn-primary.btn.flex-btn(onclick="controller.welcome()")
+                          span.i.fa.fa-reply.fa-fw
+                          span #{" "} Return to the introduction
+
+                    .flex-header-item#sourceButtonItem
+                      .btn.btn-primary.btn.flex-btn(onclick="controller.source()")
+                          span.i.fa.fa-info-circle.fa-fw
+                          span #{" "} Source
+
+    body
+        block content

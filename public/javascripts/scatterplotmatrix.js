@@ -60,17 +60,7 @@ ScatterPlotMatrix.prototype._draw_all = function(){
     this._draw_timeSlider();
     this._draw_scatterPlotMatrix();
 
-    //this._draw_indicator();
-    //this._draw_gender();
-    //this._draw_area_name();
-    //this._draw_value();
-    //this._draw_no_data();
-    //this._draw_count();
-    //this._draw_gauge();
-    //this._draw_rank();
-    //this._draw_densityGraph();
-    //this._draw_label();
-    //this._draw_lineGraph();
+
 
 };
 

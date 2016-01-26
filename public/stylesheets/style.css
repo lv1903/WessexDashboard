@@ -4,6 +4,10 @@ body {
 
 }
 
+.pdf_hide{
+    display: none;
+}
+
 @media (max-width: 1000px) {
     body {
         padding: 20px;
@@ -16,8 +20,32 @@ body {
     /*background-color: red*/
 }
 
-.flex-header-container{
+#headerDiv {
+    margin: auto;
 
+    display: -webkit-box;      /* OLD - iOS 6-, Safari 3.1-6 */
+    display: -moz-box;         /* OLD - Firefox 19- (buggy but mostly works) */
+    display: -ms-flexbox;      /* TWEENER - IE 10 */
+    display: -webkit-flex;     /* NEW - Chrome */
+    display: flex;             /* NEW, Spec - Opera 12.1, Firefox 20+ */
+
+
+    -webkit-flex-direction: column;
+    flex-direction: column;
+    -ms-flex-direction: column;
+
+    -webkit-align-items: stretch;
+    align-items: stretch;
+
+
+    align-content: flex-start;
+    -webkit-align-content: flex-start;
+
+    -webkit-justify-content: flex-start;
+    justify-content: flex-start;
+
+    -webkit-flex-wrap: nowrap;
+    flex-wrap: nowrap;
 }
 
 
@@ -36,7 +64,6 @@ body {
     box-shadow: 2px 2px 5px 0px #bfbfbf;
 
 
-
 }
 
 
@@ -53,7 +80,7 @@ body {
 
 .clickable {
 
-  cursor: crosshair;
+  cursor:pointer;
 
 }
 
@@ -94,13 +121,16 @@ body {
   stroke-width: 4px;
   stroke-linecap: round;
   pointer-events: none;
+  cursor:pointer;
 }
 
 .slider .handle text {
 
   text-align: center;
   font-size: 1.5em;
+  cursor:pointer;
 }
+
 
 
 /*---select page ---*/

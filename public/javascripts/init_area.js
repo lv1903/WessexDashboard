@@ -25,6 +25,8 @@ window.onload = function() {
         widget_obj[widgetId] = new IndicatorWidget(indicator, gender, "#" + widgetId + "Item", widgetId );
     }
 
+    $(".widget").css({"background-color": controller.config.colorScheme.background_color}) //set widget color dynamically
+
 };
 
 
