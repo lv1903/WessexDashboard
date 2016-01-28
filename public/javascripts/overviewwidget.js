@@ -259,10 +259,6 @@ OverviewWidget.prototype._draw_stop_button = function(){
 
 
 
-
-
-
-
 OverviewWidget.prototype._add_help_button = function(){
 
     var self = this;
