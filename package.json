@@ -17,6 +17,6 @@
     "kernel-smooth": "*",
     "topojson": "*",
     "phantom": "*",
-    "phantomjs": "~1.9.17"
+    "phantomjs": "~2.1.3"
   }
 }
