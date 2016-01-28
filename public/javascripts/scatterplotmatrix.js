@@ -39,14 +39,10 @@ ScatterPlotMatrix.prototype._update_widget = function(){
 
     var gender = this.gender;
     var areaType = controller.state.areaType;
-    this.indicatorMappedArr = controller.getIndicatorMappedArr(this.indicatorArr, controller.config.indicatorMapping)
+    this.indicatorMappedArr = controller.getIndicatorMappedArr(this.indicatorArr, controller.config.indicatorMapping);
     var current_period = controller.state.current_period;
     var current_area = controller.state.current_area;
 
-    //this.data = controller.filterData(areaType, gender, indicatorMapped);
-    //this.data_period = controller.filterDataPeriod(areaType, gender, indicatorMapped, current_period);
-    //this.data_area = controller.filterDataArea(areaType, gender, indicatorMapped, current_area);
-    //this.val = controller.getValueFromPeriodData(areaType, gender, indicatorMapped, current_period, current_area);
 
 };
 
@@ -56,9 +52,11 @@ ScatterPlotMatrix.prototype._draw_all = function(){
     this._add_help_button();
 
     this._draw_header();
-    this._draw_area_name()
+    this._draw_area_name();
     this._draw_timeSlider();
     this._draw_scatterPlotMatrix();
+    this._draw_play_button();
+    this._draw_stop_button();
 
 
 
@@ -139,9 +137,9 @@ ScatterPlotMatrix.prototype._draw_area_name = function(){
         width: this.width,
         fill: controller.config.colorScheme.highlight_text_color,
         id: "areaName" + this.widgetId
-    })
+    });
 
-    this._area_text.render()
+    this._area_text.render();
 
     function update(){
         self._area_text.update(controller._get_area_name(controller.state.current_area));
@@ -164,7 +162,7 @@ ScatterPlotMatrix.prototype._draw_timeSlider = function(){
         firstPeriod: controller.config.firstPeriod,
         lastPeriod: controller.config.lastPeriod
 
-    })
+    });
 
     this._timeSlider.render();
 
@@ -183,14 +181,71 @@ ScatterPlotMatrix.prototype._draw_scatterPlotMatrix = function(){
 
     this._scatterPlotMatrix.render();
 
-    //function update(){
-    //    self._tartanRug.update(self);
-    //}
-    //ee.addListener("update", update)
+};
+
+ScatterPlotMatrix.prototype._draw_play_button = function(){
+
+    var self = this;
+    var config = controller.config;
+
+    var r = 14;
+    var margin = 16
+        ;
+    var x =  4 * 14;
+    var y = 9.5 * 14;
+    var icon = "\u25B6";
+
+    this._help_button = component.circleButton( self, {
+        r: r,
+        margin: margin,
+        x: x,
+        y: y,
+        icon: icon,
+        font_size: "3em",
+        stroke_width: 3,
+        color: config.colorScheme.quartile_dark_color_array[0],
+        background_color: config.colorScheme.background_color,
+        //opacity: 0.8,
+
+        component_class: "play_button",
+        clicked: function(){controller.play(controller)}
+    });
+
+    this._help_button.render();
+
+};
 
 
+ScatterPlotMatrix.prototype._draw_stop_button = function(){
 
-}
+    var self = this;
+    var config = controller.config;
+
+    var r = 14;
+    var margin = 8;
+    var x =  7.5 * 14;
+    var y = 9.5 * 14;
+    var icon = "\u25A0";
+
+    this._help_button = component.circleButton( self, {
+        r: r,
+        margin: margin,
+        x: x,
+        y: y,
+        icon: icon,
+        font_size: "1.6em",
+        stroke_width: 3,
+        color: config.colorScheme.quartile_dark_color_array[3],
+        background_color: config.colorScheme.background_color,
+        opacity: 0.5,
+
+        component_class: "stop_button",
+        clicked: function(){controller.stop(controller)}
+    });
+
+    this._help_button.render();
+
+};
 
 
 

@@ -397,22 +397,53 @@ Controller.prototype.setWidgetZoom = function(widgetId){
 
 };
 
-Controller.prototype.play = function(){
+Controller.prototype.play = function(self){
+
+    if(self.state.play){return} //do nothing if already playing
+
+    //set button opacity
+    d3.selectAll(".play_button").style("opacity", 0.5);
+    d3.selectAll(".stop_button").style("opacity", 1);
+
+    self.state.play = true;
+
+    var period = self.state.current_period;
+
+    if (period < this.config.lastPeriod) { //get next period
+        period += 1
+    } else {
+        period = self.config.firstPeriod;
+    }
+
+    self._period_change(period); //do quick update
+
+    self.play_next(period) //start cycle
 
 
-    setTimeout(this.play_next(this.config.firstPeriod),10000)
+
+    self.play_next(self.state.current_period);
 
 };
 
 Controller.prototype.play_next = function(period){
-
-    console.log(period)
-
-    if(period <=  2010){//this.config.lastPeriod){
-        this._period_change(period)
-        setTimeout(this.play_next(period + 1),10000);
-    } else {
-        return
+    var self = this;
+    if(self.state.play) {
+        if (period <= this.config.lastPeriod) {
+            self._period_change(period);
+            setTimeout(function () {
+                self.play_next(period + 1);
+            }, 2000);
+        } else {
+            self.play_next(self.config.firstPeriod);
+        }
     }
+};
 
-}
+Controller.prototype.stop = function(self){
+
+    //set button opacity
+    d3.selectAll(".play_button").style("opacity", 1);
+    d3.selectAll(".stop_button").style("opacity", 0.5);
+
+    self.state.play = false;
+};

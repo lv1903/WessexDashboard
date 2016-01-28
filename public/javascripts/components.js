@@ -1267,7 +1267,10 @@ Components.prototype.timeSlider = function(widget, configuration){
     function update() {
 
         var value = controller.state.current_period;
-        handle.attr("transform", "translate(" + xscale(Math.round(value)) + ",0)");
+        handle.transition()
+            .duration(500)
+            .ease("exp")
+            .attr("transform", "translate(" + xscale(Math.round(value)) + ",0)");
         handle.select('text').text(Math.round(value));
 
     }
@@ -2019,6 +2022,27 @@ Components.prototype.circleButton = function(widget, configuration){
     var margin = undefined;
     var icon = undefined;
     var clicked = undefined;
+    var font_size = undefined;
+    var stroke_width = undefined;
+    var color = undefined;
+    var background_color = undefined;
+    var opacity = undefined;
+    var component_class = undefined;
+    var component_id = undefined;
+
+    function mouseDown(){
+        svg.transition()
+            .duration(100)
+            .attr("transform", "translate(0,1)")
+            //.style("opacity", 0.5);
+    }
+
+    function mouseUp(){
+        svg.transition()
+            .duration(100)
+            .attr("transform", "translate(-0,-1)")
+            //.style("opacity", opacity);
+    }
 
     function configure(widget, configuration) {
 
@@ -2029,6 +2053,21 @@ Components.prototype.circleButton = function(widget, configuration){
         margin = that.config.margin;
         icon = that.config.icon;
         clicked = that.config.clicked;
+
+        if(that.config.hasOwnProperty("font_size")){ font_size = that.config.font_size } else {font_size = "1em"}
+        if(that.config.hasOwnProperty("stroke_width")){ stroke_width = that.config.stroke_width } else {stroke_width = 1}
+        if(that.config.hasOwnProperty("color")){ color = that.config.color } else {color = widget.cs.text_color}
+        if(that.config.hasOwnProperty("background_color")){ background_color = that.config.background_color } else {background_color = "white"}
+        if(that.config.hasOwnProperty("opacity")){ opacity = that.config.opacity } else {opacity = 1}
+
+
+        component_class = "circle_button clickable";
+        if(that.config.hasOwnProperty("component_class")){ component_class += " " + that.config.component_class }
+
+        if(that.config.hasOwnProperty("component_id")){ component_id = that.config.component_id }
+
+
+
     }
     that.configure = configure;
 
@@ -2040,32 +2079,49 @@ Components.prototype.circleButton = function(widget, configuration){
     function render() {
 
         svg = widget._chart.append("g")
-            .attr("class", "test");
+            .attr("class", "test")
+            .style("opacity", opacity);
+
+        if(component_class != undefined){
+            svg.attr("class", component_class)
+        }
+
+        if(component_id != undefined){
+            svg.attr("id", component_id)
+        }
 
         if(controller.state.pdf){ //this is a button hide from pdf
             svg.classed("pdf_hide", true)
         }
 
         svg.append("circle")
-            .attr("class", "circle_button clickable")
+            //.attr("class", "circle_button clickable")
             .attr("cx", x)
             .attr("cy", y)
             .attr("r", r)
             //.style("fill", widget.cs.highlight_text_color)
-            .style("fill", "white")
-            .style("stroke", widget.cs.text_color )
+            .style("fill", background_color)
+            .style("stroke", color )
+            .style("stroke-width", stroke_width)
+
+            .on("mousedown", mouseDown)
+            .on("mouseup", mouseUp)
             .on("click", clicked.bind(widget));
 
         svg.append('text')
-            .attr("class", "clickable")
+            //.attr("class", "clickable")
             .attr("x", x)
             .attr("y", y)
             .attr("dy", margin)
             .attr("text-anchor", "middle")
             .attr('font-family', 'FontAwesome')
-            .style("fill", widget.cs.text_color)
+            .style("font-size", font_size)
+            .style("fill", color)
+            //.style("opacity", opacity)
             //.style("stroke", 0)
             .text(icon)
+            .on("mousedown", mouseDown)
+            .on("mouseup", mouseUp)
             .on("click", clicked.bind(widget));
     }
 

@@ -34,6 +34,9 @@ AreaHeader.prototype._draw_all = function(){
     this._draw_select_area();
     this._draw_timeSlider();
     this._draw_select_year();
+    this._draw_play_button();
+    this._draw_stop_button();
+    this._draw_play_text();
 
 
 };
@@ -240,12 +243,101 @@ AreaHeader.prototype._draw_select_year = function(){
         x: -5,
         y: 40 * 14,
         width: this.width,
-        id: "yearSelectText" + this.widgetId
+        id: "yearSelectText" + this.widgetId,
+        color: controller.config.colorScheme.main_color
     });
     if(!controller.state.pdf) { //don't render for pdf
         this._year_select.render()
     }
 };
+
+
+
+
+
+AreaHeader.prototype._draw_play_button = function(){
+
+    var self = this;
+    var config = controller.config;
+
+    var r = 14;
+    var margin = 16
+        ;
+    var x =  14;
+    var y = 43 * 14;
+    var icon = "\u25B6";
+
+    this._help_button = component.circleButton( self, {
+        r: r,
+        margin: margin,
+        x: x,
+        y: y,
+        icon: icon,
+        font_size: "3em",
+        stroke_width: 3,
+        color: config.colorScheme.quartile_dark_color_array[0],
+        background_color: config.colorScheme.background_color,
+        //opacity: 0.8,
+
+        component_class: "play_button",
+        clicked: function(){controller.play(controller)}
+    });
+
+    this._help_button.render();
+
+};
+
+
+AreaHeader.prototype._draw_stop_button = function(){
+
+    var self = this;
+    var config = controller.config;
+
+    var r = 14;
+    var margin = 8;
+    var x =  4.5 * 14;
+    var y = 43 * 14;
+    var icon = "\u25A0";
+
+    this._help_button = component.circleButton( self, {
+        r: r,
+        margin: margin,
+        x: x,
+        y: y,
+        icon: icon,
+        font_size: "1.6em",
+        stroke_width: 3,
+        color: config.colorScheme.quartile_dark_color_array[3],
+        background_color: config.colorScheme.background_color,
+        opacity: 0.5,
+
+        component_class: "stop_button",
+        clicked: function(){controller.stop(controller)}
+    });
+
+    this._help_button.render();
+
+};
+
+AreaHeader.prototype._draw_play_text = function(){
+
+    var self = this;
+
+    this._year_select = component.text(self, {
+        str: "press play to step through the years",
+        font_size: "1em",
+        x: -5,
+        y: 46 * 14,
+        width: this.width,
+        id: "yearSelectText" + this.widgetId,
+        color: controller.config.colorScheme.main_color
+    });
+
+    if(!controller.state.pdf){ //don't render for pdf
+        this._year_select.render();
+    }
+};
+
 
 
 
