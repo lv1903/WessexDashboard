@@ -12,7 +12,7 @@ window.onload = function() {
 
 
     if(state_obj.pdf){ //reduce size for pdf
-        controller.zoom(0.8);
+        controller.zoom(0.4);
     };
 
 

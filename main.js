@@ -531,7 +531,7 @@ app.get("/pdf/:reportType/:areaType/:area/:gender", function(req, res) {
     var reportType = req.params["reportType"];
 
     if(reportType == "AreaReport") {
-        var viewportSize = {width: 1600, height: 1};
+        var viewportSize = {width: 820, height: 1};
         var paperSize = {
             format: "A4",
             orientation: 'landscape',
@@ -541,7 +541,7 @@ app.get("/pdf/:reportType/:areaType/:area/:gender", function(req, res) {
 
 
     if(reportType == "OverviewReport") {
-        var viewportSize = {width: 1650, height: 1};
+        var viewportSize = {width: 850, height: 1};
         var paperSize = {
             format: "A4",
             orientation: 'landscape',
@@ -587,7 +587,7 @@ app.get("/pdf/:reportType/:areaType/:area/:gender", function(req, res) {
     //    })
     //};
 
-    phantom.create(function (ph) {
+    phantom.create("--web-security=no", function (ph) {
         //console.log("creating page")
         ph.createPage(function (page) {
             page.open(address, function (status) {
@@ -616,12 +616,12 @@ app.get("/pdf/:reportType/:areaType/:indicator/:gender/:area", function(req, res
 
     var reportType = req.params["reportType"];
 
-    var viewportSize = {width: 800, height: 1500};
-    var paperSize = {
-        format: "A4",
-        orientation: 'portrait',
-        margin: '1cm'
-    };
+    var viewportSize = {width: 750, height: 1};
+            var paperSize = {
+            format: "A4",
+            orientation: 'landscape',
+            margin: '0cm'
+        };    
 
     var zoomFactor = 1;
 
@@ -661,7 +661,7 @@ app.get("/pdf/:reportType/:areaType/:indicator/:gender/:area", function(req, res
         })
     };
 
-    phantom.create(function (ph) {
+    phantom.create("--web-security=no", function (ph) {
         //console.log("creating page")
         ph.createPage(function (page) {
             page.open(address, function (status) {

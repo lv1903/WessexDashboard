@@ -25,6 +25,10 @@ window.onload = function() {
         widget_obj[widgetId] = new IndicatorWidget(indicator, gender, "#" + widgetId + "Item", widgetId );
     }
 
+    if(state_obj.pdf){ //reduce size for pdf
+        controller.zoom(0.5);
+    };
+
     $(".widget").css({"background-color": controller.config.colorScheme.background_color}) //set widget color dynamically
 
 };
