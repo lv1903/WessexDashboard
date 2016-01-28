@@ -401,5 +401,5 @@ AreaFacts.prototype._redraw = function(){
 AreaFacts.prototype._draw_help_text = function(){
     var self = this;
     help.areaFactsHelp(self, 0);
-    help.indicatorHelp(self, 10 * 14);
+    help.indicatorHelp(self, 12 * 14);
 };

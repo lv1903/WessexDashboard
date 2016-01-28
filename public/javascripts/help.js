@@ -6,7 +6,7 @@ Help = function(){};
 Help.prototype.overviewWidgetHelp = function (self, y){
 
     component.text(self, {
-        str: "This overview shows the value for each area for each indicator.",
+        str: "This table shows the value for each area for each indicator.",
         font_size: "1em",
         x: 0,
         y: y + 0 * 14,
@@ -87,7 +87,7 @@ Help.prototype.scatterPlotHelp = function (self, y){
     }).render();
 
     component.text(self, {
-        str: "Click on the dots and their name is shown in the top left.",
+        str: "Click the dots to change the area selected. The area name is shown in the top left.",
         font_size: "1em",
         x: 0,
         y: y + 2 * 14,
@@ -101,7 +101,7 @@ Help.prototype.scatterPlotHelp = function (self, y){
         str: "You can change the year with the time slider.",
         font_size: "1em",
         x: 0,
-        y: y + 4 * 14,
+        y: y + 5 * 14,
         dy: 0,
         width: 500,
         fill: controller.config.colorScheme.text_color,
@@ -137,7 +137,7 @@ Help.prototype.areaHeaderHelp = function (self, y){
     }).render();
 
     component.text(self, {
-        str: "And click on the map to change the your selected area.",
+        str: "Click on the map to change the selected area.",
         font_size: "1em",
         x: 0,
         y: y + 6 * 14,
@@ -148,7 +148,7 @@ Help.prototype.areaHeaderHelp = function (self, y){
     }).render();
 
     component.text(self, {
-        str: "You can select different reports at the top as well as share the app!",
+        str: "Use the buttons above to: select a different report type, share the app, create a pdf or view more information about the source data.",
         font_size: "1em",
         x: 0,
         y: y + 9 * 14,
@@ -223,7 +223,7 @@ Help.prototype.indicatorWidgetHelp = function (self, y){
     }).render();
 
     component.text(self, {
-        str: "We have also shown the median values for England and the Wessex areas As well as the actual value for the area you have selected.",
+        str: "The median values for England and Wessex areas are displayed alongside the value for the area selected.",
         font_size: "1em",
         x: 0,
         y: y + 19 * 14,
@@ -257,7 +257,7 @@ Help.prototype.indicatorWidgetHelp = function (self, y){
     }).render();
 
     component.text(self, {
-        str: "Click on the dots to change the year.",
+        str: "Click the dots to change the year.",
         font_size: "1em",
         x: 0,
         y: y + 32 * 14,
@@ -334,7 +334,7 @@ Help.prototype.densityGraphHelp = function (self, y){
     }).render();
 
     component.text(self, {
-        str: "We have also shown the median values for England and the Wessex areas As well as the actual value for the area you have selected.",
+        str: "The median values for England and Wessex areas are displayed alongside the value for the area selected.",
         font_size: "1em",
         x: 0,
         y: y + 4 * 14,
@@ -410,7 +410,7 @@ Help.prototype.mapHelp = function (self, y){
         str: "Click on the map to select and highlight different areas",
         font_size: "1em",
         x: 0,
-        y: y + 8 * 14,
+        y: y + 9 * 14,
         dy: 0,
         width: 240,
         fill: controller.config.colorScheme.text_color,
@@ -437,7 +437,7 @@ Help.prototype.areaFactsHelp = function (self, y){
     }).render();
 
     component.text(self, {
-        str: "All the England areas have been ranked and divided into quartiles.",
+        str: "The standardised rate and count for the area selected are presented.",
         font_size: "1em",
         x: 0,
         y: y + 3 * 14,
@@ -448,10 +448,21 @@ Help.prototype.areaFactsHelp = function (self, y){
     }).render();
 
     component.text(self, {
-        str: "The gauge shows the rank of the selected area.",
+        str: "All the England areas have been ranked and divided into quartiles.",
         font_size: "1em",
         x: 0,
         y: y + 6 * 14,
+        dy: 0,
+        width: 240,
+        fill: controller.config.colorScheme.text_color,
+        id: "header" + self.widgetId
+    }).render();
+
+    component.text(self, {
+        str: "The gauge shows the rank of the selected area.",
+        font_size: "1em",
+        x: 0,
+        y: y + 9 * 14,
         dy: 0,
         width: 240,
         fill: controller.config.colorScheme.text_color,
@@ -491,7 +502,7 @@ Help.prototype.barGraphHelp = function (self, y){
     }).render();
 
     component.text(self, {
-        str: "If you filter the line graph the bar graph will serve as a legend for the selected lines.",
+        str: "If a filter is applied to the line graph the bar graph will act as a legend for the selected lines.",
         font_size: "1em",
         x: 0,
         y: y + 5 * 14,
@@ -509,7 +520,7 @@ Help.prototype.multiLineGraphHelp = function (self, y){
     areaTypeLabel = controller.config.areaTypeLabels[areaType];
 
     component.text(self, {
-        str: "The line graph shows how the values change over time for Wessex " + areaTypeLabel,
+        str: "The line graph shows the change over time for Wessex " + areaTypeLabel,
         font_size: "1em",
         x: 0,
         y: y + 0 * 14,
@@ -520,7 +531,7 @@ Help.prototype.multiLineGraphHelp = function (self, y){
     }).render();
 
     component.text(self, {
-        str: "Click on the filter icon to select fewer lines.",
+        str: "Use the filter button select fewer lines.",
         font_size: "1em",
         x: 0,
         y: y + 3 * 14,
@@ -542,7 +553,7 @@ Help.prototype.multiLineGraphHelp = function (self, y){
     }).render();
 
     component.text(self, {
-        str: "Or click on the dots to change the year.",
+        str: "Click the dots to change the year.",
         font_size: "1em",
         x: 0,
         y: y + 9 * 14,
@@ -585,7 +596,7 @@ Help.prototype.indicatorHelp = function(self, y, indicator){
             }).render();
 
             component.text(self, {
-                str: "Admissions to hospital where the primary diagnosis or any of the secondary diagnoses are an alcohol-attributable code. Per 100,000 population.",
+                str: "Admissions to hospital where a primary diagnosis or secondary diagnoses are an alcohol-attributable code. Per 100,000 population.",
                 font_size: "1em",
                 x: 0,
                 y: y + 3 * 14,
@@ -632,7 +643,7 @@ Help.prototype.indicatorHelp = function(self, y, indicator){
             }).render();
 
             component.text(self, {
-                str: "Deaths from alcohol-specific conditions, all ages, directly age-standardised rate per 100,000 population.",
+                str: "Deaths from alcohol-specific conditions, directly age-standardised rate per 100,000 population.",
                 font_size: "1em",
                 x: 0,
                 y: y + 3 * 14,

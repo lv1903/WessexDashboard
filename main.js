@@ -528,7 +528,7 @@ app.get("/OverviewReport/:areaType/:area/:gender", function(req, res) {
 app.get("/pdf/:reportType/:areaType/:area/:gender", function(req, res) {
 
 
-    var reportType = "OverviewReport";
+    var reportType = req.params["reportType"];
 
     if(reportType == "AreaReport") {
         var viewportSize = {width: 820, height: 1};

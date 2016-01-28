@@ -3264,7 +3264,7 @@ Components.prototype.arrowKey =  function(widget, configuration){
         var pad = 14;
         var w = (that.config.width + pad * 2) / 2;
 
-        var textArr = ["\u25B2 increase on previous year", "\u25BC decrease on prevous year" ]
+        var textArr = ["\u25B2 increase year-on-year", "\u25BC decrease year-on-year" ];
 
         svg.selectAll(".keyBars")
             .data(textArr)
