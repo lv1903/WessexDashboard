@@ -675,6 +675,7 @@ app.get("/pdf/:reportType/:areaType/:indicator/:gender/:area", function(req, res
                         })
                     })
                 });
+                phantom.exit();
             });
         })
     }, {
@@ -684,6 +685,8 @@ app.get("/pdf/:reportType/:areaType/:indicator/:gender/:area", function(req, res
     });
 
 });
+
+
 
 
 
