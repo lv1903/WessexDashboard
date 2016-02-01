@@ -117,7 +117,9 @@
       {"id":"E06000054","name":"Wiltshire","short_name":"Wiltshire"},
       {"id":"E06000044","name":"Portsmouth","short_name":"Portsmouth"},
       {"id":"E06000045","name":"Southampton","short_name":"Soton"},
-      {"id":"E06000046","name":"Isle of Wight","short_name":"Isle Wight"}
+      {"id":"E06000046","name":"Isle of Wight","short_name":"Isle Wight"},
+      {"id":"E06000029","name":"Poole","short_name":"Poole"},
+      {"id":"E06000028","name":"Bournemouth","short_name":"Brnmouth"}
 
     ],
 
@@ -142,7 +144,9 @@
       {"id":"E06000054","name":"Wiltshire","short_name":"Wiltshire"},
       {"id":"E06000044","name":"Portsmouth","short_name":"Portsmouth"},
       {"id":"E06000045","name":"Southampton","short_name":"Soton"},
-      {"id":"E06000046","name":"Isle of Wight","short_name":"Isle Wight"}
+      {"id":"E06000046","name":"Isle of Wight","short_name":"Isle Wight"},
+      {"id":"E06000029","name":"Poole","short_name":"Poole"},
+      {"id":"E06000028","name":"Bournemouth","short_name":"Brnmouth"}
 
 
     ],

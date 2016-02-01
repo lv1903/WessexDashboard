@@ -582,6 +582,7 @@ Components.prototype.densityGraph = function(widget, configuration){
         svg.append("g")
             .attr("class", "x axis")
             .attr("transform", "translate(0," + that.config.compHeight + ")")
+            .style("fill", config.colorScheme.text_color)
             .call(xAxis);
 
         //add density graph as missing data
@@ -1014,11 +1015,13 @@ Components.prototype.lineGraph = function(widget, configuration){
         svg.append("g")
             .attr("class", "x axis")
             .attr("transform", "translate(0," + that.config.compHeight + ")")
+            .style("fill", config.colorScheme.text_color)
             .call(xAxis);
 
         svg.append("g")
             .attr("class", "y axis")
             .attr("transform", "translate("  + max_y_value_width / 2 + ", 0)")
+            .style("fill", config.colorScheme.text_color)
             .call(yAxis);
 
         //svg.append("text")
@@ -1881,11 +1884,13 @@ Components.prototype.multiLineGraph = function(widget, configuration){
         svg.append("g")
             .attr("class", "x axis")
             .attr("transform", "translate(0," + that.config.compHeight + ")")
+            .style("fill", config.colorScheme.text_color)
             .call(xAxis);
 
         svg.append("g")
             .attr("class", "y axis")
             .attr("transform", "translate("  + max_y_value_width / 2 + ", 0)")
+            .style("fill", config.colorScheme.text_color)
             .call(yAxis);
 
         svg.append("line")

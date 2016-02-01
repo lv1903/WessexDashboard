@@ -197,11 +197,10 @@ IndicatorHeader.prototype._draw_play_button = function(){
     var config = controller.config;
 
     var r = 14;
-    var margin = 16
-        ;
+    var margin = 7;
     var x =  14;
     var y = 18.5 * 14;
-    var icon = "\u25B6";
+    var icon = "\uf04b";
 
     this._help_button = component.circleButton( self, {
         r: r,
@@ -209,7 +208,7 @@ IndicatorHeader.prototype._draw_play_button = function(){
         x: x,
         y: y,
         icon: icon,
-        font_size: "3em",
+        font_size: "1.5em",
         stroke_width: 3,
         color: config.colorScheme.quartile_dark_color_array[0],
         background_color: config.colorScheme.background_color, //config.colorScheme.quartile_color_array[0],
@@ -230,10 +229,10 @@ IndicatorHeader.prototype._draw_stop_button = function(){
     var config = controller.config;
 
     var r = 14;
-    var margin = 8;
+    var margin = 7;
     var x =  4.5 * 14;
     var y = 18.5 * 14;
-    var icon = "\u25A0";
+    var icon = "\uf04d";
 
     this._help_button = component.circleButton( self, {
         r: r,
@@ -241,7 +240,7 @@ IndicatorHeader.prototype._draw_stop_button = function(){
         x: x,
         y: y,
         icon: icon,
-        font_size: "1.6em",
+        font_size: "1.5em",
         stroke_width: 3,
         color: config.colorScheme.quartile_dark_color_array[3],
         background_color: config.colorScheme.background_color,//config.colorScheme.quartile_dark_color_array[3],
