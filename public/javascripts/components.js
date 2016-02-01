@@ -2471,6 +2471,10 @@ Components.prototype.tartanRug = function(widget, configuration){
         }
     }
 
+    function cap(string){
+        return string.charAt(0).toUpperCase() + string.slice(1);
+    }
+
 
     function configure(widget, configuration) {
 
@@ -2484,7 +2488,7 @@ Components.prototype.tartanRug = function(widget, configuration){
         //    .entries(data)
 
 
-        that.config.header_height = 14 * 4;
+        that.config.header_height = 14 * 5;
         //that.config.label_width = 14 * 10;
 
         var config = controller.config;
@@ -2555,6 +2559,15 @@ Components.prototype.tartanRug = function(widget, configuration){
                 .style("font-size", "1em")
                 .style("fill", config.colorScheme.text_color)
                 .call(self.wrap, xscale(1), indicatorArr[i]);
+
+            var unit = cap(config.indicatorLabels[indicatorArr[i]])
+            svg.append("text")
+                .attr("class", "indicator_unit" + widget.widgetId)
+                .attr("x", xscale(i) + 7)
+                .attr("y", 14 * 4)
+                .style("font-size", "0.8em")
+                .style("fill", config.colorScheme.text_color)
+                .call(self.wrap, xscale(1), unit);
         }
 
 
@@ -2798,7 +2811,7 @@ Components.prototype.scatterPlotMatrix = function(widget, configuration){
 
         var data = controller.data_obj.data_arr;
 
-        that.config.header_height = 14 * 4;
+        that.config.header_height = 14 * 5;
 
         var config = controller.config;
         var state = controller.state;
@@ -2908,6 +2921,15 @@ Components.prototype.scatterPlotMatrix = function(widget, configuration){
                 .style("font-size", "1em")
                 .style("fill", config.colorScheme.text_color)
                 .call(self.wrap, scale(1), indicatorArr[i]);
+
+            var unit = cap(config.indicatorLabels[indicatorArr[i]])
+            x_row.append("text")
+                .attr("class", "x_unit" + widget.widgetId)
+                .attr("x", scale(i) + 7)
+                .attr("y", 14 * 4)
+                .style("font-size", "0.8em")
+                .style("fill", config.colorScheme.text_color)
+                .call(self.wrap, scale(1), unit);
         }
 
 
@@ -2944,7 +2966,7 @@ Components.prototype.scatterPlotMatrix = function(widget, configuration){
                 .attr("class", "y_unit" + widget.widgetId)
                 .attr("x", 7)
                 .attr("y", scale(i) + scale(0.8))
-                .style("font-size", "1em")
+                .style("font-size", "0.8em")
                 .style("fill", config.colorScheme.text_color)
                 .call(self.wrap, scale(1), unit);
 
@@ -3023,6 +3045,7 @@ Components.prototype.scatterPlotMatrix = function(widget, configuration){
                         .attr("transform", "translate(" + scale(Number(i)) + "," + scale(Number(j) + 1) + ")")
                         //.attr("transform", "translate(" + scale(Number(i) + 1) + "," + scale(j) + ")")
                         .style("fill", "none")
+                        .style("font-size", "0.8em")
                         .call(axlets[indicatorArr[i]].xAxis);
 
                     data_grid.append("g")
@@ -3030,6 +3053,7 @@ Components.prototype.scatterPlotMatrix = function(widget, configuration){
                         .attr("transform", "translate(" + scale(Number(i)) + "," + scale(Number(j)) + ")")
                         //.attr("transform", "translate(" + scale(Number(i) + 1) + "," + scale(j) + ")")
                         .style("fill", "none")
+                        .style("font-size", "0.8em")
                         .call(axlets[indicatorArr[j]].yAxis);
 
                     d3.selectAll(".scatter_axis")
