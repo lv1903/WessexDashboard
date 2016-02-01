@@ -35,9 +35,14 @@ html
          script(src="/javascripts/controller.js")
          script(src="/javascripts/help.js")
 
-         style.
-            body {font: 14px "Helvetica"}
+         if state_obj.pdf == true 
 
+          style(type='text/css').
+             body {font: 12px "Helvetica"}
+             @font-face {font: 12px "Helvetica"}
+
+
+    body
 
          if !state_obj.pdf
             #headerDiv
@@ -86,5 +91,5 @@ html
                           span.i.fa.fa-info-circle.fa-fw
                           span #{" "} Source
 
-    body
+
         block content
