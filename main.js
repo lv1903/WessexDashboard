@@ -599,6 +599,7 @@ app.get("/pdf/:reportType/:areaType/:area/:gender", function(req, res) {
                             if(err){console.log(err.message)}
                             fs.unlink(file)
                         })
+			ph.exit();
                     })
                 });
             });
@@ -673,9 +674,9 @@ app.get("/pdf/:reportType/:areaType/:indicator/:gender/:area", function(req, res
                             if(err){console.log(err.message)}
                             fs.unlink(file)
                         })
-                    })
-                });
-                phantom.exit();
+			ph.exit();	
+                    })		    
+                });                
             });
         })
     }, {
