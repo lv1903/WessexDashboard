@@ -1,6 +1,13 @@
+
+.report {
+    font-size: 12px;
+}
+
+
+
 body {
-    padding: 50px;
-    font: 12px "Dejavu Sans"
+    /*padding: 50px;*/
+    /*font: 12px "Dejavu Sans"*/
 
 }
 
@@ -102,6 +109,11 @@ body {
     margin: 14px;
 }
 
+.link_nqm {
+    color: #4f4c80;
+    font-weight: bold;
+}
+
 .img_logo_small {
     height: 20px;
     margin: 10px;
@@ -144,6 +156,13 @@ body {
 
 
 /*---select page ---*/
+
+
+
+
+#selectDiv {
+    margin:auto;
+}
 
 #reportForm {
 
@@ -203,7 +222,7 @@ body {
 }
 
 #intro_container {
-    max-width: 800px;
+    max-width: 900px;
     text-align: center;
 
     margin:0 auto;

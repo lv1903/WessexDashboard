@@ -2560,13 +2560,14 @@ Components.prototype.tartanRug = function(widget, configuration){
                 .attr("transform", "translate(" + xscale(1) + ",0)")
                 .attr("class", "indicator" + i)
                 .attr("x", xscale(i) + 7)
-                .attr("y",21 )
-                .style("font-size", "1em")
+                .attr("y", 21 )
+                .style("font-size", "0.9em")
                 .style("fill", config.colorScheme.text_color)
                 .call(self.wrap, xscale(1), indicatorArr[i]);
 
             var unit = cap(config.indicatorLabels[indicatorArr[i]])
             svg.append("text")
+                .attr("transform", "translate(" + xscale(1) + ",0)")
                 .attr("class", "indicator_unit" + widget.widgetId)
                 .attr("x", xscale(i) + 7)
                 .attr("y", 14 * 4)
@@ -2607,7 +2608,7 @@ Components.prototype.tartanRug = function(widget, configuration){
             .attr("y", function (d, i) {return yscale(d) + 0.5 * yscale.rangeBand()})
             .attr("dy", "0.5em")
             .text(function(d, i){return controller._get_area_name(d)})
-            .style("font-size", "1em")
+            .style("font-size", "0.9em")
             //.style("font-weight", "bold")
             .style("fill", config.colorScheme.text_color)
             .on("click", name_click);
@@ -2923,7 +2924,7 @@ Components.prototype.scatterPlotMatrix = function(widget, configuration){
                 .attr("class", "x_label" + widget.widgetId)
                 .attr("x", scale(i) + 7)
                 .attr("y", 21)
-                .style("font-size", "1em")
+                .style("font-size", "0.9em")
                 .style("fill", config.colorScheme.text_color)
                 .call(self.wrap, scale(1), indicatorArr[i]);
 
@@ -2961,7 +2962,7 @@ Components.prototype.scatterPlotMatrix = function(widget, configuration){
                 .attr("class", "y_label" + widget.widgetId)
                 .attr("x", 7)
                 .attr("y", scale(i) + scale(0.4))
-                .style("font-size", "1em")
+                .style("font-size", "0.9em")
                 .style("fill", config.colorScheme.text_color)
                 .call(self.wrap, scale(1), indicatorArr[i]);
 

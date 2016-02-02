@@ -11,43 +11,53 @@ block content
     script(src="/javascripts/share.js")
 
 
+    .container
 
-    #selectDiv
-      .btn.btn-default.btn-lg#doneButton(onclick='getPage()') Back
+        br
 
-    hr
+        br
 
-    h2 Share the introduction page
+        .btn.btn-default.btn-lg#doneButton(onclick='getPage()') Back
 
-    .btn.btn-default.btn-lg.share-btn#selectButton(onclick='shareIt("mailIntro")')
-        span.i.fa.fa-envelope.fa-fw
-        span #{" "} mail
-    .btn.btn-default.btn-lg.share-btn#selectButton(onclick='shareIt("twitterIntro")')
-        span.i.fa.fa-twitter.fa-fw
-        span #{" "} twitter
-    .btn.btn-default.btn-lg.share-btn#selectButton(onclick='shareIt("facebookIntro")')
-        span.i.fa.fa-facebook.fa-fw
-        span #{" "} facebook
+        hr
 
+        h2 Share the introduction page
 
-    hr
-
-    h2 Share the current report
-
-    .btn.btn-default.btn-lg.share-btn#selectButton(onclick='shareIt("mail")')
-        span.i.fa.fa-envelope.fa-fw
-        span #{" "} mail
-
-    .btn.btn-default.btn-lg.share-btn#selectButton(onclick='shareIt("twitter")')
-        span.i.fa.fa-twitter.fa-fw
-        span #{" "} twitter
-
-    .btn.btn-default.btn-lg.share-btn#selectButton(onclick='shareIt("facebook")')
-        span.i.fa.fa-facebook.fa-fw
-        span #{" "} facebook
+        .btn.btn-default.btn-lg.share-btn#selectButton(onclick='shareIt("mailIntro")')
+            span.i.fa.fa-envelope.fa-fw
+            span #{" "} mail
+        .btn.btn-default.btn-lg.share-btn#selectButton(onclick='shareIt("twitterIntro")')
+            span.i.fa.fa-twitter.fa-fw
+            span #{" "} twitter
+        .btn.btn-default.btn-lg.share-btn#selectButton(onclick='shareIt("facebookIntro")')
+            span.i.fa.fa-facebook.fa-fw
+            span #{" "} facebook
 
 
-    hr
-    .btn.btn-default.btn-lg#doneButton(onclick='getPage()') Back
+        hr
+
+        h2 Share the current report
+
+        .btn.btn-default.btn-lg.share-btn#selectButton(onclick='shareIt("mail")')
+            span.i.fa.fa-envelope.fa-fw
+            span #{" "} mail
+
+        .btn.btn-default.btn-lg.share-btn#selectButton(onclick='shareIt("twitter")')
+            span.i.fa.fa-twitter.fa-fw
+            span #{" "} twitter
+
+        .btn.btn-default.btn-lg.share-btn#selectButton(onclick='shareIt("facebook")')
+            span.i.fa.fa-facebook.fa-fw
+            span #{" "} facebook
+
+
+        hr
+        .btn.btn-default.btn-lg#doneButton(onclick='getPage()') Back
+
+        br
+
+        br
+
+    include cis_footer
 
 

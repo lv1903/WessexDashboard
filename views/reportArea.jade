@@ -1,17 +1,20 @@
-extends report_layout
+extends layout
 block content
 
     script(src="/javascripts/areaheader.js")
     script(src="/javascripts/indicatorwidget.js")
     script(src="/javascripts/init_area.js")
 
-    .flex-group
-        .flex-container.double_items
-            .flex-item.double_item#wi0Item
-            .flex-item.double_item#wi1Item
-            .flex-item.double_item#wi2Item
-            .flex-item.double_item#wi3Item
-            .flex-item.double_item#wi4Item
+    include button_row
+
+    .report
+        .flex-group
+            .flex-container.double_items
+                .flex-item.double_item#wi0Item
+                .flex-item.double_item#wi1Item
+                .flex-item.double_item#wi2Item
+                .flex-item.double_item#wi3Item
+                .flex-item.double_item#wi4Item
 
 
-    include ./report_footer
+    include report_footer

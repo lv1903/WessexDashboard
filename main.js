@@ -12,6 +12,7 @@ app.use(bodyParser.json({limit: (5*1024*1000) }));
 
 
 
+
 var phantom = require('phantom');
 var fs = require('fs');
 var path = require('path');
@@ -94,82 +95,10 @@ var callNestObj = function(){
 
 
 
+
 /*------------------------------------------------------------------*/
 
-
-app.get("/", function(req, res){
-
-
-
-
-});
-
-
-app.get("/select/:reportType/:areaType/:indicator/:gender/:area", function(req, res){
-
-    var reportType = req.params["reportType"];
-    var areaType = req.params["areaType"];
-    var indicator = req.params["indicator"];
-    var indicatorArr = [req.params["indicator"]];
-    var gender = req.params["gender"]
-    var genderArr = [req.params["gender"]];
-    var area = req.params["area"];
-
-
-    var state_obj = {
-        reportType: reportType,
-        areaType: areaType,
-        gender: gender,
-        genderArr: genderArr,
-        indicator: indicator,
-        indicatorArr: indicatorArr,
-        current_area: area
-    };
-
-    var view = "select";
-
-    res.render(view, {
-        title: view,
-        config_obj: config_obj,
-        state_obj: state_obj
-    });
-
-});
-
-
-app.get("/share/:reportType/:areaType/:indicator/:gender/:area", function(req, res){
-
-    var reportType = req.params["reportType"];
-    var areaType = req.params["areaType"];
-    var indicator = req.params["indicator"];
-    var indicatorArr = [req.params["indicator"]];
-    var gender = req.params["gender"]
-    var genderArr = [req.params["gender"]];
-    var area = req.params["area"];
-
-
-    var state_obj = {
-        reportType: reportType,
-        areaType: areaType,
-        gender: gender,
-        genderArr: genderArr,
-        indicator: indicator,
-        indicatorArr: indicatorArr,
-        current_area: area
-    };
-
-    var view = "share";
-
-    res.render(view, {
-        title: view,
-        config_obj: config_obj,
-        state_obj: state_obj
-    });
-
-});
-
-
-app.get("/WessexAlcohol", function(req, res){
+app.get("/projects/alcdash", function(req, res){
 
     var reportType = "Intro";
 
@@ -240,8 +169,69 @@ app.get("/WessexAlcohol", function(req, res){
 
 });
 
+app.get("/projects/alcdash/select/:reportType/:areaType/:indicator/:gender/:area", function(req, res){
 
-app.get("/WessexAlcohol/source/:reportType/:areaType/:indicator/:gender/:area", function(req, res){
+    var reportType = req.params["reportType"];
+    var areaType = req.params["areaType"];
+    var indicator = req.params["indicator"];
+    var indicatorArr = [req.params["indicator"]];
+    var gender = req.params["gender"]
+    var genderArr = [req.params["gender"]];
+    var area = req.params["area"];
+
+
+    var state_obj = {
+        reportType: reportType,
+        areaType: areaType,
+        gender: gender,
+        genderArr: genderArr,
+        indicator: indicator,
+        indicatorArr: indicatorArr,
+        current_area: area
+    };
+
+    var view = "select";
+
+    res.render(view, {
+        title: view,
+        config_obj: config_obj,
+        state_obj: state_obj
+    });
+
+});
+
+app.get("/projects/alcdash/share/:reportType/:areaType/:indicator/:gender/:area", function(req, res){
+
+    var reportType = req.params["reportType"];
+    var areaType = req.params["areaType"];
+    var indicator = req.params["indicator"];
+    var indicatorArr = [req.params["indicator"]];
+    var gender = req.params["gender"]
+    var genderArr = [req.params["gender"]];
+    var area = req.params["area"];
+
+
+    var state_obj = {
+        reportType: reportType,
+        areaType: areaType,
+        gender: gender,
+        genderArr: genderArr,
+        indicator: indicator,
+        indicatorArr: indicatorArr,
+        current_area: area
+    };
+
+    var view = "share";
+
+    res.render(view, {
+        title: view,
+        config_obj: config_obj,
+        state_obj: state_obj
+    });
+
+});
+
+app.get("/projects/alcdash/source/:reportType/:areaType/:indicator/:gender/:area", function(req, res){
 
         var reportType = req.params["reportType"];
         var areaType = req.params["areaType"];
@@ -272,7 +262,7 @@ app.get("/WessexAlcohol/source/:reportType/:areaType/:indicator/:gender/:area", 
 
     });
 
-app.get("/IndicatorReport/:areaType/:indicator/:gender/:area", function(req, res) {
+app.get("/projects/alcdash/IndicatorReport/:areaType/:indicator/:gender/:area", function(req, res) {
 
     var reportType = req.params["reportType"];
 
@@ -358,8 +348,7 @@ app.get("/IndicatorReport/:areaType/:indicator/:gender/:area", function(req, res
 
 });
 
-
-app.get("/AreaReport/:areaType/:area/:gender", function(req, res) {
+app.get("/projects/alcdash/AreaReport/:areaType/:area/:gender", function(req, res) {
 
     var pdf = false;
     if(req.headers['user-agent'].indexOf("PhantomJS") > 0){pdf = true} //for removing certain elements from pdf
@@ -442,8 +431,7 @@ app.get("/AreaReport/:areaType/:area/:gender", function(req, res) {
 
 });
 
-
-app.get("/OverviewReport/:areaType/:area/:gender", function(req, res) {
+app.get("/projects/alcdash/OverviewReport/:areaType/:area/:gender", function(req, res) {
 
     var pdf = false;
     if(req.headers['user-agent'].indexOf("PhantomJS") > 0){pdf = true} //for removing certain elements from pdf
@@ -524,8 +512,7 @@ app.get("/OverviewReport/:areaType/:area/:gender", function(req, res) {
 
 });
 
-
-app.get("/pdf/:reportType/:areaType/:area/:gender", function(req, res) {
+app.get("/projects/alcdash/pdf/:reportType/:areaType/:area/:gender", function(req, res) {
 
 
     var reportType = req.params["reportType"];
@@ -612,7 +599,7 @@ app.get("/pdf/:reportType/:areaType/:area/:gender", function(req, res) {
 
 });
 
-app.get("/pdf/:reportType/:areaType/:indicator/:gender/:area", function(req, res) {
+app.get("/projects/alcdash/pdf/:reportType/:areaType/:indicator/:gender/:area", function(req, res) {
 
 
     var reportType = req.params["reportType"];

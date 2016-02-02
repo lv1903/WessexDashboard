@@ -1,4 +1,4 @@
-extends report_layout
+extends layout
 block content
 
 
@@ -7,13 +7,12 @@ block content
 
     script(src="/javascripts/init_overview.js")
 
+    include button_row
 
     .flex-container.big_items
         .flex-item.big_item#wi0Item
         .flex-item.big_item#wi1Item
 
-
-
-    include ./report_footer
+    include report_footer
 
 

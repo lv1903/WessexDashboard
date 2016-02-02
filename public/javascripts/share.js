@@ -11,15 +11,15 @@ var sharePath = function() {
     switch (state_obj.reportType) {
 
         case "IndicatorReport":
-            path = window.location.protocol + "//" + window.location.host + "/IndicatorReport/" + areaType + "/" + indicator + "/" + gender  + "/" + state_obj.current_area;
+            path = window.location.protocol + "//" + window.location.host + "/projects/alcdash/IndicatorReport/" + areaType + "/" + indicator + "/" + gender  + "/" + state_obj.current_area;
             break;
 
         case "OverviewReport":
-            path = window.location.protocol + "//" + window.location.host + "/OverviewReport/" + areaType + "/" + state_obj.current_area + "/" + gender;
+            path = window.location.protocol + "//" + window.location.host + "/projects/alcdash/OverviewReport/" + areaType + "/" + state_obj.current_area + "/" + gender;
             break;
 
         case "AreaReport":
-            path = window.location.protocol + "//" + window.location.host + "/AreaReport/" + areaType + "/" + state_obj.current_area + "/" + gender;
+            path = window.location.protocol + "//" + window.location.host + "/projects/alcdash/AreaReport/" + areaType + "/" + state_obj.current_area + "/" + gender;
             break;
     }
 
@@ -42,7 +42,7 @@ var encoded_titleText =  encodeURIComponent(titleText);
 var body = "Explore the local alcohol profiles in Wessex: " + encoded_appUrl;
 
 
-var introUrl =  window.location.protocol + "//" + window.location.host + "/WessexAlcohol"
+var introUrl =  window.location.protocol + "//" + window.location.host + "/projects/alcdash"
 var encoded_introUrl =  encodeURIComponent(introUrl);
 var introBody =  "Explore the local alcohol profiles in Wessex: " + encoded_introUrl;
 

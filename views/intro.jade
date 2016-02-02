@@ -20,28 +20,29 @@ block content
 
     script.
         var enterApp = function(){
-            window.location.href = window.location.protocol + "//" + window.location.host + '/select/AreaReport/CCG/Admission%20episodes%20for%20alcohol-related%20conditions/Male/E38000137/'
+            window.location.href = window.location.protocol + "//" + window.location.host + '/projects/alcdash/select/AreaReport/CCG/Admission%20episodes%20for%20alcohol-related%20conditions/Male/E38000137/'
         }
 
 
 
     #intro_container
-        img(src='/images/wahsn_logo.png')#wahsnLogo
+        //img(src='/images/wahsn_logo.png')#wahsnLogo
+        br
         h1 Wessex AHSN Local Alcohol Profiles
 
 
-
+        br
         h4 Alcohol-related harm consumes nearly #{" "}
             span.number_text &#163
             span.number_text 2.7
             span #{" "} billion of the annual NHS budget.
 
+        br
         h4 It costs nearly #{" "}
             span.number_text &#163
             span.number_text 238
             span #{" "} million across Dorset, Hampshire and Wiltshire.
 
-        br
 
         hr
         .explore_btn.btn.btn-block(onclick="enterApp()") Click here to view the reports!
@@ -50,6 +51,7 @@ block content
         #introDensityItem
 
         h3 Deaths from chronic liver disease in England: 2011-13
+        br
 
         hr
 
@@ -72,6 +74,7 @@ block content
         h4 There were #{" "}
             span.number_text 56,000
             span #{" "} alcohol related admission episodes in Wessex Hospitals in 2013/14.
+        br
 
         h4 And over #{" "}
             span.number_text 1,000
@@ -90,24 +93,7 @@ block content
 
         .explore_btn.btn.btn-block(onclick="enterApp()") Click here to view the reports!
 
+    include report_footer
 
-        .report_footer
-            hr
-            br
-
-            p This app was built by #{" "}
-                span.nqminds_text
-                    a(href="http://nqminds.com", target="blank") nquiringminds
-
-            #logos
-                img(src='/images/wahsn_logo.png').img_logo
-                img(src='/images/cis_logo.png').img_logo
-                img(src='/images/soto_logo.png').img_logo
-                img(src='/images/nqm_logo.png').img_logo
-
-
-            p The data was sourced from Fingertips profile tools. Crown copyright &#169 2016. Fingertips was designed and developed by the Fingertips team at Public Health England. Available at #{" "}
-                span
-                    a(href="http://fingertips.phe.org.uk", target="blank") http://fingertips.phe.org.uk
 
 

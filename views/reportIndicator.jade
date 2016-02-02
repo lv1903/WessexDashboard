@@ -1,4 +1,4 @@
-extends report_layout
+extends layout
 block content
 
 
@@ -12,15 +12,17 @@ block content
 
     script(src="/javascripts/init_indicator.js")
 
+    include button_row
 
-    .flex-container.full_items
-        .flex-item.full_item#headerItem
-        .flex-item.full_item#densitygraphItem
-        .flex-item.full_item#wessexmapItem
-        .flex-item.full_item#areafactsItem
-        .flex-item.full_item#bargraphItem
-        .flex-item.full_item#multilinegraphItem
+    .report
+        .flex-container.full_items
+            .flex-item.full_item#headerItem
+            .flex-item.full_item#densitygraphItem
+            .flex-item.full_item#wessexmapItem
+            .flex-item.full_item#areafactsItem
+            .flex-item.full_item#bargraphItem
+            .flex-item.full_item#multilinegraphItem
 
-    include ./report_footer
+    include report_footer
 
 
