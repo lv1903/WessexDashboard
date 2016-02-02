@@ -512,7 +512,7 @@ app.get("/projects/alcdash/OverviewReport/:areaType/:area/:gender", function(req
 
 });
 
-app.get("/projects/alcdash/pdf/:reportType/:areaType/:area/:gender", function(req, res) {
+app.get("/pdf/projects/alcdash/:reportType/:areaType/:area/:gender", function(req, res) {
 
 
     var reportType = req.params["reportType"];
@@ -599,7 +599,7 @@ app.get("/projects/alcdash/pdf/:reportType/:areaType/:area/:gender", function(re
 
 });
 
-app.get("/projects/alcdash/pdf/:reportType/:areaType/:indicator/:gender/:area", function(req, res) {
+app.get("/pdf/projects/alcdash/:reportType/:areaType/:indicator/:gender/:area", function(req, res) {
 
 
     var reportType = req.params["reportType"];

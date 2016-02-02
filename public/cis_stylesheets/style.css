@@ -2,11 +2,11 @@
 @import url('http://fonts.googleapis.com/css?family=Noto+Serif:400,400italic,700|Open+Sans:300,400,600,700');
 
 /* === prettify === */
-@import url('../js/google-code-prettify/prettify.css');
+@import url('/cis_js/google-code-prettify/prettify.css');
 /* === fontawesome === */
-@import url('font-awesome.css');
+/*@import url('/cis_fonts/font-awesome.css');*/
 /* === custom icon === */
-@import url('custom-fonts.css');
+/*@import url('/cis_fonts/custom-fonts.css');*/
 /* ==== overwrite bootstrap standard ==== */
 @import url('overwrite.css');
 @import url('animate.css');

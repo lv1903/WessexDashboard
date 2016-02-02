@@ -322,15 +322,15 @@ Controller.prototype.pdf = function (color) {
     switch (state_obj.reportType) {
 
         case "IndicatorReport":
-            path = window.location.protocol + "//" + window.location.host + "/projects/alcdash/pdf/IndicatorReport/" + areaType + "/" + indicator + "/" + gender  + "/" + state_obj.current_area;
+            path = window.location.protocol + "//" + window.location.host + "/pdf/projects/alcdash/IndicatorReport/" + areaType + "/" + indicator + "/" + gender  + "/" + state_obj.current_area;
             break;
 
         case "OverviewReport":
-            path = window.location.protocol + "//" + window.location.host + "/projects/alcdash/pdf/OverviewReport/" + areaType + "/" + state_obj.current_area + "/" + gender;
+            path = window.location.protocol + "//" + window.location.host + "/pdf/projects/alcdash/OverviewReport/" + areaType + "/" + state_obj.current_area + "/" + gender;
             break;
 
         case "AreaReport":
-            path = window.location.protocol + "//" + window.location.host + "/projects/alcdash/pdf/AreaReport/" + areaType + "/" + state_obj.current_area + "/" + gender;
+            path = window.location.protocol + "//" + window.location.host + "/pdf/projects/alcdash/AreaReport/" + areaType + "/" + state_obj.current_area + "/" + gender;
             break;
     }
 

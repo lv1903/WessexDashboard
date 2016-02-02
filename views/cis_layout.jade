@@ -14,7 +14,7 @@ head
 
    //cis css
    link(rel='stylesheet', href='/cis_stylesheets/bootstrap.min.css')
-   link(rel='stylesheet', href='/cis_stylesheets/jcarousel.css')
+   //link(rel='stylesheet', href='/cis_stylesheets/jcarousel.css')
    link(rel='stylesheet', href='/cis_stylesheets/flexslider.css')
    link(rel='stylesheet', href='/cis_stylesheets/style.css')
    link(rel='stylesheet', href='/cis_stylesheets/fancybox/jquery.fancybox.css')
@@ -54,58 +54,59 @@ head
 
 
 body
-   #wrapper
-      // start header
-      header
-         .navbar.navbar-default.navbar-static-top
-            .container
-               .navbar-header
-                  button.navbar-toggle(type='button', data-toggle='collapse', data-target='.navbar-collapse')
-                     span.icon-bar
-                     span.icon-bar
-                     span.icon-bar
-                  a.navbar-brand(href='http://cisdata.soton.ac.uk/home') Centre for Implementation Science
-                     span #{" "} CIS Data Site
-               .navbar-collapse.collapse
-                  ul.nav.navbar-nav
-                     li.active
-                        a(href='http://cisdata.soton.ac.uk/home') Home
-                     li.inactive
-                        a(href='http://cisdata.soton.ac.uk/data_projects') Data Projects
-                     li.inactive
-                        a(href='http://cisdata.soton.ac.uk/data_visualisation') Data Visualisation
-                     li.inactive
-                        a(href='http://cisdata.soton.ac.uk/sources') Sources
-                     li.inactive
-                        a(href='http://cisdata.soton.ac.uk/contact_us') Contact Us
+    if !state_obj.pdf
+       #wrapper
+          // start header
+          header
+             .navbar.navbar-default.navbar-static-top
+                .container
+                   .navbar-header
+                      button.navbar-toggle(type='button', data-toggle='collapse', data-target='.navbar-collapse')
+                         span.icon-bar
+                         span.icon-bar
+                         span.icon-bar
+                      a.navbar-brand(href='http://cisdata.soton.ac.uk/home') Centre for Implementation Science
+                         span #{" "} CIS Data Site
+                   .navbar-collapse.collapse
+                      ul.nav.navbar-nav
+                         li.active
+                            a(href='http://cisdata.soton.ac.uk/home') Home
+                         li.inactive
+                            a(href='http://cisdata.soton.ac.uk/data_projects') Data Projects
+                         li.inactive
+                            a(href='http://cisdata.soton.ac.uk/data_visualisation') Data Visualisation
+                         li.inactive
+                            a(href='http://cisdata.soton.ac.uk/sources') Sources
+                         li.inactive
+                            a(href='http://cisdata.soton.ac.uk/contact_us') Contact Us
 
-      // end header
-      // begin headline
-      section#inner-headline
-         .container
-            .row
-               .col-lg-12
-                  ul.breadcrumb
-                     li
-                        a(href='http://cisdata.soton.ac.uk/home')
-                           i.fa.fa-home
-                        i.icon-angle-right
-                     | &#x9;&#x9;&#x9;&#x9;&#x9;
-                     li
-                        a(href='http://cisdata.soton.ac.uk/data_projects') Data projects
-                        i.icon-angle-right
-                     | &#x9;&#x9;&#x9;&#x9;&#x9;
-                     li.active Local Alcohol Profiles for Wessex
+          // end header
+          // begin headline
+          section#inner-headline
+             .container
+                .row
+                   .col-lg-12
+                      ul.breadcrumb
+                         li
+                            a(href='http://cisdata.soton.ac.uk/home')
+                               i.fa.fa-home
+                            i.icon-angle-right
+                         | &#x9;&#x9;&#x9;&#x9;&#x9;
+                         li
+                            a(href='http://cisdata.soton.ac.uk/data_projects') Data projects
+                            i.icon-angle-right
+                         | &#x9;&#x9;&#x9;&#x9;&#x9;
+                         li.active Local Alcohol Profiles for Wessex
 
-      section.callaction
-         .container
-            .row
-               .col-lg-12
-                  .big-cta
-                     .cta-text
-                        h2
-                           span CIS
-                           |  Data projects
+          section.callaction
+             .container
+                .row
+                   .col-lg-12
+                      .big-cta
+                         .cta-text
+                            h2
+                               span CIS
+                               |  Data projects
 
 
 
