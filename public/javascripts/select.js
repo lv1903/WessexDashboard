@@ -14,7 +14,7 @@ var buildPath = function(){
             var e = document.getElementById(inArr[i]);
             outArr[i] = e.options[e.selectedIndex].value;
         }
-        path = window.location.protocol + "//" + window.location.host + "/projects/alcdash/IndicatorReport/" + outArr[0] + "/" + outArr[1] + "/" + outArr[2]  + "/" + outArr[3];
+        path = window.location.protocol + "//" + window.location.host + "/datavis/alcdash/IndicatorReport/" + outArr[0] + "/" + outArr[1] + "/" + outArr[2]  + "/" + outArr[3];
 
 
     }
@@ -28,7 +28,7 @@ var buildPath = function(){
             var e = document.getElementById(inArr[i]);
             outArr[i] = e.options[e.selectedIndex].value;
         }
-        path = window.location.protocol + "//" + window.location.host + "/projects/alcdash/OverviewReport/" + outArr[0] + "/" + outArr[1] + "/" + outArr[2];
+        path = window.location.protocol + "//" + window.location.host + "/datavis/alcdash/OverviewReport/" + outArr[0] + "/" + outArr[1] + "/" + outArr[2];
     }
 
 
@@ -40,7 +40,7 @@ var buildPath = function(){
             var e = document.getElementById(inArr[i]);
             outArr[i] = e.options[e.selectedIndex].value;
         }
-        path = window.location.protocol + "//" + window.location.host + "/projects/alcdash/AreaReport/" + outArr[0] + "/" + outArr[1] + "/" + outArr[2];
+        path = window.location.protocol + "//" + window.location.host + "/datavis/alcdash/AreaReport/" + outArr[0] + "/" + outArr[1] + "/" + outArr[2];
     }
 
     return path

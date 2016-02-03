@@ -10,15 +10,15 @@ var sourcePath = function() {
     switch (state_obj.reportType) {
 
         case "IndicatorReport":
-            path = window.location.protocol + "//" + window.location.host + "/projects/alcdash/IndicatorReport/" + areaType + "/" + indicator + "/" + gender  + "/" + state_obj.current_area;
+            path = window.location.protocol + "//" + window.location.host + "/datavis/alcdash/IndicatorReport/" + areaType + "/" + indicator + "/" + gender  + "/" + state_obj.current_area;
             break;
 
         case "OverviewReport":
-            path = window.location.protocol + "//" + window.location.host + "/projects/alcdash/OverviewReport/" + areaType + "/" + state_obj.current_area + "/" + gender;
+            path = window.location.protocol + "//" + window.location.host + "/datavis/alcdash/OverviewReport/" + areaType + "/" + state_obj.current_area + "/" + gender;
             break;
 
         case "AreaReport":
-            path = window.location.protocol + "//" + window.location.host + "/projects/alcdash/AreaReport/" + areaType + "/" + state_obj.current_area + "/" + gender;
+            path = window.location.protocol + "//" + window.location.host + "/datavis/alcdash/AreaReport/" + areaType + "/" + state_obj.current_area + "/" + gender;
             break;
     }
 

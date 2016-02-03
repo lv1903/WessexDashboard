@@ -288,7 +288,7 @@ Controller.prototype.getIndicatorMappedArr = function(inputArr, dic){
 
 Controller.prototype.select = function () {
     console.log(state_obj)
-    var path = window.location.protocol + "//" + window.location.host + "/projects/alcdash/select/"
+    var path = window.location.protocol + "//" + window.location.host + "/datavis/alcdash/select/"
         + encodeURIComponent(state_obj.reportType) + "/"
         + encodeURIComponent(state_obj.areaType) + "/"
         + encodeURIComponent(state_obj.indicatorArr[0]) + "/"
@@ -300,7 +300,7 @@ Controller.prototype.select = function () {
 
 Controller.prototype.share = function () {
     console.log(state_obj)
-    var path = window.location.protocol + "//" + window.location.host + "/projects/alcdash/share/"
+    var path = window.location.protocol + "//" + window.location.host + "/datavis/alcdash/share/"
         + encodeURIComponent(state_obj.reportType) + "/"
         + encodeURIComponent(state_obj.areaType) + "/"
         + encodeURIComponent(state_obj.indicatorArr[0]) + "/"
@@ -322,15 +322,15 @@ Controller.prototype.pdf = function (color) {
     switch (state_obj.reportType) {
 
         case "IndicatorReport":
-            path = window.location.protocol + "//" + window.location.host + "/pdf/projects/alcdash/IndicatorReport/" + areaType + "/" + indicator + "/" + gender  + "/" + state_obj.current_area;
+            path = window.location.protocol + "//" + window.location.host + "/pdf/datavis/alcdash/IndicatorReport/" + areaType + "/" + indicator + "/" + gender  + "/" + state_obj.current_area;
             break;
 
         case "OverviewReport":
-            path = window.location.protocol + "//" + window.location.host + "/pdf/projects/alcdash/OverviewReport/" + areaType + "/" + state_obj.current_area + "/" + gender;
+            path = window.location.protocol + "//" + window.location.host + "/pdf/datavis/alcdash/OverviewReport/" + areaType + "/" + state_obj.current_area + "/" + gender;
             break;
 
         case "AreaReport":
-            path = window.location.protocol + "//" + window.location.host + "/pdf/projects/alcdash/AreaReport/" + areaType + "/" + state_obj.current_area + "/" + gender;
+            path = window.location.protocol + "//" + window.location.host + "/pdf/datavis/alcdash/AreaReport/" + areaType + "/" + state_obj.current_area + "/" + gender;
             break;
     }
 
@@ -339,7 +339,7 @@ Controller.prototype.pdf = function (color) {
 };
 
 Controller.prototype.welcome = function(){
-    window.location.href =   window.location.protocol + "//" + window.location.host + "/projects/alcdash"
+    window.location.href =   window.location.protocol + "//" + window.location.host + "/datavis/alcdash"
 };
 
 Controller.prototype.getSourcePath = function(anchor){
@@ -352,7 +352,7 @@ Controller.prototype.getSourcePath = function(anchor){
 
     console.log(anchor)
 
-    return  window.location.protocol + "//" + window.location.host + "/projects/alcdash/source/"
+    return  window.location.protocol + "//" + window.location.host + "/datavis/alcdash/source/"
         + encodeURIComponent(state_obj.reportType) + "/"
         + encodeURIComponent(state_obj.areaType) + "/"
         + encodeURIComponent(state_obj.indicatorArr[0]) + "/"
