@@ -10,7 +10,7 @@ module.exports = {
         var indicatorKey = indicatorObj.indicatorKey;
 
         //set a large limit
-        var apiPath = '/v1/datasets/' + databaseId + '/data?opts={"limit":100000}&filter={"' + indicatorKey + '":"' + encodeURIComponent(indicator) + '"}';
+        var apiPath = '/v1/datasets/' + databaseId + '/data?opts={"limit":1000000}&filter={"' + indicatorKey + '":"' + encodeURIComponent(indicator) + '"}';
 
         var options = {
             host: 'q.nqminds.com',
@@ -22,6 +22,8 @@ module.exports = {
         this.nqm_tbx_query(options, function(body){
 
             var data = JSON.parse(body).data;
+
+            //console.log(data[data.length - 1])
 
             callback(indicator, data)
 
@@ -182,7 +184,7 @@ module.exports = {
             if( Object.prototype.toString.call( source_obj[key] ) === '[object Array]' ) {
                 //if the data array strip out values into a sorted array and return the new value array
 
-                var arr = source_obj[key].map(function(el){return Number(el.Value)}).sort(function(a, b){return a-b});
+                var arr = source_obj[key].map(function(el){if(el.Value != null){return Number(el.Value)}}).sort(function(a, b){return a-b});
 
                 target_obj[key] = this.getDensityArray(arr);
 
