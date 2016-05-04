@@ -11,6 +11,7 @@ module.exports = {
 
         //set a large limit
         var apiPath = '/v1/datasets/' + databaseId + '/data?opts={"limit":1000000}&filter={"' + indicatorKey + '":"' + encodeURIComponent(indicator) + '"}';
+        console.log(apiPath)
 
         var options = {
             host: 'q.nqminds.com',
@@ -116,6 +117,7 @@ module.exports = {
 
 
     getUniqueArray: function(key, arr){
+
         var uniqueArr = [];
         for(var i in arr){
             var prop = arr[i][key];
