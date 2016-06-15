@@ -3,16 +3,16 @@
   "defaultArea": "Wessex",
   "defaultPeriod": 2013,
   "firstPeriod": 2008,
-  "lastPeriod": 2014,
+  "lastPeriod": 2015,
 
 
   "source":{
-    "id": "Area Code",
-    "name": "Area Name",
-    "period": "Map Period",
+    "id": "Area_Code",
+    "name": "Area_Name",
+    "period": "Map_Period",
     "value": "Value",
     "count": "Count",
-    "areaType": "Area Type",
+    "areaType": "Area_Type",
     "indicator": "Indicator",
     "gender": "Sex"
 
@@ -95,10 +95,10 @@
   },
 
   "indicatorDataBaseDetails":[
-    {"indicator": "3.01 - Mortality from chronic liver disease", "indicatorKey": "Indicator", "databaseId": "41WGoeXhQg"},
-    {"indicator": "2.01 - Alcohol-specific mortality", "indicatorKey": "Indicator", "databaseId": "41WGoeXhQg"},
-    {"indicator": "1.01 - Months of life lost due to alcohol", "indicatorKey": "Indicator", "databaseId": "41WGoeXhQg"},
-    {"indicator": "9.01 - Admission episodes for alcohol-related conditions (Broad)", "indicatorKey": "Indicator", "databaseId": "41WGoeXhQg"}
+    {"indicator": "3.01 - Mortality from chronic liver disease", "indicatorKey": "Indicator", "databaseId": "Bkl8P6-Jr"},
+    {"indicator": "2.01 - Alcohol-specific mortality", "indicatorKey": "Indicator", "databaseId": "Bkl8P6-Jr"},
+    {"indicator": "1.01 - Months of life lost due to alcohol", "indicatorKey": "Indicator", "databaseId": "Bkl8P6-Jr"},
+    {"indicator": "9.01 - Admission episodes for alcohol-related conditions (Broad)", "indicatorKey": "Indicator", "databaseId": "Bkl8P6-Jr"}
 
   ],
 

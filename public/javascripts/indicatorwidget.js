@@ -44,6 +44,13 @@ IndicatorWidget.prototype._update_widget = function(){
     this.data_area = controller.filterDataArea(areaType, gender, indicatorMapped, current_area);
     this.val = controller.getValueFromPeriodData(areaType, gender, indicatorMapped, current_period, current_area);
 
+    this.data_area.sort(function(a,b){
+        if (a.Map_Period < b.Map_Period)
+        return -1;
+        if (a.Map_Period > b.Map_Period)
+            return 1;
+        return 0;})
+
 };
 
 IndicatorWidget.prototype._draw_all = function(){

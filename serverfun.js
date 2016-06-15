@@ -3,14 +3,19 @@
 
 module.exports = {
 
+
+
     getIndicator: function(indicatorObj, callback){
 
         var indicator = indicatorObj.indicator;
         var databaseId = indicatorObj.databaseId;
         var indicatorKey = indicatorObj.indicatorKey;
 
+        var versionTimestamp;
+
+
         //set a large limit
-        var apiPath = '/v1/datasets/' + databaseId + '/data?opts={"limit":1000000}&filter={"' + indicatorKey + '":"' + encodeURIComponent(indicator) + '"}';
+        var apiPath = '/v1/datasets/' + databaseId + '/data?opts={"limit":1000000}&filter={"' + indicatorKey + '":"' + encodeURIComponent(indicator) + '","Value":{"$ne":-1}}';
         console.log(apiPath)
 
         var options = {
@@ -18,13 +23,15 @@ module.exports = {
             path: apiPath
         };
 
+        //console.log(options.path)
+
 
         console.log("request data");
         this.nqm_tbx_query(options, function(body){
 
             var data = JSON.parse(body).data;
 
-            //console.log(data[data.length - 1])
+            console.log(data[data.length - 1])
 
             callback(indicator, data)
 

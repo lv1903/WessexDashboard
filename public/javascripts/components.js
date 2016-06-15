@@ -1045,6 +1045,8 @@ Components.prototype.lineGraph = function(widget, configuration){
 
 
 
+
+
         svg.append("path")
             .datum(widget.data_area)
             .attr("class", "line timeLine")
@@ -1077,9 +1079,9 @@ Components.prototype.lineGraph = function(widget, configuration){
 
     function update(widget) {
 
-        var config = controller.config
+        var config = controller.config;
 
-        vArr = getVerticalLineCoords()
+        vArr = getVerticalLineCoords();
 
         d3.select("#verticalTimeLine" + widget.widgetId )
             .transition()
@@ -1097,12 +1099,19 @@ Components.prototype.lineGraph = function(widget, configuration){
             .duration(750)
             .attr("d", fLine);
 
+        console.log("***********")
+        for(var i in widget.data_area){
+            console.log(widget.data_area[i].Map_Period)
+        }
+
         d3.selectAll("#timeDots" + widget.widgetId)
+            .style("opacity", 0)
             .data(widget.data_area)
+            .style("opacity", 1)
             .transition()
             .duration(750)
             .attr("cx", function(e, i){return xscale(period_arr.indexOf(e[config.source.period]))})
-            .attr("cy", function(e){ return yscale(e[config.source.value])})
+            .attr("cy", function(e){console.log(yscale(e[config.source.value])); return yscale(e[config.source.value])})
 
     }
     that.update = update;
