@@ -46,3 +46,12 @@ Temporary Items
 *.iml
 
 /bin
+*.njsproj
+*.sln
+.vscode/
+obj
+.vs/
+
+# bin
+bin
+

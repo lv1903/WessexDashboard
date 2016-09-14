@@ -1104,6 +1104,8 @@ Components.prototype.lineGraph = function(widget, configuration){
             console.log(widget.data_area[i].Map_Period)
         }
 
+        //todo dots disapear when number of data points change
+
         d3.selectAll("#timeDots" + widget.widgetId)
             .style("opacity", 0)
             .data(widget.data_area)

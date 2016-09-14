@@ -1,132 +1,105 @@
-doctype html(lang='en')
+﻿doctype html
 head
-   meta(charset='utf-8')
-   title Centre for Implementation Science (CIS)
-   meta(name='viewport', content='width=device-width, initial-scale=1.0')
-   meta(name='description', content='A site dedicated to Heath and Social Care data analysis and visualisation across Wessex and England.\
-    Run by the Centre for Implementation Science, Faculty of Health Sciences, at the University of Southampton.')
-   meta(name='author', content='Brad Keogh and Richard Guerrero')
-
-   link(rel='shortcut icon', href='/cis_img/favicon.ico')
-
-   link(href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css", rel='stylesheet')
-   link(href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css", rel='stylesheet')
-
-   //cis css
-   link(rel='stylesheet', href='/cis_stylesheets/bootstrap.min.css')
-   //link(rel='stylesheet', href='/cis_stylesheets/jcarousel.css')
-   link(rel='stylesheet', href='/cis_stylesheets/flexslider.css')
-   link(rel='stylesheet', href='/cis_stylesheets/style.css')
-   link(rel='stylesheet', href='/cis_stylesheets/fancybox/jquery.fancybox.css')
-
-
-
-   // Theme skin
-   link(rel='stylesheet', href='/cis_stylesheets/default.css')
-
-   //link(href='http://fonts.googleapis.com/css?family=Raleway', rel='stylesheet', type='text/css')
-   script(src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js")
-   script(src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js")
-   script(src="https://cdnjs.cloudflare.com/ajax/libs/crossfilter/1.3.12/crossfilter.min.js")
-   script(src="http://d3js.org/d3.v3.min.js")
-   script(src= "http://d3js.org/topojson.v1.min.js")
-   script(src="http://www.numericjs.com/lib/numeric-1.2.6.min.js")
-   script(src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js")
-   script(type='text/javascript', src='/javascripts/EventEmitter-VERSION.min.js')
-   link(rel='stylesheet', href='/stylesheets/app_style.css')
-   link(rel='stylesheet', href='/stylesheets/flexStyleIndicator.css')
-
-   script.
-      var config_obj = !{JSON.stringify(config_obj)};
-      var data_obj = !{JSON.stringify(data_obj)};
-      var state_obj = !{JSON.stringify(state_obj)};
-
-   script(src="/javascripts/phantom_hack.js")
-   script(src="/javascripts/components.js")
-   script(src="/javascripts/controller.js")
-   script(src="/javascripts/help.js")
-
-   //google analytics
-   script.
-      (function (i, s, o, g, r, a, m) {
-         i['GoogleAnalyticsObject'] = r;
-         i[r] = i[r] || function () {
-                    (i[r].q = i[r].q || []).push(arguments)
-                 }, i[r].l = 1 * new Date();
-         a = s.createElement(o),
-                 m = s.getElementsByTagName(o)[0];
-         a.async = 1;
-         a.src = g;
-         m.parentNode.insertBefore(a, m)
-      })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
-      ga('create', 'UA-71937764-1', 'auto');
-      ga('send', 'pageview');
-
-   if state_obj.pdf == true
-      style(type='text/css').
-         body {font: 12px "Dejavu Sans"}
-         @font-face {font: 12px "Dejavu Sans"}
+  meta(charset='utf-8')
+  title Centre for Implementation Science (CIS)
+  meta(name='viewport', content='width=device-width, initial-scale=1.0')
 
 
 
 
+  link(rel='shortcut icon', href='/cis_img/favicon.ico')
 
+  link(href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css", rel='stylesheet')
+  link(href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css", rel='stylesheet')
 
-body
-    if !state_obj.pdf
-       #wrapper
-          // start header
-          header
-             .navbar.navbar-default.navbar-static-top
-                .container
-                   .navbar-header
-                      button.navbar-toggle(type='button', data-toggle='collapse', data-target='.navbar-collapse')
-                         span.icon-bar
-                         span.icon-bar
-                         span.icon-bar
-                      a.navbar-brand(href='http://cisdata.soton.ac.uk/home') Centre for Implementation Science
-                         span #{" "} CIS Data Site
-                   .navbar-collapse.collapse
-                      ul.nav.navbar-nav
-                         li.active
-                            a(href='http://cisdata.soton.ac.uk/home') Home
-                         li.inactive
-                            a(href='http://cisdata.soton.ac.uk/data_projects') Data Projects
-                         li.inactive
-                            a(href='http://cisdata.soton.ac.uk/data_visualisation') Data Visualisation
-                         li.inactive
-                            a(href='http://cisdata.soton.ac.uk/sources') Sources
-                         li.inactive
-                            a(href='http://cisdata.soton.ac.uk/contact_us') Contact Us
-
-          // end header
-          // begin headline
-          section#inner-headline
-             .container
-                .row
-                   .col-lg-12
-                      ul.breadcrumb
-                         li
-                            a(href='http://cisdata.soton.ac.uk/home')
-                               i.fa.fa-home
-                            i.icon-angle-right
-                         | &#x9;&#x9;&#x9;&#x9;&#x9;
-                         li
-                            a(href='http://cisdata.soton.ac.uk/data_projects') Data projects
-                            i.icon-angle-right
-                         | &#x9;&#x9;&#x9;&#x9;&#x9;
-                         li.active Local Alcohol Profiles for Wessex
-
-          section.callaction
-             .container
-                .row
-                   .col-lg-12
-                      .big-cta
-                         .cta-text
-                            h2
-                               span CIS
-                               |  Data projects
+  // cis css
+  link(href='/cis_stylesheets/bootstrap.min.css', rel='stylesheet')
+  link(href='/cis_stylesheets/fancybox/jquery.fancybox.css', rel='stylesheet')
+  link(href='/cis_stylesheets/jcarousel.css', rel='stylesheet')
+  link(href='/cis_stylesheets/flexslider.css', rel='stylesheet')
+  link(href='/cis_stylesheets/style.css', rel='stylesheet')
 
 
 
-      block content
+  // Theme skin
+  link(href='/cis_stylesheets/default.css', rel='stylesheet')
+
+  //link(href='http://fonts.googleapis.com/css?family=Raleway', rel='stylesheet', type='text/css')
+  script(src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js")
+  script(src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js")
+  script(src="https://cdnjs.cloudflare.com/ajax/libs/crossfilter/1.3.12/crossfilter.min.js")
+  script(src="http://d3js.org/d3.v3.min.js")
+  script(src= "http://d3js.org/topojson.v1.min.js")
+  script(src="http://www.numericjs.com/lib/numeric-1.2.6.min.js")
+  script(src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js")
+  script(type='text/javascript', src='/javascripts/EventEmitter-VERSION.min.js')
+  link(rel='stylesheet', href='/stylesheets/app_style.css')
+  link(rel='stylesheet', href='/stylesheets/flexStyleIndicator.css')
+
+  script.
+     var config_obj = !{JSON.stringify(config_obj)};
+     var data_obj = !{JSON.stringify(data_obj)};
+     var state_obj = !{JSON.stringify(state_obj)};
+
+  script(src="/javascripts/phantom_hack.js")
+  script(src="/javascripts/components.js")
+  script(src="/javascripts/controller.js")
+  script(src="/javascripts/help.js")
+
+  if state_obj.pdf == true
+     style(type='text/css').
+        body {font: 12px "Dejavu Sans"}
+        @font-face {font: 12px "Dejavu Sans"}
+
+
+
+// google analytics
+script.
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-71937764-2', 'auto');
+  ga('send', 'pageview');
+
+
+#wrapper
+  // start header
+  header
+    .navbar.navbar-default.navbar-static-top
+      .container
+        .navbar-header
+          button.navbar-toggle(type='button', data-toggle='collapse', data-target='.navbar-collapse')
+            span.icon-bar
+            span.icon-bar
+            span.icon-bar
+          a.navbar-brand(href='http://cisdata.soton.ac.uk/index')
+            | Centre for Implementation Science #{""}
+            span CIS
+            |  Data Site
+        .navbar-collapse.collapse
+          ul.nav.navbar-nav
+            li.active
+              a(href='http://cisdata.soton.ac.uk/index') Home
+            li.inactive
+              a(href='http://cisdata.soton.ac.uk/data_projects') Data Projects
+            li.inactive
+              a(href='http://cisdata.soton.ac.uk/sources') Sources
+            li.inactive
+              a(href='http://cisdata.soton.ac.uk/contact_us') Contact Us
+
+  // begin headline
+  section#inner-headline
+    .container
+      .row
+        .col-lg-12
+          ul.breadcrumb
+            li
+              a(href='http://cisdata.soton.ac.uk/index')
+                i.fa.fa-home
+              i.icon-angle-right
+            li
+              a(href='http://cisdata.soton.ac.uk/data_projects') Data projects
+              i.icon-angle-right
+
+block content

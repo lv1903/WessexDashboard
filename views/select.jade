@@ -9,6 +9,10 @@ block content
       var config_obj = !{JSON.stringify(config_obj)};
       var state_obj = !{JSON.stringify(state_obj)};
 
+      console.log(config_obj.indicatorArray)
+
+
+
 
 
    .container
@@ -20,7 +24,7 @@ block content
       hr
 
 
-
+      
 
 
       h1 Select
@@ -51,10 +55,12 @@ block content
       #indicatorSelector
          h3 Indicator:
          select(onchange='anyChange()')#indicatorSelect
-            option(value='Mortality from chronic liver disease') Mortality from chronic liver disease
-            option(value='Alcohol-specific mortality') Alcohol-specific mortality
-            option(value='Months of life lost due to alcohol') Months of life lost due to alcohol
-            option(value='Admission episodes for alcohol-related conditions') Admission episodes for alcohol-related conditions
+            for indicator in config_obj.indicatorArray
+              option(value=indicator) #{indicator}
+            //option(value='Mortality from chronic liver disease') Mortality from chronic liver disease
+            //option(value='Alcohol-specific mortality') Alcohol-specific mortality
+            //option(value='Months of life lost due to alcohol') Months of life lost due to alcohol
+            //option(value='Admission episodes for alcohol-related conditions') Admission episodes for alcohol-related conditions
 
       #areaSelector
          h3#areaSelectorText Areas:
