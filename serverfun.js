@@ -3,9 +3,11 @@
 
 module.exports = {
 
+    
 
+    getIndicator: function (indicatorObj, callback) {
 
-    getIndicator: function(indicatorObj, callback){
+        var config_obj = require("./configs/master_config.json");
 
         var indicator = indicatorObj.indicator;
         var databaseId = indicatorObj.databaseId;
@@ -15,7 +17,7 @@ module.exports = {
 
 
         //set a large limit
-        var apiPath = '/v1/datasets/' + databaseId + '/data?opts={"limit":1000000}&filter={"' + indicatorKey + '":"' + encodeURIComponent(indicator) + '","Value":{"$ne":-1}}';
+        var apiPath = '/v1/datasets/' + databaseId + '/data?opts={"limit":1000000}&filter={"' + indicatorKey + '":"' + encodeURIComponent(indicator) + '","Value":{"$ne":-1},"Map_Period":{"$gte":' + config_obj.firstPeriod + ',"$lte":' + config_obj.lastPeriod + '}}';
         console.log(apiPath)
 
         var options = {
