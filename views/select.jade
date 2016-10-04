@@ -69,9 +69,12 @@ block content
       #areaTypeSelector
          h3 Boundary Types:
          select(onchange='areaTypeChange()')#areaTypeSelect
-            option(value='CCG') CCGs
-            option(value='CU') Counties and Unitaries
-            option(value='DU') Districts and Unitaries
+            each val, key in config_obj.areaTypeMapping
+              option(value=val) #{key}
+
+            //option(value='CCG') CCGs
+            //option(value='CU') Counties and Unitaries
+            //option(value='DU') Districts and Unitaries
 
       #genderSelector
          h3 Gender:
