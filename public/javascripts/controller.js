@@ -53,7 +53,9 @@ var Controller = function(data_obj, config, state_obj){
 
 
 Controller.prototype.value_format = function (d) {
-    if (d < 10) { return d3.format("0.2n")(d) }
+    console.log(d)
+    if (d == -1) { return "na" }
+    if (d < 10) { return d3.format("0.2n")(d) }    
     else { return d3.format(",.0f")(d) }
 };
 
