@@ -491,6 +491,7 @@ Components.prototype.densityGraph = function(widget, configuration){
         obj = {"name": name,
             "average": average
         };
+
         objAverages.push(obj);
         //-----------------
         objAverages.sort(function (a, b) {return a.average - b.average;});
@@ -706,8 +707,6 @@ Components.prototype.densityGraph = function(widget, configuration){
 
         if(widget.val == null){
 
-
-
             density_area
                 .transition()
                 .duration(500)
@@ -806,21 +805,26 @@ Components.prototype.densityGraph = function(widget, configuration){
 
             var name = averages[i].name.trim();
 
-            if(name == "England"){
+            if (name == "England") {
                 id = "England"
-            } else if(name == "Wessex"){
+            } else if (name == "Wessex") {
                 id = "Wessex"
-            }else {
+            } else {
                 id = "Alt"
             }
 
             var median = averages[i].average;
 
+            
+            //round dp depending on value
+            median = controller.value_round(median)  
+
+
             d3.select("#average_line_" + id + widget.widgetId)
                 .transition()
                 .duration(500)
-                .attr("x1", xscale(Math.round(median)))
-                .attr("x2", xscale(Math.round(median)))
+                .attr("x1", xscale(median))
+                .attr("x2", xscale(median))
                 .attr("y1", that.config.compHeight - 1)
                 .attr("y2", function(){return that.config.y_arr[i]});
 
@@ -833,9 +837,9 @@ Components.prototype.densityGraph = function(widget, configuration){
                 .attr("x", function () {
                     var text_anchor = that.config.text_anchor_arr[i];
                     if (text_anchor == "end") {
-                        return xscale(Math.round(median)) - 5
+                        return xscale(median) - 5
                     } else {
-                        return xscale(Math.round(median)) + 5
+                        return xscale(median) + 5
                     }
                 })
                 .attr("y", function () {
@@ -852,15 +856,15 @@ Components.prototype.densityGraph = function(widget, configuration){
                 .attr("x", function () {
                     var text_anchor = that.config.text_anchor_arr[i];
                     if (text_anchor == "end") {
-                        return xscale(Math.round(median)) - 10
+                        return xscale(median) - 10
                     } else {
-                        return xscale(Math.round(median)) + 10
+                        return xscale(median) + 10
                     }
                 })
                 .attr("y", function () {
                     return that.config.y_arr[i]
                 })
-                .text(Math.round(median));
+                .text(median);
         }
 
 

@@ -172,7 +172,7 @@ IndicatorWidget.prototype._draw_value = function(){
 
     var self = this;
 
-    var format = d3.format(",.0f");
+    var format = controller.value_format;
 
     function get_string_obj(){
 
@@ -256,7 +256,7 @@ IndicatorWidget.prototype._draw_count = function(){
                 return [{str: "", font_size: "0"}]
             }
 
-            var format = d3.format(",.0f");
+             var format = controller.value_format;
 
             count = format(Number(self.val.count));
             unit = controller.config.genderLabels[self.gender] + " " + controller.config.indicatorCountLabels[self.indicator];
@@ -336,7 +336,7 @@ IndicatorWidget.prototype._draw_rank = function(){
             return [{str: "", font_size: "0"}]
         }
 
-        var format = d3.format(",.0f");
+         var format = controller.value_format;
 
         var areaType = controller.getKeyByValue(controller.config.areaTypeMapping, controller.state.areaType); //get the area type
         areaTypeLabel = controller.config.areaTypeLabels[areaType];

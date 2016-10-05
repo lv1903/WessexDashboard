@@ -52,6 +52,25 @@ var Controller = function(data_obj, config, state_obj){
 };
 
 
+Controller.prototype.value_format = function (d) {
+    if (d < 10) { return d3.format("0.2n")(d) }
+    else { return d3.format(",.0f")(d) }
+};
+
+Controller.prototype.value_round = function (d) {
+
+    if (d < 10 && d >= 1) {
+        return Math.round(d * 10) / 10
+    }
+    else if (d < 1) {
+        return Math.round(d * 100) / 100
+    }
+    else {
+        return Math.round(d)
+    }
+
+};
+
 
 Controller.prototype._get_area_name = function(id){ //!!should be passed areaType too
     var self = this;
